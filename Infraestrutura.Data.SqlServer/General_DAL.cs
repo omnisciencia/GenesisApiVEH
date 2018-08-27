@@ -795,6 +795,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.finvigencia = dr["finvigencia"].ToString();
                 clase.tippoliza = int.Parse(dr["tippoliza"].ToString());
                 clase.planproducto = dr["planproducto"].ToString();
+                
 
                 listado.Add(clase);
             }
