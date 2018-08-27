@@ -993,7 +993,7 @@ namespace Infraestrutura.Data.SqlServer
             int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
             int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
             int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector)
+            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
 
@@ -1071,7 +1071,8 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smconsola", smconsola);
             cmd.Parameters.AddWithValue("@smtablero", smtablero);
             cmd.Parameters.AddWithValue("@btequipomusicafijo", btequipomusicafijo);
-            cmd.Parameters.AddWithValue("@vinspector", vinspector);
+            cmd.Parameters.AddWithValue("@vinspector", vinspector); 
+            cmd.Parameters.AddWithValue("@smidcalificacion", smidcalificacion);
 
             cn.getcn.Open();
 

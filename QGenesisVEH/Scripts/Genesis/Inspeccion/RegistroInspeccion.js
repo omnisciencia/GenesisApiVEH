@@ -34,6 +34,19 @@ function InicioPoliza() {
 
 }
 
+function AbrirConfirm() {
+    var vinspector = $("#inspector_id").val();
+
+    if (vinspector.length < 1) {
+        $("#inspector_id").addClass('input-error');
+    }else{
+        (document.getElementById('btn_popconfirm')).click();
+        
+    }
+
+   
+}
+
 function GuardarFoto() {
 
     archivo = $('#myfile').val();
@@ -94,13 +107,14 @@ function ResponseGuardarImgSucces(data) {
     formData.append('file', file.files[0], nombreImg);
 
     $.ajax({
-        url: '/api/fileUpload',
+        url: '../api/fileUpload',
         type: 'POST',
         data: formData,
         contentType: false,
         processData: false,
         success: function (d) {
             alert('La imagen fue guardada satisfactoriamente')
+            ListarImgInspeccion(idinspeccion_input);
         },
         error: function () {
             alert('Ocurrio un problema al guardar la imagen');
@@ -763,10 +777,17 @@ function RegistrarInspeccion_onclick() {
     } else {
         btaccesorios = 0;
     }
+    calificacion = 0;
+    if (document.getElementById('sconforme_id').checked) {
+        calificacion = 1;
+    }
+    if (document.getElementById('nconforme_id').checked) {
+        calificacion = 2;
+    }
 
-    if (vinspector.length < 1){
-        $("#inspector_id").addClass('input-error');
-    } else {
+    if (calificacion = 0) {
+        alert("Debe seleccionar un estado de conformidad");
+    } else {        
         $.ajax({
             type: "POST",
             url: "../Services/RegistrarInspeccion",
@@ -798,7 +819,7 @@ function RegistrarInspeccion_onclick() {
                 + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
                 + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
                 + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
-                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "'}",
+                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}",
 
             dataType: "json",
             contentType: "application/json; charset=utf-8",

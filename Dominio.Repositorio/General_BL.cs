@@ -274,7 +274,7 @@ namespace Dominio.Repositorio
             int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
             int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
             int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector)
+            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
 
         {
             return dal.RegistrarInspeccion_DAL(smidpersona, idpoliza, idvehiculo, sminacionalidad,
@@ -291,7 +291,7 @@ namespace Dominio.Repositorio
             smestadofarodireccion, smcantfarodireccion, smcantfaroneblinero, smestadofaroneblinero,
             smcantespejoexterno, smestadoespejoexterno, smestadospoiler, smcantspoiler, smtipoaros,
             smcantaros, smestadomascara, smpintura, smtipoparachoque, smcarroceria, smconsola,
-            smtablero, btequipomusicafijo, vinspector);
+            smtablero, btequipomusicafijo, vinspector, smidcalificacion);
         }
 
         //Listado Imagenes Inpeccion
