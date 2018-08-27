@@ -142,8 +142,8 @@ namespace Dominio.Repositorio
                 string vnomcontacto,
                 int sminacionalidad,
                 int smidmarca,
-                int smidtipodocumento
-
+                int smidtipodocumento,
+                string serie
 
             )
         {
@@ -180,8 +180,8 @@ namespace Dominio.Repositorio
                 vnomcontacto,
                 sminacionalidad,
                 smidmarca,
-                smidtipodocumento
-
+                smidtipodocumento,
+                serie
                 );
         }
 
@@ -216,9 +216,9 @@ namespace Dominio.Repositorio
 
 
         //Listado Datos Poliza
-        public List<DatosPolizaEntity> ListarDatosPoliza_BL(int idpoliza)
+        public List<DatosPolizaEntity> ListarDatosPoliza_BL(int idinspeccion)
         {
-            return dal.ListarDatosPoliza_DAL(idpoliza);
+            return dal.ListarDatosPoliza_DAL(idinspeccion);
         }
 
         //Listado Tipo Combustible

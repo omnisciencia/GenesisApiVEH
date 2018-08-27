@@ -8,7 +8,7 @@ namespace Dominio.Entidades
 {
     public class ModeloVehiculoEntity
     {
-        public int smidmodelo { get; set; }
+        public int idmodelo { get; set; }
         public string vdescripcion { get; set; }
     }
 }
