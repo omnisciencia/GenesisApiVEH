@@ -786,9 +786,10 @@ function RegistrarInspeccion_onclick() {
         calificacion = 2;
     }
 
-    if (calificacion = 0) {
+    if (calificacion == 0) {
         alert("Debe seleccionar un estado de conformidad");
-    } else {        
+       
+    } else {
         $.ajax({
             type: "POST",
             url: "../Services/RegistrarInspeccion",

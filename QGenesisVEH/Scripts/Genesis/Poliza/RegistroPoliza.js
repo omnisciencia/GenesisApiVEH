@@ -179,8 +179,8 @@ function llenar_registro_poliza(data) {
     $("#color_reg").val(data[0].color);
     $("#sp_TipoUso").val(data[0].uso);
     $("#sumaasegurada_reg").val(data[0].suma);
-    $("#nroserie_reg").val("H1500S6S26S2");
-    //$("#nroserie_reg").val(data[0].nroserie);
+    //$("#nroserie_reg").val("H1500S6S26S2");
+    $("#nroserie_reg").val(data[0].nroserie);
 
     if (data[0].tipdocumento == 6) {
         //oculta campo apellido paterno
