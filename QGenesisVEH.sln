@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QGenesisVEH", "QGenesisVEH\QGenesisVEH.csproj", "{6895A448-2F47-4C02-A82E-31A4593D37D2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dominio", "Dominio", "{4906DE74-C6E0-45BC-A22D-A153C54307F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructura", "Infraestructura", "{29271FC8-04B8-4456-AE4D-C426C5800A03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entidades", "Entidades", "{87252342-639D-474E-8920-9B83251B5430}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositorio", "Repositorio", "{13158C7D-625B-424D-8731-6D0C1BDB9323}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{4138993E-13AD-4C91-9D9B-CAB2C086F1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Entidades", "Dominio.Entidades\Dominio.Entidades.csproj", "{34710A03-81E9-49FF-A7FC-10B18D38914E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dominio.Repositorio", "Dominio.Repositorio\Dominio.Repositorio.csproj", "{DEEF9A83-A0A7-4BDA-AF12-F1B5BDAED3A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestrutura.Data.SqlServer", "Infraestrutura.Data.SqlServer\Infraestrutura.Data.SqlServer.csproj", "{27CEF1A2-D898-4A70-8879-92A04210BAA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6895A448-2F47-4C02-A82E-31A4593D37D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6895A448-2F47-4C02-A82E-31A4593D37D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6895A448-2F47-4C02-A82E-31A4593D37D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6895A448-2F47-4C02-A82E-31A4593D37D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34710A03-81E9-49FF-A7FC-10B18D38914E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34710A03-81E9-49FF-A7FC-10B18D38914E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34710A03-81E9-49FF-A7FC-10B18D38914E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34710A03-81E9-49FF-A7FC-10B18D38914E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEEF9A83-A0A7-4BDA-AF12-F1B5BDAED3A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEEF9A83-A0A7-4BDA-AF12-F1B5BDAED3A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEEF9A83-A0A7-4BDA-AF12-F1B5BDAED3A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEEF9A83-A0A7-4BDA-AF12-F1B5BDAED3A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CEF1A2-D898-4A70-8879-92A04210BAA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CEF1A2-D898-4A70-8879-92A04210BAA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CEF1A2-D898-4A70-8879-92A04210BAA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CEF1A2-D898-4A70-8879-92A04210BAA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{87252342-639D-474E-8920-9B83251B5430} = {4906DE74-C6E0-45BC-A22D-A153C54307F1}
+		{13158C7D-625B-424D-8731-6D0C1BDB9323} = {4906DE74-C6E0-45BC-A22D-A153C54307F1}
+		{4138993E-13AD-4C91-9D9B-CAB2C086F1B6} = {29271FC8-04B8-4456-AE4D-C426C5800A03}
+		{34710A03-81E9-49FF-A7FC-10B18D38914E} = {87252342-639D-474E-8920-9B83251B5430}
+		{DEEF9A83-A0A7-4BDA-AF12-F1B5BDAED3A2} = {13158C7D-625B-424D-8731-6D0C1BDB9323}
+		{27CEF1A2-D898-4A70-8879-92A04210BAA9} = {4138993E-13AD-4C91-9D9B-CAB2C086F1B6}
+	EndGlobalSection
+EndGlobal

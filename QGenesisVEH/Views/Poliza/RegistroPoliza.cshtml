@@ -1,0 +1,380 @@
+﻿
+@{
+    ViewBag.Title = "RegistroPoliza";
+}
+
+<link href="~/Content/styleLayout.css" rel="stylesheet" />
+
+<div class="top-content">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-3 form-box">
+                <form role="form" action="" method="post" class="f1">
+
+                    <h3>Registro de Poliza</h3>
+                    <div class="f1-steps">
+                        <div class="f1-progress">
+                            <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
+                        </div>
+                        <div class="f1-step active">
+                            <div class="f1-step-icon"><i class="fas fa-car"></i></div>
+                            <p>Vehículo</p>
+                        </div>
+                        <div class="f1-step">
+                            <div class="f1-step-icon"><i class="fas fa-user"></i></div>
+                            <p>Solicitante</p>
+                        </div>
+                        <div class="f1-step">
+                            <div class="f1-step-icon"><i class="fas fa-paste"></i></div>
+                            <p>Poliza</p>
+                        </div>
+                    </div>
+
+                    <fieldset>
+                        <h4>Información del Vehículo:</h4>
+                        <div id="contenedor_errorMessage" class="alert alert-danger Ocultar" role="alert">
+                            <span id="errorMessage">simple danger alert—check it out!</span>
+                        </div>
+                        <div style="height: 10px;"></div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>Tipo de Vehículo:</label>
+                                    <select class="form-control input-sm" id="sp_TipoVehiculo" name="sp_TipoVehiculo">
+                                        <option value="">Automóvil</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Placa:</label>
+                                    <input type="text" class="form-control input-sm" id="placa_reg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nro. Motor:</label>
+                                    <input type="text" class="form-control input-sm" id="nromotor_reg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Color:</label>
+                                    <input type="text" class="form-control input-sm" id="color_reg">
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>Marca:</label>
+                                    <select class="form-control input-sm" id="sp_MarcaVehiculo" name="sp_MarcaVehiculo">
+                                        <option value="">Toyota</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nro. Asientos:</label>
+                                    <input type="text" class="form-control input-sm" id="nroasientos_reg" onkeypress="return justNumbers(event);">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nro. Serie:</label>
+                                    <input type="text" class="form-control input-sm" id="nroserie_reg">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Tipo Uso:</label>
+                                    <select class="form-control input-sm" id="sp_TipoUso" name="sp_TipoUso">
+                                        <option value="">PARTICULAR</option>
+                                    </select>
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>Modelo:</label>
+                                    <select class="form-control input-sm" id="sp_ModeloVehiculo" name="sp_ModeloVehiculo">
+                                        <option value="">Yaris</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Año de Fabricación:</label>
+                                    <select class="form-control input-sm" id="sp_anioFabricacion">
+                                        <option value="2007">2018</option>
+                                        <option value="2008">2017</option>
+                                        <option value="2009">2016</option>
+                                        <option value="2010">2015</option>
+                                        <option value="2010">2014</option>
+                                        <option value="2010">2013</option>
+                                        <option value="2010">2012</option>
+                                        <option value="2010">2011</option>
+                                        <option value="2010">2010</option>
+                                        <option value="2010">2009</option>
+                                        <option value="2010">2008</option>
+                                        <option value="2010">2007</option>
+                                        <option value="2010">2006</option>
+                                        <option value="2010">2005</option>
+                                        <option value="2010">2004</option>
+                                        <option value="2010">2003</option>
+                                        <option value="2010">2002</option>
+                                        <option value="2010">2001</option>
+                                        <option value="2010">2000</option>
+                                        <option value="2010">1999</option>
+                                        <option value="2010">1998</option>
+                                        <option value="2010">1997</option>
+                                        <option value="2010">1996</option>
+                                        <option value="2010">1995</option>
+                                        <option value="2010">1994</option>
+                                        <option value="2010">1993</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>VIN:</label>
+                                    <input type="text" class="form-control input-sm" id="vin_reg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Suma Asegurada(Dólares):</label>
+                                    <input type="text" class="form-control input-sm" id="sumaasegurada_reg" value=" " onkeypress="return justNumbers(event);" onblur="convertirDecimal(this)">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="f1-buttons">
+                            <button type="button" class="btn btn-next">Siguiente</button>
+                        </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Información del Solicitante</h4>
+                        <div style="height: 10px;"></div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label id="t_tipodoc">Tipo de Documento</label>
+                                    <select class="form-control input-sm" id="sp_TipoDocumento" name="sp_TipoDocumento">
+                                        <option value="">Dni</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_nombre">Nombres</label>
+                                    <input type="text" class="form-control input-sm" id="nombres_reg">
+                                </div>
+                                <!--<div class="form-group Ocultar" id="form_nomcontacto">
+                                    <label>Nombre de Contacto</label>
+                                    <input type="text" class="form-control input-sm" id="nomcontacto_reg" value=" ">
+                                </div>-->
+                                <div class="form-group">
+                                    <label id="t_fecnacimineto">Fecha Nacimiento:</label>
+
+
+                                    <input type="date" id="fecnaci_reg" class="form-control input-sm">
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_telfijo">Teléfono Fijo:</label>
+                                    <input type="text" class="form-control input-sm" id="telefono_reg" onkeypress="return justNumbers(event);">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label id="t_nrodocument">Nro. Documento</label>
+                                    <input type="text" class="form-control input-sm" id="nrodocumento_reg" onblur="ValidarPersona(this)">
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_apepaterno">Apellido Paterno</label>
+                                    <input type="text" class="form-control input-sm" id="paterno_reg">
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_sexo">Sexo:</label>
+                                    <select class="form-control input-sm" id="sp_Sexo" name="sp_Sexo">
+                                        <option value="">Masculino</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_celular">Celular</label>
+                                    <input type="text" class="form-control input-sm" id="celular_reg" onkeypress="return justNumbers(event);">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <!--<div class="form-group Ocultar" id="form_rsocial">
+                                    <label>Razón Social</label>
+                                    <input type="text" class="form-control input-sm" id="rsocial_reg" value=" ">
+                                </div>-->
+                                <div class="form-group">
+                                    <label id="t_nacionalidad">Nacionalidad:</label>
+                                    <select class="form-control input-sm" id="sp_Nacionalidad" name="sp_Nacionalidad">
+                                        <option value="">Peruana</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_apematerno">Apellido Materno</label>
+                                    <input type="text" class="form-control input-sm" id="materno_reg">
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_estcivil">Estado Civil:</label>
+                                    <select class="form-control input-sm" id="sp_EstadoCivil" name="sp_EstadoCivil">
+                                        <option value="">Casado</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label id="t_email">E-mail:</label>
+                                    <input type="email" class="form-control input-sm" id="email_reg" onblur="validarEmail(this)">
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--<div class="form-group Ocultar" id="form_rsocial">
+                            <label>Razón Social</label>
+                            <input type="text" class="form-control input-sm" id="rsocial_reg" value=" ">
+                        </div>-->
+
+                        <div class="row Ocultar" id="form_rsocial">
+                            <div class="col-lg-12 col-md-12">
+                                <div style="height: 8px;"></div>
+                                <div class="form-group">
+                                    <label>Razón Social</label>
+                                    <input type="text" class="form-control input-sm" id="rsocial_reg" value=" ">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row Ocultar" id="form_nomcontacto">
+                            <div class="col-lg-12 col-md-12">
+                                <div style="height: 8px;"></div>
+                                <div class="form-group">
+                                    <label>Nombre de contacto:</label>
+                                    <input type="text" class="form-control input-sm" placeholder="" id="nomcontacto_reg">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <h4>Dirección:</h4>
+                        <div style="height: 10px;"></div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>Departamento:</label>
+                                    <select class="form-control input-sm" id="sp_Departamento" name="sp_Departamento">
+                                        <option value="">LIMA</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Vía:</label>
+                                    <select class="form-control input-sm" id="sp_TipoVia" name="sp_TipoVia">
+                                        <option value="">CALLE</option>
+                                    </select>
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>Provincia:</label>
+                                    <select class="form-control input-sm" id="sp_Provincia" name="sp_Provincia">
+                                        <option value="">LIMA</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Número / Interior:</label>
+                                    <input type="text" class="form-control input-sm" placeholder="" id="numeroubi_reg">
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>Distrito:</label>
+                                    <select class="form-control input-sm" id="sp_Distrito" name="sp_Distrito">
+                                        <option value="">SAN ISIDRO</option>
+                                    </select>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div style="height: 8px;"></div>
+                                <input type="text" class="form-control input-sm" placeholder="Dirección" id="direccion_reg">
+                                <div style="height: 8px;"></div>
+                                <div class="form-group">
+                                    <div style="height: 8px;"></div>
+                                    <label>Referencia:</label>
+                                    <input type="text" class="form-control input-sm" placeholder="" id="referencia_reg">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="f1-buttons">
+                            <button type="button" class="btn btn-previous">Anterior</button>
+                            <button type="button" class="btn btn-next">Siguiente</button>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <h4>Producto a Registrar:</h4>
+                        <div class="row">
+
+                            <div class="col-lg-4 col-md-4">
+                                <div class="form-group">
+                                    <label>Nro. Poliza:</label>
+                                    <input type="text" class="form-control input-sm" id="nropoliza_reg" onkeypress="return justNumbers(event);">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo Poliza:</label>
+                                    <select class="form-control input-sm" id="sp_Poliza" name="sp_Poliza">
+                                        <option value="">NUEVO</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="form-group">
+                                    <label>Vigencia(Inicio):</label>
+                                    <input type="text" class="form-control input-sm" id="vigenciaini_reg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Plan / Producto:</label>
+                                    <select class="form-control input-sm" id="sp_Plan">
+                                        <option value="1">PLATINUM</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <div class="form-group">
+                                    <label>Vigencia(Fin):</label>
+                                    <input type="text" class="form-control input-sm" id="vigenciafin_reg">
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+
+
+                        <div class="f1-buttons">
+                            <button type="button" class="btn btn-previous">Anterior</button>
+                            <button on type="button" class="btn btn-submit" onclick="RegistrarPoliza_onclick()">Guardar</button>
+                        </div>
+
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<!--Init Scripts-->
+<script src="~/Scripts/Genesis/Poliza/RegistroPoliza.js"></script>
+<!--End Scripts-->

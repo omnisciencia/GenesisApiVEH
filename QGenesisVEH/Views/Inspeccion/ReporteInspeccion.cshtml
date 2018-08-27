@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "ReporteInspeccion";
+}
+
+
+<link href="~/Content/styleRegInspeccion.css" rel="stylesheet" />
+<link href="~/Content/ReporteInspeccion.css" rel="stylesheet" />
+
+
+<!-- Top content -->
+<section class="main">
+
+    <div class="contenedor1">
+        <h1>Reporte de Inspección</h1>
+    </div>
+
+    <div class="contenedor2">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 id="nombre_id">Lisseth Acuña Samaritano</h3>
+
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>DNI:</label>
+                        <span id="nrodoc_id">47899667</span>
+                    </div>
+
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>CELULAR:</label>
+                        <span id="celular_id">962793465</span>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="contenedor-inspeccion">
+                    <span class="subtitle-content2">LA INSPECCIÓN REALIZADA</span>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <img src="~/Img/icon-calendar.png" width="50px;" />
+                                    <span id="fecha_id">26/07/18</span>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-md-6">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                    <img src="~/Img/icon-clock.png" width="50px;" />
+                                    <span id="hora_id">03:10 pm</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor3">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contenedor-img">
+                    <img src="~/Img/car.png" width="80%" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div style="height: 8px;"></div>
+                <h3>Datos de tu carro</h3>
+                <div style="height: 8px;"></div>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>PLACA:</label>
+                        <span id="placa_id">CZ1-468</span>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>MARCA:</label>
+                        <span id="marca_id">Chevrolet</span>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>MODELO:</label>
+                        <span id="modelo_id">Spark</span>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>COLOR:</label>
+                        <span id="color_id">Rojo</span>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>NÚMERO DE SERIE:</label>
+                        <span id="nroserie_id">153TA74VSA4602252</span>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>NÚMERO DE VIN:</label>
+                        <span id="nrovin_id">153TA74VSA4602252</span>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>KILOMETRAJE:</label>
+                        <span id="kilometraje_id">42,000 km</span>
+                    </div>
+                </form>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>ESTADO:</label>
+                        <span>En circulación</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor4">
+        <form>
+            <label>Accesorios adicionales:</label><br>
+            <span id="accesoriosadi_id">{si incluye otros accesorios musicales u otros}</span>
+        </form>
+
+        <form>
+            <label>Observaciones:</label><br>
+            <span id="observacion_id">{si se observan daños u otras condiciones particulares del carro}</span>
+        </form>
+    </div>
+
+</section>
+
+<script src="~/Scripts/Genesis/Inspeccion/ReporteInspeccion.js"></script>
+

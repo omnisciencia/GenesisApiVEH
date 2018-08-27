@@ -1,0 +1,112 @@
+﻿
+@{
+    ViewBag.Title = "Inspeccion";
+}
+
+<link href="~/Content/Modulo/Consulta/Inspeccion.css" rel="stylesheet" />
+
+<div style="height:10px;"></div>
+<h4>Listado de Inspección &nbsp;&nbsp;<i class="fas fa-list-alt" style="font-size:25px;"></i></h4>
+
+<div class="alert-inspeccion" role="alert" style="width:95%; margin:auto;">
+    <div class="row">
+        <form>
+            <div class="form-row">
+                <div class="col" style="text-align:left;">
+                    <label class="col-form-label col-form-label-sm">Nro. Inspección:</label>
+                    <input id="idinspeccion" type="text" class="form-control form-control-sm">
+                </div>
+                <div class="col" style="text-align:left;">
+                    <label class="col-form-label col-form-label-sm">Nro. Poliza:</label>
+                    <input id="idpoliza" type="text" class="form-control form-control-sm">
+                </div>
+                <div class="col" style="text-align:left;">
+                    <label class="col-form-label col-form-label-sm">Contratante:</label>
+                    <input id="contratante" type="text" class="form-control form-control-sm">
+                </div>
+                <div class="col" style="text-align:left;">
+                    <label class="col-form-label col-form-label-sm">Fecha Inicial:</label>
+                    <input id="fechaini" type="date" class="form-control form-control-sm">
+                </div>
+                <div class="col" style="text-align:left;">
+                    <label class="col-form-label col-form-label-sm">Fecha Fin:</label>
+                    <input id="fechafin" type="date" class="form-control form-control-sm">
+                </div>
+                <div class="col" style="text-align:left;">
+                    <label class="col-form-label col-form-label-sm">Placa:</label>
+                    <input id="placa" type="text" class="form-control form-control-sm">
+                </div>
+                @*<div class="col-sm-1" style="margin-top:1.8rem;">
+                        <button id="btnBuscar" class="btn_customer btn-secondary">Buscar&nbsp;&nbsp;<i class="fas fa-search"></i></button>
+                    </div>*@
+                <div class="col-sm-1" style="margin-top:1.8rem;">
+                    <input id="btnBuscar" type="button" value="Buscar" class="btn_customer btn-secondary" />
+
+                </div>
+                <div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">
+                    @*<button class="btn_customer btn-secondary">Limpiar&nbsp;&nbsp;<i class="fas fa-broom"></i></button>*@
+                    <input id="btnLimpiar" type="button" value="Limpiar" class="btn_customer btn-secondary" />
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div style="height:15px;"></div>
+
+<div style="width:95%;margin:auto; background:#fff;">
+
+    @*<table>
+        <tfoot>
+            <tr>
+                <td colspan="2">*@
+    <div class="row" style="padding-left:91%;">
+        <div>
+            <input class="btn_filter btn-secondary btn_left" id="Anterior" type="button" value="<" />
+        </div>
+        <div>
+            <select class="form-control input-sm" id="Pagina" name="Pagina" style="border-radius:0;">
+                <option value="1">1</option>
+            </select>
+        </div>
+        <div>
+            <input class="btn_filter btn-secondary btn_rigth" id="Siguiente" type="button" value=">" />
+        </div>
+    </div>
+
+    @*</td>
+                </tr>
+            </tfoot>
+        </table>*@
+
+
+    <table class="table table-sm table-hover" id="GridListar">
+        @*<thead class="bg-blues">
+                <tr>
+                    <td>Nro. Inspección</td>
+                    <td>Nro. Poliza</td>
+                    <td>Contratante</td>
+                    <td>Fecha Inicio</td>
+                    <td>Fecha Fin</td>
+                    <td>Placa</td>
+                    <td>Fecha Registro</td>
+                    <td>Fecha Programación</td>
+                    <td>Marca</td>
+                    <td>Modelo</td>
+                    <td>Estado</td>
+                </tr>
+            </thead>*@
+
+    </table>
+
+
+</div>
+
+
+<!--Init Scripts-->
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Genesis/Consultas/Inspeccion.js"></script>
+<!--End Scripts-->
+
+
