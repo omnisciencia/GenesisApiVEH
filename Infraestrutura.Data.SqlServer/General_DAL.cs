@@ -33,8 +33,8 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 TipoVehiculoEntity clase = new TipoVehiculoEntity();
-                clase.smiddetalle = int.Parse(dr["smiddetalle"].ToString());
-                clase.vdescripcion = dr["vdescripcion"].ToString();
+                clase.idtipoveh = int.Parse(dr["idtipoveh"].ToString());
+                clase.vDescripcion = dr["vDescripcion"].ToString();
 
                 listado.Add(clase);
             }
@@ -89,8 +89,8 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 MarcaVehiculoEntity clase = new MarcaVehiculoEntity();
-                clase.smiddetalle = int.Parse(dr["smiddetalle"].ToString());
-                clase.vdescripcion = dr["vdescripcion"].ToString();
+                clase.idmarca = int.Parse(dr["idmarca"].ToString());
+                clase.vDescripcion = dr["vDescripcion"].ToString();
 
                 listado.Add(clase);
             }
@@ -119,7 +119,7 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 ModeloVehiculoEntity clase = new ModeloVehiculoEntity();
-                clase.smidmodelo = int.Parse(dr["smidmodelo"].ToString());
+                clase.idmodelo = int.Parse(dr["idmodelo"].ToString());
                 clase.vdescripcion = dr["vdescripcion"].ToString();
 
                 listado.Add(clase);
@@ -478,7 +478,8 @@ namespace Infraestrutura.Data.SqlServer
             string vnomcontacto,
             int sminacionalidad,
             int smidmarca,
-            int smidtipodocumento
+            int smidtipodocumento,
+            string serie
 
 
             )
@@ -521,6 +522,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@sminacionalidad", sminacionalidad);
             cmd.Parameters.AddWithValue("@smidmarca", smidmarca);
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
+            cmd.Parameters.AddWithValue("@serie", serie);
 
 
 
@@ -672,14 +674,14 @@ namespace Infraestrutura.Data.SqlServer
 
 
         //Listado Datos Poliza
-        public List<DatosPolizaEntity> ListarDatosPoliza_DAL(int idpolizap)
+        public List<DatosPolizaEntity> ListarDatosPoliza_DAL(int idinspeccion)
         {
             List<DatosPolizaEntity> listado = new List<DatosPolizaEntity>();
 
             SqlCommand cmd = new SqlCommand("SP_VEH_ListarDatosPoliza", cn.getcn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@idpoliza", idpolizap);
+            cmd.Parameters.AddWithValue("@idinspeccion", idinspeccion);
 
             cn.getcn.Open();
 

@@ -158,8 +158,8 @@ namespace GenesisVehivular.Controllers
                 string vnomcontacto,
                 int sminacionalidad,
                 int smidmarca,
-                int smidtipodocumento
-
+                int smidtipodocumento,
+                string serie
             )
         {
             General_BL bl = new General_BL();
@@ -196,8 +196,8 @@ namespace GenesisVehivular.Controllers
                 vnomcontacto,
                 sminacionalidad,
                 smidmarca,
-                smidtipodocumento
-
+                smidtipodocumento,
+                serie
                 );
             return Json(listado);
         }
@@ -231,10 +231,10 @@ namespace GenesisVehivular.Controllers
         //REGISTRO INSPECCION *******************************************************************************************************************
         //***************************************************************************************************************************************
 
-        public ActionResult ListarDatosPoliza(int idpoliza)
+        public ActionResult ListarDatosPoliza(int idinspeccion)
         {
             General_BL bl = new General_BL();
-            List<DatosPolizaEntity> listado = bl.ListarDatosPoliza_BL(idpoliza);
+            List<DatosPolizaEntity> listado = bl.ListarDatosPoliza_BL(idinspeccion);
             return Json(listado);
         }
         public ActionResult DatosPoliza(int idpoliza)

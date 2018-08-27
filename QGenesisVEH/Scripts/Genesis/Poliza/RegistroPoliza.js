@@ -365,7 +365,7 @@ function llenarSpinner_TipoVehiculo(data) {
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
-        selectAgregar.append("<option value='" + data[i].smiddetalle + "'>" + data[i].vdescripcion + "</option>");
+        selectAgregar.append("<option value='" + data[i].idtipoveh + "'>" + data[i].vDescripcion + "</option>");
     }
 
 }
@@ -429,7 +429,7 @@ function llenarSpinner_MarcaVehiculo(data) {
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
-        selectAgregar.append("<option value='" + data[i].smiddetalle + "'>" + data[i].vdescripcion + "</option>");
+        selectAgregar.append("<option value='" + data[i].idmarca + "'>" + data[i].vDescripcion + "</option>");
     }
 
 }
@@ -458,7 +458,7 @@ function llenarSpinner_ModeloVehiculo(data) {
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
-        selectAgregar.append("<option value='" + data[i].smidmodelo + "'>" + data[i].vdescripcion + "</option>");
+        selectAgregar.append("<option value='" + data[i].idmodelo + "'>" + data[i].vdescripcion + "</option>");
     }
 
 }
@@ -913,8 +913,8 @@ function RegistrarPoliza() {
     $.ajax({
         type: "POST",
         url: "../Services/RegistrarPoliza",
-        data: "{smidtablatipopoliza:'" + parseInt(sp_Poliza) + "', vplaca:'" + placa_reg + "', smidmodelo:'" + parseInt(sp_ModeloVehiculo) + "', smaniofabrica:'" + parseInt(sp_anioFabricacion) + "', vmotor:'" + nromotor_reg + "', svin:'" + vin_reg + "', smnroasiento:'" + parseInt(nroasientos_reg) + "', vcolor:'" + color_reg + "', desumaasegurada:'" + sumaaseguradapost + "', smidtablaclasevehiculo:'" + 28 + "', idnrodocumento:'" + nrodocumento_reg + "', vnombres:'" + nombres_reg + "', vcelular:'" + celular_reg + "', vtelefono1:'" + telefono_reg + "', vemail:'" + email_reg + "', vreferencia:'" + referencia_reg + "', vnumero:'" + numeroubi_reg + "', vnombrevia:'" + direccion_reg + "', smIdTipoVia:'" + parseInt(sp_TipoVia) + "', smestadocivil:'" + parseInt(sp_EstadoCivil) + "', vdepartamento:'" + sp_Departamento + "', vprovincia:'" + sp_Provincia + "', vdistrito:'" + sp_Distrito + "', dfechanac:'" + fecnaci_reg + "', btsexo:'" + parseInt(sp_Sexo) + "', vapellidopat:'" + paterno_reg + "', vapellidomat:'" + materno_reg + "', idpoliza:'" + nropoliza_reg + "', sminacionalidad:'" + sp_Nacionalidad + "', vnomcontacto:'" + vnomcontacto +
-            "', smidmarca:'" + sp_MarcaVehiculo + "', smidtipodocumento:'" + sp_TipoDocumento + "'}",
+        data: "{smidtablatipopoliza:'" + parseInt(sp_Poliza) + "', vplaca:'" + placa_reg + "', smidmodelo:'" + parseInt(sp_ModeloVehiculo) + "', smaniofabrica:'" + parseInt(sp_anioFabricacion) + "', vmotor:'" + nromotor_reg + "', svin:'" + vin_reg + "', smnroasiento:'" + parseInt(nroasientos_reg) + "', vcolor:'" + color_reg + "', desumaasegurada:'" + sumaaseguradapost + "', smidtablaclasevehiculo:'" + 1 + "', idnrodocumento:'" + nrodocumento_reg + "', vnombres:'" + nombres_reg + "', vcelular:'" + celular_reg + "', vtelefono1:'" + telefono_reg + "', vemail:'" + email_reg + "', vreferencia:'" + referencia_reg + "', vnumero:'" + numeroubi_reg + "', vnombrevia:'" + direccion_reg + "', smIdTipoVia:'" + parseInt(sp_TipoVia) + "', smestadocivil:'" + parseInt(sp_EstadoCivil) + "', vdepartamento:'" + sp_Departamento + "', vprovincia:'" + sp_Provincia + "', vdistrito:'" + sp_Distrito + "', dfechanac:'" + fecnaci_reg + "', btsexo:'" + parseInt(sp_Sexo) + "', vapellidopat:'" + paterno_reg + "', vapellidomat:'" + materno_reg + "', idpoliza:'" + nropoliza_reg + "', sminacionalidad:'" + sp_Nacionalidad + "', vnomcontacto:'" + vnomcontacto +
+            "', smidmarca:'" + sp_MarcaVehiculo + "', smidtipodocumento:'" + sp_TipoDocumento + "', serie:'" + nroserie_reg + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: ResponseCrearSucces,

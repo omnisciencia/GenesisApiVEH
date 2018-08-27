@@ -9,9 +9,9 @@ function InicioPoliza() {
 
     window.onload = function () {       
 
-
+        
         idinspeccion_input = getParameterByName('id');      
-
+        
         
         Spinner_Nacionalidad();
         Spinner_EstadoCivil();
@@ -323,7 +323,7 @@ function llenarSpinner_MarcaVehiculo(data) {
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
-        selectAgregar.append("<option value='" + data[i].smiddetalle + "'>" + data[i].vdescripcion + "</option>");
+        selectAgregar.append("<option value='" + data[i].idmarca + "'>" + data[i].vDescripcion + "</option>");
     }
 
 }
@@ -352,7 +352,7 @@ function llenarSpinner_ModeloVehiculo(data) {
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
-        selectAgregar.append("<option value='" + data[i].smidmodelo + "'>" + data[i].vdescripcion + "</option>");
+        selectAgregar.append("<option value='" + data[i].idmodelo + "'>" + data[i].vdescripcion + "</option>");
     }
 
 }
@@ -476,12 +476,12 @@ function llenarSpinner_FormaPago(data) {
 
 
 //Datos Poliza:
-function DatosPoliza(idpoliza) {
+function DatosPoliza(idinspeccion) {
 
     $.ajax({
         type: "POST",
         url: "../Services/ListarDatosPoliza",
-        data: "{idpoliza:'" + idpoliza + "'}",
+        data: "{idinspeccion:'" + idinspeccion + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: ListarDatosPoliza,
@@ -551,9 +551,10 @@ function ListarDatosPoliza(data) {
         $("#placaveh_id").val(placa);
         $("#vinveh_id").val(vin);
         $("#puertasveh_id").val(puertas);
+        $("#nroserieveh_id").val(nroserie);
 
         if (ikilometraje != 0) {
-            $("#nroserieveh_id").val(nroserie);
+            //$("#nroserieveh_id").val(nroserie);
             $("#kilometrajeveh_id").val(ikilometraje);
         }
 
@@ -621,7 +622,7 @@ function llenarSpinner_TipoVehiculo(data) {
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
-        selectAgregar.append("<option value='" + data[i].smiddetalle + "'>" + data[i].vdescripcion + "</option>");
+        selectAgregar.append("<option value='" + data[i].idtipoveh + "'>" + data[i].vDescripcion + "</option>");
     }
 
 }
@@ -795,7 +796,7 @@ function RegistrarInspeccion_onclick() {
                 + "', sminacionalidad:'" + sminacionalidad + "', smestadocivil:'" + smestadocivil
                 + "', dfechanac:'" + dfechanac + "', vemail:'" + vemail + "', vtelefono1:'" + vtelefono1
                 + "', vcelular:'" + vcelular + "', btsexo:'" + btsexo + "', smidtablaformapago:'" + smidtablaformapago
-                + "', smidtipovehiculo:'" + parseInt(28) + "', smidmarca:'" + smidmarca
+                + "', smidtipovehiculo:'" + parseInt(smidtipovehiculo) + "', smidmarca:'" + smidmarca
                 + "', smidmodelo:'" + smidmodelo + "', smianiofabricacion:'" + smianiofabricacion
                 + "', vcolor:'" + vcolor + "', smidtipotransmision:'" + smidtipotransmision + "', smidclaserodante:'" + smidclaserodante
                 + "', smidtipocombustible:'" + smidtipocombustible + "', inroasiento:'" + inroasiento + "', smidcarroceria:'" + smidcarroceria
