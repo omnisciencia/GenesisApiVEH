@@ -143,14 +143,10 @@
     }
     
 
-    if (idpoliza_input.length > 0) {
-        alert('MODO VER');
+    if (idpoliza_input.length > 0) {        
         DatosPoliza(idpoliza_input);
     }
-    else {
-        alert('MODO AGREGAR');
-    }
-
+    
 }
 
 function getParameterByName(name) {
