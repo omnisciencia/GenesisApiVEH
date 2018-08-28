@@ -113,9 +113,13 @@
     <Content Include="Content\styleRegInspeccion.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Img\car.png" />
+    <Content Include="Img\icon-calendar.png" />
+    <Content Include="Img\icon-clock.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\PB_240818.pubxml" />
+    <None Include="Properties\PublishProfiles\PB_270818.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Genesis\Consultas\Inspeccion.js" />
     <Content Include="Scripts\Genesis\Inspeccion\RegistroInspeccion.js" />

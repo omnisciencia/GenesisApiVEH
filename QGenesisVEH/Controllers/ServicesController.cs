@@ -300,7 +300,7 @@ namespace GenesisVehivular.Controllers
             int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
             int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
             int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector)
+            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
         {
             General_BL bl = new General_BL();
             List<RespuestaPost> listado = bl.RegistrarInspeccion_BL(smidpersona, idpoliza, idvehiculo, sminacionalidad,
@@ -317,7 +317,7 @@ namespace GenesisVehivular.Controllers
             smestadofarodireccion, smcantfarodireccion, smcantfaroneblinero, smestadofaroneblinero,
             smcantespejoexterno, smestadoespejoexterno, smestadospoiler, smcantspoiler, smtipoaros,
             smcantaros, smestadomascara, smpintura, smtipoparachoque, smcarroceria, smconsola,
-            smtablero, btequipomusicafijo, vinspector);
+            smtablero, btequipomusicafijo, vinspector, smidcalificacion);
             return Json(listado);
         }
 
