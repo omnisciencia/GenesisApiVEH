@@ -144,8 +144,11 @@
     
 
     if (idpoliza_input.length > 0) {
-
+        alert('MODO VER');
         DatosPoliza(idpoliza_input);
+    }
+    else {
+        alert('MODO AGREGAR');
     }
 
 }
