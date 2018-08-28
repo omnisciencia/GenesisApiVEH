@@ -48,6 +48,7 @@ function ListarDatosReporteInspeccion(data) {
         nroserie = data[0].nroserie;
         nrovin = data[0].nrovin;
         kilometraje = data[0].kilometraje;
+        estado = data[0].estado;
 
         btaire = data[0].btaire;
         btlunaselectricas = data[0].btlunaselectricas;
@@ -80,6 +81,7 @@ function ListarDatosReporteInspeccion(data) {
     document.getElementById('nroserie_id').innerHTML = nroserie;
     document.getElementById('nrovin_id').innerHTML = nrovin;
     document.getElementById('kilometraje_id').innerHTML = kilometraje + " Km";
+    document.getElementById('estado_id').innerHTML = estado;
 
     if (cadenaAccesoriosAdicionados.length < 1) {
         document.getElementById('accesoriosadi_id').innerHTML = "Ninguno";

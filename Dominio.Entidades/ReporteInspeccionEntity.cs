@@ -20,6 +20,7 @@ namespace Dominio.Entidades
         public string nroserie { get; set; }
         public string nrovin { get; set; }
         public int kilometraje { get; set; }
+        public string estado { get; set; }
         public string btaire { get; set; }
         public string btlunaselectricas { get; set; }
         public string btalarma { get; set; }

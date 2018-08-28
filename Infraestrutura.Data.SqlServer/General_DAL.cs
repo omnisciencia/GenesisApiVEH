@@ -1239,6 +1239,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.nroserie = dr["nroserie"].ToString();
                 clase.nrovin = dr["nrovin"].ToString();
                 clase.kilometraje = int.Parse(dr["kilometraje"].ToString());
+                clase.estado = dr["estado"].ToString();
 
                 clase.btaire = dr["btaire"].ToString();
                 clase.btlunaselectricas = dr["btlunaselectricas"].ToString();
