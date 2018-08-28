@@ -20,7 +20,7 @@ function InicioPoliza() {
         //Spinner_EstadoInspeccion();
         Spinner_TipoVehiculo();
         Spinner_MarcaVehiculo();
-        Spinner_ModeloVehiculo(1);
+        Spinner_ModeloVehiculo();
         Spinner_TipoCombustible();
         Spinner_TipoCarroceria();
         Spinner_TipoTransmision();
