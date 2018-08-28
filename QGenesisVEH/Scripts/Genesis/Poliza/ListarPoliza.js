@@ -82,6 +82,7 @@ function ListarGrillaPoliza(data) {
                 "<td>Fecha de Emision</td>" +
                 "<td>Estado</td>" +
                 "<td></td>" +
+                "<td></td>" +
                 "</tr>" +
                 "</thead>");
 
@@ -98,7 +99,8 @@ function ListarGrillaPoliza(data) {
                         "<td>" + data[i].Emision + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +
                         //"<td><input type=button onclick = Link('" + data[i].idpoliza + "')  value=Seleccionar class=btn_customer btn-secondary/></td>" +                        
-                        "<td><input type=button onclick = Link('" + data[i].idpoliza + "')  value=Seleccionar class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].idpoliza + "') value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].idpoliza + "') value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -114,6 +116,8 @@ function ListarGrillaPoliza(data) {
     }
 
 }
+
+
 
 function Link(idpoliza) {
 
@@ -159,6 +163,10 @@ $("#btnLimpiar").click(function () {
     $("#fechafin").val('');
     $("#contratante").val('');
 
+});
+
+$("#btnNuevo").click(function () {
+    window.location = "../Poliza/RegistroPoliza";
 });
 
 
