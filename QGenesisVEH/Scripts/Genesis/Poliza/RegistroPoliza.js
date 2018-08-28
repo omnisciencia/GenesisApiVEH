@@ -16,7 +16,9 @@
     VigenciaFecha();
     InhabilitarCajas();
 
-    $("select[name=sp_MarcaVehiculo]").change(function () {
+    
+
+    $("select[name=sp_MarcaVehiculo]").change(function() {
         idmarca = $("#sp_MarcaVehiculo").val();
         Spinner_ModeloVehiculo(idmarca);
 
@@ -173,7 +175,9 @@ function llenar_registro_poliza(data) {
     $("#nroasientos_reg").val(data[0].puertas);
     //$("#sp_TipoVehiculo").val(data[0].claseveh);
     $("#sp_MarcaVehiculo").val(data[0].marcaveh);
-    $("#sp_ModeloVehiculo").val(data[0].modeloveh);
+    Spinner_ModeloVehiculo(data[0].marcaveh, data[0].modeloveh);
+
+
     $("#nromotor_reg").val(data[0].nromotor);
     $("#vin_reg").val(data[0].vin);
     $("#color_reg").val(data[0].color);
@@ -181,6 +185,7 @@ function llenar_registro_poliza(data) {
     $("#sumaasegurada_reg").val(data[0].suma);
     //$("#nroserie_reg").val("H1500S6S26S2");
     $("#nroserie_reg").val(data[0].nroserie);
+
 
     if (data[0].tipdocumento == 6) {
         //oculta campo apellido paterno
@@ -435,7 +440,7 @@ function llenarSpinner_MarcaVehiculo(data) {
 }
 
 //Modelo Vehiculo:
-function Spinner_ModeloVehiculo(id_marca) {
+function Spinner_ModeloVehiculo(id_marca, id_modelo) {
 
     $.ajax({
         type: "POST",
@@ -443,7 +448,23 @@ function Spinner_ModeloVehiculo(id_marca) {
         data: "{id_marca:'" + id_marca + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        success: llenarSpinner_ModeloVehiculo,
+        success: function (data) {
+            if (data.length >= 0) {
+                var selectAgregar = $("#sp_ModeloVehiculo");
+                selectAgregar.empty();
+
+                for (i = 0; i < data.length; i++) {
+                    selectAgregar.append("<option value=" + data[i].idmodelo + ">" + data[i].vdescripcion + "</option>");
+                }
+
+                
+                if (id_marca == 1) {
+                    selectAgregar.val(1);
+                } else {
+                    selectAgregar.val(id_modelo);
+                }
+            }
+        },
         failure: function (response) {
             alert(response.d);
         },
@@ -453,15 +474,33 @@ function Spinner_ModeloVehiculo(id_marca) {
 
 }
 
-function llenarSpinner_ModeloVehiculo(data) {
-    var selectAgregar = $("#sp_ModeloVehiculo");
-    selectAgregar.empty();
+//function Spinner_ModeloVehiculo(id_marca) {
 
-    for (i = 0; i < data.length; i++) {
-        selectAgregar.append("<option value='" + data[i].idmodelo + "'>" + data[i].vdescripcion + "</option>");
-    }
+//    $.ajax({
+//        type: "POST",
+//        url: "../Services/ListarModeloVehiculo",
+//        data: "{id_marca:'" + id_marca + "'}",
+//        dataType: "json",
+//        contentType: "application/json; charset=utf-8",
+//        success: llenarSpinner_ModeloVehiculo,
+//        failure: function (response) {
+//            alert(response.d);
+//        },
+//        error: OnError
 
-}
+//    });
+
+//}
+
+//function llenarSpinner_ModeloVehiculo(data) {
+//    var selectAgregar = $("#sp_ModeloVehiculo");
+//    selectAgregar.empty();
+
+//    for (i = 0; i < data.length; i++) {
+//        selectAgregar.append("<option value='" + data[i].idmodelo + "'>" + data[i].vdescripcion + "</option>");
+//    }
+
+//}
 
 //Tipo Documento:
 function Spinner_TipoDocumento() {

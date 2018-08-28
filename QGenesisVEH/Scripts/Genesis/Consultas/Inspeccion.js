@@ -85,6 +85,7 @@ function ListarGrillaInspeccion(data) {
                 "<td>Modelo</td>" +
                 "<td>Estado</td>" +
                 "<td></td>" +
+                "<td></td>" +
                 "</tr>" +
                 "</thead>");
 
@@ -102,8 +103,9 @@ function ListarGrillaInspeccion(data) {
                         "<td>" + data[i].dfecha + "</td>" +
                         "<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Modelo + "</td>" +
-                        "<td>" + data[i].Estado + "</td>" +
-                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Seleccionar class=btn_customer btn-secondary/></td>" +
+                        "<td>" + data[i].Estado + "</td>" +                        
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -147,10 +149,7 @@ function ListarGrilla() {
 }
 
 $("#btnBuscar").click(function () {
-    //var a = $("select:last-child").val();
-
     ListarGrilla();
-
 });
 
 $("#btnLimpiar").click(function () {
@@ -163,6 +162,11 @@ $("#btnLimpiar").click(function () {
     $("#contratante").val('');
 
 });
+
+$("#btnNuevo").click(function () {
+    window.location = "../Inspeccion/RegistroInspeccion";
+});
+
 
 
 $("select[name=Pagina]").change(function () {

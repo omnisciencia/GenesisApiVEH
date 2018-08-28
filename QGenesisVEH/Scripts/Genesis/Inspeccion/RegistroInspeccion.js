@@ -7,11 +7,8 @@ var global_idvehiculo;
 
 function InicioPoliza() {
 
-    window.onload = function () {       
+    window.onload = function () {
 
-        
-        idinspeccion_input = getParameterByName('id');      
-        
         
         Spinner_Nacionalidad();
         Spinner_EstadoCivil();
@@ -20,15 +17,26 @@ function InicioPoliza() {
         //Spinner_EstadoInspeccion();
         Spinner_TipoVehiculo();
         Spinner_MarcaVehiculo();
-        Spinner_ModeloVehiculo(1);
+        
         Spinner_TipoCombustible();
         Spinner_TipoCarroceria();
         Spinner_TipoTransmision();
         Spinner_ClaseRodante();
         Spinner_TipoDano();
-        DeshabilitarCajas();
-        DatosPoliza(idinspeccion_input);
-        ListarImgInspeccion(idinspeccion_input);
+        DeshabilitarCajas();        
+        
+
+        idinspeccion_input = getParameterByName('id');
+
+        if (idinspeccion_input.length > 0) {
+            DeshabilitarCajas(true);
+            DatosPoliza(idinspeccion_input);
+            ListarImgInspeccion(idinspeccion_input);
+        }
+        else {
+            DeshabilitarCajas(false);
+            Spinner_ModeloVehiculo(1, 1);            
+        }
 
     }
 
@@ -329,7 +337,8 @@ function llenarSpinner_MarcaVehiculo(data) {
 }
 
 //Modelo Vehiculo:
-function Spinner_ModeloVehiculo(id_marca) {
+//Modelo Vehiculo:
+function Spinner_ModeloVehiculo(id_marca, id_modelo) {
 
     $.ajax({
         type: "POST",
@@ -337,7 +346,22 @@ function Spinner_ModeloVehiculo(id_marca) {
         data: "{id_marca:'" + id_marca + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        success: llenarSpinner_ModeloVehiculo,
+        success: function (data) {
+            if (data.length >= 0) {
+                var selectAgregar = $("#sp_ModeloVehiculo");
+                selectAgregar.empty();
+
+                for (i = 0; i < data.length; i++) {
+                    selectAgregar.append("<option value=" + data[i].idmodelo + ">" + data[i].vdescripcion + "</option>");
+                }
+
+                if (id_marca == 1) {
+                    selectAgregar.val(1);
+                } else {
+                    selectAgregar.val(id_modelo);
+                }
+            }
+        },
         failure: function (response) {
             alert(response.d);
         },
@@ -496,7 +520,7 @@ function DatosPoliza(idinspeccion) {
 
 function ListarDatosPoliza(data) {
 
-        for (i = 0; i < data.length; i++) {            
+        //for (i = 0; i < data.length; i++) {            
             dni = data[0].dni;
             nombre = data[0].nombre;
             sexo = data[0].sexo;
@@ -536,7 +560,7 @@ function ListarDatosPoliza(data) {
             smidpersona = data[0].smidpersona;
             idpoliza = data[0].idpoliza;
             idvehiculo = data[0].idvehiculo;
-        }
+        //}
 
         global_smidpersona = smidpersona;
         global_idpoliza = idpoliza;
@@ -544,7 +568,10 @@ function ListarDatosPoliza(data) {
 
         $("#sp_TipoVehiculo").val(claseveh);
         $("#sp_MarcaVehiculo").val(marcaveh);
-        $("#sp_ModeloVehiculo").val(modeloveh);
+    // $("#sp_ModeloVehiculo").val(modeloveh);
+
+        Spinner_ModeloVehiculo(marcaveh, modeloveh);
+
         $("#anioveh_id").val(anio);
         $("#colorveh_id").val(color);
         $("#motorveh_id").val(nromotor);
@@ -638,18 +665,19 @@ function justNumbers(e) {
 }
 
 //Deshabilitar Cajas:
-function DeshabilitarCajas(){
-    $("#tipocontra_id").prop("disabled", true);
-    $("#tipodoc_id").prop("disabled", true);
-    $("#dni_id").prop("disabled", true);
-    $("#nombre_id").prop("disabled", true);
+function DeshabilitarCajas(habilitado) {
+    
+    $("#tipocontra_id").prop("disabled", habilitado);
+    $("#tipodoc_id").prop("disabled", habilitado);
+    $("#dni_id").prop("disabled", habilitado);
+    $("#nombre_id").prop("disabled", habilitado);
 
-    $("#nropoliza_id").prop("disabled", true);
-    $("#plan_id").prop("disabled", true);
-    $("#vigencia_id").prop("disabled", true);
-    $("#tipoliza_id").prop("disabled", true);
+    $("#nropoliza_id").prop("disabled", habilitado);
+    $("#plan_id").prop("disabled", habilitado);
+    $("#vigencia_id").prop("disabled", habilitado);
+    $("#tipoliza_id").prop("disabled", habilitado);
 
-    $("#estadoinspecc_id").prop("disabled", true);
+    $("#estadoinspecc_id").prop("disabled", habilitado);
 
 }
 
