@@ -105,7 +105,7 @@ function ListarGrillaInspeccion(data) {
                         "<td>" + data[i].Modelo + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +                        
                         "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
-                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
+                        //"<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")

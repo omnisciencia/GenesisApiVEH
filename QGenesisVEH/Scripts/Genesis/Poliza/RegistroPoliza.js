@@ -131,11 +131,22 @@
     //$("#fecnaci_reg").datepicker();
 
     idpoliza_input = getParameterByName('idpoliza');
-    if (idpoliza_input.length > 0) {
 
+    modo_input = getParameterByName('modo');
+
+    if (modo_input == 'ver') {        
+        $('#titulo').html('VER - REGISTRO DE POLIZA');
+    }
+    else
+    {
+        $('#titulo').html('AGREGANDO - REGISTRO DE POLIZA');
+    }
+    
+
+    if (idpoliza_input.length > 0) {        
         DatosPoliza(idpoliza_input);
     }
-
+    
 }
 
 function getParameterByName(name) {
@@ -851,35 +862,40 @@ function SuccesText() {
 
 function RegistrarPoliza_onclick() {
 
-    var idpoliza = $("#nropoliza_reg").val();
+    var modo_input = getParameterByName('modo');
 
-    //PRIMERO SE VALIDA SI EXISTE LA POLIZA
-    $.ajax({
-        type: "POST",
-        url: "../Services/ValidarIdPoliza",
-        data: "{idpoliza:'" + parseInt(idpoliza) + "'}",
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function (data) {
-            if (data[0].respuesta == 'existe') {
-                alert('No se puede guardar el registro, porque el Nro. Poliza ya existe');
-            }
-            else {
-                RegistrarPoliza();
-            };
-        },
-        failure: function (response) {
-            alert(response.d);
-        },
+    if (modo_input == 'agregar')
+    {
+        var idpoliza = $("#nropoliza_reg").val();
 
-        error: OnError
+        //PRIMERO SE VALIDA SI EXISTE LA POLIZA
+        $.ajax({
+            type: "POST",
+            url: "../Services/ValidarIdPoliza",
+            data: "{idpoliza:'" + parseInt(idpoliza) + "'}",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data[0].respuesta == 'existe') {
+                    alert('No se puede guardar el registro, porque el Nro. Poliza ya existe');
+                }
+                else {
+                    RegistrarPoliza();
+                };
+            },
+            failure: function (response) {
+                alert(response.d);
+            },
 
-    });
+            error: OnError
 
+        });
+    }
+    else {
+        alert('No se puede guardar la informacion, porque está en modo VER - REGISTRO DE POLIZA.');
+    }
 
-
-
-
+    
 
 }
 
