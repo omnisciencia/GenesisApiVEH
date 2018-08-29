@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.Mvc;
 using Dominio.Entidades;
 using Dominio.Repositorio;
+using System.Net.Mail;
+using System.Text;
+using System.Net.Mime;
 
 namespace GenesisVehivular.Controllers
 {
@@ -346,6 +349,92 @@ namespace GenesisVehivular.Controllers
             List<ReporteInspeccionEntity> listado = bl.ListarReporteInspeccion_BL(iidinspeccion);
             return Json(listado);
         }
+
+        public ActionResult EnviarCorreo(string asuntop,string nombre, string dni, string celular, string fecha, string hora, string placa,
+          string marca, string modelo, string color, string nroserie, string nrovin, string km, string estado, string accesorios,
+          string observaciones, string destinop)
+        {            
+            string stCuerpoHTML = "<!DOCTYPE HTML><html><head><title>Reporte Inspeccion</title><meta charset='utf-8'/><meta name='viewport' content='width = device-width, initial-scale = 1, user-scalable = no'/><link href='https://fonts.googleapis.com/css?family=Nunito+Sans' rel='stylesheet'>";
+            stCuerpoHTML += "</head><body style='font-family:'Nunito Sans', sans-serif;'><section style='width: 60%;margin:auto;text-align:center;'><div style ='margin-top: 1rem;margin-bottom: 1.5rem;width: 100%;text-align:center;border-bottom: 5px solid #4156CB;'><h1 style ='margin-bottom: 1.5rem; color: #4156CB;'> Reporte de Inspección</h1></div><div style ='text-align: left;border-bottom: 2px solid #B2B7C5;'><div style='display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;'><div style ='position: relative;width: 100%;min-height: 1px;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 50%;flex: 0 0 46%;max-width: 46%; margin-top: -1rem;'> ";
+            stCuerpoHTML += "<h3 style='color: #4156CB;'>"+ nombre + "</h3>";
+            stCuerpoHTML += "<form><div><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>DNI:</label>";
+            stCuerpoHTML += "<span>"+ dni + "</span>";
+            stCuerpoHTML += "</div></form><form><div><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>CELULAR:</label>";
+            stCuerpoHTML += "<span>" + celular + "</span>";
+            stCuerpoHTML += "</div></form></div><div style='position: relative; width: 100%; min-height: 1px;padding-right:15px;padding-left:15px;-ms-flex: 0 0 50%; flex: 0 0 50%; max-width:50%;'><div style='padding-top: 0.7rem; padding-left: 0.7rem; padding-left: 1rem; width: 100%; background-color: #F2F2FF;text-align: left;margin-bottom: 1.5rem;'><span style='color: #4156CB;font-weight: 500;font-size: 13px;'>LA INSPECCIÓN REALIZADA</span><div style='display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;'><div style='position: relative;width: 100%;min-height: 1px;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 50%;flex: 0 0 50%;max-width: 50%;'><div>";     
+            stCuerpoHTML += "<div>";
+            stCuerpoHTML += "<img src='cid:icon-calendar' width='40px;'>";
+            stCuerpoHTML += "</div>";
+            stCuerpoHTML += "<div style='margin-top: -0.5rem; margin-bottom: 0.1rem;'>";
+            stCuerpoHTML += "<span style='font-size: 0.8rem;'>"+ fecha + "</span>";
+            stCuerpoHTML += "</div>";
+            stCuerpoHTML += "</div></div><div style='position: relative;width:100%; min-height: 1px; padding-right: 15px; padding-left: 15px; -ms-flex: 0 0 50%; flex: 0 0 50%; max-width: 50%;'><form><div style='text-align:center;'>";
+            stCuerpoHTML += "<div>";
+            stCuerpoHTML += "<img src='cid:icon-clock' width='40px'>";
+            stCuerpoHTML += "</div>";
+            stCuerpoHTML += "<div style='margin-top: -0.5rem; margin-bottom: 0.1rem;'>";
+            stCuerpoHTML += "<span style='font-size: 0.8rem;'>"+ hora + "</span>";
+            stCuerpoHTML += "</div>";
+            stCuerpoHTML += "</div></form></div></div></div></div></div></div><div style='width: 80%; margin: auto; margin-top: 1rem;'><div style='display: -ms-flexbox; display: flex;-ms-flex-wrap: wrap; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;'><div style='position: relative; width: 100%; min-height: 1px; padding-right: 15px; padding-left: 15px; -ms-flex: 0 0 50 %; flex: 0 0 50%; max-width: 50%;'><div style='margin: auto;'>";
+            stCuerpoHTML += "<img src='cid:car' width='80%'>";
+            stCuerpoHTML += " </div></div><div style='position: relative; width: 100%; min-height: 1px; padding-right: 15px; padding-left: 15px; -ms - flex: 0 0 50%; flex: 0 0 50%; max-width: 50%; margin-top: -1.7rem;'><h3 style='color: #4156CB;'>Datos de tu carro</h3><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>PLACA:</label>";
+            stCuerpoHTML += "<span>"+ placa + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>MARCA:</label>";
+            stCuerpoHTML += "<span>"+ marca + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>MODELO:</label>";
+            stCuerpoHTML += "<span>"+ modelo + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>COLOR:</label>";
+            stCuerpoHTML += "<span>"+ color + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>NÚMERO DE SERIE:</label>";
+            stCuerpoHTML += "<span>"+ nroserie + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>NÚMERO DE VIN:</label>";
+            stCuerpoHTML += "<span>"+ nrovin + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>KILOMETRAJE:</label>";
+            stCuerpoHTML += "<span>"+ km + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;margin-bottom:1rem;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>ESTADO:</label><span>"+ estado + "</span>";
+            stCuerpoHTML += "</div></form></div></div></div><div style='border-top: 2px solid #B2B7C5;border-bottom: 5px solid #4156CB;padding-top: 2rem;padding-bottom: 2rem;'><form><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>Accesorios adicionales:</label><br>";
+            stCuerpoHTML += "<span>"+ accesorios + "</span>";
+            stCuerpoHTML += "</form><form><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>Observaciones:</label><br>";
+            stCuerpoHTML += "<span>"+ observaciones + "</span>";
+            stCuerpoHTML += "</form></div></section></body></html>";
+
+
+            MailMessage mensaje = new MailMessage();
+            mensaje.BodyEncoding = Encoding.UTF8;
+            mensaje.SubjectEncoding = Encoding.UTF8;
+
+            AlternateView htmlView = AlternateView.CreateAlternateViewFromString(stCuerpoHTML);
+            htmlView.ContentType = new System.Net.Mime.ContentType("text/html");
+
+            string path = Server.MapPath("~") + @"Img\";
+
+            LinkedResource imgcalendar = new LinkedResource(path + "icon-calendar.png");
+            imgcalendar.ContentId = "icon-calendar";
+            htmlView.LinkedResources.Add(imgcalendar);
+
+            LinkedResource imgclock = new LinkedResource(path + "icon-clock.png");
+            imgclock.ContentId = "icon-clock";
+            htmlView.LinkedResources.Add(imgclock);
+
+            LinkedResource imgcar = new LinkedResource(path + "car.png");
+            imgcar.ContentId = "car";
+            htmlView.LinkedResources.Add(imgcar);
+
+            mensaje.AlternateViews.Add(htmlView);
+
+            mensaje.Subject = asuntop;
+            mensaje.Body = stCuerpoHTML;
+            mensaje.To.Add(destinop);
+
+            mensaje.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Send(mensaje);
+
+            return Json("ok");
+        }
+
+
+
 
         //***************************************************************************************************************************************
         //CONSULTAS*******************************************************************************************************************
