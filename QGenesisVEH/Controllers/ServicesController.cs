@@ -126,7 +126,7 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
-        public ActionResult RegistrarPoliza(
+        public ActionResult RegistrarPoliza(string[] DetallesVehi,
                 int smidtablatipopoliza,
                 string vplaca,
                 int smidmodelo,
@@ -162,8 +162,15 @@ namespace GenesisVehivular.Controllers
                 string serie
             )
         {
+
+            //string [] ArrayDetallesVehi = DetallesVehi;
+
+            //string a= ArrayDetallesVehi[0].ToString();
+
+
+
             General_BL bl = new General_BL();
-            List<RespuestaPost> listado = bl.RegistrarPoliza_BL(
+            List<RespuestaPost> listado = bl.RegistrarPoliza_BL(DetallesVehi,
                 smidtablatipopoliza,
                 vplaca,
                 smidmodelo,
@@ -333,6 +340,18 @@ namespace GenesisVehivular.Controllers
             General_BL bl = new General_BL();
             List<ImagenInspeccionEntity> listado = bl.ListarImgInspeccion_BL(codinspeccion);
             return Json(listado);
+        }
+        public ActionResult InsertarPolizaVehiculo(int smidciaseguros, int idpoliza, int idvehiculo)
+        {
+            General_BL bl = new General_BL();
+            List<RespuestaPost> Respuesta = bl.InsertarPolizaVehiculo_BL(smidciaseguros, idpoliza, idvehiculo);
+            return Json(Respuesta);
+        }
+        public ActionResult EliminarPolizaVehiculo(int smidciaseguros, int idpoliza, int idvehiculo)
+        {
+            General_BL bl = new General_BL();
+            List<RespuestaPost> Respuesta = bl.EliminarPolizaVehiculo_BL(smidciaseguros, idpoliza, idvehiculo);
+            return Json(Respuesta);
         }
 
 

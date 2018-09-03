@@ -12,11 +12,11 @@ namespace Infraestrutura.Data.SqlServer
     public class General_DAL
     {
         Conexion_DAL cn = new Conexion_DAL();
+        private SqlTransaction transaccion = null;
 
-//***************************************************************************************************************************************
-//REGISTRO POLIZA *******************************************************************************************************************
-//***************************************************************************************************************************************
-
+        //***************************************************************************************************************************************
+        //REGISTRO POLIZA *******************************************************************************************************************
+        //***************************************************************************************************************************************
 
         //Listado Tipo Vehiculo
         public List<TipoVehiculoEntity> ListarTipoVehiculo_DAL()
@@ -445,7 +445,7 @@ namespace Infraestrutura.Data.SqlServer
         }
 
         //Registar Poliza
-        public List<RespuestaPost> RegistrarPoliza_DAL(
+        public List<RespuestaPost> RegistrarPoliza_DAL(string[] DetallesVehi,
             int smidtablatipopoliza,
             string vplaca,
             int smidmodelo,
@@ -456,7 +456,6 @@ namespace Infraestrutura.Data.SqlServer
             string vcolor,
             string desumaasegurada,
             int smidtablaclasevehiculo,
-
             string idnrodocumento,
             string vnombres,
             string vcelular,
@@ -480,11 +479,14 @@ namespace Infraestrutura.Data.SqlServer
             int smidmarca,
             int smidtipodocumento,
             string serie
-
-
             )
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
+
+            cn.getcn.Open();
+
+            transaccion = cn.getcn.BeginTransaction();
+            
 
             SqlCommand cmd = new SqlCommand("SP_VEH_RegistrarPoliza", cn.getcn);
             cmd.CommandType = CommandType.StoredProcedure;
@@ -499,7 +501,6 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@vcolor", vcolor);
             cmd.Parameters.AddWithValue("@desumaasegurada", desumaasegurada);
             cmd.Parameters.AddWithValue("@smidtablaclasevehiculo", smidtablaclasevehiculo);
-
             cmd.Parameters.AddWithValue("@idnrodocumento", idnrodocumento);
             cmd.Parameters.AddWithValue("@vnombres", vnombres);
             cmd.Parameters.AddWithValue("@vcelular", vcelular);
@@ -524,9 +525,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
             cmd.Parameters.AddWithValue("@serie", serie);
 
-
-
-            cn.getcn.Open();
+            
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1204,9 +1203,72 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
-//***************************************************************************************************************************************
-//Reporte Inspeccion *******************************************************************************************************************
-//***************************************************************************************************************************************
+
+        public List<RespuestaPost> InsertarPolizaVehiculo_DAL(int smidciaseguros, int idpoliza, int idvehiculo)
+        {
+            List<RespuestaPost> respuesta = new List<RespuestaPost>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_Insertar_Vehiculo", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@smidciaseguros", smidciaseguros);
+            cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@idvehiculo", idvehiculo);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+                clase.respuesta = dr["respuesta"].ToString();
+
+                respuesta.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return respuesta;
+        }
+
+        public List<RespuestaPost> EliminarPolizaVehiculo_DAL(int smidciaseguros, int idpoliza, int idvehiculo)
+        {
+            List<RespuestaPost> respuesta = new List<RespuestaPost>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_Eliminar_Vehiculo", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@smidciaseguros", smidciaseguros);
+            cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@idvehiculo", idvehiculo);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+                clase.respuesta = dr["respuesta"].ToString();
+
+                respuesta.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return respuesta;
+        }
+
+
+
+        //***************************************************************************************************************************************
+        //Reporte Inspeccion *******************************************************************************************************************
+        //***************************************************************************************************************************************
 
         //Listado Modelo Vehiculo
         public List<ReporteInspeccionEntity> ListarReporteInspeccion_DAL(int iidinspeccion)

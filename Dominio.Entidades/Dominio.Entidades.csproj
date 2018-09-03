@@ -54,6 +54,7 @@
     <Compile Include="MarcaVehiculoEntity.cs" />
     <Compile Include="ModeloVehiculoEntity.cs" />
     <Compile Include="NacionalidadEntity.cs" />
+    <Compile Include="PolizaVehiculoEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinciaEntity.cs" />
     <Compile Include="ReporteInspeccionEntity.cs" />

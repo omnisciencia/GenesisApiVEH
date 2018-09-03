@@ -71,9 +71,9 @@ function ListarGrillaPoliza(data) {
 
     var tabla = $("#GridListar");
     tabla.empty();
-    tabla.append("<thead class=bg-blues>" +
+    tabla.append("<thead class='bg-blues'>" +
                 "<tr>" +
-                "<td>Nro. Poliza</td>" +
+                "<td style='color:#fff;'>Nro. Poliza</td>" +
                 "<td>Contratante</td>" +
                 "<td>Placa</td>" +
                 "<td>Marca</td>" +
