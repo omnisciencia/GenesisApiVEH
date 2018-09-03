@@ -173,7 +173,9 @@ select[multiple].input-sm {
 label{
     margin-bottom: -1rem;
 }
-
+.Ocultar{
+    display:none; 
+}
 
 
 

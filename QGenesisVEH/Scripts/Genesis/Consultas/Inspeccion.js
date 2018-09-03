@@ -1,4 +1,5 @@
-﻿window.onload = function () {
+﻿
+window.onload = function () {
     $("#fechaini").val(FechaActual())
     $("#fechafin").val(FechaActual())
     ListarGrilla();
@@ -93,19 +94,21 @@ function ListarGrillaInspeccion(data) {
     if (data.length > 0) {
         tabla.append("<tbody>")
         for (i = 0; i < data.length; i++) {
+
             tabla.append(
                         "<tr>" +
                         "<td>" + data[i].iidinspeccion + "</td>" +
                         "<td>" + data[i].idpoliza + "</td>" +
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
+                        "<td>" + data[i].Emision + "</td>" +
                         "<td>" + data[i].dtfec_hora_registro + "</td>" +
-                        "<td>" + data[i].dfecha + "</td>" +
+                        //"<td>" + data[i].dfecha + "</td>" +
                         "<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Modelo + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +                        
-                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
-                        //"<td><input type=button onclick = Link('" + data[i].iidinspeccion + "')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','ver')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','editar')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -123,10 +126,9 @@ function ListarGrillaInspeccion(data) {
 }
 
 //Link con el metodo POST
-function Link(idinspeccion) {
+function Link(idinspeccion,modo,modo2) {
     //window.location = "../inspeccion/registroinspeccion?alarmid=" + alarmid;
-    
-    window.location = "../Inspeccion/RegistroInspeccion?id=" + idinspeccion;
+    window.location = "../Inspeccion/RegistroInspeccion?id=" + idinspeccion + "&modo=" + modo;
     //$.redirect(surl,
     //{
     //    alarmhistoryid: alarmid, evento: even
@@ -164,7 +166,9 @@ $("#btnLimpiar").click(function () {
 });
 
 $("#btnNuevo").click(function () {
-    window.location = "../Inspeccion/RegistroInspeccion";
+    var idinspeccion = ''
+    var modo = 'agregar'
+    window.location = "../Inspeccion/RegistroInspeccion?idinspeccion=" + idinspeccion + "&modo=" + modo + "&modo2=" + modo2;
 });
 
 

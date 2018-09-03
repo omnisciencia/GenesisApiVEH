@@ -12,7 +12,7 @@
             <div class="col-sm-12 col-sm-offset-1 col-md-11 col-md-offset-2 col-lg-11 col-lg-offset-3 form-box">
                 <form role="form" action="" method="post" class="f1">
 
-                    <h3>Registro de Inspección</h3>
+                    <h3 id="titulo">Registro de Inspección</h3>
 
                     <div class="f1-steps">
                         <div class="f1-progress">
@@ -47,7 +47,7 @@
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Tipo Contratante:</label>
-                                    <input type="text" class="form-control input-sm" id="tipocontra_id">
+                                    <input type="text" class="form-control input-sm" id="tipocontra_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                         </div>
@@ -56,19 +56,19 @@
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Tipo Doc.Identidad:</label>
-                                    <input type="text" class="form-control input-sm" id="tipodoc_id">
+                                    <input type="text" class="form-control input-sm" id="tipodoc_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Nro. Documento:</label>
-                                    <input type="text" class="form-control input-sm" id="dni_id">
+                                    <input type="text" class="form-control input-sm" id="dni_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Nombres:</label>
-                                    <input type="text" class="form-control input-sm" id="nombre_id">
+                                    <input type="text" class="form-control input-sm" id="nombre_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
 
@@ -146,7 +146,7 @@
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Nro. Poliza:</label>
-                                    <input type="text" class="form-control input-sm" id="nropoliza_id">
+                                    <input type="text" class="form-control input-sm" id="nropoliza_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                                 <div class="form-group">
                                     <label>Forma de Pago:</label>
@@ -159,19 +159,19 @@
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Plan/Producto:</label>
-                                    <input type="text" class="form-control input-sm" id="plan_id">
+                                    <input type="text" class="form-control input-sm" id="plan_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Vigencia:</label>
-                                    <input type="text" class="form-control input-sm" id="vigencia_id">
+                                    <input type="text" class="form-control input-sm" id="vigencia_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Tipo Poliza:</label>
-                                    <input type="text" class="form-control input-sm" id="tipoliza_id">
+                                    <input type="text" class="form-control input-sm" id="tipoliza_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
-                                    <label>Fecha de Inspección:</label>
+                                    <label>Fecha de Programación:</label>
                                     <input type="date" class="form-control input-sm" id="fecinspeccion_id">
                                 </div>
                                 <div class="form-group">
@@ -192,7 +192,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
-                                    <label>Hora de Inspección:</label>
+                                    <label>Hora de Programación:</label>
                                     <input type="time" class="form-control input-sm" id="hrinspeccion_id">
                                 </div>
                                 <div class="form-group">
@@ -204,9 +204,12 @@
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Estado:</label>
-                                    <input type="text" class="form-control input-sm" id="estadoinspecc_id">
+                                    <input type="text" class="form-control input-sm" id="estadoinspecc_id" onKeyUp="this.value=this.value.toUpperCase();">
+                                    @*<label>Estado:</label>
+                                    <select class="form-control input-sm" id="estadoinspecc_id" name="estadoinspecc_id">
+                                        <option value="">PENDIENTE</option>
+                                    </select>*@
                                 </div>
-
 
                             </div>
 
@@ -231,15 +234,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Color:</label>
-                                    <input type="text" class="form-control input-sm" id="colorveh_id">
+                                    <input type="text" class="form-control input-sm" id="colorveh_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                                 <div class="form-group">
                                     <label>Nro. Asientos:</label>
-                                    <input type="text" class="form-control input-sm" id="puertasveh_id">
+                                    <input type="text" class="form-control input-sm" id="puertasveh_id" onKeyUp="this.value=this.value.toUpperCase();"  onkeypress="return justNumbers(event);">
                                 </div>
                                 <div class="form-group">
                                     <label>Nro. Serie:</label>
-                                    <input type="text" class="form-control input-sm" id="nroserieveh_id">
+                                    <input type="text" class="form-control input-sm" id="nroserieveh_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
 
 
@@ -278,11 +281,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nro. Motor:</label>
-                                    <input type="text" class="form-control input-sm" id="motorveh_id">
+                                    <input type="text" class="form-control input-sm" id="motorveh_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                                 <div class="form-group">
                                     <label>VIN:</label>
-                                    <input type="text" class="form-control input-sm" id="vinveh_id">
+                                    <input type="text" class="form-control input-sm" id="vinveh_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
 
 
@@ -290,7 +293,7 @@
                             <div class="col-lg-3 col-md-3 col-xs-12">
                                 <div class="form-group">
                                     <label>Año:</label>
-                                    <input type="text" class="form-control input-sm" id="anioveh_id">
+                                    <input type="text" class="form-control input-sm" id="anioveh_id"  onkeypress="return justNumbers(event);">
                                 </div>
                                 <div class="form-group">
                                     <label>Tipo Combustible:</label>
@@ -298,7 +301,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Placa:</label>
-                                    <input type="text" class="form-control input-sm" id="placaveh_id">
+                                    <input type="text" class="form-control input-sm" id="placaveh_id" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
 
 
@@ -402,7 +405,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-xs-12">
                                 <div class="form-group">
-                                    <textarea row="3" class="form-control input-sm" placeholder="Observaciones..." id="accobservaciones_id"></textarea>
+                                    <textarea row="3" class="form-control input-sm" placeholder="Observaciones..." id="accobservaciones_id" onKeyUp="this.value=this.value.toUpperCase();"></textarea>
                                 </div>
 
                             </div>
@@ -428,7 +431,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-xs-12">
                                 <div class="form-group">
-                                    <textarea row="3" class="form-control input-sm" id="observaciones_id"></textarea>
+                                    <textarea row="3" class="form-control input-sm" id="observaciones_id" onKeyUp="this.value=this.value.toUpperCase();"></textarea>
                                 </div>
 
                             </div>
@@ -656,7 +659,7 @@
 
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-xs-12">
-                                <input id="inspector_id" type="text" class="form-control input-sm" placeholder="Ingrese nombre del inspector...">
+                                <input id="inspector_id" type="text" class="form-control input-sm" placeholder="Ingrese nombre del inspector..." onKeyUp="this.value=this.value.toUpperCase();">
                             </div>
                         </div>
                         <br />
@@ -800,16 +803,58 @@
                         </div>
 
                         <!-- Button trigger modal -->
-                        <button style="display:none;" id="btn_popconfirm"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                        <button style="display:none;" id="btn_popconfirm"  type="button" class="btn btn-primary" data-toggle="modal" data-target="#pruebaModal">
                             abrir
                         </button>
+                        <button style="display:none;" id="btn_popconfirm2" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            abrir2
+                        </button>
+
+                        <!-- Modal concluido -->
+                        <div class="modal fade" id="pruebaModal" tabindex="-1" role="dialog" aria-labelledby="pruebaModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="pruebaModalLabel">¿Desea Concluir la Inspección?</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-5 form-check">
+                                                <input class="form-check-input" type="radio" name="conformidad" id="siconforme_id" value="1" onclick="ocultar1(this)" checked>
+                                                <label class="form-check-label" for="siconforme_id">
+                                                    Sí
+                                                </label>
+                                            </div>
+                                            <div class="col-md-5 form-check">
+                                                <input class="form-check-input" type="radio" name="conformidad" id="noconforme_id" onclick="ocultar2(this)" value="2">
+                                                <label class="form-check-label" for="noconforme_id">
+                                                    No
+                                                </label>
+                                            </div>
+                                            <div class="col-md-1"></div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
+                                        <button type="button" class="btn btn-primary Ocultar" id="pruebas1" onclick="RegistrarInspeccion_onclick()">Guardar Cambios</button>
+                                        <button type="button" class="btn btn-primary" id="pruebas2" onclick="AbrirConfirm2()" data-dismiss="modal">Guardar Cambios</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Confirmación de Operación</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Calificación de la Inspección</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -836,12 +881,11 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
-                                        <button type="button" class="btn btn-primary" onclick="RegistrarInspeccion_onclick()">Guardar Cambios</button>
+                                        <button type="button" class="btn btn-primary" onclick="RegistrarInspeccion_onclick2()">Guardar Cambios</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
 
 

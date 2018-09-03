@@ -13,13 +13,15 @@ namespace Dominio.Entidades
             public string Persona { get; set; }
             public string vplaca { get; set; }
             public string smidtablaestadoinspeccion { get; set; }
-            public string dtfec_hora_registro { get; set; }            
+            public string dtfec_hora_registro { get; set; }
+            public int dtfec_hora_programacion { get; set; }
             public string dfecha { get; set; }
             public string Marca { get; set; }
             public string Modelo { get; set; }
             public string Estado { get; set; }
             public string TotalRegistros { get; set; }
-        
+
+            public string Emision { get; set; }
 
     }
 }
