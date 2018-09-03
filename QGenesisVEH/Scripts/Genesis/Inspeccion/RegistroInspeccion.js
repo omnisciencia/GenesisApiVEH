@@ -123,6 +123,7 @@ function ResponseGuardarImgSucces(data) {
         success: function (d) {
             alert('La imagen fue guardada satisfactoriamente')
             ListarImgInspeccion(idinspeccion_input);
+            (document.getElementById('btn_cancelargfoto')).click();
         },
         error: function () {
             alert('Ocurrio un problema al guardar la imagen');
@@ -875,7 +876,8 @@ function ResponseCrearSucces(data) {
     }
 
     if (respuesta == "true") {
-        alert("Se registró satisfactoriamente");
+        ReporteInspeccion();
+        alert("Se registró satisfactoriamente");        
         Link(idinspeccion_input);
 
     } else {
@@ -884,29 +886,137 @@ function ResponseCrearSucces(data) {
 
 }
 
+
+function ReporteInspeccion() {
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarReporteInspeccion",
+        data: "{iidinspeccion:'" + idinspeccion_input + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ListarDatosReporteInspeccion,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+
+
+function ListarDatosReporteInspeccion(data) {
+
+    for (i = 0; i < data.length; i++) {
+
+        nombre = data[0].nombre;
+        nrodoc = data[0].nrodoc;
+        celular = data[0].celular;
+
+        fecha = data[0].fecha;
+        hora = data[0].hora;
+
+        placa = data[0].placa;
+        marca = data[0].marca;
+        modelo = data[0].modelo;
+        color = data[0].color;
+        nroserie = data[0].nroserie;
+        nrovin = data[0].nrovin;
+        kilometraje = data[0].kilometraje;
+        estado = data[0].estado;
+
+        btaire = data[0].btaire;
+        btlunaselectricas = data[0].btlunaselectricas;
+        btalarma = data[0].btalarma;
+        btseguroruedas = data[0].btseguroruedas;
+        btpestillos = data[0].btpestillos;
+        btllantarep = data[0].btllantarep;
+        bttapizcuero = data[0].bttapizcuero;
+        observaciones = data[0].observaciones;
+
+    }
+
+    accesoAdi = btaire + btlunaselectricas + btalarma + btseguroruedas + btpestillos + btllantarep + bttapizcuero;
+    accesoriosAdi = accesoAdi.trim();
+    cantidadmostrar = accesoriosAdi.length - 1;
+    cadenaAccesoriosAdicionados = accesoriosAdi.substring(0, cantidadmostrar);
+
+
+    nombre_env = nombre;
+    nrodoc_env = nrodoc;
+    celular_env = celular;
+
+    fecha_env = fecha;
+    hora_env = hora + " hrs.";
+
+    placa_env = placa;
+    marca_env = MaysPrimera(marca.toLowerCase());
+    modelo_env = MaysPrimera(modelo.toLowerCase());
+    color_env = MaysPrimera(color.toLowerCase());
+    nroserie_env = nroserie;
+    nrovin_env = nrovin;
+    kilometraje_env = kilometraje + " Km";
+    estado_env = estado;
+
+    if (cadenaAccesoriosAdicionados.length < 1) {
+        accesorios_env = "Ninguno";
+    } else {
+        accesorios_env = cadenaAccesoriosAdicionados + ".";
+    }
+
+    observaciones_env = observaciones;
+
+    var email_env = $("#email_id").val();
+    var asunto_env = "Noreply";
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/EnviarCorreo",
+        data: "{ asuntop:'" + asunto_env
+           + "', nombre:'" + nombre_env
+            + "', dni:'" + nrodoc_env
+             + "', celular:'" + celular_env
+              + "', fecha:'" + fecha_env
+               + "', hora:'" + hora_env
+                + "', placa:'" + placa_env
+                 + "', marca:'" + marca_env
+                  + "', modelo:'" + modelo_env
+                   + "', color:'" + color_env
+                    + "', nroserie:'" + nroserie_env
+                     + "', nrovin:'" + nrovin_env
+                      + "', km:'" + kilometraje_env
+                       + "', estado:'" + estado_env
+                        + "', accesorios:'" + accesorios_env
+                         + "', observaciones:'" + observaciones_env
+            + "', destinop:'" + email_env + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ResponseEnviarSucces,
+        failure: function (response) {
+            alert(response.d);
+        },
+
+        error: ResponseEnviarSucces
+
+    });
+
+
+
+}
+
+function ResponseEnviarSucces(){}
+
+function MaysPrimera(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 //Redireccionar:
 function Link(idinspeccion) {
 
     window.location = "../Inspeccion/ReporteInspeccion?id=" + idinspeccion;
 
 }
-
-
-//Guardar Foto
-//function guardarFoto() {
-//    var laURLDeLaVista = 'GuardarImagen';
-//    $.ajax({
-//        cache: false,
-//        async: true,
-//        type: "GET",
-//        url: laURLDeLaVista,
-//        data: {},
-//        success: function (response) {
-//            $('#resultado').html('');
-//            $('#resultado').html(response);
-//        }
-//    });
-//}
 
 //Listar Imagenes
 function ListarImgInspeccion(codinspeccion) {
