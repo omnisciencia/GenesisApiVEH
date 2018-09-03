@@ -110,6 +110,7 @@ namespace Dominio.Repositorio
 
         //Registar Poliza
         public List<RespuestaPost> RegistrarPoliza_BL(
+                string[] DetallesVehi,
                 int smidtablatipopoliza,
                 string vplaca,
                 int smidmodelo,
@@ -147,7 +148,7 @@ namespace Dominio.Repositorio
 
             )
         {
-            return dal.RegistrarPoliza_DAL(
+            return dal.RegistrarPoliza_DAL(DetallesVehi,
                 smidtablatipopoliza,
                 vplaca,
                 smidmodelo,
@@ -306,10 +307,19 @@ namespace Dominio.Repositorio
             return dal.ListarImgInspeccion_DAL(codinspeccion);
         }
 
+        public List<RespuestaPost> InsertarPolizaVehiculo_BL(int smidciaseguros, int idpoliza, int idvehiculo)
+        {
+            return dal.InsertarPolizaVehiculo_DAL(smidciaseguros, idpoliza, idvehiculo);
+        }
 
-//***************************************************************************************************************************************
-//Reporte Inspeccion *******************************************************************************************************************
-//***************************************************************************************************************************************
+        public List<RespuestaPost> EliminarPolizaVehiculo_BL(int smidciaseguros, int idpoliza, int idvehiculo)
+        {
+            return dal.EliminarPolizaVehiculo_DAL(smidciaseguros, idpoliza, idvehiculo);
+        }
+
+        //***************************************************************************************************************************************
+        //Reporte Inspeccion *******************************************************************************************************************
+        //***************************************************************************************************************************************
 
 
         public List<ReporteInspeccionEntity> ListarReporteInspeccion_BL(int iidinspeccion)
