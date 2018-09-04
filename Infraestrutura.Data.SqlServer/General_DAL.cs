@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Dominio.Entidades;
 using System.Data.SqlClient;
 using System.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Dynamic;
 
 namespace Infraestrutura.Data.SqlServer
 {
@@ -445,17 +448,8 @@ namespace Infraestrutura.Data.SqlServer
         }
 
         //Registar Poliza
-        public List<RespuestaPost> RegistrarPoliza_DAL(string[] DetallesVehi,
-            int smidtablatipopoliza,
-            string vplaca,
-            int smidmodelo,
-            int smaniofabrica,
-            string vmotor,
-            string svin,
-            int smnroasiento,
-            string vcolor,
-            string desumaasegurada,
-            int smidtablaclasevehiculo,
+        public List<RespuestaPost> RegistrarPoliza_DAL(string DetallesVehi,
+            int smidtablatipopoliza,            
             string idnrodocumento,
             string vnombres,
             string vcelular,
@@ -477,22 +471,30 @@ namespace Infraestrutura.Data.SqlServer
             string vnomcontacto,
             int sminacionalidad,
             int smidmarca,
-            int smidtipodocumento,
-            string serie
+            int smidtipodocumento
+            //,string serie
             )
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
 
+
+            //List<VehiculoEntity> vehiculos = JsonConvert.DeserializeObject<List<VehiculoEntity>>(DetallesVehi);
+
+            //var listProductos = JsonConvert.DeserializeObject<List<ExpandoObject>>(DetallesVehi);
+
+
+
             cn.getcn.Open();
 
-            transaccion = cn.getcn.BeginTransaction();
+           // transaccion = cn.getcn.BeginTransaction();
             
 
             SqlCommand cmd = new SqlCommand("SP_VEH_RegistrarPoliza", cn.getcn);
             cmd.CommandType = CommandType.StoredProcedure;
 
+            cmd.Parameters.AddWithValue("@DetallesVehi", DetallesVehi);
             cmd.Parameters.AddWithValue("@smidtablatipopoliza", smidtablatipopoliza);
-            cmd.Parameters.AddWithValue("@vplaca", vplaca);
+            /*cmd.Parameters.AddWithValue("@vplaca", vplaca);
             cmd.Parameters.AddWithValue("@smidmodelo", smidmodelo);
             cmd.Parameters.AddWithValue("@smaniofabrica", smaniofabrica);
             cmd.Parameters.AddWithValue("@vmotor", vmotor);
@@ -500,7 +502,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smnroasiento", smnroasiento);
             cmd.Parameters.AddWithValue("@vcolor", vcolor);
             cmd.Parameters.AddWithValue("@desumaasegurada", desumaasegurada);
-            cmd.Parameters.AddWithValue("@smidtablaclasevehiculo", smidtablaclasevehiculo);
+            cmd.Parameters.AddWithValue("@smidtablaclasevehiculo", smidtablaclasevehiculo);*/
             cmd.Parameters.AddWithValue("@idnrodocumento", idnrodocumento);
             cmd.Parameters.AddWithValue("@vnombres", vnombres);
             cmd.Parameters.AddWithValue("@vcelular", vcelular);
@@ -523,9 +525,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@sminacionalidad", sminacionalidad);
             cmd.Parameters.AddWithValue("@smidmarca", smidmarca);
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
-            cmd.Parameters.AddWithValue("@serie", serie);
-
-            
+            //cmd.Parameters.AddWithValue("@serie", serie);
 
             SqlDataReader dr = cmd.ExecuteReader();
 

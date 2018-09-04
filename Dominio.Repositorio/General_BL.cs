@@ -110,18 +110,8 @@ namespace Dominio.Repositorio
 
         //Registar Poliza
         public List<RespuestaPost> RegistrarPoliza_BL(
-                string[] DetallesVehi,
+                string DetallesVehi,
                 int smidtablatipopoliza,
-                string vplaca,
-                int smidmodelo,
-                int smaniofabrica,
-                string vmotor,
-                string svin,
-                int smnroasiento,
-                string vcolor,
-                string desumaasegurada,
-                int smidtablaclasevehiculo,
-
                 string idnrodocumento,
                 string vnombres,
                 string vcelular,
@@ -143,23 +133,13 @@ namespace Dominio.Repositorio
                 string vnomcontacto,
                 int sminacionalidad,
                 int smidmarca,
-                int smidtipodocumento,
-                string serie
+                int smidtipodocumento
+                //,string serie
 
             )
         {
             return dal.RegistrarPoliza_DAL(DetallesVehi,
-                smidtablatipopoliza,
-                vplaca,
-                smidmodelo,
-                smaniofabrica,
-                vmotor,
-                svin,
-                smnroasiento,
-                vcolor,
-                desumaasegurada,
-                smidtablaclasevehiculo,
-
+                smidtablatipopoliza,                
                 idnrodocumento,
                 vnombres,
                 vcelular,
@@ -181,8 +161,8 @@ namespace Dominio.Repositorio
                 vnomcontacto,
                 sminacionalidad,
                 smidmarca,
-                smidtipodocumento,
-                serie
+                smidtipodocumento
+                //,serie
                 );
         }
 
