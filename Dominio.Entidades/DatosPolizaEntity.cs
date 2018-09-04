@@ -46,6 +46,10 @@ namespace Dominio.Entidades
         public string fecinspeccion { get; set; }
         public string hrinspeccion { get; set; }
         public string estado { get; set; }
-        
+        public string observaciones { get; set; }
+        public string obsaccesorio { get; set; }
+        public string inspector { get; set; }
+        public string emision { get; set; }
+
     }
 }

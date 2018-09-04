@@ -1,10 +1,26 @@
 ﻿window.onload = function () {
 
-    $("#fechaini").val(FechaActual())
+    $("#fechaini").val(FechaActual());
     $("#fechafin").val(FechaActual());
     ListarGrilla();
 
+    //if (document.getElementById('chk_fec_ini').checked) {
+    //    alert("habilitar");
+    //} else {
+    //    alert("deshabilitar");
+    //}
+
+    $("#chk_fec_ini").click(function () {
+        if (this.checked) $("#fechaini").prop("disabled", false);
+        else $("#fechaini").prop("disabled", true);
+    });
+    $("#chk_fec_fin").click(function () {
+        if (this.checked) $("#fechafin").prop("disabled", false);
+        else $("#fechafin").prop("disabled", true);
+    });
+    
 }
+
 
 function FechaActual() {
     var f = new Date();

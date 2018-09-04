@@ -478,7 +478,8 @@ namespace Infraestrutura.Data.SqlServer
             int sminacionalidad,
             int smidmarca,
             int smidtipodocumento,
-            string serie
+            string serie,
+            int formapago
             )
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
@@ -524,8 +525,8 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smidmarca", smidmarca);
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
             cmd.Parameters.AddWithValue("@serie", serie);
+            cmd.Parameters.AddWithValue("@formapago", formapago);
 
-            
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -720,7 +721,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.placa = dr["placa"].ToString();
                 clase.vin = dr["vin"].ToString();
                 clase.puertas = dr["puertas"].ToString();
-                clase.nroserie = dr["nroserie"].ToString();
+                //clase.nroserie = dr["nroserie"].ToString();
                 clase.ikilometraje = int.Parse(dr["ikilometraje"].ToString());
 
                 clase.fecrecordatorio = dr["fecrecordatorio"].ToString();
@@ -728,6 +729,10 @@ namespace Infraestrutura.Data.SqlServer
                 clase.fecinspeccion = dr["fecinspeccion"].ToString();
                 clase.hrinspeccion = dr["hrinspeccion"].ToString();
                 clase.estado = dr["estado"].ToString();
+                clase.observaciones = dr["observacion"].ToString();
+                clase.obsaccesorio = dr["obsaccesorio"].ToString();
+                clase.inspector = dr["inspector"].ToString();
+                clase.emision = dr["emision"].ToString();
 
                 listado.Add(clase);
             }
@@ -794,7 +799,8 @@ namespace Infraestrutura.Data.SqlServer
                 clase.finvigencia = dr["finvigencia"].ToString();
                 clase.tippoliza = int.Parse(dr["tippoliza"].ToString());
                 clase.planproducto = dr["planproducto"].ToString();
-                clase.nroserie = dr["nroserie"].ToString();
+                //clase.nroserie = dr["nroserie"].ToString();
+                clase.formapago= int.Parse(dr["formapago"].ToString());
 
                 listado.Add(clase);
             }
@@ -1192,6 +1198,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.Marca = dr["Marca"].ToString();
                 clase.Modelo = dr["Modelo"].ToString();
                 clase.Estado = dr["Estado"].ToString();
+                clase.Emision = dr["Emision"].ToString();
                 clase.TotalRegistros = dr["TotalRegistros"].ToString();                
                 listado.Add(clase);
             }

@@ -48,5 +48,6 @@ namespace Dominio.Entidades
         public string finvigencia { get; set; }
         public int tippoliza { get; set; }
         public string planproducto { get; set; }
+        public int formapago { get; set; }
     }
 }

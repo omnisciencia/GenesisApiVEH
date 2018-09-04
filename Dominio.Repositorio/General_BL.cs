@@ -144,7 +144,8 @@ namespace Dominio.Repositorio
                 int sminacionalidad,
                 int smidmarca,
                 int smidtipodocumento,
-                string serie
+                string serie,
+                int formapago
 
             )
         {
@@ -182,7 +183,8 @@ namespace Dominio.Repositorio
                 sminacionalidad,
                 smidmarca,
                 smidtipodocumento,
-                serie
+                serie,
+                formapago
                 );
         }
 
