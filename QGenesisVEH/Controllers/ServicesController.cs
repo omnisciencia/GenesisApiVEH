@@ -129,17 +129,8 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
-        public ActionResult RegistrarPoliza(string[] DetallesVehi,
-                int smidtablatipopoliza,
-                string vplaca,
-                int smidmodelo,
-                int smaniofabrica,
-                string vmotor,
-                string svin,
-                int smnroasiento,
-                string vcolor,
-                string desumaasegurada,
-                int smidtablaclasevehiculo,
+        public ActionResult RegistrarPoliza(string DetallesVehi,
+                int smidtablatipopoliza,                
                 string idnrodocumento,
                 string vnombres,
                 string vcelular,
@@ -161,31 +152,17 @@ namespace GenesisVehivular.Controllers
                 string vnomcontacto,
                 int sminacionalidad,
                 int smidmarca,
-                int smidtipodocumento,
-                string serie,
-                int formapago
+                int smidtipodocumento
+                //,string serie
             )
         {
 
             //string [] ArrayDetallesVehi = DetallesVehi;
-
             //string a= ArrayDetallesVehi[0].ToString();
-
-
-
+            
             General_BL bl = new General_BL();
-            List<RespuestaPost> listado = bl.RegistrarPoliza_BL(DetallesVehi,
-                smidtablatipopoliza,
-                vplaca,
-                smidmodelo,
-                smaniofabrica,
-                vmotor,
-                svin,
-                smnroasiento,
-                vcolor,
-                desumaasegurada,
-                smidtablaclasevehiculo,
-
+             List<RespuestaPost> listado = bl.RegistrarPoliza_BL(DetallesVehi,
+                smidtablatipopoliza,                
                 idnrodocumento,
                 vnombres,
                 vcelular,
@@ -207,9 +184,8 @@ namespace GenesisVehivular.Controllers
                 vnomcontacto,
                 sminacionalidad,
                 smidmarca,
-                smidtipodocumento,
-                serie,
-                formapago
+                smidtipodocumento
+                //,serie
                 );
             return Json(listado);
         }
