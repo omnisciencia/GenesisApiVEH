@@ -184,13 +184,13 @@
     if (modo_input == 'ver') {        
         ListarPolizaVehiculo(idpoliza_input);
                
-        $('#btnVer').onkeyup(function () {
-            if ($(this).val() == '') {
-                $('.enableOnInput').prop('disabled', true);
-            } else {
-                $('.enableOnInput').prop('disabled', false);
-            }
-        });
+        //$('#btnVer').onkeyup(function () {
+        //    if ($(this).val() == '') {
+        //        $('.enableOnInput').prop('disabled', true);
+        //    } else {
+        //        $('.enableOnInput').prop('disabled', false);
+        //    }
+        //});
 
         $('#titulo').html('VER - REGISTRO DE POLIZA');
     }
