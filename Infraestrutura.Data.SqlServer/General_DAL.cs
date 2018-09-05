@@ -667,6 +667,40 @@ namespace Infraestrutura.Data.SqlServer
             return respuesta;
         }
 
+        //Listar VEHICULO
+        public List<VehiculoEntity> ListarPolizaVehiculo_DAL(string idpoliza)
+        {
+            List<VehiculoEntity> listado = new List<VehiculoEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_Det_Poliza_Vehiculo", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@idpoliza", Convert.ToInt32(idpoliza));
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                VehiculoEntity clase = new VehiculoEntity();
+
+                clase.placa =dr["vplaca"].ToString();
+                clase.clase = dr["vclase"].ToString();
+                clase.modelo = dr["vmodelo"].ToString();
+                clase.marca = dr["vmarca"].ToString();
+                clase.color = dr["vcolor"].ToString();
+                clase.aniofab = dr["smianiofabricacion"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+
 
         //***************************************************************************************************************************************
         //Registro Inspeccion *******************************************************************************************************************
@@ -763,7 +797,7 @@ namespace Infraestrutura.Data.SqlServer
                 ReportePolizaEntity clase = new ReportePolizaEntity();
                 clase.smidpersona = int.Parse(dr["smidpersona"].ToString());
                 clase.idpoliza = int.Parse(dr["idpoliza"].ToString());
-                clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
+                /*clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
                 clase.claseveh = int.Parse(dr["smidpersona"].ToString());   
                 clase.marcaveh = int.Parse(dr["marcaveh"].ToString());
                 clase.modeloveh = int.Parse(dr["modeloveh"].ToString());
@@ -774,7 +808,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.vin = dr["vin"].ToString();
                 clase.puertas = int.Parse(dr["puertas"].ToString());
                 clase.uso = int.Parse(dr["uso"].ToString());
-                clase.suma = dr["suma"].ToString();
+                clase.suma = dr["suma"].ToString();*/
                 clase.nacionalidad = int.Parse(dr["nacionalidad"].ToString());
                 clase.nombre = dr["nombre"].ToString();
                 clase.apepaterno = dr["apepaterno"].ToString();

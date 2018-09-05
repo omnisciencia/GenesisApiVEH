@@ -28,8 +28,6 @@ function FechaActual() {
     return fecha;
 }
 
-
-
 //Lista poliza
 function ListarPoliza(idpoliza, placa, fechaini, fechafin, nombre, pagina, RegPorPag) {
 
@@ -45,7 +43,6 @@ function ListarPoliza(idpoliza, placa, fechaini, fechafin, nombre, pagina, RegPo
         },
         error: OnError
     });
-
 }
 
 function ListarGrillaPoliza(data) {
@@ -120,8 +117,6 @@ function ListarGrillaPoliza(data) {
     }
 
 }
-
-
 
 function Link(idpoliza,modo) {
 

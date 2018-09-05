@@ -191,6 +191,10 @@ namespace Dominio.Repositorio
             return dal.ValidarIdPoliza_DAL(idpoliza);
         }
 
+        public List<VehiculoEntity> ListarPolizaVehiculo_BL(string idpoliza)
+        {
+            return dal.ListarPolizaVehiculo_DAL(idpoliza);
+        }
 
 
         //***************************************************************************************************************************************

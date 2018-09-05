@@ -18,7 +18,9 @@
     Spinner_FormaPago();
     
 
-    ListarGrillaVehiculos();
+    //ListarGrillaVehiculos();
+
+    
 
     $("select[name=sp_MarcaVehiculo]").change(function() {
         idmarca = $("#sp_MarcaVehiculo").val();
@@ -161,7 +163,7 @@
                     "<td style=display:none>" + vin + "</td>" +                    
                     "<td style=display:none>" + suma + "</td>" +
                     
-                    "<td>"+ nFilas +"</td>" +
+                    "<td style=display:none>" + nFilas + "</td>" +
                     "<td>" + placa  + "</td>" +
                     "<td>"+ tipoveh +"</td>" +
                     "<td>"+ marca +"</td>" +
@@ -177,9 +179,19 @@
 
     idpoliza_input = getParameterByName('idpoliza');
     modo_input = getParameterByName('modo');
-
+        
 
     if (modo_input == 'ver') {        
+        ListarPolizaVehiculo(idpoliza_input);
+               
+        $('#btnVer').onkeyup(function () {
+            if ($(this).val() == '') {
+                $('.enableOnInput').prop('disabled', true);
+            } else {
+                $('.enableOnInput').prop('disabled', false);
+            }
+        });
+
         $('#titulo').html('VER - REGISTRO DE POLIZA');
     }
     else
@@ -203,48 +215,65 @@ function EliminarFila(fila) {
     }    
 }
 
+function ListarPolizaVehiculo(idpoliza) {
 
-function ListarGrillaVehiculos() {
-    
-        //var pagina = $("#Pagina").val();
-        //var select = $("#Pagina");
-        //var regporpag = "10";
-        //var TotalRegistros = "1";
-        //var i = 1;
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarPolizaVehiculo",
+        data: "{idpoliza:'" + idpoliza + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ListarGrillaPolizaVehiculo,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+}
 
-        //select.empty();
+/*
+function ListarGrillaPolizaVehiculo() {
+    var tabla = $("#GridListar");
+    tabla.empty();
+    tabla.append("<thead class='bg-blues'>" +
+                "<tr>" +
+                "<td style=display:none>idtipoveh</td>" +
+                "<td style=display:none>idmarca</td>" +
+                "<td style=display:none>idmodeloveh</td>" +
+                "<td style=display:none>asientos</td>" +
+                "<td style=display:none>motor</td>" +
+                "<td style=display:none>vin</td>" +
+                "<td style=display:none>suma</td>" +
+                "<td style=display:none>Id</td>" +
+                "<td>Placa</td>" +
+                "<td>Clase/Categoria</td>" +
+                "<td>Marca</td>" +
+                "<td>Modelo</td>" +
+                "<td>Color</td>" +
+                "<td>Año</td>" +
+                "<td></td>" +
+                "</tr>" +
+                "</thead>");
 
-        //if (data.length > 1) {
-        //    if (parseInt(data[1].TotalRegistros) > parseInt(regporpag)) {
 
-        //        for (i = 1; i <= Math.ceil(parseInt(data[1].TotalRegistros) / parseInt(regporpag)) ; i++) {
-        //            select.append("<option value = " + i + ">" + i + "</option>");
-        //        }
-        //    }
-        //    else {
-        //        select.append("<option value = '1'> 1</option>");
-        //    }
-        //}
-        //else {
-        //    select.append("<option value = '1'> 1</option>");
-        //}
+}*/
 
 
-        //$("#Pagina").val(pagina);
 
+function ListarGrillaPolizaVehiculo(data) {
 
         var tabla = $("#GridListar");
         tabla.empty();
         tabla.append("<thead class='bg-blues'>" +
                     "<tr>" +
-                    "<td style=display:none>idtipoveh</td>" +
-                    "<td style=display:none>idmarca</td>" +
-                    "<td style=display:none>idmodeloveh</td>" +                    
-                    "<td style=display:none>asientos</td>" +
-                    "<td style=display:none>motor</td>" +                    
-                    "<td style=display:none>vin</td>" +
-                    "<td style=display:none>suma</td>" +
-                    "<td>Id</td>" +
+                    //"<td style=display:none>idtipoveh</td>" +
+                    //"<td style=display:none>idmarca</td>" +
+                    //"<td style=display:none>idmodeloveh</td>" +                    
+                    //"<td style=display:none>asientos</td>" +
+                    //"<td style=display:none>motor</td>" +                    
+                    //"<td style=display:none>vin</td>" +
+                    //"<td style=display:none>suma</td>" +
+                    //"<td style=display:none>Id</td>" +
                     "<td>Placa</td>" +
                     "<td>Clase/Categoria</td>" +                    
                     "<td>Marca</td>" +
@@ -255,6 +284,33 @@ function ListarGrillaVehiculos() {
                     "</tr>" +
                     "</thead>");
 
+
+
+        if (data.length > 0) {
+            tabla.append("<tbody>")
+            for (i = 0; i < data.length; i++) {
+                tabla.append(
+                            "<tr>" +
+                            "<td>" + data[i].placa + "</td>" +
+                            "<td>" + data[i].clase + "</td>" +
+                            "<td>" + data[i].modelo + "</td>" +
+                            "<td>" + data[i].marca + "</td>" +
+                            "<td>" + data[i].color + "</td>" +
+                            "<td>" + data[i].aniofab + "</td>" +
+                            "</tr>");
+            }
+            tabla.append("</tbody>")
+
+        }
+        else {
+            tabla.append("<tbody>")
+            tabla.append(
+                            "<center>" +
+                            "No hay registro(s) selecionado(s) por los criterios de busqueda" +
+                            "</center>");
+            tabla.append("</tbody>")
+        }
+        
 
 }
 
@@ -267,7 +323,6 @@ function getParameterByName(name) {
 
 
 function DatosPoliza(idpoliza) {
-
 
     $.ajax({
         type: "POST",
@@ -1103,7 +1158,7 @@ function RegistrarPoliza_onclick() {
     
      //var DetallesVehi= JSON.stringify(res);
    
-    alert(DetallesVehi);
+    //alert(DetallesVehi);
       
     
     var modo_input = getParameterByName('modo');
