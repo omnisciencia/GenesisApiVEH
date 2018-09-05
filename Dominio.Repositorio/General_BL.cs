@@ -133,7 +133,8 @@ namespace Dominio.Repositorio
                 string vnomcontacto,
                 int sminacionalidad,
                 int smidmarca,
-                int smidtipodocumento
+                int smidtipodocumento,
+                int formapago
                 //,string serie
 
             )
@@ -161,7 +162,8 @@ namespace Dominio.Repositorio
                 vnomcontacto,
                 sminacionalidad,
                 smidmarca,
-                smidtipodocumento
+                smidtipodocumento,
+                formapago
                 //,serie
                 );
         }

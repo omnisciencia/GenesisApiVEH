@@ -471,7 +471,8 @@ namespace Infraestrutura.Data.SqlServer
             string vnomcontacto,
             int sminacionalidad,
             int smidmarca,
-            int smidtipodocumento
+            int smidtipodocumento,
+            int formapago
             //,string serie
             )
         {
@@ -525,6 +526,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@sminacionalidad", sminacionalidad);
             cmd.Parameters.AddWithValue("@smidmarca", smidmarca);
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
+            cmd.Parameters.AddWithValue("@formapago", formapago);
             //cmd.Parameters.AddWithValue("@serie", serie);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -620,7 +622,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.idpoliza = dr["idpoliza"].ToString();
                 clase.Persona = dr["Persona"].ToString();
                 clase.vplaca = dr["vplaca"].ToString();
-                clase.Marca = dr["Marca"].ToString();
+               // clase.Marca = dr["Marca"].ToString();
                 clase.Emision = dr["Emision"].ToString();
                 clase.Estado = dr["Estado"].ToString();
                 clase.TotalRegistros = dr["TotalRegistros"].ToString();
@@ -799,7 +801,8 @@ namespace Infraestrutura.Data.SqlServer
                 clase.tippoliza = int.Parse(dr["tippoliza"].ToString());
                 clase.planproducto = dr["planproducto"].ToString();
                 //clase.nroserie = dr["nroserie"].ToString();
-                clase.formapago= int.Parse(dr["formapago"].ToString());
+                clase.formapago = int.Parse(dr["formapago"].ToString());
+
 
                 listado.Add(clase);
             }

@@ -152,8 +152,9 @@ namespace GenesisVehivular.Controllers
                 string vnomcontacto,
                 int sminacionalidad,
                 int smidmarca,
-                int smidtipodocumento
-                //,string serie
+                int smidtipodocumento,
+                int formapago
+            //,string serie
             )
         {
 
@@ -184,7 +185,8 @@ namespace GenesisVehivular.Controllers
                 vnomcontacto,
                 sminacionalidad,
                 smidmarca,
-                smidtipodocumento
+                smidtipodocumento,
+                formapago
                 //,serie
                 );
             return Json(listado);

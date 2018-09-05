@@ -4,7 +4,6 @@ var idinspeccion_input;
 var global_smidpersona;
 var global_idpoliza;
 var global_idvehiculo;
-var global_estadoInspec;
 
 function InicioPoliza() {
 
@@ -797,7 +796,6 @@ function RegistrarInspeccion_onclick() {
     var fecRecordatorio = $("#fecrecordatorio_id").val();
     var hrRecordatorio = $("#hrecordatorio").val();
     var smidtablaestadoinspeccion = 1;
-    global_estadoInspec = smidtablaestadoinspeccion;
     var vobservacionesaccesorios = $("#accobservaciones_id").val();
     var smidtablatipodano = $("#sp_TipoDano").val();
     var vobservaciones = $("#observaciones_id").val();
