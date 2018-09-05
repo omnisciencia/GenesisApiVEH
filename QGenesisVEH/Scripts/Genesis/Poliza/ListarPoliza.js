@@ -3,14 +3,26 @@
     $("#fechaini").val(FechaActual());
     $("#fechafin").val(FechaActual());
     ListarGrilla();
+
     $("#chk_fec_ini").click(function () {
-        if (this.checked) $("#fechaini").prop("disabled", false);
-        else $("#fechaini").prop("disabled", true);
+        if (this.checked) {
+            
+            $("#fechaini").prop("disabled", false);
+            $("#fechafin").prop("disabled", false);
+            $("#fechaini").val("");
+            $("#fechafin").val("");
+            
+        }
+        else {
+            
+            $("#fechaini").prop("disabled", true);
+            $("#fechafin").prop("disabled", true);
+            $("#fechaini").val("");
+            $("#fechafin").val("");
+            
+        }
     });
-    $("#chk_fec_fin").click(function () {
-        if (this.checked) $("#fechafin").prop("disabled", false);
-        else $("#fechafin").prop("disabled", true);
-    });
+    
 }
 
 function FechaActual() {
