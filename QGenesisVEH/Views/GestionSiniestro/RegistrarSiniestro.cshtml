@@ -1,0 +1,773 @@
+﻿
+@{
+    ViewBag.Title = "RegistrarSiniestro";
+}
+
+<link href="~/Content/styleRegInspeccion.css" rel="stylesheet" />
+<link href="~/Content/Modulo/RegistroSiniestro/RegistroSiniestro.css" rel="stylesheet" />
+
+<div style="height:20px;"></div>
+<div class="contenedorRegistro">
+
+    <ul class="nav nav-tabs" id="myTabGeneral" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="DatosG-tab" data-toggle="tab" href="#DGeneral_tbpl" role="tab" aria-controls="home" aria-selected="true">Datos Generales</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="Asesor-tab" data-toggle="tab" href="#Asesor_tbpl" role="tab" aria-controls="profile" aria-selected="false">Asesor</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="analista-tab" data-toggle="tab" href="#Analista_tbpl" role="tab" aria-controls="contact" aria-selected="false">Analísta</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="Tecnico-tab" data-toggle="tab" href="#Analista_tbpl" role="tab" aria-controls="contact" aria-selected="false">Técnico</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="Beneficiario-tab" data-toggle="tab" href="#Analista_tbpl" role="tab" aria-controls="contact" aria-selected="false">Beneficiario</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="liquidacion-tab" data-toggle="tab" href="#Analista_tbpl" role="tab" aria-controls="contact" aria-selected="false">Liquidación</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="DGeneral_tbpl" role="tabpanel" aria-labelledby="home-tab">
+
+
+
+            <div style="height: 20px;"></div>
+
+            <table>
+                <thead>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 10%;"></th>
+                <th style="width: 10%;"></th>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Siniestro</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Póliza</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Estado Siniestro</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Fec. Notificación</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Estado Póliza</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                        <td>Fec. Registro</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: left;padding-left: 1%;">Últ. modificación</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="height: 10px;"></div>
+
+            <table>
+                <thead>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 10%;"></th>
+                <th style="width: 10%;"></th>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ocurrencia</td>
+                        <td><select class="form-control form-control-sm"></select></td>
+                        <td style="text-align: left;padding-left: 1.5%;">Tipo Siniestro</td>
+                        <td><select class="form-control form-control-sm"></select></td>
+                        <td>Consecuencia</td>
+                        <td><select class="form-control form-control-sm"></select></td>
+                        <td style="text-align: left;padding-left: 1%;">Fec. Ocurrencia</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td>Lugar Siniestro</td>
+                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Ubica. Siniestro</td>
+                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td>Nro. Ocupantes</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Tipo Declarante</td>
+                        <td><select class="form-control form-control-sm"></select></td>
+                        <td>Denominación</td>
+                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td>Telef.Declarante</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td>Parent. Aseg.</td>
+                        <td><select class="form-control form-control-sm"></select></td>
+                        <td>Mail Declarante</td>
+                        <td colspan="2"><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Conductor</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Tipo Doc. Iden.</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Nro Doc. Iden.</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Licencia</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td>Parent. Aseg.</td>
+                        <td><select class="form-control form-control-sm"></select></td>
+                        <td>Telef. Conductor</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Email</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Venci. Licencia</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td>Comisaría</td>
+                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                        <td>Categoría</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td>Deta. Siniestro</td>
+                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Contra. / Aseg.</td>
+                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Placa</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td style="text-align: left;padding-left: 1.5%;">Marca</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Modelo</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td style="text-align: left;padding-left: 1%;">VIN</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td>Año</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td style="text-align: left;padding-left: 1.5%;">Uso</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Nro. Asientos</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td style="text-align: left;padding-left: 1%;">GPS</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td>km. Recorrido</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+            <div style="height: 10px;"></div>
+            <div>
+                <h3>DOCUMENTOS SOLICITADOS</h3>
+            </div>
+            <div style="height: 10px;"></div>
+            <table style="width: 100%;">
+                <thead>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 10%;"></th>
+                <th style="width: 10%;"></th>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tarj. Propied.</td>
+                        <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td style="text-align: left;padding-left: 1%;">Asig. Asesor</td>
+                        <td><select class="form-control form-control-sm"></select></td>
+                    </tr>
+                    <tr>
+                        <td>Lic. Conducir</td>
+                        <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Lic. Conducir</td>
+                        <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="text-align: right">
+                <input type="button" value="Guardar" class="btn btn-primary">
+            </div>
+
+
+
+
+        </div>
+        <div class="tab-pane fade" id="Asesor_tbpl" role="tabpanel" aria-labelledby="profile-tab">
+
+
+            <div style="height: 10px;"></div>
+            <div style="text-align: left;">
+                <h4>Datos Generales:</h4>
+            </div>
+
+            <table>
+                <thead>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 9%;"></th>
+                <th style="width: 11%;"></th>
+                <th style="width: 10%;"></th>
+                <th style="width: 10%;"></th>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>Asesor Asignado</td>
+                        <td colspan="2"><input type="text" class="form-control form-control-sm"></td>
+                        <td>Fecha Asignación</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Forma Peritaje</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td>Fecha Ini. Peritaje</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Fecha Fin Peritaje</td>
+                        <td><input type="text" class="form-control form-control-sm"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Lugar Peritaje</td>
+                        <td colspan="2"><input type="text" class="form-control form-control-sm"></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Vehículos Comprometidos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Detalle Daños</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Otros</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                    <br>
+                    <div style="text-align: left;">
+                        <span style="width: 150px;" class="badge badge-primary" data-toggle="modal" data-target="#agregarVeh">Agregar</span>
+                    </div>
+                    <div style="overflow: auto;">
+                        <div style="width: 150%; height: 200px; margin: auto;">
+                            <table class="table table-sm">
+                                <thead class="bg-dark" style="color: #fff;">
+                                <td style="width: 7.692307692307692%;text-align: center;">Placa</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Marca</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Modelo</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Color</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Año</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Conductor</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">No Licencia</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Tip. Doc.</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Nro. Doc.</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Edad</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Propietario</td>
+                                <td style="width: 7.692307692307692%;text-align: center;">Cia.Seg.</td>
+                                <td style="width: 7.692307692307692%;text-align: center;"></td>
+
+
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: center;">ABC-123</td>
+                                        <td style="text-align: center;">Toyota</td>
+                                        <td style="text-align: center;">Yaris</td>
+                                        <td style="text-align: center;">Rojo</td>
+                                        <td style="text-align: center;">2015</td>
+                                        <td style="text-align: center;">José Antonio Marquez Benites</td>
+                                        <td style="text-align: center;">0254854</td>
+                                        <td style="text-align: center;">Dni</td>
+                                        <td style="text-align: center;">75952456</td>
+                                        <td style="text-align: center;">25</td>
+                                        <td style="text-align: center;">Piero Alejandro Sanchez Arbildo</td>
+                                        <td style="text-align: center;">84989484</td>
+                                        <td><span class="badge badge-dark">Eliminar</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;">ABC-123</td>
+                                        <td style="text-align: center;">Toyota</td>
+                                        <td style="text-align: center;">Yaris</td>
+                                        <td style="text-align: center;">Rojo</td>
+                                        <td style="text-align: center;">2015</td>
+                                        <td style="text-align: center;">José Antonio Marquez Benites</td>
+                                        <td style="text-align: center;">0254854</td>
+                                        <td style="text-align: center;">Dni</td>
+                                        <td style="text-align: center;">75952456</td>
+                                        <td style="text-align: center;">25</td>
+                                        <td style="text-align: center;">Piero Alejandro Sanchez Arbildo</td>
+                                        <td style="text-align: center;">84989484</td>
+                                        <td><span class="badge badge-dark">Eliminar</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: center;">ABC-123</td>
+                                        <td style="text-align: center;">Toyota</td>
+                                        <td style="text-align: center;">Yaris</td>
+                                        <td style="text-align: center;">Rojo</td>
+                                        <td style="text-align: center;">2015</td>
+                                        <td style="text-align: center;">José Antonio Marquez Benites</td>
+                                        <td style="text-align: center;">0254854</td>
+                                        <td style="text-align: center;">Dni</td>
+                                        <td style="text-align: center;">75952456</td>
+                                        <td style="text-align: center;">25</td>
+                                        <td style="text-align: center;">Piero Alejandro Sanchez Arbildo</td>
+                                        <td style="text-align: center;">84989484</td>
+                                        <td><span class="badge badge-dark">Eliminar</span></td>
+                                    </tr>
+
+
+
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="agregarVeh" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Agregar Información Vehículo</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Placa</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Marca</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Color</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Conductor</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Tipo Doc. Identidad</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Edad</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Modelo</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Año</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>No Lic. Conducir</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Nro. Doc Identidad</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Cia Seguro</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Propietario</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                    <div style="height: 10px;"></div>
+                    <table style="width: 100%;">
+                        <thead>
+                        <th style="width: 9%;"></th>
+                        <th style="width: 11%;"></th>
+                        <th style="width: 9%;"></th>
+                        <th style="width: 11%;"></th>
+                        <th style="width: 9%;"></th>
+                        <th style="width: 11%;"></th>
+                        <th style="width: 10%;"></th>
+                        <th style="width: 10%;"></th>
+
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Denuncia Poli.</td>
+                                <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Tarj. Propied.</td>
+                                <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+
+                    <div style="height: 15px;"></div>
+                    <div style="text-align: left; padding-left: 18px;">
+                        <span style="width: 150px;" class="badge badge-primary" data-toggle="modal" data-target="#DetalleDanios">Agregar</span>
+                    </div>
+
+                    <div style="overflow: auto;">
+                        <div style="width: 150%; height: 200px; margin: auto;">
+                            <table class="table table-sm" style="width: 98%; margin: auto;">
+                                <thead class="bg-dark" style="color: #fff;">
+                                <td colspan="3" style="width: 30%;text-align: center;">Daños Causados</td>
+                                <td style="width: 10%;text-align: center;">Tipo Comentario</td>
+                                <td colspan="2" style="width: 20%;text-align: center;">Comentarios Asesor</td>
+                                <td style="width: 10%;text-align: center;">Dosaje Etílico</td>
+                                <td style="width: 10%;text-align: center;">Tipo Proveedor</td>
+                                <td style="width: 10%;text-align: center;">Tipo Taller</td>
+                                <td style="width: 10%;text-align: center;">Proveedor Elegido</td>
+                                <td></td>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center;">Raspado Pintura</td>
+                                        <td style="text-align: center;">Observación</td>
+                                        <td colspan="2" style="text-align: center;">Presenta raspones</td>
+                                        <td style="text-align: center;">Ninguno</td>
+                                        <td style="text-align: center;">Standart</td>
+                                        <td style="text-align: center;">Común</td>
+                                        <td style="text-align: center;">Qualitat S.A.C</td>
+                                        <td style="text-align: right;"><span class="badge badge-dark">Eliminar</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center;">Raspado Pintura</td>
+                                        <td style="text-align: center;">Observación</td>
+                                        <td colspan="2" style="text-align: center;">Presenta raspones</td>
+                                        <td style="text-align: center;">Ninguno</td>
+                                        <td style="text-align: center;">Standart</td>
+                                        <td style="text-align: center;">Común</td>
+                                        <td style="text-align: center;">Qualitat S.A.C</td>
+                                        <td style="text-align: right;"><span class="badge badge-dark">Eliminar</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center;">Raspado Pintura</td>
+                                        <td style="text-align: center;">Observación</td>
+                                        <td colspan="2" style="text-align: center;">Presenta raspones</td>
+                                        <td style="text-align: center;">Ninguno</td>
+                                        <td style="text-align: center;">Standart</td>
+                                        <td style="text-align: center;">Común</td>
+                                        <td style="text-align: center;">Qualitat S.A.C</td>
+                                        <td style="text-align: right;"><span class="badge badge-dark">Eliminar</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" style="text-align: center;">Raspado Pintura</td>
+                                        <td style="text-align: center;">Observación</td>
+                                        <td colspan="2" style="text-align: center;">Presenta raspones</td>
+                                        <td style="text-align: center;">Ninguno</td>
+                                        <td style="text-align: center;">Standart</td>
+                                        <td style="text-align: center;">Común</td>
+                                        <td style="text-align: center;">Qualitat S.A.C</td>
+                                        <td style="text-align: right;"><span class="badge badge-dark">Eliminar</span></td>
+                                    </tr>
+
+
+
+
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="DetalleDanios" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Detalle del Daño</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Daños Causados</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Tipo Comentario</label>
+                                                    <select class="form-control form-control-sm"></select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Comentarios Asesor</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Dosaje Etílico</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Tipo Proveedor</label>
+                                                    <select class="form-control form-control-sm"></select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Tipo Taller</label>
+                                                    <select class="form-control form-control-sm"></select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Proveedor Elegido</label>
+                                                    <input type="text" class="form-control form-control-sm">
+                                                </div>
+                                            </form>
+                                            <form>
+                                                <div class="form-group">
+                                                    <label>Foto del Siniestro</label>
+                                                    <input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary">Guardar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <form style="text-align: left;">
+                                <div class="form-group">
+                                    <label>Informe</label>
+                                    <textarea class="form-control form-control-sm"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Conclusiones</label>
+                                    <textarea class="form-control form-control-sm"></textarea>
+
+                                </div>
+                                <div style="text-align: right;">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-primary">
+                                            <input type="checkbox" checked="" autocomplete="off"> Enviar Analista
+                                        </label>
+                                        <label class="btn btn-primary active">
+                                            <input type="checkbox" autocomplete="off"> Asignar Técnico
+                                        </label>
+                                        <label class="btn btn-primary">
+                                            <input type="checkbox" autocomplete="off"> Generar Informe
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="tab-pane fade" id="Analista_tbpl" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    </div>
+
+
+
+
+
+
+</div>
+

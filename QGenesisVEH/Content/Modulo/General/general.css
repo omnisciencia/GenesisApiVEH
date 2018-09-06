@@ -1,0 +1,44 @@
+﻿.bg-blues {
+ background: rgba(52,203,237,1);
+background: -moz-linear-gradient(left, rgba(52,203,237,1) 0%, rgba(52,163,237,1) 60%, rgba(52,154,237,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(52,203,237,1)), color-stop(60%, rgba(52,163,237,1)), color-stop(100%, rgba(52,154,237,1)));
+background: -webkit-linear-gradient(left, rgba(52,203,237,1) 0%, rgba(52,163,237,1) 60%, rgba(52,154,237,1) 100%);
+background: -o-linear-gradient(left, rgba(52,203,237,1) 0%, rgba(52,163,237,1) 60%, rgba(52,154,237,1) 100%);
+background: -ms-linear-gradient(left, rgba(52,203,237,1) 0%, rgba(52,163,237,1) 60%, rgba(52,154,237,1) 100%);
+background: linear-gradient(to right, rgba(52,203,237,1) 0%, rgba(52,163,237,1) 60%, rgba(52,154,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#34cbed', endColorstr='#349aed', GradientType=1 );
+    
+}
+
+.input-sm {
+  height: 30px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+select.input-sm {
+  height: 30px;
+  line-height: 30px;
+}
+textarea.input-sm,
+select[multiple].input-sm {
+  height: auto;
+}
+
+.form-group {
+    margin-top: -0.8rem;
+}
+
+label{
+    margin-bottom: -1rem;
+}
+
+ .dropdown:hover .dropdown-menu {
+          display: block;
+          cursor:pointer;
+}
+
+li{
+     cursor:pointer;
+}

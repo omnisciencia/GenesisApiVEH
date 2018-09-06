@@ -107,6 +107,9 @@
     <Content Include="Content\form-elements.css" />
     <Content Include="Content\Modulo\Consulta\Inspeccion.css" />
     <Content Include="Content\Modulo\Consulta\Poliza.css" />
+    <Content Include="Content\Modulo\General\general.css" />
+    <Content Include="Content\Modulo\RegistroSiniestro\bootstrap.min.css" />
+    <Content Include="Content\Modulo\RegistroSiniestro\RegistroSiniestro.css" />
     <Content Include="Content\ReporteInspeccion.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\styleLayout.css" />
@@ -157,6 +160,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ConsultasController.cs" />
     <Compile Include="Controllers\fileUploadController.cs" />
+    <Compile Include="Controllers\GestionSiniestroController.cs" />
     <Compile Include="Controllers\InspeccionController.cs" />
     <Compile Include="Controllers\PolizaController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -176,6 +180,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\GestionSiniestro\RegistrarSiniestro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
