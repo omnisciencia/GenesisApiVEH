@@ -823,6 +823,8 @@ function RegistrarInspeccion_onclick() {
     var btequipomusicafijo = $("#sp_EquipoMusic").val();
     var vinspector = $("#inspector_id").val();
 
+    alert('ok');
+
     if (document.getElementById('chk_aireacond_id').checked) {
         btaire = 1;
     }else{
@@ -1067,6 +1069,8 @@ function RegistrarInspeccion_onclick2() {
     var smtablero = $("#sp_Tablero").val();
     var btequipomusicafijo = $("#sp_EquipoMusic").val();
     var vinspector = $("#inspector_id").val();
+
+    
 
     if (document.getElementById('chk_aireacond_id').checked) {
         btaire = 1;

@@ -16,13 +16,13 @@
     VigenciaFecha();
     InhabilitarCajas();
     Spinner_FormaPago();
-    
 
-    //ListarGrillaVehiculos();
 
-    
+    ListarGrillaVehiculos();
 
-    $("select[name=sp_MarcaVehiculo]").change(function() {
+
+
+    $("select[name=sp_MarcaVehiculo]").change(function () {
         idmarca = $("#sp_MarcaVehiculo").val();
         Spinner_ModeloVehiculo(idmarca);
 
@@ -129,11 +129,68 @@
     });
 
 
+    function ListarGrillaVehiculos() {
+
+        //var pagina = $("#Pagina").val();
+        //var select = $("#Pagina");
+        //var regporpag = "10";
+        //var TotalRegistros = "1";
+        //var i = 1;
+
+        //select.empty();
+
+        //if (data.length > 1) {
+        //    if (parseInt(data[1].TotalRegistros) > parseInt(regporpag)) {
+
+        //        for (i = 1; i <= Math.ceil(parseInt(data[1].TotalRegistros) / parseInt(regporpag)) ; i++) {
+        //            select.append("<option value = " + i + ">" + i + "</option>");
+        //        }
+        //    }
+        //    else {
+        //        select.append("<option value = '1'> 1</option>");
+        //    }
+        //}
+        //else {
+        //    select.append("<option value = '1'> 1</option>");
+        //}
+
+
+        //$("#Pagina").val(pagina);
+
+
+        var tabla = $("#GridListar");
+        tabla.empty();
+        tabla.append("<thead class='bg-blues'>" +
+                    "<tr>" +
+                    "<td style=display:none>idtipoveh</td>" +
+                    "<td style=display:none>idmarca</td>" +
+                    "<td style=display:none>idmodeloveh</td>" +
+                    "<td style=display:none>asientos</td>" +
+                    "<td style=display:none>motor</td>" +
+                    "<td style=display:none>vin</td>" +
+                    "<td style=display:none>suma</td>" +
+                    "<td>Id</td>" +
+                    "<td>Placa</td>" +
+                    "<td>Clase/Categoria</td>" +
+                    "<td>Marca</td>" +
+                    "<td>Modelo</td>" +
+                    "<td>Color</td>" +
+                    "<td>Año</td>" +
+                    "<td></td>" +
+                    "</tr>" +
+                    "</thead>");
+
+
+    }
+
+
+
+
     $("#btnAceptar").click(function () {
         var tabla = $("#GridListar");
 
         var nFilas = $("#GridListar tr").length;
-                
+
         var idtipoveh = $('#sp_TipoVehiculo').val();
         var tipoveh = $('#sp_TipoVehiculo option:selected').text();
         var idmarca = $('#sp_MarcaVehiculo').val();
@@ -144,13 +201,13 @@
         var asientos = $('#nroasientos_reg').val();
         var aniofab = $('#sp_anioFabricacion option:selected').text();
         var motor = $('#nromotor_reg').val();
-       // var nroserie = $('#nroserie_reg').val();
+        // var nroserie = $('#nroserie_reg').val();
         var vin = $('#vin_reg').val();
-        var color = $('#color_reg').val();        
-      //  var idtipouso = $('#sp_TipoUso').val();        
+        var color = $('#color_reg').val();
+        //  var idtipouso = $('#sp_TipoUso').val();        
         //var tipouso = $('#sp_TipoUso option:selected').text();
         var suma = $('#sumaasegurada_reg').val();
-               
+
 
         tabla.append("<thead class='bg-White'>" +
                     "<tr id='fil_" + nFilas + "'>" +
@@ -159,31 +216,31 @@
                     "<td style=display:none>" + idmarca + "</td>" +
                     "<td style=display:none>" + idmodeloveh + "</td>" +
                     "<td style=display:none>" + asientos + "</td>" +
-                    "<td style=display:none>" + motor + "</td>" +                    
-                    "<td style=display:none>" + vin + "</td>" +                    
+                    "<td style=display:none>" + motor + "</td>" +
+                    "<td style=display:none>" + vin + "</td>" +
                     "<td style=display:none>" + suma + "</td>" +
-                    
+
                     "<td style=display:none>" + nFilas + "</td>" +
-                    "<td>" + placa  + "</td>" +
-                    "<td>"+ tipoveh +"</td>" +
-                    "<td>"+ marca +"</td>" +
-                    "<td>" + modeloveh +"</td>" +
-                    "<td>" + color +"</td>" +
-                    "<td>" + aniofab + "</td>" +                                   
+                    "<td>" + placa + "</td>" +
+                    "<td>" + tipoveh + "</td>" +
+                    "<td>" + marca + "</td>" +
+                    "<td>" + modeloveh + "</td>" +
+                    "<td>" + color + "</td>" +
+                    "<td>" + aniofab + "</td>" +
                     "<td><input type=button onclick=EliminarFila('fil_" + nFilas + "') value=Eliminar style=width:70px class=btn_customer btn-secondary/></td>" +
                     "</tr>" +
                     "</thead>");
     });
 
-    
+
 
     idpoliza_input = getParameterByName('idpoliza');
     modo_input = getParameterByName('modo');
-        
 
-    if (modo_input == 'ver') {        
+
+    if (modo_input == 'ver') {
         ListarPolizaVehiculo(idpoliza_input);
-               
+
         //$('#btnVer').onkeyup(function () {
         //    if ($(this).val() == '') {
         //        $('.enableOnInput').prop('disabled', true);
@@ -191,28 +248,27 @@
         //        $('.enableOnInput').prop('disabled', false);
         //    }
         //});
-
+        $('#btnVer').hide();
         $('#titulo').html('VER - REGISTRO DE POLIZA');
     }
-    else
-    {
+    else {
         $('#titulo').html('AGREGANDO - REGISTRO DE POLIZA');
     }
-    
 
-    if (idpoliza_input.length > 0) {        
+
+    if (idpoliza_input.length > 0) {
         DatosPoliza(idpoliza_input);
     }
 
 
-    
+
 }
 
 function EliminarFila(fila) {
     var resp = confirm("Desea eliminar el registro?");
     if (resp == true) {
         $('#' + fila + '').remove();
-    }    
+    }
 }
 
 function ListarPolizaVehiculo(idpoliza) {
@@ -262,55 +318,55 @@ function ListarGrillaPolizaVehiculo() {
 
 function ListarGrillaPolizaVehiculo(data) {
 
-        var tabla = $("#GridListar");
-        tabla.empty();
-        tabla.append("<thead class='bg-blues'>" +
-                    "<tr>" +
-                    //"<td style=display:none>idtipoveh</td>" +
-                    //"<td style=display:none>idmarca</td>" +
-                    //"<td style=display:none>idmodeloveh</td>" +                    
-                    //"<td style=display:none>asientos</td>" +
-                    //"<td style=display:none>motor</td>" +                    
-                    //"<td style=display:none>vin</td>" +
-                    //"<td style=display:none>suma</td>" +
-                    //"<td style=display:none>Id</td>" +
-                    "<td>Placa</td>" +
-                    "<td>Clase/Categoria</td>" +                    
-                    "<td>Marca</td>" +
-                    "<td>Modelo</td>" +
-                    "<td>Color</td>" +
-                    "<td>Año</td>" +                    
-                    "<td></td>" +
-                    "</tr>" +
-                    "</thead>");
+    var tabla = $("#GridListar");
+    tabla.empty();
+    tabla.append("<thead class='bg-blues'>" +
+                "<tr>" +
+                //"<td style=display:none>idtipoveh</td>" +
+                //"<td style=display:none>idmarca</td>" +
+                //"<td style=display:none>idmodeloveh</td>" +                    
+                //"<td style=display:none>asientos</td>" +
+                //"<td style=display:none>motor</td>" +                    
+                //"<td style=display:none>vin</td>" +
+                //"<td style=display:none>suma</td>" +
+                "<td style=display:none>Id</td>" +
+                "<td>Placa</td>" +
+                "<td>Clase/Categoria</td>" +
+                "<td>Marca</td>" +
+                "<td>Modelo</td>" +
+                "<td>Color</td>" +
+                "<td>Año</td>" +
+                //"<td></td>" +
+                "</tr>" +
+                "</thead>");
 
 
 
-        if (data.length > 0) {
-            tabla.append("<tbody>")
-            for (i = 0; i < data.length; i++) {
-                tabla.append(
-                            "<tr>" +
-                            "<td>" + data[i].placa + "</td>" +
-                            "<td>" + data[i].clase + "</td>" +
-                            "<td>" + data[i].modelo + "</td>" +
-                            "<td>" + data[i].marca + "</td>" +
-                            "<td>" + data[i].color + "</td>" +
-                            "<td>" + data[i].aniofab + "</td>" +
-                            "</tr>");
-            }
-            tabla.append("</tbody>")
-
-        }
-        else {
-            tabla.append("<tbody>")
+    if (data.length > 0) {
+        tabla.append("<tbody>")
+        for (i = 0; i < data.length; i++) {
             tabla.append(
-                            "<center>" +
-                            "No hay registro(s) selecionado(s) por los criterios de busqueda" +
-                            "</center>");
-            tabla.append("</tbody>")
+                        "<tr>" +
+                        "<td>" + data[i].placa + "</td>" +
+                        "<td>" + data[i].clase + "</td>" +
+                        "<td>" + data[i].modelo + "</td>" +
+                        "<td>" + data[i].marca + "</td>" +
+                        "<td>" + data[i].color + "</td>" +
+                        "<td>" + data[i].aniofab + "</td>" +
+                        "</tr>");
         }
-        
+        tabla.append("</tbody>")
+
+    }
+    else {
+        tabla.append("<tbody>")
+        tabla.append(
+                        "<center>" +
+                        "No hay registro(s) selecionado(s) por los criterios de busqueda" +
+                        "</center>");
+        tabla.append("</tbody>")
+    }
+
 
 }
 
@@ -662,7 +718,7 @@ function Spinner_ModeloVehiculo(id_marca, id_modelo) {
                     selectAgregar.append("<option value=" + data[i].idmodelo + ">" + data[i].vdescripcion + "</option>");
                 }
 
-                
+
                 if (id_marca == 1) {
                     selectAgregar.val(1);
                 } else {
@@ -1056,24 +1112,24 @@ function SuccesText() {
 }
 
 
-function serialize(arr) {
-    var res = '[';
-    for (i = 0; i < arr.length; i++) {
-        res += '{inroasiento:' + arr[i] + ',vcolor:' + arr[i] + ':"' + arr[i] + '";}';
-    }
-    res += ']';
+//function serialize(arr) {
+//    var res = '[';
+//    for (i = 0; i < arr.length; i++) {
+//        res += '{inroasiento:' + arr[i] + ',vcolor:' + arr[i] + ':"' + arr[i] + '";}';
+//    }
+//    res += ']';
 
-    return res;
-}
+//    return res;
+//}
 
 
 function RegistrarPoliza_onclick() {
 
-    
-   var filas = $("#GridListar tr").length;
-   var columnas = $('#GridListar').find('tr')[0].cells.length;//$("#GridListar td")[0].length;    
-   //var vehiculos = new Array();
-  
+    alert('ingreso');
+    // var filas = $("#GridListar tr").length;
+    //var columnas = $('#GridListar').find('tr')[0].cells.length;//$("#GridListar td")[0].length;    
+    //var vehiculos = new Array();
+
     /*
      //--columnas ocultas---//
                     "<td style=display:none>" + idtipoveh + "</td>" +
@@ -1098,73 +1154,72 @@ function RegistrarPoliza_onclick() {
     */
 
     //contadores de cierre de comas
-   var y = 0;
-   var c = 0;    
+    var y = 0;
+    var c = 0;
 
     //formador de cadena
-   var DetallesVehi = '';
-   DetallesVehi += '[';
+    var DetallesVehi = '';
+    DetallesVehi += '[';
 
-   for (var i = 1; i < document.getElementById('GridListar').rows.length; i++) {
-       DetallesVehi += '{';
-       for (var j = 0; j < document.getElementById('GridListar').rows[i].cells.length - 1; j++) {           
+    for (var i = 1; i < document.getElementById('GridListar').rows.length; i++) {
+        DetallesVehi += '{';
+        for (var j = 0; j < document.getElementById('GridListar').rows[i].cells.length - 1; j++) {
 
-           if (j == 0) { DetallesVehi += '"idtipoveh":"'; }
-           if (j == 1) { DetallesVehi += '"idmarca":"'; }
-           if (j == 2) { DetallesVehi += '"idmodeloveh":"'; }
+            if (j == 0) { DetallesVehi += '"idtipoveh":"'; }
+            if (j == 1) { DetallesVehi += '"idmarca":"'; }
+            if (j == 2) { DetallesVehi += '"idmodeloveh":"'; }
 
-           if (j == 3) { DetallesVehi += '"asientos":"'; }
-           if (j == 4) { DetallesVehi += '"motor":"'; }
-           if (j == 5) { DetallesVehi += '"vin":"'; }
-           if (j == 6) { DetallesVehi += '"suma":"'; }
+            if (j == 3) { DetallesVehi += '"asientos":"'; }
+            if (j == 4) { DetallesVehi += '"motor":"'; }
+            if (j == 5) { DetallesVehi += '"vin":"'; }
+            if (j == 6) { DetallesVehi += '"suma":"'; }
 
-           //if (j == 7) { res += 'nFilas:'; }
-           if (j == 8) { DetallesVehi += '"placa":"'; }
-           //if (j == 9) { res += 'tipoveh:'; }
-           //if (j == 10) { res += 'marca:'; }
-           //if (j == 11) { res += 'modeloveh:'; }
-           if (j == 12) { DetallesVehi += '"color":"'; }
-           if (j == 13) { DetallesVehi += '"aniofab":"'; }
-           //if (j == 14) { res += 'tipouso:'; }
+            //if (j == 7) { res += 'nFilas:'; }
+            if (j == 8) { DetallesVehi += '"placa":"'; }
+            //if (j == 9) { res += 'tipoveh:'; }
+            //if (j == 10) { res += 'marca:'; }
+            //if (j == 11) { res += 'modeloveh:'; }
+            if (j == 12) { DetallesVehi += '"color":"'; }
+            if (j == 13) { DetallesVehi += '"aniofab":"'; }
+            //if (j == 14) { res += 'tipouso:'; }
 
-           if (j != 7 && j != 9 && j != 10 && j != 11 && j != 14) {
+            if (j != 7 && j != 9 && j != 10 && j != 11 && j != 14) {
 
-               if (j < 13) {
-                   DetallesVehi += document.getElementById('GridListar').rows[i].cells[j].innerHTML + '",';
-               }
-               else {
-                   DetallesVehi += document.getElementById('GridListar').rows[i].cells[j].innerHTML + '"';
-               }
+                if (j < 13) {
+                    DetallesVehi += document.getElementById('GridListar').rows[i].cells[j].innerHTML + '",';
+                }
+                else {
+                    DetallesVehi += document.getElementById('GridListar').rows[i].cells[j].innerHTML + '"';
+                }
 
-           }
+            }
 
-       }
+        }
 
-       //reinicia contador de cierre de coma por cada registro       
+        //reinicia contador de cierre de coma por cada registro       
 
-       c = c + 1;
-       
+        c = c + 1;
 
-       if (c < document.getElementById('GridListar').rows.length-1) {           
-           DetallesVehi += '},';
-       }
-       else {           
-           DetallesVehi += '}';
-       }       
-     }
 
-   DetallesVehi += ']';
+        if (c < document.getElementById('GridListar').rows.length - 1) {
+            DetallesVehi += '},';
+        }
+        else {
+            DetallesVehi += '}';
+        }
+    }
 
-    
-     //var DetallesVehi= JSON.stringify(res);
-   
+    DetallesVehi += ']';
+
+
+    //var DetallesVehi= JSON.stringify(res);
+
     //alert(DetallesVehi);
-      
-    
+
+
     var modo_input = getParameterByName('modo');
 
-    if (modo_input == 'agregar')
-    {
+    if (modo_input == 'agregar') {
         var idpoliza = $("#nropoliza_reg").val();
 
         //PRIMERO SE VALIDA SI EXISTE LA POLIZA
@@ -1260,7 +1315,7 @@ function RegistrarPoliza(DetallesVehi) {
     fecnaci_reg = fecnaci_reg_prev.toString();
 
     var sumaaseguradapost = (parseFloat(sumaasegurada_reg).toFixed(2)).toString();
-    
+
     $.ajax({
         type: "POST",
         url: "../Services/RegistrarPoliza",
