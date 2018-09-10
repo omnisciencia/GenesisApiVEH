@@ -118,10 +118,25 @@ jQuery(document).ready(function() {
             //    $(this).removeClass('input-error');
             //}        
 
+
+        parent_fieldset.find('#nropoliza_reg').each(function () {
+
+            if ($('#nropoliza_reg').val() == "" ) {
+                if ($('#nropoliza_reg').val() == "") $('#nropoliza_reg').addClass('input-error');
+                next_step = false;
+            }
+            else
+            {
+
+                $(this).removeClass('input-error');
+
+            }
+        });
+
         parent_fieldset.find('#nrodocumento_reg, #nombres_reg', '#paterno_reg', '#materno_reg', '#celular_reg').each(function () {
 
             if ($('#nrodocumento_reg').val() == "" || $('#nombres_reg').val() == "" || $('#paterno_reg').val() == "" || $('#materno_reg').val() == "" || $('#celular_reg').val() == "") {
-
+                            
             if ($('#nrodocumento_reg').val() == "") $('#nrodocumento_reg').addClass('input-error');
             if ($('#nombres_reg').val() == "") $('#nombres_reg').addClass('input-error');
             if ($('#paterno_reg').val() == "") $('#paterno_reg').addClass('input-error');

@@ -12,7 +12,7 @@
     Spinner_Distrito("01", "01");
     Spinner_TipoVia();
     Spinner_TipoPoliza();
-    Text_IdPoliza();
+    //Text_IdPoliza();
     VigenciaFecha();
     InhabilitarCajas();
     Spinner_FormaPago();
@@ -261,6 +261,11 @@
     var modo_input = sessionStorage.getItem("modo");
 
 
+    sessionStorage.removeItem("idpoliza");
+
+    sessionStorage.removeItem("modo");
+
+
     if (modo_input == 'ver') {
         ListarPolizaVehiculo(idpoliza_input);
 
@@ -279,8 +284,7 @@
     }
 
 
-    if (idpoliza_input != null && idpoliza_input != '') {
-        alert();
+    if (idpoliza_input != null && idpoliza_input != '') {        
         DatosPoliza(idpoliza_input);
     }
 
@@ -1198,7 +1202,7 @@ function RegistrarPoliza_onclick() {
         DetallesVehi += ']';
 
 
-        alert(DetallesVehi);
+        //alert(DetallesVehi);
 
 
         var modo_input = getParameterByName('modo');
