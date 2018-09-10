@@ -34,7 +34,6 @@
                     <fieldset>
                         <h4>Producto a Registrar:</h4>
                         <div class="row">
-
                             <div class="col-lg-4 col-md-4">
                                 <div class="form-group">
                                     <label>Nro. Poliza:</label>
@@ -47,19 +46,11 @@
 
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>Forma de Pago:</label>
-                                    <select class="form-control input-sm" id="sp_FormaPago" name="sp_FormaPago">
-                                        <option value="">CONTADO</option>
-
-                                    </select>
-                                </div>
-
                             </div>
                             <div class="col-lg-4 col-md-4">
                                 <div class="form-group">
                                     <label>Vigencia(Inicio):</label>
-                                    <input type="text" class="form-control input-sm" id="vigenciaini_reg">
+                                    <input type="date" class="form-control input-sm" id="vigenciaini_reg" onblur="VigenciaFecha()">
                                 </div>
                                 <div class="form-group">
                                     <label>Plan / Producto:</label>
@@ -73,6 +64,13 @@
                                 <div class="form-group">
                                     <label>Vigencia(Fin):</label>
                                     <input type="text" class="form-control input-sm" id="vigenciafin_reg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Forma de Pago:</label>
+                                    <select class="form-control input-sm" id="sp_FormaPago" name="sp_FormaPago">
+                                        <option value="">CONTADO</option>
+
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +114,7 @@
                             <div class="col-lg-4 col-md-4 col-xs-12">
                                 <div class="form-group">
                                     <label id="t_nrodocument">Nro. Documento</label>
-                                    <input type="text" class="form-control input-sm" id="nrodocumento_reg" onblur="ValidarPersona(this)">
+                                    <input type="text" class="form-control input-sm" id="nrodocumento_reg" onblur="ValidarPersona()">
                                 </div>
                                 <div class="form-group">
                                     <label id="t_apepaterno">Apellido Paterno</label>
@@ -238,7 +236,7 @@
                         <div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <div style="height: 8px;"></div>
-                                <input type="text" class="form-control input-sm" placeholder="Dirección" id="direccion_reg">
+                                <input type="text" class="form-control input-sm" placeholder="" id="direccion_reg">
                                 <div style="height: 8px;"></div>
                                 <div class="form-group">
                                     <div style="height: 8px;"></div>
@@ -296,8 +294,8 @@
                             </table>
                         </div>
                         <!-- Modal ver persona-->
-                        <div class="modal fade" id="ver_vehiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal fade bd-example-modal-lg" id="ver_vehiculo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" style="color: #0489D0;">Datos del Vehiculo</h5>
@@ -313,7 +311,7 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-md-4 col-xs-12">
                                                 <div class="form-group">
-                                                    <label>Tipo de Vehículo:</label>
+                                                    <label>Clase:</label>
                                                     <select class="form-control input-sm" id="sp_TipoVehiculo" name="sp_TipoVehiculo">
                                                         <option value="">Automóvil</option>
                                                     </select>
@@ -355,6 +353,11 @@
                                                     </select>
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <label>Suma Asegurada(Dólares):</label>
+                                                    <input type="text" class="form-control input-sm" id="sumaasegurada_reg" value="" onkeypress="return justNumbers(event);" onblur="convertirDecimal(this)">
+                                                </div>
+
 
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-xs-12">
@@ -394,16 +397,22 @@
                                                         <option value="2010">1994</option>
                                                         <option value="2010">1993</option>
                                                     </select>
-
                                                 </div>
+
                                                 <div class="form-group">
                                                     <label>VIN:</label>
                                                     <input type="text" class="form-control input-sm" id="vin_reg">
                                                 </div>
+
                                                 <div class="form-group">
-                                                    <label>Suma Asegurada(Dólares):</label>
-                                                    <input type="text" class="form-control input-sm" id="sumaasegurada_reg" value=" " onkeypress="return justNumbers(event);" onblur="convertirDecimal(this)">
+                                                    <label>Riesgo:</label>
+                                                    <select class="form-control input-sm" id="sp_catriesgo" name="sp_riesgo">
+                                                        <option value="1">ALTO</option>
+                                                        <option value="2">MODERADO</option>
+                                                        <option value="3">BAJO</option>
+                                                    </select>                                                    
                                                 </div>
+
                                             </div>
                                         </div>
                                         <div >

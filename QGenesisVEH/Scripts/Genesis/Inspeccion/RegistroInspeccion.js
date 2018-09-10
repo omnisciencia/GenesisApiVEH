@@ -27,10 +27,15 @@ function InicioPoliza() {
         Spinner_EstadoInspeccion();
         
 
-        idinspeccion_input = getParameterByName('id');
+        //idinspeccion_input = getParameterByName('id');
+        //modo_input = getParameterByName('modo');
+        //modo_input2 = getParameterByName('modo2');
 
-        modo_input = getParameterByName('modo');
-        modo_input2 = getParameterByName('modo2');
+        var idinspeccion_input = sessionStorage.getItem("idinspeccion");
+        var modo_input = sessionStorage.getItem("modo");
+        var modo_input2 = sessionStorage.getItem("modo2");
+
+       
 
         if (modo_input == 'ver') {
             $('#titulo').html('VER - Registro de Inspección');
@@ -178,6 +183,8 @@ function getParameterByName(name) {
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+
 
 
 function fechaActual() {

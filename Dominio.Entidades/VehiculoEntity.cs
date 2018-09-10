@@ -21,6 +21,8 @@ namespace Dominio.Entidades
         public string clase { get; set; }
         public string modelo { get; set; }
         public string marca { get; set; }
+        public string tipouso { get; set; }
+        public string desumaasegurada { get; set; }
 
 
     }

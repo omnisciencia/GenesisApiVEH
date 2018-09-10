@@ -65,7 +65,7 @@ function ListarGrillaInspeccion(data) {
     var TotalRegistros = "1";
     var i = 1;
 
-    select.empty();
+   /* select.empty();
 
     if (data.length > 1) {
         if (parseInt(data[1].TotalRegistros) > parseInt(regporpag)) {
@@ -76,6 +76,19 @@ function ListarGrillaInspeccion(data) {
         }
         else {
             select.append("<option value = '1'> 1</option>");
+        }
+    }
+    else {
+        select.append("<option value = '1'> 1</option>");
+    }
+    */
+
+    select.empty();
+ 
+    if (parseInt(data[0].TotalRegistros) > parseInt(regporpag)) {
+
+        for (i = 1; i <= Math.ceil(parseInt(data[0].TotalRegistros) / parseInt(regporpag)) ; i++) {
+            select.append("<option value = " + i + ">" + i + "</option>");
         }
     }
     else {
@@ -139,13 +152,35 @@ function ListarGrillaInspeccion(data) {
 }
 
 //Link con el metodo POST
-function Link(idinspeccion,modo,modo2) {
+function Link(idinspeccion, modo, modo2) {
     //window.location = "../inspeccion/registroinspeccion?alarmid=" + alarmid;
-    window.location = "../Inspeccion/RegistroInspeccion?id=" + idinspeccion + "&modo=" + modo;
+
     //$.redirect(surl,
     //{
     //    alarmhistoryid: alarmid, evento: even
     //}, "post", "");
+
+    //window.location = "../Inspeccion/RegistroInspeccion?id=" + idinspeccion + "&modo=" + modo;
+   
+    
+
+    sessionStorage.setItem("idinspeccion", idinspeccion);
+    sessionStorage.setItem("modo", modo);
+    sessionStorage.setItem("modo2", modo2);
+
+    window.location = "../inspeccion/registroinspeccion";
+    /*
+    surl="../Inspeccion/RegistroInspeccion";
+
+    $.redirect(surl,
+    {
+        id: id, modo: modo
+    }, "post", "");
+
+    */
+   
+
+
 }
 function ListarGrilla() {
 

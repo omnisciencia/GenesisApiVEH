@@ -108,15 +108,40 @@ jQuery(document).ready(function() {
         var progress_line = $(this).parents('.f1').find('.f1-progress-line');
         next_step = true;
         // fields validation
-        parent_fieldset.find('input[type="text"], input[type="password"],input[type="email"], textarea').each(function () {
-            if ($(this).val() == "") {
-                $(this).addClass('input-error');
+        //parent_fieldset.find('input[type="text"], input[type="password"],input[type="email"], textarea').each(function () {
+
+            //if ($(this).val() == "") {
+            //    $(this).addClass('input-error');
+            //    next_step = false;                
+            //}
+            //else {
+            //    $(this).removeClass('input-error');
+            //}        
+
+        parent_fieldset.find('#nrodocumento_reg, #nombres_reg', '#paterno_reg', '#materno_reg', '#celular_reg').each(function () {
+
+            if ($('#nrodocumento_reg').val() == "" || $('#nombres_reg').val() == "" || $('#paterno_reg').val() == "" || $('#materno_reg').val() == "" || $('#celular_reg').val() == "") {
+
+            if ($('#nrodocumento_reg').val() == "") $('#nrodocumento_reg').addClass('input-error');
+            if ($('#nombres_reg').val() == "") $('#nombres_reg').addClass('input-error');
+            if ($('#paterno_reg').val() == "") $('#paterno_reg').addClass('input-error');
+            if ($('#materno_reg').val() == "") $('#materno_reg').addClass('input-error');
+            if ($('#celular_reg').val() == "") $('#celular_reg').addClass('input-error');
+
                 next_step = false;
             }
-            else {
+            else
+            {
+
                 $(this).removeClass('input-error');
+
             }
-        });
+
+
+  });
+        
+
+        //});
         // fields validation
 
         if (next_step) {

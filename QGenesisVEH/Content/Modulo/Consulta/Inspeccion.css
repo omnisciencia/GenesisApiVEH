@@ -111,7 +111,9 @@ img { max-width: 100%; }
 
 .f1-buttons { text-align: right; }
 
-.f1 .input-error { border-color: #0489D0; }
+.f1 .input-error {
+    border-width:1.2px;     
+    border-color: red; }
 
 
 .Ocultar{

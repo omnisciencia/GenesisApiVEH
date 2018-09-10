@@ -472,7 +472,8 @@ namespace Infraestrutura.Data.SqlServer
             int sminacionalidad,
             int smidmarca,
             int smidtipodocumento,
-            int formapago
+            int formapago,
+            string vigenciaini_reg
             //,string serie
             )
         {
@@ -527,6 +528,8 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smidmarca", smidmarca);
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
             cmd.Parameters.AddWithValue("@formapago", formapago);
+            cmd.Parameters.AddWithValue("@dtiniciovigencia", vigenciaini_reg);
+            
             //cmd.Parameters.AddWithValue("@serie", serie);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -690,6 +693,11 @@ namespace Infraestrutura.Data.SqlServer
                 clase.marca = dr["vmarca"].ToString();
                 clase.color = dr["vcolor"].ToString();
                 clase.aniofab = dr["smianiofabricacion"].ToString();
+                clase.asientos = dr["inroasiento"].ToString();
+                clase.motor = dr["vnromotor"].ToString();
+                clase.tipouso = dr["tipouso"].ToString();
+                clase.vin = dr["vVin"].ToString();
+                clase.desumaasegurada = dr["desumaasegurada"].ToString();
                 listado.Add(clase);
             }
 

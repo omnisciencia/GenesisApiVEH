@@ -134,8 +134,9 @@ namespace Dominio.Repositorio
                 int sminacionalidad,
                 int smidmarca,
                 int smidtipodocumento,
-                int formapago
-                //,string serie
+                int formapago,
+                string vigenciaini_reg
+            //,string serie
 
             )
         {
@@ -163,7 +164,8 @@ namespace Dominio.Repositorio
                 sminacionalidad,
                 smidmarca,
                 smidtipodocumento,
-                formapago
+                formapago,
+                vigenciaini_reg
                 //,serie
                 );
         }

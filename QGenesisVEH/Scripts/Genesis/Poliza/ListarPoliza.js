@@ -66,10 +66,12 @@ function ListarGrillaPoliza(data) {
 
     select.empty();
 
-    if (data.length > 1) {
-        if (parseInt(data[1].TotalRegistros) > parseInt(regporpag)) {
+    //alert(data[0].TotalRegistros);
 
-            for (i = 1; i <= Math.ceil(parseInt(data[1].TotalRegistros) / parseInt(regporpag)) ; i++) {
+    if (data.length > 0) {
+        if (parseInt(data[0].TotalRegistros) > parseInt(regporpag)) {
+
+            for (i = 1; i <= Math.ceil(parseInt(data[0].TotalRegistros) / parseInt(regporpag)) ; i++) {
                 select.append("<option value = " + i + ">" + i + "</option>");
             }
         }
@@ -132,7 +134,13 @@ function ListarGrillaPoliza(data) {
 
 function Link(idpoliza,modo) {
 
-    window.location = "../Poliza/RegistroPoliza?idpoliza=" + idpoliza +"&modo="+modo;
+    //window.location = "../Poliza/RegistroPoliza?idpoliza=" + idpoliza +"&modo="+modo;
+
+    window.location = "../Poliza/RegistroPoliza";
+
+    sessionStorage.setItem("idpoliza", idpoliza);
+
+    sessionStorage.setItem("modo", modo);
 
     //$.redirect(surl,
     //{
