@@ -723,8 +723,8 @@
                         <div class="row">
 
                             <div class="col-md-6">
-                                <div>
-                                    <button @*onclick="guardarFoto()"*@ class="btn btn-primary" style="background-color: #0489D0;" data-toggle="modal" data-target="#foto">
+                                <div >
+                                    <button @*onclick="guardarFoto()"*@ id="btnfoto" class="btn btn-primary" style="background-color: #0489D0;" data-toggle="modal" data-target="#foto">
                                         Agregar Imagen&nbsp;&nbsp;
                                         <i class="fas fa-camera"></i>
                                     </button>
@@ -801,7 +801,8 @@
 
                         <div class="f1-buttons">
                             <button type="button" class="btn btn-previous">Anterior</button>
-                            <button type="button" class="btn btn-next" onclick="AbrirConfirm()">Guardar</button>
+                            <button id="btguardar" type="button" class="btn btn-next" onclick="AbrirConfirm()">Guardar</button>
+                            <button id="btvolver" type="button" class="btn btn-next" onclick="Link2()">Volver</button>
                             @*onclick="RegistrarInspeccion_onclick()"*@
                         </div>
 
@@ -813,86 +814,87 @@
                             abrir2
                         </button>
 
-                        <!-- Modal concluido -->
-                        <div class="modal fade" id="pruebaModal" tabindex="-1" role="dialog" aria-labelledby="pruebaModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="pruebaModalLabel">¿Desea Concluir la Inspección?</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-1"></div>
-                                            <div class="col-md-5 form-check">
-                                                <input class="form-check-input" type="radio" name="conformidad" id="siconforme_id" value="1" onclick="ocultar1(this)" checked>
-                                                <label class="form-check-label" for="siconforme_id">
-                                                    Sí
-                                                </label>
-                                            </div>
-                                            <div class="col-md-5 form-check">
-                                                <input class="form-check-input" type="radio" name="conformidad" id="noconforme_id" onclick="ocultar2(this)" value="2">
-                                                <label class="form-check-label" for="noconforme_id">
-                                                    No
-                                                </label>
-                                            </div>
-                                            <div class="col-md-1"></div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
-                                        <button type="button" class="btn btn-primary Ocultar" id="pruebas1" onclick="RegistrarInspeccion_onclick()">Guardar Cambios</button>
-                                        <button type="button" class="btn btn-primary" id="pruebas2" onclick="AbrirConfirm2()" data-dismiss="modal">Guardar Cambios</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Calificación de la Inspección</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-1"></div>
-                                            <div class="col-md-5 form-check">
-                                                <input class="form-check-input" type="radio" name="conformidad" id="sconforme_id" value="1" checked>
-                                                <label class="form-check-label" for="sconforme_id">
-                                                    Conforme
-                                                </label>
-                                            </div>
-                                            <div class="col-md-5 form-check">
-                                                <input class="form-check-input" type="radio" name="conformidad" id="nconforme_id" value="2">
-                                                <label class="form-check-label" for="nconforme_id">
-                                                    No Conforme
-                                                </label>
-                                            </div>     
-                                            <div class="col-md-1"></div>
-                                        </div>
-                                        
-                                                                         
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
-                                        <button type="button" class="btn btn-primary" onclick="RegistrarInspeccion_onclick2()">Guardar Cambios</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <!--estuvo aqui-->
 
 
 
                     </fieldset>
+                    <!-- Modal concluido -->
+                    <div class="modal fade" id="pruebaModal" tabindex="-1" role="dialog" aria-labelledby="pruebaModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="pruebaModalLabel">¿Desea Concluir la Inspección?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-5 form-check">
+                                            <input class="form-check-input" type="radio" name="conformidad" id="siconforme_id" value="1" onclick="ocultar1(this)" checked>
+                                            <label class="form-check-label" for="siconforme_id">
+                                                Sí
+                                            </label>
+                                        </div>
+                                        <div class="col-md-5 form-check">
+                                            <input class="form-check-input" type="radio" name="conformidad" id="noconforme_id" onclick="ocultar2(this)" value="2">
+                                            <label class="form-check-label" for="noconforme_id">
+                                                No
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
+                                    <button type="button" class="btn btn-primary Ocultar" id="pruebas1" onclick="RegistrarInspeccion_onclick()">Guardar Cambios</button>
+                                    <button type="button" class="btn btn-primary" id="pruebas2" onclick="AbrirConfirm2()" data-dismiss="modal">Guardar Cambios</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Calificación de la Inspección</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-5 form-check">
+                                            <input class="form-check-input" type="radio" name="conformidad" id="sconforme_id" value="1" checked>
+                                            <label class="form-check-label" for="sconforme_id">
+                                                Conforme
+                                            </label>
+                                        </div>
+                                        <div class="col-md-5 form-check">
+                                            <input class="form-check-input" type="radio" name="conformidad" id="nconforme_id" value="2">
+                                            <label class="form-check-label" for="nconforme_id">
+                                                No Conforme
+                                            </label>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar ventana</button>
+                                    <button type="button" class="btn btn-primary" onclick="RegistrarInspeccion_onclick2()">Guardar Cambios</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </form>
             </div>

@@ -84,10 +84,10 @@ function ListarGrillaInspeccion(data) {
     */
 
     select.empty();
- 
-    if (parseInt(data[0].TotalRegistros) > parseInt(regporpag)) {
+    //data[0].TotalRegistros
+    if (parseInt(TotalRegistros) > parseInt(regporpag)) {
 
-        for (i = 1; i <= Math.ceil(parseInt(data[0].TotalRegistros) / parseInt(regporpag)) ; i++) {
+        for (i = 1; i <= Math.ceil(parseInt(TotalRegistros) / parseInt(regporpag)) ; i++) {
             select.append("<option value = " + i + ">" + i + "</option>");
         }
     }
@@ -133,8 +133,8 @@ function ListarGrillaInspeccion(data) {
                         "<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Modelo + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +                        
-                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','ver')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
-                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','editar')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','ver','" + data[i].Estado + "')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','editar','" + data[i].Estado + "')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -152,7 +152,7 @@ function ListarGrillaInspeccion(data) {
 }
 
 //Link con el metodo POST
-function Link(idinspeccion, modo, modo2) {
+function Link(idinspeccion, modo,estado) {
     //window.location = "../inspeccion/registroinspeccion?alarmid=" + alarmid;
 
     //$.redirect(surl,
@@ -166,7 +166,7 @@ function Link(idinspeccion, modo, modo2) {
 
     sessionStorage.setItem("idinspeccion", idinspeccion);
     sessionStorage.setItem("modo", modo);
-    sessionStorage.setItem("modo2", modo2);
+    sessionStorage.setItem("estado", estado);
 
     window.location = "../inspeccion/registroinspeccion";
     /*
