@@ -1033,7 +1033,7 @@ namespace Infraestrutura.Data.SqlServer
             int smestadocivil, string dfechanac, string vemail, string vtelefono1, string vcelular, int btsexo, int smidtablaformapago,
             int smidtipovehiculo, int smidmarca, int smidmodelo, int smianiofabricacion, string vcolor, int smidtipotransmision,
             int smidclaserodante, int smidtipocombustible, int inroasiento, int smidcarroceria, string vnromotor, string vplaca,
-            string vnroserie, int ikilometraje, string vVin,
+             int ikilometraje, string vVin,
             int iidinspeccion, string fecInspeccion, string hrInspeccion, string fecRecordatorio, string hrRecordatorio, 
             int smidtablaestadoinspeccion,
             int btaire, int btalarma, int btpestillos, int bttapizcuero, int btlunaselectricas, int btseguroruedas,
@@ -1075,7 +1075,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smidcarroceria", smidcarroceria);
             cmd.Parameters.AddWithValue("@vnromotor", vnromotor);
             cmd.Parameters.AddWithValue("@vplaca", vplaca);
-            cmd.Parameters.AddWithValue("@vnroserie", vnroserie);
+            //cmd.Parameters.AddWithValue("@vnroserie", vnroserie);
             cmd.Parameters.AddWithValue("@ikilometraje", ikilometraje);
             cmd.Parameters.AddWithValue("@vVin", vVin);
 

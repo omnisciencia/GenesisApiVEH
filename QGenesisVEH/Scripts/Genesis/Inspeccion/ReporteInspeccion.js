@@ -1,5 +1,7 @@
 ﻿window.onload = function () {
-    idinspeccion_input = getParameterByName('id');
+    
+    idinspeccion_input = sessionStorage.getItem("idinspeccion");
+
     ReporteInspeccion(idinspeccion_input);
 }
 

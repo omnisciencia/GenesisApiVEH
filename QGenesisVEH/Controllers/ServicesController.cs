@@ -285,39 +285,39 @@ namespace GenesisVehivular.Controllers
             List<TipoDanoEntity> listado = bl.ListarTipoDano_BL();
             return Json(listado);
         }
-
-        public ActionResult RegistrarInspeccion(int smidpersona, int idpoliza, int idvehiculo, int sminacionalidad,
-            int smestadocivil, string dfechanac, string vemail, string vtelefono1, string vcelular, int btsexo, int smidtablaformapago,
-            int smidtipovehiculo, int smidmarca, int smidmodelo, int smianiofabricacion, string vcolor, int smidtipotransmision,
-            int smidclaserodante, int smidtipocombustible, int inroasiento, int smidcarroceria, string vnromotor, string vplaca,
-            string vnroserie, int ikilometraje, string vVin,
-            int iidinspeccion, string fecInspeccion, string hrInspeccion, string fecRecordatorio, string hrRecordatorio,
-            int smidtablaestadoinspeccion,
-            int btaire, int btalarma, int btpestillos, int bttapizcuero, int btlunaselectricas, int btseguroruedas,
-            int btllantarep, int btequipomusicaorig, int btparlantesoriginal, int btaccesorios, string vobservacionesaccesorios,
-            int smidtablatipodano, string vobservaciones,
-            int smidestadofarodelante, int smcantfarodelante, int smidestadofaropost, int smcantfaropost,
-            int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
-            int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
-            int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
+        //string vnroserie,
+        public ActionResult RegistrarInspeccion(string smidpersona, string idpoliza, string idvehiculo, string sminacionalidad,
+            string smestadocivil, string dfechanac, string vemail, string vtelefono1, string vcelular, string btsexo, string smidtablaformapago,
+            string smidtipovehiculo, string smidmarca, string smidmodelo, string smianiofabricacion, string vcolor, string smidtipotransmision,
+            string smidclaserodante, string smidtipocombustible, string inroasiento, string smidcarroceria, string vnromotor, string vplaca,
+             string ikilometraje, string vVin,
+            string iidinspeccion, string fecInspeccion, string hrInspeccion, string fecRecordatorio, string hrRecordatorio,
+            string smidtablaestadoinspeccion,
+            string btaire, string btalarma, string btpestillos, string bttapizcuero, string btlunaselectricas, string btseguroruedas,
+            string btllantarep, string btequipomusicaorig, string btparlantesoriginal, string btaccesorios, string vobservacionesaccesorios,
+            string smidtablatipodano, string vobservaciones,
+            string smidestadofarodelante, string smcantfarodelante, string smidestadofaropost, string smcantfaropost,
+            string smestadofarodireccion, string smcantfarodireccion, string smcantfaroneblinero, string smestadofaroneblinero,
+            string smcantespejoexterno, string smestadoespejoexterno, string smestadospoiler, string smcantspoiler, string smtipoaros,
+            string smcantaros, string smestadomascara, string smpintura, string smtipoparachoque, string smcarroceria, string smconsola,
+            string smtablero, string btequipomusicafijo, string vinspector, string smidcalificacion)
         {
             General_BL bl = new General_BL();
-            List<RespuestaPost> listado = bl.RegistrarInspeccion_BL(smidpersona, idpoliza, idvehiculo, sminacionalidad,
-            smestadocivil, dfechanac, vemail, vtelefono1, vcelular, btsexo, smidtablaformapago,
-            smidtipovehiculo, smidmarca, smidmodelo, smianiofabricacion, vcolor, smidtipotransmision,
-            smidclaserodante, smidtipocombustible, inroasiento, smidcarroceria, vnromotor, vplaca,
-            vnroserie, ikilometraje, vVin,
-            iidinspeccion, fecInspeccion, hrInspeccion, fecRecordatorio, hrRecordatorio,
-            smidtablaestadoinspeccion,
-            btaire, btalarma, btpestillos, bttapizcuero, btlunaselectricas, btseguroruedas,
-            btllantarep, btequipomusicaorig, btparlantesoriginal, btaccesorios, vobservacionesaccesorios,
-            smidtablatipodano, vobservaciones,
-            smidestadofarodelante, smcantfarodelante, smidestadofaropost, smcantfaropost,
-            smestadofarodireccion, smcantfarodireccion, smcantfaroneblinero, smestadofaroneblinero,
-            smcantespejoexterno, smestadoespejoexterno, smestadospoiler, smcantspoiler, smtipoaros,
-            smcantaros, smestadomascara, smpintura, smtipoparachoque, smcarroceria, smconsola,
-            smtablero, btequipomusicafijo, vinspector, smidcalificacion);
+            List<RespuestaPost> listado = bl.RegistrarInspeccion_BL(Convert.ToInt32(smidpersona), Convert.ToInt32(idpoliza), Convert.ToInt32(idvehiculo), Convert.ToInt32(sminacionalidad),
+            Convert.ToInt32(smestadocivil), dfechanac, vemail, vtelefono1, vcelular, Convert.ToInt32(btsexo), Convert.ToInt32(smidtablaformapago),
+            Convert.ToInt32(smidtipovehiculo), Convert.ToInt32(smidmarca), Convert.ToInt32(smidmodelo), Convert.ToInt32(smianiofabricacion), vcolor, Convert.ToInt32(smidtipotransmision),
+            Convert.ToInt32(smidclaserodante), Convert.ToInt32(smidtipocombustible), Convert.ToInt32(inroasiento), Convert.ToInt32(smidcarroceria), vnromotor, vplaca,
+             Convert.ToInt32(ikilometraje), vVin,
+            Convert.ToInt32(iidinspeccion), fecInspeccion, hrInspeccion, fecRecordatorio, hrRecordatorio,
+            Convert.ToInt32(smidtablaestadoinspeccion),
+            Convert.ToInt32(btaire), Convert.ToInt32(btalarma), Convert.ToInt32(btpestillos), Convert.ToInt32(bttapizcuero), Convert.ToInt32(btlunaselectricas), Convert.ToInt32(btseguroruedas),
+            Convert.ToInt32(btllantarep), Convert.ToInt32(btequipomusicaorig), Convert.ToInt32(btparlantesoriginal), Convert.ToInt32(btaccesorios), vobservacionesaccesorios,
+            Convert.ToInt32(smidtablatipodano), vobservaciones,
+            Convert.ToInt32(smidestadofarodelante), Convert.ToInt32(smcantfarodelante), Convert.ToInt32(smidestadofaropost), Convert.ToInt32(smcantfaropost),
+            Convert.ToInt32(smestadofarodireccion), Convert.ToInt32(smcantfarodireccion), Convert.ToInt32(smcantfaroneblinero), Convert.ToInt32(smestadofaroneblinero),
+            Convert.ToInt32(smcantespejoexterno), Convert.ToInt32(smestadoespejoexterno), Convert.ToInt32(smestadospoiler), Convert.ToInt32(smcantspoiler), Convert.ToInt32(smtipoaros),
+            Convert.ToInt32(smcantaros), Convert.ToInt32(smestadomascara), Convert.ToInt32(smpintura), Convert.ToInt32(smtipoparachoque), Convert.ToInt32(smcarroceria), Convert.ToInt32(smconsola),
+            Convert.ToInt32(smtablero), Convert.ToInt32(btequipomusicafijo), vinspector, Convert.ToInt32(smidcalificacion));
             return Json(listado);
         }
 
