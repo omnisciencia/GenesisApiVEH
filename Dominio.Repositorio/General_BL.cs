@@ -13,9 +13,9 @@ namespace Dominio.Repositorio
 
         General_DAL dal = new General_DAL();
 
-//***************************************************************************************************************************************
-//REGISTRO POLIZA *******************************************************************************************************************
-//***************************************************************************************************************************************
+        //***************************************************************************************************************************************
+        //REGISTRO POLIZA *******************************************************************************************************************
+        //***************************************************************************************************************************************
 
 
         //Listar Tipo Vehiculo
@@ -141,7 +141,7 @@ namespace Dominio.Repositorio
             )
         {
             return dal.RegistrarPoliza_DAL(DetallesVehi,
-                smidtablatipopoliza,                
+                smidtablatipopoliza,
                 idnrodocumento,
                 vnombres,
                 vcelular,
@@ -181,10 +181,16 @@ namespace Dominio.Repositorio
             return dal.ReportePoliza_DAL(idpoliza);
         }
 
-        //listar persona
+        //listar Poliza
         public List<ListarPolizaEntity> ListarPoliza_BL(string idpoliza, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
         {
             return dal.ListarPoliza_DAL(idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
+        }
+
+        //listar Poliza
+        public List<ListarPolizaExportEntity> ListarPolizaExport_BL(string idpoliza, string placa, string fechaini, string fechafin, string nombre)
+        {
+            return dal.ListarPolizaExport_DAL(idpoliza, placa, fechaini, fechafin, nombre);
         }
 
         //validar idpoliza
@@ -197,7 +203,7 @@ namespace Dominio.Repositorio
         {
             return dal.ListarPolizaVehiculo_DAL(idpoliza);
         }
-                
+
 
 
         //***************************************************************************************************************************************
@@ -247,7 +253,7 @@ namespace Dominio.Repositorio
             return dal.ListarTipoDano_DAL();
         }
 
-        
+
 
         //Registrar Inspeccion
         public List<RespuestaPost> RegistrarInspeccion_BL(int smidpersona, int idpoliza, int idvehiculo, int sminacionalidad,
@@ -329,7 +335,7 @@ namespace Dominio.Repositorio
         //***************************************************************************************************************************************
         //SINIESTROS*******************************************************************************************************************
         //***************************************************************************************************************************************
-        
+
         public List<ListarPolizaEntity> Listar_Poliza_Vehiculo_SIN_BL(string idpoliza, string placa, string nombre, string estado, int NroDePagina, int RegPorPag)
         {
             return dal.Listar_PolizaVehiculo_SIN_DAL(idpoliza, placa, nombre, estado, NroDePagina, RegPorPag);
