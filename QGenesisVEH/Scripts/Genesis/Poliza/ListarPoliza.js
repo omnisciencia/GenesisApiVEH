@@ -212,7 +212,8 @@ $("#Anterior").click(function () {
 $("#Siguiente").click(function () {
     c = $("#Pagina").val();
     c = parseInt(c) + 1;
-    var a = $('select option').size();
+
+    var a = $('#Pagina option').size();
 
     if (c <= a) {
         $("#Pagina").val(c);

@@ -41,6 +41,11 @@ jQuery(document).ready(function() {
     	$(this).removeClass('input-error');
     });
     
+    $('.f1 input[type="text"], .f1 textarea').on('focus', function () {
+        $(this).addClass('input-mayuscula');
+    });
+    
+
     // next step
     /*$('.f1 .btn-next').on('click', function() {
     	var parent_fieldset = $(this).parents('fieldset');

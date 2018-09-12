@@ -6,7 +6,10 @@
 <link href="~/Content/styleRegInspeccion.css" rel="stylesheet" />
 <link href="~/Content/Modulo/RegistroSiniestro/RegistroSiniestro.css" rel="stylesheet" />
 
+<link href="~/Content/Modulo/Consulta/Inspeccion.css" rel="stylesheet" />
+
 <div style="height:20px;"></div>
+
 <div class="contenedorRegistro">
 
     <ul class="nav nav-tabs" id="myTabGeneral" role="tablist">
@@ -36,6 +39,82 @@
 
             <div style="height: 20px;"></div>
 
+            <!-- POPUP DE LISTADO DE POLIZAS -->
+            <div class="modal fade bd-example-modal-lg" id="listado_poliza" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Listado de polizas</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div style="width:10px"> 
+                                   
+                                </div>
+
+                                <div style="text-align:left;margin:10px">
+                                    <label class="col-form-label col-form-label-sm" style="font-size:15px">Nro. Poliza:</label>
+                                    <input id="bus_poliza" type="text" class="form-control form-control-sm">
+                                </div>
+                                <div style="text-align:left;margin:10px">
+                                    <label class="col-form-label col-form-label-sm">Placa:</label>
+                                    <input id="bus_placa" type="text" class="form-control form-control-sm">
+                                </div>
+                                
+                                <div style="text-align:left;margin:10px">
+                                    <label class="col-form-label col-form-label-sm">Contratante:</label>
+                                    <input id="bus_contratante" type="text" class="form-control form-control-sm" style="width:250px">
+                                </div>
+                                <div style="text-align:left;margin:10px">
+                                    <label class="col-form-label col-form-label-sm">Estado:</label>
+                                    <select id="sp_estado" name="sp_estado" class="form-control form-control-sm">
+                                        <option value="0" selected>Seleccione</option>
+                                        <option value="1">Activo</option>
+                                        <option value="2">Inactivo</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <a id="buscar_polizas" class="btn btn-sm btn-primary" style="color:#fff;font-size:1rem;margin-top:2.2rem;" title="Buscar">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                </div>
+
+                                <div style="width:10px">
+
+                                </div>
+                            </div>
+
+                            <div style="width:95%;margin:auto; background:#fff;">
+           
+                                <div class="row" style="padding-left:85%;">
+                                    <div>
+                                        <input class="btn_filter btn-secondary btn_left" id="Anterior" type="button" value="<" />
+                                    </div>
+                                    <div>
+                                        <select class="form-control input-sm" id="Pagina" name="Pagina" style="border-radius:0;">
+                                            <option value="1">1</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input class="btn_filter btn-secondary btn_rigth" id="Siguiente" type="button" value=">" />
+                                    </div>
+                                </div>
+                                <table class="table table-sm table-hover" id="GridListar"></table>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!--CIERRE POPUP LISTADO POLIZA-->
             <table>
                 <thead>
                 <th style="width: 9%;"></th>
@@ -48,12 +127,31 @@
                 <th style="width: 10%;"></th>
 
                 </thead>
+
                 <tbody>
                     <tr>
                         <td>Siniestro</td>
                         <td><input type="text" class="form-control form-control-sm"></td>
-                        <td>Póliza</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>Póliza</td>                        
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="form-control form-control-sm" >
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Buscar">
+                                        <i class="fas fa-search" ></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#listado_poliza" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Busqueda Avanzada">
+                                            <i class="fas fa-th-list"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>                            
+                        </td>                        
                         <td>Estado Siniestro</td>
                         <td><input type="text" class="form-control form-control-sm"></td>
                         <td>Fec. Notificación</td>
@@ -764,10 +862,7 @@
         <div class="tab-pane fade" id="Analista_tbpl" role="tabpanel" aria-labelledby="contact-tab">...</div>
     </div>
 
-
-
-
-
-
 </div>
 
+<script src="~/Scripts/jquery-1.11.1.min.js"></script>
+<script src="~/Scripts/Genesis/GestionSiniestro/RegistrarSiniestro.js"></script>
