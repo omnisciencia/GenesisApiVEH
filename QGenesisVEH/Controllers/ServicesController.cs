@@ -130,7 +130,7 @@ namespace GenesisVehivular.Controllers
         }
 
         public ActionResult RegistrarPoliza(string DetallesVehi,
-                int smidtablatipopoliza,                
+                int smidtablatipopoliza,
                 string idnrodocumento,
                 string vnombres,
                 string vcelular,
@@ -162,36 +162,36 @@ namespace GenesisVehivular.Controllers
 
             //string [] ArrayDetallesVehi = DetallesVehi;
             //string a= ArrayDetallesVehi[0].ToString();
-            
+
             General_BL bl = new General_BL();
-             List<RespuestaPost> listado = bl.RegistrarPoliza_BL(DetallesVehi,
-                smidtablatipopoliza,                
-                idnrodocumento,
-                vnombres,
-                vcelular,
-                vtelefono1,
-                vemail,
-                vreferencia,
-                vnumero,
-                vnombrevia,
-                smIdTipoVia,
-                smestadocivil,
-                vdepartamento,
-                vprovincia,
-                vdistrito,
-                dfechanac,
-                btsexo,
-                vapellidopat,
-                vapellidomat,
-                idpoliza,
-                vnomcontacto,
-                sminacionalidad,
-                smidmarca,
-                smidtipodocumento,
-                formapago,
-                vigenciaini_reg
-                //,serie
-                );
+            List<RespuestaPost> listado = bl.RegistrarPoliza_BL(DetallesVehi,
+               smidtablatipopoliza,
+               idnrodocumento,
+               vnombres,
+               vcelular,
+               vtelefono1,
+               vemail,
+               vreferencia,
+               vnumero,
+               vnombrevia,
+               smIdTipoVia,
+               smestadocivil,
+               vdepartamento,
+               vprovincia,
+               vdistrito,
+               dfechanac,
+               btsexo,
+               vapellidopat,
+               vapellidomat,
+               idpoliza,
+               vnomcontacto,
+               sminacionalidad,
+               smidmarca,
+               smidtipodocumento,
+               formapago,
+               vigenciaini_reg
+               //,serie
+               );
             return Json(listado);
         }
 
@@ -211,6 +211,14 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
+        //listar Poliza Export
+        public ActionResult ListarPolizaExport(string idpoliza, string placa, string fechaini, string fechafin, string nombre)
+        {
+            General_BL bl = new General_BL();
+            List<ListarPolizaExportEntity> listado = bl.ListarPolizaExport_BL(idpoliza, placa, fechaini, fechafin, nombre);
+            return Json(listado);
+        }
+
         //validar Poliza
         public ActionResult ValidarIdPoliza(int idpoliza)
         {
@@ -226,7 +234,7 @@ namespace GenesisVehivular.Controllers
             return Json(Listado);
         }
 
-      
+
         //***************************************************************************************************************************************
         //REGISTRO INSPECCION *******************************************************************************************************************
         //***************************************************************************************************************************************
@@ -359,52 +367,52 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
-        public ActionResult EnviarCorreo(string asuntop,string nombre, string dni, string celular, string fecha, string hora, string placa,
+        public ActionResult EnviarCorreo(string asuntop, string nombre, string dni, string celular, string fecha, string hora, string placa,
           string marca, string modelo, string color, string nroserie, string nrovin, string km, string estado, string accesorios,
           string observaciones, string destinop)
-        {            
+        {
             string stCuerpoHTML = "<!DOCTYPE HTML><html><head><title>Reporte Inspeccion</title><meta charset='utf-8'/><meta name='viewport' content='width = device-width, initial-scale = 1, user-scalable = no'/><link href='https://fonts.googleapis.com/css?family=Nunito+Sans' rel='stylesheet'>";
             stCuerpoHTML += "</head><body style='font-family:'Nunito Sans', sans-serif;'><section style='width: 60%;margin:auto;text-align:center;'><div style ='margin-top: 1rem;margin-bottom: 1.5rem;width: 100%;text-align:center;border-bottom: 5px solid #4156CB;'><h1 style ='margin-bottom: 1.5rem; color: #4156CB;'> Reporte de Inspección</h1></div><div style ='text-align: left;border-bottom: 2px solid #B2B7C5;'><div style='display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;'><div style ='position: relative;width: 100%;min-height: 1px;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 50%;flex: 0 0 46%;max-width: 46%; margin-top: -1rem;'> ";
-            stCuerpoHTML += "<h3 style='color: #4156CB;'>"+ nombre + "</h3>";
+            stCuerpoHTML += "<h3 style='color: #4156CB;'>" + nombre + "</h3>";
             stCuerpoHTML += "<form><div><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>DNI:</label>";
-            stCuerpoHTML += "<span>"+ dni + "</span>";
+            stCuerpoHTML += "<span>" + dni + "</span>";
             stCuerpoHTML += "</div></form><form><div><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>CELULAR:</label>";
             stCuerpoHTML += "<span>" + celular + "</span>";
-            stCuerpoHTML += "</div></form></div><div style='position: relative; width: 100%; min-height: 1px;padding-right:15px;padding-left:15px;-ms-flex: 0 0 50%; flex: 0 0 50%; max-width:50%;'><div style='padding-top: 0.7rem; padding-left: 0.7rem; padding-left: 1rem; width: 100%; background-color: #F2F2FF;text-align: left;margin-bottom: 1.5rem;'><span style='color: #4156CB;font-weight: 500;font-size: 13px;'>LA INSPECCIÓN REALIZADA</span><div style='display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;'><div style='position: relative;width: 100%;min-height: 1px;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 50%;flex: 0 0 50%;max-width: 50%;'><div>";     
+            stCuerpoHTML += "</div></form></div><div style='position: relative; width: 100%; min-height: 1px;padding-right:15px;padding-left:15px;-ms-flex: 0 0 50%; flex: 0 0 50%; max-width:50%;'><div style='padding-top: 0.7rem; padding-left: 0.7rem; padding-left: 1rem; width: 100%; background-color: #F2F2FF;text-align: left;margin-bottom: 1.5rem;'><span style='color: #4156CB;font-weight: 500;font-size: 13px;'>LA INSPECCIÓN REALIZADA</span><div style='display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;'><div style='position: relative;width: 100%;min-height: 1px;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 50%;flex: 0 0 50%;max-width: 50%;'><div>";
             stCuerpoHTML += "<div>";
             stCuerpoHTML += "<img src='cid:icon-calendar' width='40px;'>";
             stCuerpoHTML += "</div>";
             stCuerpoHTML += "<div style='margin-top: -0.5rem; margin-bottom: 0.1rem;'>";
-            stCuerpoHTML += "<span style='font-size: 0.8rem;'>"+ fecha + "</span>";
+            stCuerpoHTML += "<span style='font-size: 0.8rem;'>" + fecha + "</span>";
             stCuerpoHTML += "</div>";
             stCuerpoHTML += "</div></div><div style='position: relative;width:100%; min-height: 1px; padding-right: 15px; padding-left: 15px; -ms-flex: 0 0 50%; flex: 0 0 50%; max-width: 50%;'><form><div style='text-align:center;'>";
             stCuerpoHTML += "<div>";
             stCuerpoHTML += "<img src='cid:icon-clock' width='40px'>";
             stCuerpoHTML += "</div>";
             stCuerpoHTML += "<div style='margin-top: -0.5rem; margin-bottom: 0.1rem;'>";
-            stCuerpoHTML += "<span style='font-size: 0.8rem;'>"+ hora + "</span>";
+            stCuerpoHTML += "<span style='font-size: 0.8rem;'>" + hora + "</span>";
             stCuerpoHTML += "</div>";
             stCuerpoHTML += "</div></form></div></div></div></div></div></div><div style='width: 80%; margin: auto; margin-top: 1rem;'><div style='display: -ms-flexbox; display: flex;-ms-flex-wrap: wrap; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;'><div style='position: relative; width: 100%; min-height: 1px; padding-right: 15px; padding-left: 15px; -ms-flex: 0 0 50 %; flex: 0 0 50%; max-width: 50%;'><div style='margin: auto;'>";
             stCuerpoHTML += "<img src='cid:car' width='80%'>";
             stCuerpoHTML += " </div></div><div style='position: relative; width: 100%; min-height: 1px; padding-right: 15px; padding-left: 15px; -ms - flex: 0 0 50%; flex: 0 0 50%; max-width: 50%; margin-top: -1.7rem;'><h3 style='color: #4156CB;'>Datos de tu carro</h3><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>PLACA:</label>";
-            stCuerpoHTML += "<span>"+ placa + "</span>";
+            stCuerpoHTML += "<span>" + placa + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>MARCA:</label>";
-            stCuerpoHTML += "<span>"+ marca + "</span>";
+            stCuerpoHTML += "<span>" + marca + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>MODELO:</label>";
-            stCuerpoHTML += "<span>"+ modelo + "</span>";
+            stCuerpoHTML += "<span>" + modelo + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>COLOR:</label>";
-            stCuerpoHTML += "<span>"+ color + "</span>";
+            stCuerpoHTML += "<span>" + color + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>NÚMERO DE SERIE:</label>";
-            stCuerpoHTML += "<span>"+ nroserie + "</span>";
+            stCuerpoHTML += "<span>" + nroserie + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>NÚMERO DE VIN:</label>";
-            stCuerpoHTML += "<span>"+ nrovin + "</span>";
+            stCuerpoHTML += "<span>" + nrovin + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>KILOMETRAJE:</label>";
-            stCuerpoHTML += "<span>"+ km + "</span>";
-            stCuerpoHTML += "</div></form><form><div style='text-align: left;margin-bottom:1rem;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>ESTADO:</label><span>"+ estado + "</span>";
+            stCuerpoHTML += "<span>" + km + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;margin-bottom:1rem;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>ESTADO:</label><span>" + estado + "</span>";
             stCuerpoHTML += "</div></form></div></div></div><div style='border-top: 2px solid #B2B7C5;border-bottom: 5px solid #4156CB;padding-top: 2rem;padding-bottom: 2rem;'><form><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>Accesorios adicionales:</label><br>";
-            stCuerpoHTML += "<span>"+ accesorios + "</span>";
+            stCuerpoHTML += "<span>" + accesorios + "</span>";
             stCuerpoHTML += "</form><form><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>Observaciones:</label><br>";
-            stCuerpoHTML += "<span>"+ observaciones + "</span>";
+            stCuerpoHTML += "<span>" + observaciones + "</span>";
             stCuerpoHTML += "</form></div></section></body></html>";
 
 
@@ -460,7 +468,7 @@ namespace GenesisVehivular.Controllers
         public ActionResult Listar_Poliza_Vehiculo_SIN(string idpoliza, string placa, string nombre, string estado, int NroDePagina, int RegPorPag)
         {
             General_BL bl = new General_BL();
-            List<ListarPolizaEntity> listado = bl.Listar_Poliza_Vehiculo_SIN_BL(idpoliza, placa, nombre,estado, NroDePagina, RegPorPag);
+            List<ListarPolizaEntity> listado = bl.Listar_Poliza_Vehiculo_SIN_BL(idpoliza, placa, nombre, estado, NroDePagina, RegPorPag);
             return Json(listado);
         }
 

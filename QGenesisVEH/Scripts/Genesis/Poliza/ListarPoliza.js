@@ -6,26 +6,24 @@
 
     $("#chk_fec_ini").click(function () {
         if (this.checked) {
-            
+
             $("#fechaini").prop("disabled", false);
             $("#fechafin").prop("disabled", false);
             $("#fechaini").val("");
             $("#fechafin").val("");
-            
+
         }
         else {
-            
+
             $("#fechaini").prop("disabled", true);
             $("#fechafin").prop("disabled", true);
             $("#fechaini").val("");
             $("#fechafin").val("");
-            
+
         }
     });
-    
+
 }
-
-
 
 function FechaActual() {
     var f = new Date();
@@ -57,7 +55,41 @@ function ListarPoliza(idpoliza, placa, fechaini, fechafin, nombre, pagina, RegPo
         },
         error: OnError
     });
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarPolizaExport",
+        data: "{idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ListarGrillaPolizaExport,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+
+
 }
+
+function ListarGrillaPolizaExport(data) {
+
+    var tbody = $("#bodyExport");
+    tbody.empty();
+
+    for (i = 0; i < data.length; i++) {
+
+        tbody.append("<tr>" +
+            "<td>" + data[i].idpoliza + "</td>" +
+            "<td>" + data[i].Persona + "</td>" +
+            "<td>" + data[i].vplaca + "</td>" +
+            "<td>" + data[i].Emision + "</td>" +
+            "<td>" + data[i].Estado + "</td>" +
+            "</tr>");
+    }
+
+}
+
 
 function ListarGrillaPoliza(data) {
     var pagina = $("#Pagina").val();
@@ -115,7 +147,7 @@ function ListarGrillaPoliza(data) {
                         "<td>" + data[i].vplaca + "</td>" +
                         //"<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Emision + "</td>" +
-                        "<td>" + data[i].Estado + "</td>" +                        
+                        "<td>" + data[i].Estado + "</td>" +
                         "<td><input type=button onclick = Link('" + data[i].idpoliza + "','ver') value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
                         //"<td><input type=button onclick = Link('" + data[i].idpoliza + "') value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
                         "</tr>");
@@ -134,7 +166,7 @@ function ListarGrillaPoliza(data) {
 
 }
 
-function Link(idpoliza,modo) {
+function Link(idpoliza, modo) {
 
     //window.location = "../Poliza/RegistroPoliza?idpoliza=" + idpoliza +"&modo="+modo;
 
@@ -223,6 +255,18 @@ $("#Siguiente").click(function () {
     }
 
 });
+
+function exportarExcel() {
+    $('#table_export').table2excel({
+        exclude: ".noExl",
+        name: "Excel Document Name",
+        filename: "ListaPolizas",
+        fileext: ".xls",
+        exclude_img: true,
+        exclude_links: true,
+        exclude_inputs: true
+    });
+}
 
 
 //Link con el metodo POST
