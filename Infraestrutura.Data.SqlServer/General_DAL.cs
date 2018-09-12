@@ -708,8 +708,6 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
-
-
         //***************************************************************************************************************************************
         //Registro Inspeccion *******************************************************************************************************************
         //***************************************************************************************************************************************
@@ -1374,24 +1372,47 @@ namespace Infraestrutura.Data.SqlServer
         }
 
 
+        //************************************
+        //SINIESTROS*************************
+        //***********************************
 
 
+        //Listar VEHICULO SINIESTRO
+        public List<ListarPolizaEntity> Listar_PolizaVehiculo_SIN_DAL(string idpoliza, string placa, string nombre, string estado, int NroDePagina, int RegPorPag)
+        {
+            List<ListarPolizaEntity> listado = new List<ListarPolizaEntity>();
 
+            SqlCommand cmd = new SqlCommand("SP_VEH_Listar_Poliza_Vehiculo", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@placa", placa);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            cmd.Parameters.AddWithValue("@estado", estado);
+            cmd.Parameters.AddWithValue("@NroDePagina", NroDePagina);
+            cmd.Parameters.AddWithValue("@RegPorPag", RegPorPag);
+            cn.getcn.Open();
 
+            SqlDataReader dr = cmd.ExecuteReader();
 
+            while (dr.Read())
+            {
+                ListarPolizaEntity clase = new ListarPolizaEntity();
 
+                clase.idpoliza = dr["idpoliza"].ToString();
+                clase.Persona = dr["Persona"].ToString();
+                clase.vplaca = dr["vplaca"].ToString();
+                clase.Estado = dr["Estado"].ToString();
+                clase.TotalRegistros = dr["TotalRegistros"].ToString();
+                listado.Add(clase);
+            }
 
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
 
-
-
-
-
-
-
-
-
-
+            return listado;
+        }
 
 
 

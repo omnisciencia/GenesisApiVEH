@@ -197,6 +197,7 @@ namespace Dominio.Repositorio
         {
             return dal.ListarPolizaVehiculo_DAL(idpoliza);
         }
+                
 
 
         //***************************************************************************************************************************************
@@ -316,17 +317,23 @@ namespace Dominio.Repositorio
         }
 
 
-//***************************************************************************************************************************************
-//CONSULTAS *******************************************************************************************************************
-//*
+        //***************************************************************************************************************************************
+        //CONSULTAS *******************************************************************************************************************
+        //*
 
-public List<Inspeccion> ListarInspeccion_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
-{
-    return dal.ListarInspeccion_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
-}
+        public List<Inspeccion> ListarInspeccion_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
+        {
+            return dal.ListarInspeccion_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
+        }
 
-
-
+        //***************************************************************************************************************************************
+        //SINIESTROS*******************************************************************************************************************
+        //***************************************************************************************************************************************
+        
+        public List<ListarPolizaEntity> Listar_Poliza_Vehiculo_SIN_BL(string idpoliza, string placa, string nombre, string estado, int NroDePagina, int RegPorPag)
+        {
+            return dal.Listar_PolizaVehiculo_SIN_DAL(idpoliza, placa, nombre, estado, NroDePagina, RegPorPag);
+        }
 
 
     }

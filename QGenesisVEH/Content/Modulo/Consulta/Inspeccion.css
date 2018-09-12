@@ -115,6 +115,10 @@ img { max-width: 100%; }
     border-width:1.2px;     
     border-color: red; }
 
+.f1 .input-mayuscula {
+    text-transform: uppercase;
+}
+
 
 .Ocultar{
     display:none; 
