@@ -862,9 +862,9 @@ function DeshabilitarCajas(habilitado) {
 
 
 //Regsitrar Inspeccion1:
-function RegistrarInspeccion_onclick() {  
+function RegistrarInspeccion_onclick_() {  
     //global_smidpersona
-
+    
     var smidpersona = global_smidpersona;
     var idpoliza = $("#nropoliza_id").val();//global_idpoliza;
     var idvehiculo = global_idvehiculo;
@@ -1357,6 +1357,256 @@ function RegistrarInspeccion_onclick2() {
 
         });
     }
+
+
+
+}
+         
+function RegistrarInspeccion_onclick() {
+    
+    var smidpersona = global_smidpersona;
+    var idpoliza = global_idpoliza;
+    var idvehiculo = global_idvehiculo;
+    var sminacionalidad = $("#sp_Nacionalidad").val();
+    var smestadocivil = $("#sp_EstadoCivil").val();
+    var dfechanac = $("#fecnaci_id").val();
+    var vemail = $("#email_id").val();
+    var vtelefono1 = $("#fono_id").val();
+    var vcelular = $("#cel_id").val();
+    var btsexo = $("#sp_Sexo").val();
+
+    var smidtablaformapago = $("#sp_FormaPago").val();
+
+    var smidtipovehiculo = $("#sp_TipoVehiculo").val();
+    var smidmarca = $("#sp_MarcaVehiculo").val();
+    var smidmodelo = $("#sp_ModeloVehiculo").val();
+    var smianiofabricacion = $("#anioveh_id").val();
+    var vcolor = $("#colorveh_id").val();
+    var smidtipotransmision = $("#sp_TipoTransmision").val();
+    var smidclaserodante = $("#sp_ClaseRodante").val();
+    var smidtipocombustible = $("#sp_TipoCombustible").val();
+    var inroasiento = $("#puertasveh_id").val();
+    var smidcarroceria = $("#sp_TipoCarroceria").val();
+    var vnromotor = $("#motorveh_id").val();
+    var vplaca = $("#placaveh_id").val();
+    //var vnroserie = $("#nroserieveh_id").val();
+    var ikilometraje = $("#kilometrajeveh_id").val();
+    var vVin = $("#vinveh_id").val();
+
+    //var iidinspeccion =;
+    var iidinspeccion = sessionStorage.getItem("idinspeccion");
+    var fecInspeccion = $("#fecinspeccion_id").val();
+    var hrInspeccion = $("#hrinspeccion_id").val();
+    var fecRecordatorio = $("#fecrecordatorio_id").val();
+    var hrRecordatorio = $("#hrecordatorio").val();
+    var smidtablaestadoinspeccion = 1;
+    var vobservacionesaccesorios = $("#accobservaciones_id").val();
+    var smidtablatipodano = $("#sp_TipoDano").val();
+    var vobservaciones = $("#observaciones_id").val();
+
+    var smidestadofarodelante = $("#sp_farDelantero").val();
+    var smcantfarodelante = $("#cant_FarDelantero").val();
+    var smidestadofaropost = $("#sp_farPost").val();
+    var smcantfaropost = $("#cant_FarPost").val();
+    var smestadofarodireccion = $("#sp_farDirec").val();
+    var smcantfarodireccion = $("#cant_FarDirec").val();
+    var smcantfaroneblinero = $("#cant_FarNebli").val();
+    var smestadofaroneblinero = $("#sp_farNebli").val();
+    var smcantespejoexterno = $("#cant_EspExterno").val();
+    var smestadoespejoexterno = $("#sp_EspExterno").val();
+    var smestadospoiler = $("#sp_Spoiler").val();
+    var smcantspoiler = $("#cant_Spoilers").val();
+    var smtipoaros = $("#sp_Aros").val();
+    var smcantaros = $("#cant_Aros").val();
+    var smestadomascara = $("#sp_Mascara").val();
+    var smpintura = $("#sp_Pintura").val();
+    var smtipoparachoque = $("#sp_Parachoque").val();
+    var smcarroceria = $("#sp_Carroceria").val();
+    var smconsola = $("#sp_Consola").val();
+    var smtablero = $("#sp_Tablero").val();
+    var btequipomusicafijo = $("#sp_EquipoMusic").val();
+    var vinspector = $("#inspector_id").val();
+
+
+
+    if (document.getElementById('chk_aireacond_id').checked) {
+        btaire = 1;
+    } else {
+        btaire = 0;
+    }
+
+    if (document.getElementById('chk_lunelectrica_id').checked) {
+        btlunaselectricas = 1;
+    } else {
+        btlunaselectricas = 0;
+    }
+
+    if (document.getElementById('chk_alarma_id').checked) {
+        btalarma = 1;
+    } else {
+        btalarma = 0;
+    }
+
+    if (document.getElementById('chk_segruedas_id').checked) {
+        btseguroruedas = 1;
+    } else {
+        btseguroruedas = 0;
+    }
+
+    if (document.getElementById('chk_pestilloe_id').checked) {
+        btpestillos = 1;
+    } else {
+        btpestillos = 0;
+    }
+
+    if (document.getElementById('chk_llantarep_id').checked) {
+        btllantarep = 1;
+    } else {
+        btllantarep = 0;
+    }
+
+    if (document.getElementById('chk_tapizc_id').checked) {
+        bttapizcuero = 1;
+    } else {
+        bttapizcuero = 0;
+    }
+
+    if (document.getElementById('chk_radoriginal_id').checked) {
+        btequipomusicaorig = 1;
+    } else {
+        btequipomusicaorig = 0;
+    }
+
+    if (document.getElementById('chk_parlanteo_id').checked) {
+        btparlantesoriginal = 1;
+    } else {
+        btparlantesoriginal = 0;
+    }
+
+    if (document.getElementById('chk_accesomusi_id').checked) {
+        btaccesorios = 1;
+    } else {
+        btaccesorios = 0;
+    }
+    calificacion = 0;
+    if (document.getElementById('sconforme_id').checked) {
+        calificacion = 1;
+    }
+    if (document.getElementById('nconforme_id').checked) {
+        calificacion = 2;
+    }
+
+    
+
+   
+
+        /*alert("{smidpersona:'" + smidpersona + "', idpoliza:'" + idpoliza + "', idvehiculo:'" + idvehiculo
+                + "', sminacionalidad:'" + sminacionalidad + "', smestadocivil:'" + smestadocivil + "', dfechanac:'" + dfechanac
+                + "', vemail:'" + vemail + "', vtelefono1:'" + vtelefono1
+                + "', vcelular:'" + vcelular + "', btsexo:'" + btsexo + "', smidtablaformapago:'" + smidtablaformapago
+                + "', smidtipovehiculo:'" + smidtipovehiculo + "', smidmarca:'" + smidmarca
+                + "', smidmodelo:'" + smidmodelo + "', smianiofabricacion:'" + smianiofabricacion
+                + "', vcolor:'" + vcolor + "', smidtipotransmision:'" + smidtipotransmision + "', smidclaserodante:'" + smidclaserodante
+                + "', smidtipocombustible:'" + smidtipocombustible + "', inroasiento:'" + inroasiento + "', smidcarroceria:'" + smidcarroceria
+                + "', vnromotor:'" + vnromotor + "', vplaca:'" + vplaca 
+                + "', ikilometraje:'" + ikilometraje + "', vVin:'" + vVin
+                + "', iidinspeccion:'" + iidinspeccion + "', fecInspeccion:'" + fecInspeccion
+                + "', hrInspeccion:'" + hrInspeccion + "', fecRecordatorio:'" + fecRecordatorio
+                + "', hrRecordatorio:'" + hrRecordatorio + "', smidtablaestadoinspeccion:'" + smidtablaestadoinspeccion
+                + "', btaire:'" + btaire + "', btalarma:'" + btalarma + "', btpestillos:'" + btpestillos
+                + "', bttapizcuero:'" + bttapizcuero + "', btlunaselectricas:'" + btlunaselectricas + "', btseguroruedas:'" + btseguroruedas
+                + "', btllantarep:'" + btllantarep + "', btequipomusicaorig:'" + btequipomusicaorig
+                + "', btparlantesoriginal:'" + btparlantesoriginal + "', btaccesorios:'" + btaccesorios
+                + "', vobservacionesaccesorios:'" + vobservacionesaccesorios + "', smidtablatipodano:'" + smidtablatipodano
+                + "', vobservaciones:'" + vobservaciones
+                + "', smidestadofarodelante:'" + smidestadofarodelante + "', smcantfarodelante:'" + smcantfarodelante
+                + "', smidestadofaropost:'" + smidestadofaropost + "', smcantfaropost:'" + smcantfaropost
+                + "', smestadofarodireccion:'" + smestadofarodireccion + "', smcantfarodireccion:'" + smcantfarodireccion
+                + "', smcantfaroneblinero:'" + smcantfaroneblinero + "', smestadofaroneblinero:'" + smestadofaroneblinero
+                + "', smcantespejoexterno:'" + smcantespejoexterno + "', smestadoespejoexterno:'" + smestadoespejoexterno
+                + "', smestadospoiler:'" + smestadospoiler + "', smcantspoiler:'" + smcantspoiler + "', smtipoaros:'" + smtipoaros
+                + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
+                + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
+                + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
+                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}");*/
+        //"', vnroserie:'" + vnroserie
+        /*$.ajax({
+            type: "POST",
+            url: "../Services/RegistrarInspeccion",
+            data: "{smidpersona:'" + smidpersona + "', idpoliza:'" + idpoliza + "', idvehiculo:'" +idvehiculo
+                + "', sminacionalidad:'" + sminacionalidad + "', smestadocivil:'" + smestadocivil + "', dfechanac:'" + dfechanac
+                + "', vemail:'" + vemail + "', vtelefono1:'" + vtelefono1
+                + "', vcelular:'" + vcelular + "', btsexo:'" + btsexo + "', smidtablaformapago:'" + smidtablaformapago
+                + "', smidtipovehiculo:'" + smidtipovehiculo + "', smidmarca:'" + smidmarca
+                + "', smidmodelo:'" + smidmodelo + "', smianiofabricacion:'" + smianiofabricacion
+                + "', vcolor:'" + vcolor + "', smidtipotransmision:'" + smidtipotransmision + "', smidclaserodante:'" + smidclaserodante
+                + "', smidtipocombustible:'" + smidtipocombustible + "', inroasiento:'" + inroasiento + "', smidcarroceria:'" + smidcarroceria
+                + "', vnromotor:'" + vnromotor + "', vplaca:'" + vplaca 
+                + "', ikilometraje:'" + ikilometraje + "', vVin:'" + vVin
+                + "', iidinspeccion:'" + iidinspeccion + "', fecInspeccion:'" + fecInspeccion
+                + "', hrInspeccion:'" + hrInspeccion + "', fecRecordatorio:'" + fecRecordatorio
+                + "', hrRecordatorio:'" + hrRecordatorio + "', smidtablaestadoinspeccion:'" + smidtablaestadoinspeccion
+                + "', btaire:'" + btaire + "', btalarma:'" + btalarma + "', btpestillos:'" + btpestillos
+                + "', bttapizcuero:'" + bttapizcuero + "', btlunaselectricas:'" + btlunaselectricas + "', btseguroruedas:'" + btseguroruedas
+                + "', btllantarep:'" + btllantarep + "', btequipomusicaorig:'" + btequipomusicaorig
+                + "', btparlantesoriginal:'" + btparlantesoriginal + "', btaccesorios:'" + btaccesorios
+                + "', vobservacionesaccesorios:'" + vobservacionesaccesorios + "', smidtablatipodano:'" + smidtablatipodano
+                + "', vobservaciones:'" + vobservaciones
+                + "', smidestadofarodelante:'" + smidestadofarodelante + "', smcantfarodelante:'" + smcantfarodelante
+                + "', smidestadofaropost:'" + smidestadofaropost + "', smcantfaropost:'" + smcantfaropost
+                + "', smestadofarodireccion:'" + smestadofarodireccion + "', smcantfarodireccion:'" + smcantfarodireccion
+                + "', smcantfaroneblinero:'" + smcantfaroneblinero + "', smestadofaroneblinero:'" + smestadofaroneblinero
+                + "', smcantespejoexterno:'" + smcantespejoexterno + "', smestadoespejoexterno:'" + smestadoespejoexterno
+                + "', smestadospoiler:'" + smestadospoiler + "', smcantspoiler:'" + smcantspoiler + "', smtipoaros:'" + smtipoaros
+                + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
+                + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
+                + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
+                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}",
+                */
+
+        
+        $.ajax({
+            type: "POST",
+            url: "../Services/RegistrarInspeccion",
+            data: "{smidpersona:'" + smidpersona + "', idpoliza:'" + idpoliza + "', idvehiculo:'" + idvehiculo
+                + "', sminacionalidad:'" + sminacionalidad + "', smestadocivil:'" + smestadocivil + "', dfechanac:'" + dfechanac
+                + "', vemail:'" + vemail + "', vtelefono1:'" + vtelefono1
+                + "', vcelular:'" + vcelular + "', btsexo:'" + btsexo + "', smidtablaformapago:'" + smidtablaformapago
+                + "', smidtipovehiculo:'" + smidtipovehiculo + "', smidmarca:'" + smidmarca
+                + "', smidmodelo:'" + smidmodelo + "', smianiofabricacion:'" + smianiofabricacion
+                + "', vcolor:'" + vcolor + "', smidtipotransmision:'" + smidtipotransmision + "', smidclaserodante:'" + smidclaserodante
+                + "', smidtipocombustible:'" + smidtipocombustible + "', inroasiento:'" + inroasiento + "', smidcarroceria:'" + smidcarroceria
+                + "', vnromotor:'" + vnromotor + "', vplaca:'" + vplaca
+                + "', ikilometraje:'" + ikilometraje + "', vVin:'" + vVin
+                + "', iidinspeccion:'" + iidinspeccion + "', fecInspeccion:'" + fecInspeccion
+                + "', hrInspeccion:'" + hrInspeccion + "', fecRecordatorio:'" + fecRecordatorio
+                + "', hrRecordatorio:'" + hrRecordatorio + "', smidtablaestadoinspeccion:'" + smidtablaestadoinspeccion
+                + "', btaire:'" + btaire + "', btalarma:'" + btalarma + "', btpestillos:'" + btpestillos
+                + "', bttapizcuero:'" + bttapizcuero + "', btlunaselectricas:'" + btlunaselectricas + "', btseguroruedas:'" + btseguroruedas
+                + "', btllantarep:'" + btllantarep + "', btequipomusicaorig:'" + btequipomusicaorig
+                + "', btparlantesoriginal:'" + btparlantesoriginal + "', btaccesorios:'" + btaccesorios
+                + "', vobservacionesaccesorios:'" + vobservacionesaccesorios + "', smidtablatipodano:'" + smidtablatipodano
+                + "', vobservaciones:'" + vobservaciones
+                + "', smidestadofarodelante:'" + smidestadofarodelante + "', smcantfarodelante:'" + smcantfarodelante
+                + "', smidestadofaropost:'" + smidestadofaropost + "', smcantfaropost:'" + smcantfaropost
+                + "', smestadofarodireccion:'" + smestadofarodireccion + "', smcantfarodireccion:'" + smcantfarodireccion
+                + "', smcantfaroneblinero:'" + smcantfaroneblinero + "', smestadofaroneblinero:'" + smestadofaroneblinero
+                + "', smcantespejoexterno:'" + smcantespejoexterno + "', smestadoespejoexterno:'" + smestadoespejoexterno
+                + "', smestadospoiler:'" + smestadospoiler + "', smcantspoiler:'" + smcantspoiler + "', smtipoaros:'" + smtipoaros
+                + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
+                + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
+                + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
+                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}",
+            dataType: "json",            
+            contentType: "application/json; charset=utf-8",
+            success: ResponseCrearSucces,
+            failure: function (response) {
+                alert(response.d);
+            },
+            error: OnError
+
+        });
+    
 
 
 

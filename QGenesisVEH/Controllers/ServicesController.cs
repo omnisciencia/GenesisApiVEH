@@ -312,11 +312,11 @@ namespace GenesisVehivular.Controllers
         {
             General_BL bl = new General_BL();
             List<RespuestaPost> listado = bl.RegistrarInspeccion_BL(Convert.ToInt32(smidpersona), Convert.ToInt32(idpoliza), Convert.ToInt32(idvehiculo), Convert.ToInt32(sminacionalidad),
-            Convert.ToInt32(smestadocivil), dfechanac, vemail, vtelefono1, vcelular, Convert.ToInt32(btsexo), Convert.ToInt32(smidtablaformapago),
+            Convert.ToInt32(smestadocivil), Convert.ToString(dfechanac), vemail, vtelefono1, vcelular, Convert.ToInt32(btsexo), Convert.ToInt32(smidtablaformapago),
             Convert.ToInt32(smidtipovehiculo), Convert.ToInt32(smidmarca), Convert.ToInt32(smidmodelo), Convert.ToInt32(smianiofabricacion), vcolor, Convert.ToInt32(smidtipotransmision),
             Convert.ToInt32(smidclaserodante), Convert.ToInt32(smidtipocombustible), Convert.ToInt32(inroasiento), Convert.ToInt32(smidcarroceria), vnromotor, vplaca,
              Convert.ToInt32(ikilometraje), vVin,
-            Convert.ToInt32(iidinspeccion), fecInspeccion, hrInspeccion, fecRecordatorio, hrRecordatorio,
+            Convert.ToInt32(iidinspeccion), Convert.ToString(fecInspeccion), hrInspeccion, Convert.ToString(fecRecordatorio), hrRecordatorio,
             Convert.ToInt32(smidtablaestadoinspeccion),
             Convert.ToInt32(btaire), Convert.ToInt32(btalarma), Convert.ToInt32(btpestillos), Convert.ToInt32(bttapizcuero), Convert.ToInt32(btlunaselectricas), Convert.ToInt32(btseguroruedas),
             Convert.ToInt32(btllantarep), Convert.ToInt32(btequipomusicaorig), Convert.ToInt32(btparlantesoriginal), Convert.ToInt32(btaccesorios), vobservacionesaccesorios,

@@ -46,7 +46,12 @@
     $("select[name=sp_TipoDocumento]").change(function () {
         var numerodocu = $("#nrodocumento_reg").val();
         tipodoc = $("#sp_TipoDocumento").val();
-        if (tipodoc == 6) {
+
+        
+        $('#rsocial_reg').val('');
+        $('#nomcontacto_reg').val('');
+        
+        if (tipodoc == 6) {            
             //oculta campo apellido paterno
             $('#paterno_reg').addClass('Ocultar');
             $('#t_apepaterno').addClass('Ocultar');
@@ -82,11 +87,11 @@
             //aparece campo nombre contacto
             $('#form_nomcontacto').removeClass('Ocultar');
             //aparece campo nombre contacto
-            $('#nombres_reg').val(' ');
-            $('#paterno_reg').val(' ');
-            $('#materno_reg').val(' ');
-            $('#telefono_reg').val(0);
-            $('#celular_reg').val(0);
+            $('#nombres_reg').val('');
+            $('#paterno_reg').val('');
+            $('#materno_reg').val('');
+            $('#telefono_reg').val('');
+            $('#celular_reg').val('');
 
         } else {
             //mostrar campo apellido paterno
@@ -532,7 +537,7 @@ function llenar_registro_poliza(data) {
         //ocultar campo razon social
         $('#form_nomcontacto').addClass('Ocultar');
 
-        $('#nomcontacto_reg').val(' ');
+        $('#nomcontacto_reg').val('');
 
         //---DATOS DEL SOLICITANTE
         $("#sp_TipoDocumento").val(data[0].tipdocumento);
@@ -1335,7 +1340,7 @@ function RegistrarPoliza(DetallesVehi) {
 
         if (respuesta == "true") {
             alert("Se registró satisfactoriamente");
-           // Link();
+            Link();
 
         } else {
             alert("Lo sentimos, ocurrió un problema al momento de registrar la poliza");
@@ -1385,9 +1390,6 @@ function convertirDecimal(elemento) {
         $("#sumaasegurada_reg").val("0");
     }
 
-
-
-
 }
 
 //Validar Persona
@@ -1412,39 +1414,51 @@ function ValidarPersona() {
             error: OnError
 
         });
+        
     }
 
 }
 
 function validarPersonaSucces(data) {
-    
-    //for (i = 0; i < data.length; i++) {
-        smidpersona = data[0].smidpersona;
-        sminacionalidad = data[0].sminacionalidad;
-        vnombres = data[0].vnombres;
-        vapellidopat = data[0].vapellidopat;
-        vapellidomat = data[0].vapellidomat;
-        fechanac = data[0].fechanac;
-        btsexo = data[0].btsexo;
-        smestadocivil = data[0].smestadocivil;
-        vtelefono1 = data[0].vtelefono1;
-        vcelular = data[0].vcelular;
-        vemail = data[0].vemail;
-        vubigeo = data[0].vubigeo;
-        smIdTipoVia = data[0].smIdTipoVia;
-        vnumero = data[0].vnumero;
-        vreferencia = data[0].vreferencia;
-        vnombrevia = data[0].vnombrevia;
-        Departamento = data[0].Departamento;
-        Provincia = data[0].Provincia;
-        Distrito = data[0].Distrito;
-        smidtipodocumento = data[0].smidtipodocumento;
-        vnomcontacto = data[0].vnomcontacto;
-    //}
-    //alert(smidtipodocumento);
-    //var numerodocu = $("#nrodocumento_reg").val();
         
-    if (smidtipodocumento == 6) {        
+    if (data != null) {
+
+        if (data.length > 0) {
+            smidpersona = data[0].smidpersona;
+            sminacionalidad = data[0].sminacionalidad;
+            vnombres = data[0].vnombres;
+            vapellidopat = data[0].vapellidopat;
+            vapellidomat = data[0].vapellidomat;
+            fechanac = data[0].fechanac;
+            btsexo = data[0].btsexo;
+            smestadocivil = data[0].smestadocivil;
+            vtelefono1 = data[0].vtelefono1;
+            vcelular = data[0].vcelular;
+            vemail = data[0].vemail;
+            vubigeo = data[0].vubigeo;
+            smIdTipoVia = data[0].smIdTipoVia;
+            vnumero = data[0].vnumero;
+            vreferencia = data[0].vreferencia;
+            vnombrevia = data[0].vnombrevia;
+            Departamento = data[0].Departamento;
+            Provincia = data[0].Provincia;
+            Distrito = data[0].Distrito;
+            smidtipodocumento = data[0].smidtipodocumento;
+            vnomcontacto = data[0].vnomcontacto;
+
+            MostrarOcultarCampos(smidtipodocumento);
+        }        
+    }
+
+}
+
+
+function MostrarOcultarCampos(tipodoc) {
+
+    smidtipodocumento == tipodoc;
+
+    if (tipodoc == 6) {
+
         //oculta campo apellido paterno
         $('#paterno_reg').addClass('Ocultar');
         $('#t_apepaterno').addClass('Ocultar');
@@ -1480,11 +1494,11 @@ function validarPersonaSucces(data) {
         //aparece campo nombre contacto
         $('#form_nomcontacto').removeClass('Ocultar');
         //aparece campo nombre contacto
-        $('#nombres_reg').val('-');
-        $('#paterno_reg').val('-');
-        $('#materno_reg').val('-');
-        $('#telefono_reg').val(0);
-        $('#celular_reg').val(0);
+        $('#nombres_reg').val('');
+        $('#paterno_reg').val('');
+        $('#materno_reg').val('');
+        $('#telefono_reg').val('');
+        $('#celular_reg').val('');
 
         //========TRAE DATOS A LOS CAMPOS========
         $("#sp_TipoDocumento").val(smidtipodocumento);
@@ -1507,8 +1521,9 @@ function validarPersonaSucces(data) {
             $("#sp_Provincia").val(Provincia);
             $("#sp_Distrito").val(Distrito);
         }, 1500);
+
     } else {
-        
+
         //mostrar campo apellido paterno
         $('#paterno_reg').removeClass('Ocultar');
         $('#t_apepaterno').removeClass('Ocultar');
@@ -1565,7 +1580,7 @@ function validarPersonaSucces(data) {
         $("#numeroubi_reg").val(vnumero);
         $("#direccion_reg").val(vnombrevia);
         $("#referencia_reg").val(vreferencia);
-        
+
         var timer = setTimeout(function () {
             Spinner_Provincia(Departamento);
             Spinner_Distrito(Departamento, Provincia);
@@ -1575,8 +1590,9 @@ function validarPersonaSucces(data) {
             $("#sp_Provincia").val(Provincia);
             $("#sp_Distrito").val(Distrito);
         }, 1500);
-        
+
     }
+
 
 }
 

@@ -138,27 +138,51 @@ jQuery(document).ready(function() {
             }
         });
 
-        parent_fieldset.find('#nrodocumento_reg, #nombres_reg', '#paterno_reg', '#materno_reg', '#celular_reg').each(function () {
+        var tipodoc = $("#sp_TipoDocumento").val();
 
-            if ($('#nrodocumento_reg').val() == "" || $('#nombres_reg').val() == "" || $('#paterno_reg').val() == "" || $('#materno_reg').val() == "" || $('#celular_reg').val() == "") {
-                            
-            if ($('#nrodocumento_reg').val() == "") $('#nrodocumento_reg').addClass('input-error');
-            if ($('#nombres_reg').val() == "") $('#nombres_reg').addClass('input-error');
-            if ($('#paterno_reg').val() == "") $('#paterno_reg').addClass('input-error');
-            if ($('#materno_reg').val() == "") $('#materno_reg').addClass('input-error');
-            if ($('#celular_reg').val() == "") $('#celular_reg').addClass('input-error');
+        
 
-                next_step = false;
-            }
-            else
-            {
+        if(tipodoc!=6)
+        {
+            parent_fieldset.find('#nrodocumento_reg, #nombres_reg', '#paterno_reg', '#materno_reg', '#celular_reg').each(function () {
 
-                $(this).removeClass('input-error');
+                if ($('#nrodocumento_reg').val() == "" || $('#nombres_reg').val() == "" || $('#paterno_reg').val() == "" || $('#materno_reg').val() == "" || $('#celular_reg').val() == "") {
 
-            }
+                    if ($('#nrodocumento_reg').val() == "") $('#nrodocumento_reg').addClass('input-error');
+                    if ($('#nombres_reg').val() == "") $('#nombres_reg').addClass('input-error');
+                    if ($('#paterno_reg').val() == "") $('#paterno_reg').addClass('input-error');
+                    if ($('#materno_reg').val() == "") $('#materno_reg').addClass('input-error');
+                    if ($('#celular_reg').val() == "") $('#celular_reg').addClass('input-error');
 
+                    next_step = false;
+                }
+                else {
 
-  });
+                    $(this).removeClass('input-error');
+
+                }
+            });
+        }
+        
+
+        if (tipodoc == 6) {
+            parent_fieldset.find('#nrodocumento_reg, #rsocial_reg', '#nomcontacto_reg').each(function () {
+
+                if ($('#nrodocumento_reg').val() == "" || $('#rsocial_reg').val() == "" || $('#nomcontacto_reg').val() == "") {
+
+                    if ($('#nrodocumento_reg').val() == "") $('#nrodocumento_reg').addClass('input-error');
+                    if ($('#rsocial_reg').val() == "") $('#rsocial_reg').addClass('input-error');
+                    if ($('#nomcontacto_reg').val() == "") $('#nomcontacto_reg').addClass('input-error');
+
+                    next_step = false;
+                }
+                else {
+
+                    $(this).removeClass('input-error');
+
+                }
+            });
+        }
         
 
         //});

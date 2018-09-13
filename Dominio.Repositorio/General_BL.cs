@@ -274,11 +274,11 @@ namespace Dominio.Repositorio
 
         {
             return dal.RegistrarInspeccion_DAL(smidpersona, idpoliza, idvehiculo, sminacionalidad,
-            smestadocivil, dfechanac, vemail, vtelefono1, vcelular, btsexo, smidtablaformapago,
+            smestadocivil, Convert.ToString(dfechanac), vemail, vtelefono1, vcelular, btsexo, smidtablaformapago,
             smidtipovehiculo, smidmarca, smidmodelo, smianiofabricacion, vcolor, smidtipotransmision,
             smidclaserodante, smidtipocombustible, inroasiento, smidcarroceria, vnromotor, vplaca,
              ikilometraje, vVin,
-            iidinspeccion, fecInspeccion, hrInspeccion, fecRecordatorio, hrRecordatorio,
+            iidinspeccion, Convert.ToString(fecInspeccion), hrInspeccion, Convert.ToString(fecRecordatorio), hrRecordatorio,
             smidtablaestadoinspeccion,
             btaire, btalarma, btpestillos, bttapizcuero, btlunaselectricas, btseguroruedas,
             btllantarep, btequipomusicaorig, btparlantesoriginal, btaccesorios, vobservacionesaccesorios,
