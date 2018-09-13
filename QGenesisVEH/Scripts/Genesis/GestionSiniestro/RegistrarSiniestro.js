@@ -72,9 +72,7 @@ function IniTituloGrid() {
                 "<td>Nro. Poliza</td>" +
                 "<td>Contratante</td>" +
                 "<td>Placa</td>" +                                
-                "<td>Estado</td>" +
-                "<td></td>" +
-                "<td></td>" +
+                "<td>Estado</td>" +                
                 "</tr>" +
                 "</thead>");
 }
@@ -137,9 +135,7 @@ function ListarGrillaPoliza(data) {
                 "<td style='color:#fff;'>Nro. Poliza</td>" +
                 "<td>Contratante</td>" +
                 "<td>Placa</td>" +                                
-                "<td>Estado</td>" +
-                "<td></td>" +
-                "<td></td>" +
+                "<td>Estado</td>" +                
                 "</tr>" +
                 "</thead>");
 
