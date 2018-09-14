@@ -8,6 +8,9 @@ using Dominio.Repositorio;
 using System.Net.Mail;
 using System.Text;
 using System.Net.Mime;
+using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace GenesisVehivular.Controllers
 {
@@ -459,6 +462,32 @@ namespace GenesisVehivular.Controllers
             General_BL bl = new General_BL();
             List<Inspeccion> listado = bl.ListarInspeccion_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
             return Json(listado);
+        }
+
+        public ActionResult exportReport()
+        {
+
+            ReportDocument rd = new ReportDocument();
+
+            rd.Load(Path.Combine(Server.MapPath("~/Reporte"), "CrystalReport1.rpt"));
+            rd.SetDatabaseLogon("sa", "$sqlserver123", "192.168.1.80", "DB_Genesis_Vehicular_5");
+
+            //rd.SetDataSource(db.EmployeeInfoes.ToList());
+            rd.SetParameterValue("@idinspeccion", 1036);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "ListadoInspeccion.pdf");
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         //***************************************************************************************************************
