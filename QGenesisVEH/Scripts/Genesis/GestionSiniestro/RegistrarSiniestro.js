@@ -63,7 +63,6 @@ function ListarGrilla() {
 
 }
 
-
 function IniTituloGrid() {
     var tabla = $("#GridListar");
     tabla.empty();
@@ -78,7 +77,6 @@ function IniTituloGrid() {
 }
 
 function ListarPolizaVehiculoSIN(idpoliza, placa, nombre, estado, pagina, RegPorPag) {
-
 
     $.ajax({
         type: "POST",
@@ -144,8 +142,8 @@ function ListarGrillaPoliza(data) {
         tabla.append("<tbody>")
         for (i = 0; i < data.length; i++) {
             tabla.append(
-                        "<tr>" +
-                        "<td>" + data[i].idpoliza + "</td>" +
+                        "<tr style='cursor: pointer;' ondblclick=SelectPoliza('"+data[i].idpoliza+"','"+data[i].Estado+"');>" +
+                        "<td >" + data[i].idpoliza + "</td>" +
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +                        
@@ -165,8 +163,24 @@ function ListarGrillaPoliza(data) {
 
 }
 
+
+function SelectPoliza(idpoliza,estado) {
+
+    $('#poliza_reg').val(idpoliza);
+    $('#estadopoliza_reg').val(estado);
+
+    $('#listado_poliza').modal('hide');
+
+}
+
+$("#btnAceptar").click(function () {
+
+});
+
 //Error:
 function OnError(data) {
     alert("Error 404...");
+
+    
 }
 
