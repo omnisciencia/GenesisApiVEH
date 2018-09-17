@@ -42,6 +42,13 @@
                 <div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">                    
                     <input id="btnLimpiar" type="button" value="Limpiar" class="btn_customer btn-secondary" />
                 </div>
+                <div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">
+                    @*<input onclick="exportarExcel()" id="btnExportar" type="button" value="Exportar" class="btn_customer btn-success" />*@
+                    <a onclick="exportarExcel2()" class="btn_customer btn-success">
+                        Exportar&nbsp;&nbsp;
+                        <i class="fas fa-file-excel"></i>
+                    </a>
+                </div>
                 @*<div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">                    
                     <input id="btnNuevo" type="button" value="Nuevo" class="btn_customer btn-secondary" />
                 </div>*@
@@ -97,6 +104,22 @@
                 </tr>
             </thead>*@
 
+    </table>
+    <table id="table_export2" style="display:none;">
+        <thead>
+            <tr>
+                <th>ID Inspeccion</th>
+                <th>ID Poliza</th>
+                <th>Contratante</th>
+                <th>Placa</th>
+                <th>Fecha Registro</th>
+                <th>Fecha Programacion</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody id="bodyExport2"></tbody>
     </table>
 
 

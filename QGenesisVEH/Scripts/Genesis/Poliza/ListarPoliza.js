@@ -87,7 +87,6 @@ function ListarGrillaPolizaExport(data) {
             "<td>" + data[i].Estado + "</td>" +
             "</tr>");
     }
-
 }
 
 
@@ -153,7 +152,7 @@ function ListarGrillaPoliza(data) {
                         "</tr>");
         }
         tabla.append("</tbody>")
-
+        
     }
     else {
         tabla.append("<tbody>")

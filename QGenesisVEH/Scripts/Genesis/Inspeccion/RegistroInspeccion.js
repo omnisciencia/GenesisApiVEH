@@ -41,7 +41,7 @@ function InicioPoliza() {
         var modo_input = sessionStorage.getItem("modo");
         var modo_estado = sessionStorage.getItem("estado");
 
-        //alert(modo_estado);
+        //alert(modo_input);
         if (modo_input == 'editar' && modo_estado == 'CONCLUIDO') {
             
             
@@ -134,6 +134,9 @@ function InicioPoliza() {
         else {
             DeshabilitarCajas(false);
             Spinner_ModeloVehiculo(1, 1);            
+        }
+        if (modo_input == 'cancelar') {
+            alert("cancelar");
         }
 
     }

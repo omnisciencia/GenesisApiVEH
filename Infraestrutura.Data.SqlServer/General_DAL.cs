@@ -474,6 +474,7 @@ namespace Infraestrutura.Data.SqlServer
             int smidtipodocumento,
             int formapago,
             string vigenciaini_reg
+            
             //,string serie
             )
         {
@@ -736,6 +737,36 @@ namespace Infraestrutura.Data.SqlServer
                 clase.tipouso = dr["tipouso"].ToString();
                 clase.vin = dr["vVin"].ToString();
                 clase.desumaasegurada = dr["desumaasegurada"].ToString();
+                clase.vencimientoSoat = dr["vencimientoSoat"].ToString();
+                clase.seguroSoat = dr["seguroSoat"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+        //Listado Cia Seguros SOAT
+        public List<ListarSeguroEntity> ListarSeguroSOAT_DAL()
+        {
+            List<ListarSeguroEntity> listado = new List<ListarSeguroEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_CiaSeguroSOAT", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ListarSeguroEntity clase = new ListarSeguroEntity();
+                clase.smidciaseguros = int.Parse(dr["smidciaseguros"].ToString());
+                clase.vdescripcion = dr["vdescripcion"].ToString();
+
                 listado.Add(clase);
             }
 
@@ -1290,6 +1321,49 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
+        public List<ListarInspeccionExportEntity> ListarInspeccionExport_DAL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre)
+        {
+            List<ListarInspeccionExportEntity> listado = new List<ListarInspeccionExportEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ListarInspeccion_Export", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@iidinspeccion", iidinspeccion);
+            cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@placa", placa);
+            cmd.Parameters.AddWithValue("@fechaini", fechaini);
+            cmd.Parameters.AddWithValue("@fechafin", fechafin);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ListarInspeccionExportEntity clase = new ListarInspeccionExportEntity();
+                clase.iidinspeccion = dr["iidinspeccion"].ToString();
+                clase.idpoliza = dr["idpoliza"].ToString();
+                clase.Persona = dr["Persona"].ToString();
+                clase.dtfec_hora_registro = dr["dtfec_hora_registro"].ToString();
+                clase.vplaca = dr["vplaca"].ToString();
+                //clase.smidtablaestadoinspeccion = dr["smidtablaestadoinspeccion"].ToString();
+                clase.dfecha = dr["dfecha"].ToString();
+                clase.Marca = dr["Marca"].ToString();
+                clase.Modelo = dr["Modelo"].ToString();
+                clase.Estado = dr["Estado"].ToString();
+                clase.Emision = dr["Emision"].ToString();
+                
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
 
         public List<RespuestaPost> InsertarPolizaVehiculo_DAL(int smidciaseguros, int idpoliza, int idvehiculo)
         {

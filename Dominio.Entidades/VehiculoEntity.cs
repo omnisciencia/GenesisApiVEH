@@ -23,6 +23,8 @@ namespace Dominio.Entidades
         public string marca { get; set; }
         public string tipouso { get; set; }
         public string desumaasegurada { get; set; }
+        public string vencimientoSoat { get; set; }
+        public string seguroSoat { get; set; }
 
 
     }

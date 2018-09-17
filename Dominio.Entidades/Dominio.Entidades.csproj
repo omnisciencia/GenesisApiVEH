@@ -55,8 +55,10 @@
     <Compile Include="IdPolizaEntity.cs" />
     <Compile Include="ImagenInspeccionEntity.cs" />
     <Compile Include="Inspeccion.cs" />
+    <Compile Include="ListarInspeccionExportEntity.cs" />
     <Compile Include="ListarPolizaEntity.cs" />
     <Compile Include="ListarPolizaExportEntity.cs" />
+    <Compile Include="ListarSeguroEntity.cs" />
     <Compile Include="MarcaVehiculoEntity.cs" />
     <Compile Include="ModeloVehiculoEntity.cs" />
     <Compile Include="NacionalidadEntity.cs" />
