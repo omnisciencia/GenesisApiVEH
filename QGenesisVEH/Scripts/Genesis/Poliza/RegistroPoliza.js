@@ -16,6 +16,7 @@
     VigenciaFecha();
     InhabilitarCajas();
     Spinner_FormaPago();
+    Spinner_SeguroSOAT();
 
     $("#sp_TipoUso").prop("disabled", true);
 
@@ -160,6 +161,8 @@
                     "<td>Tipo Uso</td>" +
                     "<td>VIN</td>" +
                     "<td>Suma</td>" +
+                    "<td>Vcto SOAT</td>" +
+                    "<td>Seguro</td>" +
                     "<td></td>" +
                     "</tr>" +
                     "</thead>");
@@ -196,6 +199,9 @@
             var tipouso = $('#sp_TipoUso option:selected').text();
             var suma = $('#sumaasegurada_reg').val();
             var idcatriesgo = $('#sp_catriesgo').val();
+            var fechaSOAT = $('#vctoSOAT_reg').val();
+            var idseguro = $('#sp_seguroSoat').val();
+            var seguroSOAT = $('#sp_seguroSoat option:selected').text();
 
             tabla.append("<thead class='bg-White'>" +
                    "<tr id='fil_" + nFilas + "'>" +
@@ -208,31 +214,9 @@
                    "<td style=display:none>" + vin + "</td>" +
                    "<td style=display:none>" + suma + "</td>" +
                    "<td style=display:none>" + idcatriesgo + "</td>" +
+                   "<td style=display:none>" + fechaSOAT + "</td>" +
+                   "<td style=display:none>" + idseguro + "</td>" +
                    "<td style=display:none>" + nFilas + "</td>" +
-
-                   /*
-                   
-                if (j == 0) { DetallesVehi += '"idtipoveh":"'; }
-                if (j == 1) { DetallesVehi += '"idmarca":"'; }
-                if (j == 2) { DetallesVehi += '"idmodeloveh":"'; }
-
-                if (j == 3) { DetallesVehi += '"asientos":"'; }
-                if (j == 4) { DetallesVehi += '"motor":"'; }
-                if (j == 5) { DetallesVehi += '"vin":"'; }
-                if (j == 6) { DetallesVehi += '"suma":"'; }
-
-                //if (j == 7) { res += 'nFilas:'; }
-                if (j == 8) { DetallesVehi += '"placa":"'; }
-                //if (j == 9) { res += 'tipoveh:'; }
-                //if (j == 10) { res += 'marca:'; }
-                //if (j == 11) { res += 'modeloveh:'; }
-                if (j == 12) { DetallesVehi += '"color":"'; }
-                if (j == 13) { DetallesVehi += '"aniofab":"'; }
-                //if (j == 14) { res += 'tipouso:'; }
-                   
-                   */
-
-
 
                    "<td>" + placa + "</td>" +
                    "<td>" + tipoveh + "</td>" +
@@ -245,6 +229,8 @@
                    "<td>" + tipouso + "</td>" +
                    "<td>" + vin + "</td>" +
                    "<td>" + suma + "</td>" +
+                   "<td>" + fechaSOAT + "</td>" +
+                   "<td>" + seguroSOAT + "</td>" +
                    "<td><input type=button onclick=EliminarFila('fil_" + nFilas + "') value=Eliminar style=width:70px class=btn_customer btn-secondary/></td>" +
                    "</tr>" +
                    "</thead>");
@@ -346,7 +332,9 @@ function ListarGrillaPolizaVehiculo(data) {
                 "<td>Motor</td>" +
                 "<td>Tipo Uso</td>" +
                 "<td>VIN</td>" +
-                "<td>Suma</td>" +                
+                "<td>Suma</td>" +
+                "<td>Vencimiento SOAT</td>" +
+                "<td>Seguro SOAT</td>" +
                 "</tr>" +
                 "</thead>");
 
@@ -368,6 +356,8 @@ function ListarGrillaPolizaVehiculo(data) {
                         "<td>" + data[i].tipouso + "</td>" +
                         "<td>" + data[i].vin + "</td>" +
                         "<td>" + data[i].desumaasegurada + "</td>" +
+                        "<td>" + data[i].vencimientoSoat + "</td>" +
+                        "<td>" + data[i].seguroSoat + "</td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -778,6 +768,36 @@ function Spinner_ModeloVehiculo(id_marca, id_modelo) {
 
 //}
 
+//Tipo SEGURO SOAT:
+function Spinner_SeguroSOAT() {
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarSeguroSOAT",
+        data: "",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: llenarSpinner_SeguroSOAT,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+
+function llenarSpinner_SeguroSOAT(data) {
+    var selectAgregar = $("#sp_seguroSoat");
+    selectAgregar.empty();
+
+    for (i = 0; i < data.length; i++) {
+        selectAgregar.append("<option value='" + data[i].smidciaseguros + "'>" + data[i].vdescripcion + "</option>");
+    }
+
+}
+
+
 //Tipo Documento:
 function Spinner_TipoDocumento() {
 
@@ -1167,19 +1187,22 @@ function RegistrarPoliza_onclick() {
                 if (j == 5) { DetallesVehi += '"vin":"'; }
                 if (j == 6) { DetallesVehi += '"suma":"'; }
                 if (j == 7) { DetallesVehi += '"idcatriesgo":"'; }
-                //if (j == 8) { res += 'nFilas:'; }
-                if (j == 9) { DetallesVehi += '"placa":"'; }
-                //if (j == 10) { res += 'tipoveh:'; }
-                //if (j == 11) { res += 'marca:'; }
-                //if (j == 12) { res += 'modeloveh:'; }
-                if (j == 13) { DetallesVehi += '"color":"'; }
-                if (j == 14) { DetallesVehi += '"aniofab":"'; }
-                //if (j == 15) { res += 'tipouso:'; }
+                if (j == 8) { DetallesVehi += '"fechaSOAT":"'; } 
+                if (j == 9) { DetallesVehi += '"idseguro":"'; }
+                //if (j == 10) { res += 'nFilas:'; }
+                if (j == 11) { DetallesVehi += '"placa":"'; }
+                //if (j == 12) { res += 'tipoveh:'; }
+                //if (j == 13) { res += 'marca:'; }
+                //if (j == 14) { res += 'modeloveh:'; }
+                if (j == 15) { DetallesVehi += '"color":"'; }
+                if (j == 16) { DetallesVehi += '"aniofab":"'; }
+                //if (j == 17) { res += 'tipouso:'; }
+               
 
-                if (j <= 14) {
-                    if (j != 8 && j != 10 && j != 11 && j != 12 && j != 15) {
+                if (j <= 16) {
+                    if (j != 10 && j != 12 && j != 13 && j != 14 && j != 17) {
 
-                        if (j < 14) {
+                        if (j < 16) {
                             DetallesVehi += document.getElementById('GridListar').rows[i].cells[j].innerHTML + '",';
                         }
                         else {
@@ -1207,7 +1230,7 @@ function RegistrarPoliza_onclick() {
         DetallesVehi += ']';
 
 
-        //alert(DetallesVehi);
+        alert(DetallesVehi);
 
 
         var modo_input = getParameterByName('modo');
@@ -1261,6 +1284,8 @@ function RegistrarPoliza(DetallesVehi) {
     var vin_reg = $("#vin_reg").val();
     //var nroserie_reg = $("#nroserie_reg").val();
     var sp_TipoUso = $("#sp_TipoUso").val();
+    var sp_Seguro = $("#sp_seguroSoat").val();
+    var fechaSOAT = $("#vctoSOAT_reg").val();
 
     var sp_TipoDocumento = $("#sp_TipoDocumento").val();
     var nrodocumento_reg = $("#nrodocumento_reg").val();
@@ -1309,7 +1334,7 @@ function RegistrarPoliza(DetallesVehi) {
 
 
     fecnaci_reg = fecnaci_reg_prev.toString();
-
+    fechaSOAT_reg = fechaSOAT.toString();
     var sumaaseguradapost = (parseFloat(sumaasegurada_reg).toFixed(2)).toString();
 
     $.ajax({

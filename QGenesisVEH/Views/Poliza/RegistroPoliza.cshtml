@@ -314,6 +314,10 @@
                                                     <label>Color:</label>
                                                     <input type="text" class="form-control input-sm" id="color_reg" onKeyUp="this.value=this.value.toUpperCase();">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label>Vencimiento SOAT:</label>
+                                                    <input type="date" class="form-control input-sm" id="vctoSOAT_reg">
+                                                </div>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-xs-12">
                                                 <div class="form-group">
@@ -342,6 +346,13 @@
                                                 <div class="form-group">
                                                     <label>Suma Asegurada(Dólares):</label>
                                                     <input type="text" class="form-control input-sm" id="sumaasegurada_reg" value="" onkeypress="return justNumbers(event);" onblur="convertirDecimal(this)">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Cia Seguros SOAT:</label>
+                                                    <select class="form-control input-sm" id="sp_seguroSoat" name="sp_seguroSoat">
+                                                        <option value="">PARTICULAR</option>
+                                                    </select>
                                                 </div>
 
 

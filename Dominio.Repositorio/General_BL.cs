@@ -253,7 +253,11 @@ namespace Dominio.Repositorio
             return dal.ListarTipoDano_DAL();
         }
 
-
+        //Listado Cia Seguro SOAT
+        public List<ListarSeguroEntity> ListarSeguroSOAT_BL()
+        {
+            return dal.ListarSeguroSOAT_DAL();
+        }
 
         //Registrar Inspeccion
         public List<RespuestaPost> RegistrarInspeccion_BL(int smidpersona, int idpoliza, int idvehiculo, int sminacionalidad,
@@ -330,6 +334,17 @@ namespace Dominio.Repositorio
         public List<Inspeccion> ListarInspeccion_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
         {
             return dal.ListarInspeccion_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
+        }
+
+        public List<ListarInspeccionExportEntity> ListarInspeccionExport_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre)
+        {
+            return dal.ListarInspeccionExport_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre);
+        }
+
+        //Cancelar Inspeccion
+        public List<RespuestaPost> Cancelar_Inspeccion_BL(int idinspeccion)
+        {
+            return dal.Cancelar_Inspeccion_DAL(idinspeccion);
         }
 
         //***************************************************************************************************************************************

@@ -155,6 +155,7 @@ namespace GenesisVehivular.Controllers
                 int smidtipodocumento,
                 int formapago,
                 string vigenciaini_reg
+         
 
             //,string serie
             )
@@ -355,6 +356,13 @@ namespace GenesisVehivular.Controllers
             return Json(Respuesta);
         }
 
+        public ActionResult Cancelar_Inspeccion(int idinspeccion)
+        {
+            General_BL bl = new General_BL();
+            List<RespuestaPost> Respuesta = bl.Cancelar_Inspeccion_BL(idinspeccion);
+            return Json(Respuesta);
+        }
+
 
         //***************************************************************************************************************************************
         //Reporte Inspeccion *******************************************************************************************************************
@@ -450,6 +458,13 @@ namespace GenesisVehivular.Controllers
             return Json("ok");
         }
 
+        public ActionResult ListarSeguroSOAT()
+        {
+            General_BL bl = new General_BL();
+            List<ListarSeguroEntity> listado = bl.ListarSeguroSOAT_BL();
+            return Json(listado);
+        }
+
         //***************************************************************************************************************************************
         //CONSULTAS*******************************************************************************************************************
         //***************************************************************************************************************************************
@@ -458,6 +473,13 @@ namespace GenesisVehivular.Controllers
         {
             General_BL bl = new General_BL();
             List<Inspeccion> listado = bl.ListarInspeccion_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
+            return Json(listado);
+        }
+
+        public ActionResult ListarInspeccionExport(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre)
+        {
+            General_BL bl = new General_BL();
+            List<ListarInspeccionExportEntity> listado = bl.ListarInspeccionExport_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre);
             return Json(listado);
         }
 

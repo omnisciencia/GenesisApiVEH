@@ -54,6 +54,40 @@ function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, no
         error: OnError
     });
 
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarInspeccionExport",
+        data: "{iidinspeccion:'" + iidinspeccion + "', idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ListarGrillaInspeccionExport,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+
+}
+
+function ListarGrillaInspeccionExport(data) {
+    var tbody = $("#bodyExport2");
+    tbody.empty();
+
+    for (i = 0; i < data.length; i++) {
+
+        tbody.append("<tr>" +
+                        "<td>" + data[i].iidinspeccion + "</td>" +
+                        "<td>" + data[i].idpoliza + "</td>" +
+                        "<td>" + data[i].Persona + "</td>" +
+                        "<td>" + data[i].vplaca + "</td>" +
+                        "<td>" + data[i].Emision + "</td>" +
+                        "<td>" + data[i].dtfec_hora_registro + "</td>" +
+                        //"<td>" + data[i].dfecha + "</td>" +
+                        "<td>" + data[i].Marca + "</td>" +
+                        "<td>" + data[i].Modelo + "</td>" +
+                        "<td>" + data[i].Estado + "</td>" +
+            "</tr>");
+    }
 }
 
 function ListarGrillaInspeccion(data) {
@@ -113,6 +147,7 @@ function ListarGrillaInspeccion(data) {
                 "<td>Estado</td>" +
                 "<td></td>" +
                 "<td></td>" +
+                "<td></td>" +
                 "</tr>" +
                 "</thead>");
 
@@ -121,6 +156,12 @@ function ListarGrillaInspeccion(data) {
         tabla.append("<tbody>")
         for (i = 0; i < data.length; i++) {
 
+            if (data[i].Estado == "PENDIENTE") {
+                fecProgramacion = " ";
+            } else {
+                fecProgramacion = data[i].dtfec_hora_registro;
+            }
+
             tabla.append(
                         "<tr>" +
                         "<td>" + data[i].iidinspeccion + "</td>" +
@@ -128,13 +169,15 @@ function ListarGrillaInspeccion(data) {
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
                         "<td>" + data[i].Emision + "</td>" +
-                        "<td>" + data[i].dtfec_hora_registro + "</td>" +
+                        "<td>" + fecProgramacion + "</td>" +
+                        //"<td>" + data[i].dtfec_hora_registro + "</td>" +
                         //"<td>" + data[i].dfecha + "</td>" +
                         "<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Modelo + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +                        
                         "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','ver','" + data[i].Estado + "')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
                         "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','editar','" + data[i].Estado + "')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = cancelarInspeccion('" + data[i].iidinspeccion + "')  value=Cancelar style=width:70px class=btn_customer btn-secondary/></td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -251,7 +294,44 @@ $("#Siguiente").click(function () {
 
 });
 
+function exportarExcel2() {
+    $('#table_export2').table2excel({
+        exclude: ".noExl",
+        name: "Excel Document Name",
+        filename: "ListaInspeccion",
+        fileext: ".xls",
+        exclude_img: true,
+        exclude_links: true,
+        exclude_inputs: true
+    });
+}
 
+function cancelarInspeccion(id_inspec) {
+    //alert(id_inspec);
+    var resp = id_inspec;
+    $.ajax({
+        type: "POST",
+        url: "../Services/Cancelar_Inspeccion",
+        data: "{idinspeccion:'" + resp + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: CancelandoInspeccion,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+}
+function CancelandoInspeccion(data) {
+     
+    //if (data[i].respuesta == "true") {
+    //    alert("cambiado");
+    //} else {
+    //    alert("no pasa nada..")
+    //}
+    alert("Inspeccion Cancelada");
+    location.reload(true);
+}
 
 //Error:
 function OnError(data) {
