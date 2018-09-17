@@ -1664,6 +1664,42 @@ namespace Infraestrutura.Data.SqlServer
         }
 
 
+        public List<RespuestaPost> RegistrarSiniestro_DAL(
+            string idpoliza,
+            string iestadosiniestro,
+            string dFecNotificacion,
+            string idocurrencia
+            )
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
+
+            cn.getcn.Open();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_RegistrarPoliza", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@iestadosiniestro", iestadosiniestro);            
+            cmd.Parameters.AddWithValue("@dFecNotificacion", dFecNotificacion);
+            cmd.Parameters.AddWithValue("@idocurrencia", idocurrencia);            
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+                clase.respuesta = dr["respuesta"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
 
 
     }
