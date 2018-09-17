@@ -1,10 +1,18 @@
 ﻿window.onload = function () {
     IniTituloGrid();
+    $('#poliza_reg').focus();
+    campos_bloqueados();
+    Spinner_Consecuencia();
+    Spinner_TipoSiniestro();
+    Spinner_Ocurrencia();
+
+    $('#fecregistro_reg').val(FechaSistema());
+
 }
 
 $(document).ready(function () {
 
-    $("#buscar_polizas").click(function () {
+    $("#buscar_poliza_listado").click(function () {
         ListarGrilla();
     });
 
@@ -38,16 +46,82 @@ $(document).ready(function () {
 
     });
 
+    $("#buscar_Id_poliza").click(function () {
 
+        var idpoliza = $('#poliza_reg').val();
+        if (idpoliza.length > 0) {
+            SelectPolizaVehiculo(idpoliza,'');
+        }
+    });
+
+
+    $('#poliza_reg').keypress(function (e) {
+        if (e.which == 13) {
+            document.getElementById('buscar_Id_poliza').click();
+        }
+    });
+    
     
 
-
 });
+
+function campos_bloqueados() {
+
+    $("#idsiniestro_reg").prop("disabled", true);
+    $("#estadosiniestro_reg").prop("disabled", true);
+    $("#estadopoliza_reg").prop("disabled", true);
+    $("#fecregistro_reg").prop("disabled", true);
+    $("#fecultmodificacion_reg").prop("disabled", true);
+
+
+    $("#placa_reg").prop("disabled", true);
+    $("#marca_reg").prop("disabled", true);
+    $("#modelo_reg").prop("disabled", true);
+    $("#vin_reg").prop("disabled", true);
+    $("#anio_reg").prop("disabled", true);
+    $("#uso_reg").prop("disabled", true);
+    $("#asientos_reg").prop("disabled", true);
+    $("#gps_reg").prop("disabled", true);
+    $("#kilometraje_reg").prop("disabled", true);
+    
+}
+
+
+function solonumeros(e) {
+    var keynum = window.event ? window.event.keyCode : e.which;
+    if ((keynum == 8) || (keynum == 46))
+        return true;
+
+    return /\d/.test(String.fromCharCode(keynum));
+}
+
+//Fecha Sistema
+function FechaSistema() {
+
+    var f = new Date();
+
+    var dia = "" + f.getDate();
+    var mes = "" + (f.getMonth()+1)
+    var aniofinal = "" + (f.getFullYear())
+
+    if (parseInt(dia) < 10) {
+        dia = "0" + dia;
+    }
+    if (parseInt(mes) < 10) {
+        mes = "0" + mes;
+    }
+    
+    var fechaSistema= (f.getFullYear() + "-" + mes + "-" + dia);    
+    
+
+    return fechaSistema;
+}
+
 
 
 function ListarGrilla() {
     
-    var poliza = $('#bus_poliza').text();
+    var poliza = $('#bus_poliza').val();
     var placa = $('#bus_placa').val();
     var contratante = $('#bus_contratante').val();
     var estado = $('#sp_estado option:selected').text();
@@ -141,8 +215,13 @@ function ListarGrillaPoliza(data) {
     if (data.length > 0) {
         tabla.append("<tbody>")
         for (i = 0; i < data.length; i++) {
+
+            var splaca = data[i].vplaca;
+
+            var Selectfuncion = "SelectPoliza(" + data[i].idpoliza + ",'" + splaca + "')";
+
             tabla.append(
-                        "<tr style='cursor: pointer;' ondblclick=SelectPoliza('"+data[i].idpoliza+"','"+data[i].Estado+"');>" +
+                        "<tr style='cursor: pointer;' ondblclick="+ Selectfuncion +">" +
                         "<td >" + data[i].idpoliza + "</td>" +
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
@@ -164,18 +243,161 @@ function ListarGrillaPoliza(data) {
 }
 
 
-function SelectPoliza(idpoliza,estado) {
+function SelectPoliza(idpoliza,placa) {
 
     $('#poliza_reg').val(idpoliza);
-    $('#estadopoliza_reg').val(estado);
+    //$('#estadopoliza_reg').val(estado);
 
     $('#listado_poliza').modal('hide');
 
+    SelectPolizaVehiculo(idpoliza,placa)
+
+
 }
 
-$("#btnAceptar").click(function () {
+function SelectPolizaVehiculo(idpoliza,placa) {
 
-});
+    $.ajax({
+        type: "POST",
+        url: "../Services/Select_PolizaVehiculo",
+        data: "{idpoliza:'" + idpoliza + "', placa:'" + placa + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: VerPolizaVehiculo,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+}
+
+function VerPolizaVehiculo(data) {
+      
+    var idpoliza = $('#poliza_reg').val();
+
+    if (data.length != null) {
+
+        if (data.length == 1) {
+
+            $('#idpoliza_reg').val(data[0].idpoliza);
+            $('#persona_reg').val(data[0].persona);
+            $('#placa_reg').val(data[0].placa);
+            $('#marca_reg').val(data[0].marca);
+            $('#modelo_reg').val(data[0].modelo);
+            $('#vin_reg').val(data[0].vin);
+            $('#anio_reg').val(data[0].aniofab);
+            $('#asientos_reg').val(data[0].asientos);
+            $('#kilometraje_reg').val(data[0].kilometraje);
+            $('#estadopoliza_reg').val(data[0].Estado);
+
+        }
+        else {
+            if (data.length > 1)
+            {                                
+                document.getElementById('busqueda_avanzada').click();
+                $('#bus_poliza').val(idpoliza);
+                document.getElementById('buscar_poliza_listado').click();                
+            }
+            else {
+                if (data.length == 0)
+                {
+                    alert('No existe la poliza ' + idpoliza);                    
+                    $('#poliza_reg').select();
+                    $('#poliza_reg').focus();
+                }
+
+            }
+        }
+    }
+    else {
+        alert('No existe la poliza ' + idpoliza);
+    }
+
+}
+
+//COMBOS VARIOS
+
+function Spinner_Consecuencia() {
+    $.ajax({
+        type: "POST",
+        url: "../Services/Combo_Consecuencia",
+        data: "",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: 
+            function (data) {
+                if (data.length >= 0) {
+                    var Combo = $("#sp_Consecuencia");
+                    Combo.empty();                    
+                    Combo.append("<option value='0'>SELECCIONAR</option>");
+                    for (i = 0; i < data.length; i++) {
+                        Combo.append("<option value='" + data[i].idConsecuencia + "'>" + data[i].vDescripcion + "</option>");
+                    }
+                }
+            },            
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+}
+
+function Spinner_TipoSiniestro(){
+    $.ajax({
+        type: "POST",
+        url: "../Services/Combo_TipoSiniestro",
+        data: "",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success:
+            function (data) {
+                if (data.length >= 0) {
+                    var Combo = $("#sp_TipoSiniestro");
+                    Combo.empty();
+                    Combo.append("<option value='0'>SELECCIONAR</option>");
+                    for (i = 0; i < data.length; i++) {
+                        Combo.append("<option value='" + data[i].idTipoSiniestro + "'>" + data[i].vDescripcion + "</option>");
+                    }
+                }
+            },
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+}
+
+
+function Spinner_Ocurrencia() {
+    $.ajax({
+        type: "POST",
+        url: "../Services/Combo_Ocurrencia",
+        data: "",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success:
+            function (data) {
+                if (data.length >= 0) {
+                    var Combo = $("#sp_Ocurrencia");
+                    Combo.empty();
+                    Combo.append("<option value='0'>SELECCIONAR</option>");
+                    for (i = 0; i < data.length; i++) {
+                        Combo.append("<option value='" + data[i].idOcurrencia + "'>" + data[i].vDescripcion + "</option>");
+                    }
+                }
+            },
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+}
+
+
+
+
+
+
 
 //Error:
 function OnError(data) {

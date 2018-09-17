@@ -473,6 +473,31 @@ namespace GenesisVehivular.Controllers
         }
 
 
+        public ActionResult Select_PolizaVehiculo(string idpoliza, string placa)
+        {
+            General_BL bl = new General_BL();
+            List<PolizaVehiculoEntity> listado = bl.Select_PolizaVehiculo_BL(idpoliza, placa);
+            return Json(listado);
+        }
+
+        public ActionResult Combo_Ocurrencia()
+        {
+            General_BL bl = new General_BL();
+            List<OcurrenciaEntity> listado = bl.Combo_Ocurrencia_BL();
+            return Json(listado);
+        }
+        public ActionResult Combo_TipoSiniestro()
+        {
+            General_BL bl = new General_BL();
+            List<TipoSiniestroEntity> listado = bl.Combo_TipoSiniestro_BL();
+            return Json(listado);
+        }
+        public ActionResult Combo_Consecuencia()
+        {
+            General_BL bl = new General_BL();
+            List<ConsecuenciaEntity> listado = bl.Combo_Consecuencia_BL();
+            return Json(listado);
+        }
 
 
 

@@ -17,7 +17,7 @@
     InhabilitarCajas();
     Spinner_FormaPago();
 
-    $("#sp_TipoUso").prop("disabled", true);
+    $("#idsiniestro_reg").prop("disabled", true);
 
     ListarGrillaVehiculos();
 

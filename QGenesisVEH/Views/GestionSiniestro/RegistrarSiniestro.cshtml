@@ -66,7 +66,7 @@
                                 
                                 <div style="text-align:left;margin:10px">
                                     <label class="col-form-label col-form-label-sm">Contratante:</label>
-                                    <input id="bus_contratante" type="text" class="form-control form-control-sm" style="width:250px">
+                                    <input id="bus_contratante" type="text" class="form-control form-control-sm" style="width:220px">
                                 </div>
                                 <div style="text-align:left;margin:10px">
                                     <label class="col-form-label col-form-label-sm">Estado:</label>
@@ -77,7 +77,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <a id="buscar_polizas" class="btn btn-sm btn-primary" style="color:#fff;font-size:1rem;margin-top:2.2rem;" title="Buscar">
+                                    <a id="buscar_poliza_listado" class="btn btn-sm btn-primary" style="color:#fff;font-size:1rem;margin-top:2.2rem;" title="Buscar">
                                         <i class="fas fa-search"></i>
                                     </a>
                                 </div>
@@ -131,21 +131,21 @@
                 <tbody>
                     <tr>
                         <td>Siniestro</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="idsiniestro_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Póliza</td>                        
                         <td>
                             <table>
                                 <tr>
                                     <td>
-                                        <input id="poliza_reg" type="text" class="form-control form-control-sm" >
+                                        <input id="poliza_reg" type="text" class="form-control form-control-sm" onkeypress="return solonumeros(event);">
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-primary" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Buscar">
+                                        <a id="buscar_Id_poliza" class="btn btn-sm btn-primary" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Buscar">
                                         <i class="fas fa-search" ></i>
                                         </a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-sm btn-primary" data-toggle="modal" data-target="#listado_poliza" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Busqueda Avanzada">
+                                        <a id="busqueda_avanzada" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#listado_poliza" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Busqueda Avanzada">
                                             <i class="fas fa-th-list"></i>
                                         </a>
                                     </td>
@@ -153,9 +153,9 @@
                             </table>                            
                         </td>                        
                         <td>Estado Siniestro</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="estadosiniestro_reg" type="text" value="APERTURADO" class="form-control form-control-sm"></td>
                         <td>Fec. Notificación</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="fecnotificacion_reg" type="date" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -165,7 +165,7 @@
                         <td></td>
                         <td></td>
                         <td>Fec. Registro</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="fecregistro_reg" type="date" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -175,7 +175,7 @@
                         <td></td>
                         <td></td>
                         <td style="text-align: left;padding-left: 1%;">Últ. modificación</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="fecultmodificacion_reg" type="date" class="form-control form-control-sm"></td>
                     </tr>
                 </tbody>
             </table>
@@ -197,13 +197,21 @@
                 <tbody>
                     <tr>
                         <td>Ocurrencia</td>
-                        <td><select class="form-control form-control-sm"></select></td>
+                        <td>
+                        <select id="sp_Ocurrencia" class="form-control form-control-sm">
+                        </select>
+                        </td>
                         <td style="text-align: left;padding-left: 1.5%;">Tipo Siniestro</td>
-                        <td><select class="form-control form-control-sm"></select></td>
+                        <td>
+                        <select id="sp_TipoSiniestro" class="form-control form-control-sm">                        
+                         </select></td>
                         <td>Consecuencia</td>
-                        <td><select class="form-control form-control-sm"></select></td>
+                        <td>
+                            <select id="sp_Consecuencia" class="form-control form-control-sm">                                                                
+                            </select>
+                        </td>
                         <td style="text-align: left;padding-left: 1%;">Fec. Ocurrencia</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input type="date" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>Lugar Siniestro</td>
@@ -275,7 +283,7 @@
                     </tr>
                     <tr>
                         <td>Contra. / Aseg.</td>
-                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td colspan="3"><input id="asegurado_reg" type="text" class="form-control form-control-sm"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -283,27 +291,27 @@
                     </tr>
                     <tr>
                         <td>Placa</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="placa_reg" type="text" class="form-control form-control-sm"></td>
                         <td style="text-align: left;padding-left: 1.5%;">Marca</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="marca_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Modelo</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="modelo_reg" type="text" class="form-control form-control-sm"></td>
                         <td style="text-align: left;padding-left: 1%;">VIN</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="vin_reg" type="text" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>Año</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="anio_reg" type="text" class="form-control form-control-sm"></td>
                         <td style="text-align: left;padding-left: 1.5%;">Uso</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="uso_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Nro. Asientos</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="asientos_reg" type="text" class="form-control form-control-sm"></td>
                         <td style="text-align: left;padding-left: 1%;">GPS</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="gps_reg" type="text" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>km. Recorrido</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="kilometraje_reg" type="text" class="form-control form-control-sm"></td>
                         <td></td>
                         <td></td>
                         <td></td>

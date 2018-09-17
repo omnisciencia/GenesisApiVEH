@@ -1439,7 +1439,7 @@ namespace Infraestrutura.Data.SqlServer
 
                 clase.idpoliza = dr["idpoliza"].ToString();
                 clase.Persona = dr["Persona"].ToString();
-                clase.vplaca = dr["vplaca"].ToString();
+                clase.vplaca = dr["placa"].ToString();
                 clase.Estado = dr["Estado"].ToString();
                 clase.TotalRegistros = dr["TotalRegistros"].ToString();
                 listado.Add(clase);
@@ -1452,6 +1452,152 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
+
+        public List<PolizaVehiculoEntity> Select_PolizaVehiculo_DAL(string idpoliza, string placa)
+        {
+            List<PolizaVehiculoEntity> listado = new List<PolizaVehiculoEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_SelectPoliza", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@placa", placa);
+            cn.getcn.Open();
+
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                PolizaVehiculoEntity clase = new PolizaVehiculoEntity();
+
+                clase.idpoliza = dr["idpoliza"].ToString();
+                clase.persona = dr["Persona"].ToString();
+                clase.placa = dr["placa"].ToString();
+                clase.marca = dr["marca"].ToString();
+                clase.modelo = dr["modelo"].ToString();
+                clase.vin = dr["vin"].ToString();
+                clase.aniofab = dr["Anio"].ToString();
+                clase.asientos = dr["Asientos"].ToString();
+                clase.kilometraje = dr["kilometraje"].ToString();
+                clase.Estado = dr["Estado"].ToString();                
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+
+        public List<OcurrenciaEntity> Combo_Ocurrencia_DAL()
+        {
+            List<OcurrenciaEntity> listado = new List<OcurrenciaEntity>();
+            SqlCommand cmd = new SqlCommand("SP_VEH_Ocurrencia", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;            
+            cn.getcn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                OcurrenciaEntity clase = new OcurrenciaEntity();
+                clase.idOcurrencia = dr["idOcurrencia"].ToString();
+                clase.vDescripcion = dr["vDescripcion"].ToString();                
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+        public List<ConsecuenciaEntity> Combo_Consecuencia_DAL()
+        {
+            List<ConsecuenciaEntity> listado = new List<ConsecuenciaEntity>();
+            SqlCommand cmd = new SqlCommand("SP_VEH_Consecuencia", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cn.getcn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ConsecuenciaEntity clase = new ConsecuenciaEntity();
+                clase.idConsecuencia = dr["idConsecuencia"].ToString();
+                clase.vDescripcion = dr["vDescripcion"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+        public List<TipoSiniestroEntity> Combo_TipoSiniestro_DAL()
+        {
+            List<TipoSiniestroEntity> listado = new List<TipoSiniestroEntity>();
+            SqlCommand cmd = new SqlCommand("SP_VEH_TipoSiniestro", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cn.getcn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                TipoSiniestroEntity clase = new TipoSiniestroEntity();
+                clase.idTiposiniestro = dr["idTipoSiniestro"].ToString();
+                clase.vDescripcion = dr["vDescripcion"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+
+        public List<RespuestaPost> RegistrarSiniestro_DAL(string DetallesVehi,
+            int smidtablatipopoliza,
+            string idnrodocumento,
+            string vnombres,
+            string vcelular,
+            string vtelefono1            
+            )
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
+
+            cn.getcn.Open();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_RegistrarPoliza", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@DetallesVehi", DetallesVehi);
+            cmd.Parameters.AddWithValue("@smidtablatipopoliza", smidtablatipopoliza);            
+            cmd.Parameters.AddWithValue("@idnrodocumento", idnrodocumento);
+            cmd.Parameters.AddWithValue("@vnombres", vnombres);            
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+                clase.respuesta = dr["respuesta"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
 
 
 
