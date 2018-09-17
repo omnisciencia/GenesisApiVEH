@@ -1562,12 +1562,11 @@ namespace Infraestrutura.Data.SqlServer
         }
 
 
-        public List<RespuestaPost> RegistrarSiniestro_DAL(string DetallesVehi,
-            int smidtablatipopoliza,
-            string idnrodocumento,
-            string vnombres,
-            string vcelular,
-            string vtelefono1            
+        public List<RespuestaPost> RegistrarSiniestro_DAL(
+            string idpoliza,
+            string iestadosiniestro,
+            string dFecNotificacion,
+            string idocurrencia
             )
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
@@ -1577,10 +1576,10 @@ namespace Infraestrutura.Data.SqlServer
             SqlCommand cmd = new SqlCommand("SP_VEH_RegistrarPoliza", cn.getcn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@DetallesVehi", DetallesVehi);
-            cmd.Parameters.AddWithValue("@smidtablatipopoliza", smidtablatipopoliza);            
-            cmd.Parameters.AddWithValue("@idnrodocumento", idnrodocumento);
-            cmd.Parameters.AddWithValue("@vnombres", vnombres);            
+            cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@iestadosiniestro", iestadosiniestro);            
+            cmd.Parameters.AddWithValue("@dFecNotificacion", dFecNotificacion);
+            cmd.Parameters.AddWithValue("@idocurrencia", idocurrencia);            
 
             SqlDataReader dr = cmd.ExecuteReader();
 
