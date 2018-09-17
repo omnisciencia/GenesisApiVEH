@@ -113,6 +113,7 @@ function ListarGrillaInspeccion(data) {
                 "<td>Estado</td>" +
                 "<td></td>" +
                 "<td></td>" +
+                "<td></td>" +
                 "</tr>" +
                 "</thead>");
 
@@ -133,8 +134,9 @@ function ListarGrillaInspeccion(data) {
                         "<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Modelo + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +                        
-                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','ver','" + data[i].Estado + "')  value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
-                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','editar','" + data[i].Estado + "')  value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','ver','" + data[i].Estado + "')  value=Ver style='width:70px' class='btn_customer btn-sm btn-secondary'/></td>" +
+                        "<td><input type=button onclick = Link('" + data[i].iidinspeccion + "','editar','" + data[i].Estado + "')  value=Editar style='width:70px' class='btn_customer btn-sm btn-secondary'/></td>" +                        
+                        "<td><a href='../prueba/exportReport/" + data[i].iidinspeccion + "'  class='btn_customer btn-sm btn-secondary' style='width:70px'>Exportar</a></td>" +
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -150,6 +152,7 @@ function ListarGrillaInspeccion(data) {
     }
 
 }
+
 
 //Link con el metodo POST
 function Link(idinspeccion, modo,estado) {

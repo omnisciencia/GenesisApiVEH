@@ -175,6 +175,7 @@
     <Compile Include="Controllers\GestionSiniestroController.cs" />
     <Compile Include="Controllers\InspeccionController.cs" />
     <Compile Include="Controllers\PolizaController.cs" />
+    <Compile Include="Controllers\pruebaController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\VehicularController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,6 +186,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\CrystalReport2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -200,6 +207,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\GestionSiniestro\RegistrarSiniestro.cshtml" />
     <Content Include="Views\Reporte.cshtml" />
+    <Content Include="Views\prueba\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -227,6 +235,10 @@
     <EmbeddedResource Include="Reporte\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\CrystalReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport2.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
