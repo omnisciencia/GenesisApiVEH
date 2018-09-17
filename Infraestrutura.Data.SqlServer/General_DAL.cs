@@ -780,7 +780,35 @@ namespace Infraestrutura.Data.SqlServer
         //***************************************************************************************************************************************
         //Registro Inspeccion *******************************************************************************************************************
         //***************************************************************************************************************************************
+        //cancelar Inspeccion
+        public List<RespuestaPost> Cancelar_Inspeccion_DAL(int idinspeccion)
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
 
+            SqlCommand cmd = new SqlCommand("SP_VEH_CancelarInspeccion", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idinspeccion", idinspeccion);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+
+                clase.respuesta = dr["respuesta"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
 
 
         //Listado Datos Poliza
