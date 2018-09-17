@@ -8,6 +8,9 @@ using Dominio.Repositorio;
 using System.Net.Mail;
 using System.Text;
 using System.Net.Mime;
+using System.IO;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
 
 namespace GenesisVehivular.Controllers
 {
@@ -476,6 +479,32 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
+        public ActionResult exportReport()
+        {
+
+            ReportDocument rd = new ReportDocument();
+
+            rd.Load(Path.Combine(Server.MapPath("~/Reporte"), "CrystalReport1.rpt"));
+            rd.SetDatabaseLogon("sa", "$sqlserver123", "192.168.1.80", "DB_Genesis_Vehicular_5");
+
+            //rd.SetDataSource(db.EmployeeInfoes.ToList());
+            rd.SetParameterValue("@idinspeccion", 1036);
+            Response.Buffer = false;
+            Response.ClearContent();
+            Response.ClearHeaders();
+
+            try
+            {
+                Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
+                stream.Seek(0, SeekOrigin.Begin);
+                return File(stream, "application/pdf", "ListadoInspeccion.pdf");
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public ActionResult ListarInspeccionExport(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre)
         {
             General_BL bl = new General_BL();
@@ -495,6 +524,31 @@ namespace GenesisVehivular.Controllers
         }
 
 
+        public ActionResult Select_PolizaVehiculo(string idpoliza, string placa)
+        {
+            General_BL bl = new General_BL();
+            List<PolizaVehiculoEntity> listado = bl.Select_PolizaVehiculo_BL(idpoliza, placa);
+            return Json(listado);
+        }
+
+        public ActionResult Combo_Ocurrencia()
+        {
+            General_BL bl = new General_BL();
+            List<OcurrenciaEntity> listado = bl.Combo_Ocurrencia_BL();
+            return Json(listado);
+        }
+        public ActionResult Combo_TipoSiniestro()
+        {
+            General_BL bl = new General_BL();
+            List<TipoSiniestroEntity> listado = bl.Combo_TipoSiniestro_BL();
+            return Json(listado);
+        }
+        public ActionResult Combo_Consecuencia()
+        {
+            General_BL bl = new General_BL();
+            List<ConsecuenciaEntity> listado = bl.Combo_Consecuencia_BL();
+            return Json(listado);
+        }
 
 
 

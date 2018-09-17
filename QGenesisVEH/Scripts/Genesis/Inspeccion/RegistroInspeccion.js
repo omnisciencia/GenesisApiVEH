@@ -142,9 +142,9 @@ function InicioPoliza() {
     }
 
 }
-function Link2() {
-    window.location = "../inspeccion/registroinspeccion";
-}
+//function Link2() {
+//    window.location = "../inspeccion/registroinspeccion";
+//}
 
 function AbrirConfirm() {
     //var modo_input = getParameterByName('modo');
@@ -173,6 +173,7 @@ function AbrirConfirm() {
     }  else {
         //alert("nada");
         alert('No se puede guardar la informacion, porque está en modo VER - Registro de Inspección.');
+        Link2();
     }
      
    
@@ -894,6 +895,12 @@ function RegistrarInspeccion_onclick_() {
     var vnromotor = $("#motorveh_id").val();
     var vplaca = $("#placaveh_id").val();
     var vnroserie = $("#nroserieveh_id").val();
+
+    if ($("#kilometrajeveh_id").val().trim.length == 0)
+    {
+        $("#kilometrajeveh_id").val(0);
+    }
+    //alert($("#kilometrajeveh_id").val());
     var ikilometraje = $("#kilometrajeveh_id").val();
     var vVin = $("#vinveh_id").val();
 
@@ -1141,7 +1148,13 @@ function RegistrarInspeccion_onclick2() {
     var vnromotor = $("#motorveh_id").val();
     var vplaca = $("#placaveh_id").val();
     //var vnroserie = $("#nroserieveh_id").val();
+    
+    if ($("#kilometrajeveh_id").val().trim.length == 0) {
+        $("#kilometrajeveh_id").val(0);
+    }
+    
     var ikilometraje = $("#kilometrajeveh_id").val();
+
     var vVin = $("#vinveh_id").val();
 
     //var iidinspeccion =;
@@ -1393,7 +1406,14 @@ function RegistrarInspeccion_onclick() {
     var vnromotor = $("#motorveh_id").val();
     var vplaca = $("#placaveh_id").val();
     //var vnroserie = $("#nroserieveh_id").val();
+
+    if ($("#kilometrajeveh_id").val().trim.length == 0) {
+        $("#kilometrajeveh_id").val(0);
+    }
+
+
     var ikilometraje = $("#kilometrajeveh_id").val();
+    
     var vVin = $("#vinveh_id").val();
 
     //var iidinspeccion =;

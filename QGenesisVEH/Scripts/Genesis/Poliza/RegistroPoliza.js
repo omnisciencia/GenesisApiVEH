@@ -18,7 +18,7 @@
     Spinner_FormaPago();
     Spinner_SeguroSOAT();
 
-    $("#sp_TipoUso").prop("disabled", true);
+    $("#idsiniestro_reg").prop("disabled", true);
 
     ListarGrillaVehiculos();
 

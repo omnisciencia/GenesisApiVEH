@@ -194,6 +194,7 @@ function ListarGrillaInspeccion(data) {
 
 }
 
+
 //Link con el metodo POST
 function Link(idinspeccion, modo,estado) {
     //window.location = "../inspeccion/registroinspeccion?alarmid=" + alarmid;
