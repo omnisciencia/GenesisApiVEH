@@ -1554,6 +1554,39 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
+        public List<ComisariaEntity> Listar_Comisaria_DAL(string vdescripcion, string vdireccion, int NroDePagina, int RegPorPag)
+        {
+            List<ComisariaEntity> listado = new List<ComisariaEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_Listar_Comisaria", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@vdescripcion", vdescripcion);
+            cmd.Parameters.AddWithValue("@vdireccion", vdireccion);            
+            cmd.Parameters.AddWithValue("@NroDePagina", NroDePagina);
+            cmd.Parameters.AddWithValue("@RegPorPag", RegPorPag);
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ComisariaEntity clase = new ComisariaEntity();
+
+                clase.idcomisaria = dr["idcomisaria"].ToString();
+                clase.vdescripcion = dr["vdescripcion"].ToString();
+                clase.vdireccion = dr["vdireccion"].ToString();                
+                clase.TotalRegistros = dr["TotalRegistros"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
 
         public List<PolizaVehiculoEntity> Select_PolizaVehiculo_DAL(string idpoliza, string placa)
         {
@@ -1651,7 +1684,54 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 TipoSiniestroEntity clase = new TipoSiniestroEntity();
-                clase.idTiposiniestro = dr["idTipoSiniestro"].ToString();
+                clase.idTipoSiniestro = dr["idTipoSiniestro"].ToString();
+                clase.vDescripcion = dr["vDescripcion"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+        public List<TipoDeclaranteEntity> Combo_TipoDeclarante_DAL()
+        {
+            List<TipoDeclaranteEntity> listado = new List<TipoDeclaranteEntity>();
+            SqlCommand cmd = new SqlCommand("SP_VEH_TipoDeclarante", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cn.getcn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                TipoDeclaranteEntity clase = new TipoDeclaranteEntity();
+                clase.idTipoDeclarante = dr["idTipoDeclarante"].ToString();
+                clase.vDescripcion = dr["vDescripcion"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+
+        public List<ParentescoEntity> Combo_Parentesco_DAL()
+        {
+            List<ParentescoEntity> listado = new List<ParentescoEntity>();
+            SqlCommand cmd = new SqlCommand("SP_VEH_Parentesco", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cn.getcn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ParentescoEntity clase = new ParentescoEntity();
+                clase.idParentesco = dr["idParentesco"].ToString();
                 clase.vDescripcion = dr["vDescripcion"].ToString();
                 listado.Add(clase);
             }
@@ -1665,23 +1745,57 @@ namespace Infraestrutura.Data.SqlServer
 
 
         public List<RespuestaPost> RegistrarSiniestro_DAL(
-            string idpoliza,
-            string iestadosiniestro,
-            string dFecNotificacion,
-            string idocurrencia
+            string idpoliza, string smidciaseguros, string iestadosiniestro,string dFecNotificacion
+            ,string idocurrencia, string idtiposiniestro, string idconsecuencia, string dFecOcurrencia
+            , string vlugarsiniestro, string vubicasiniestro, string iocupantes, string idtipodeclarante
+            ,string vdenominacion, string vtelef_declarante, string iparentaseg_declarante, string vmaildeclarante
+            , string vconductor, string idtipodoc, string vnrodociden, string vlicencia
+            , string iparentaseg_conductor, string vtelef_conductor, string vemail_conductor,string dvencilicencia
+            ,string idcomisaria, string vcategoria, string vdetasiniestro, string nidusuario
             )
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
 
             cn.getcn.Open();
 
-            SqlCommand cmd = new SqlCommand("SP_VEH_RegistrarPoliza", cn.getcn);
+            SqlCommand cmd = new SqlCommand("SP_VEH_Registrar_Siniestro", cn.getcn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@smidciaseguros", smidciaseguros);
             cmd.Parameters.AddWithValue("@iestadosiniestro", iestadosiniestro);            
             cmd.Parameters.AddWithValue("@dFecNotificacion", dFecNotificacion);
-            cmd.Parameters.AddWithValue("@idocurrencia", idocurrencia);            
+            cmd.Parameters.AddWithValue("@idocurrencia", idocurrencia);
+            cmd.Parameters.AddWithValue("@idtiposiniestro", idtiposiniestro);
+            cmd.Parameters.AddWithValue("@idconsecuencia", idconsecuencia);
+            cmd.Parameters.AddWithValue("@dFecOcurrencia", dFecOcurrencia);
+
+            cmd.Parameters.AddWithValue("@vlugarsiniestro", vlugarsiniestro);
+            cmd.Parameters.AddWithValue("@vubicasiniestro", vubicasiniestro);
+            cmd.Parameters.AddWithValue("@iocupantes", iocupantes);
+            cmd.Parameters.AddWithValue("@idtipodeclarante", idtipodeclarante);
+
+            cmd.Parameters.AddWithValue("@vdenominacion", vdenominacion);
+            cmd.Parameters.AddWithValue("@vtelef_declarante", vtelef_declarante);
+            cmd.Parameters.AddWithValue("@iparentaseg_declarante", iparentaseg_declarante);
+            cmd.Parameters.AddWithValue("@vmaildeclarante", vmaildeclarante);
+
+            cmd.Parameters.AddWithValue("@vconductor", vconductor);
+            cmd.Parameters.AddWithValue("@idtipodoc", idtipodoc);
+            cmd.Parameters.AddWithValue("@vnrodociden", vnrodociden);
+            cmd.Parameters.AddWithValue("@vlicencia", vlicencia);
+
+            cmd.Parameters.AddWithValue("@iparentaseg_conductor", iparentaseg_conductor);
+            cmd.Parameters.AddWithValue("@vtelef_conductor", vtelef_conductor);
+            cmd.Parameters.AddWithValue("@vemail_conductor", vemail_conductor);
+            cmd.Parameters.AddWithValue("@dvencilicencia", dvencilicencia);
+
+            cmd.Parameters.AddWithValue("@idcomisaria", idcomisaria);
+            cmd.Parameters.AddWithValue("@vcategoria", vcategoria);
+            cmd.Parameters.AddWithValue("@vdetasiniestro", vdetasiniestro);
+            cmd.Parameters.AddWithValue("@nidusuario", nidusuario);
+
+
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1701,6 +1815,51 @@ namespace Infraestrutura.Data.SqlServer
         }
 
 
+        public List<UbigeoEntity> Autocom_Ubigeo_DAL()
+        {
+            List<UbigeoEntity> listado = new List<UbigeoEntity>();
+            SqlCommand cmd = new SqlCommand("SP_VEH_Autocom_Ubigeo", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cn.getcn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                UbigeoEntity clase = new UbigeoEntity();                
+                clase.vDescripcion = dr["vDescripcion"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+        public List<ComboUsuario> Combo_Usuario_DAL(string perfil)
+        {
+            List<ComboUsuario> listado = new List<ComboUsuario>();
+            SqlCommand cmd = new SqlCommand("SP_VEH_ComboUsuario", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@nidPerfil", perfil);
+            cn.getcn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ComboUsuario clase = new ComboUsuario();
+                clase.nidUsuario = dr["nidUsuario"].ToString();
+                clase.nombresusu = dr["nombresusu"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
 
     }
 }

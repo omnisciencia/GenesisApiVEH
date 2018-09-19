@@ -115,6 +115,72 @@
                 </div>
             </div>
             <!--CIERRE POPUP LISTADO POLIZA-->
+
+
+            <!-- POPUP DE LISTADO COMISARIA-->
+            <div class="modal fade bd-example-modal-lg" id="listado_comisaria" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">Listado de comisarias</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div style="width:10px">
+
+                                </div>
+
+                                <div style="text-align:left;margin:10px">
+                                    <label class="col-form-label col-form-label-sm" style="font-size:15px">Descripcion:</label>
+                                    <input id="bus_descripcion" type="text" class="form-control form-control-sm">
+                                </div>
+                                <div style="text-align:left;margin:10px">
+                                    <label class="col-form-label col-form-label-sm">Direccion:</label>
+                                    <input id="bus_direccion" type="text" class="form-control form-control-sm">
+                                </div>
+                                <div>
+                                    <a id="buscar_comisaria_listado" class="btn btn-sm btn-primary" style="color:#fff;font-size:1rem;margin-top:2.2rem;" title="Buscar">
+                                        <i class="fas fa-search"></i>
+                                    </a>
+                                </div>
+
+                                <div style="width:10px">
+
+                                </div>
+                            </div>
+
+                            <div style="width:95%;height:300px;margin:auto; background:#fff;">
+
+                                <div class="row" style="padding-left:85%;">
+                                    <div>
+                                        <input class="btn_filter btn-secondary btn_left" id="AnteriorComi" type="button" value="<" />
+                                    </div>
+                                    <div>
+                                        <select class="form-control input-sm" id="PaginaComi" name="PaginaComi" style="border-radius:0;">
+                                            <option value="1">1</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input class="btn_filter btn-secondary btn_rigth" id="SiguienteComi" type="button" value=">" />
+                                    </div>
+                                </div>
+                                <table class="table table-sm table-hover" id="GridListarComi"></table>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--CIERRE POPUP LISTADO COMISARIA-->
+
             <table>
                 <thead>
                 <th style="width: 9%;"></th>
@@ -210,12 +276,12 @@
                             <select id="sp_Consecuencia" class="form-control form-control-sm">                                                                
                             </select>
                         </td>
-                        <td style="text-align: left;padding-left: 1%;">Fec. Ocurrencia</td>
-                        <td><input type="date" class="form-control form-control-sm"></td>
+                        <td  style="text-align: left;padding-left: 1%;">Fec. Ocurrencia</td>
+                        <td><input id="fecocurrencia_reg" type="date" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>Lugar Siniestro</td>
-                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td colspan="3"><input id="lugarsiniestro_reg" type="text" class="form-control form-control-sm"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -223,59 +289,76 @@
                     </tr>
                     <tr>
                         <td>Ubica. Siniestro</td>
-                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td colspan="3"><input id="ubicasiniestro_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Nro. Ocupantes</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="nro_ocupantes_reg" type="text" class="form-control form-control-sm"></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Tipo Declarante</td>
-                        <td><select class="form-control form-control-sm"></select></td>
+                        <td><select id="sp_TipoDeclarante" class="form-control form-control-sm"></select></td>
                         <td>Denominación</td>
-                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td colspan="3"><input id="denominacion_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Telef.Declarante</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="telefdeclarante_reg" type="text" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>Parent. Aseg.</td>
-                        <td><select class="form-control form-control-sm"></select></td>
+                        <td><select id="sp_Parentesco1" class="form-control form-control-sm"></select></td>
                         <td>Mail Declarante</td>
-                        <td colspan="2"><input type="text" class="form-control form-control-sm"></td>
+                        <td colspan="2"><input id="maildeclarante_reg" type="text" class="form-control form-control-sm"></td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Conductor</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="conductor_reg"  type="text" class="form-control form-control-sm"></td>
                         <td>Tipo Doc. Iden.</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td>
+                             <select class="form-control input-sm" id="sp_TipoDocumento" name="sp_TipoDocumento">
+                                        <option value="">Dni</option>
+                                    </select>
+
+                        </td>
                         <td>Nro Doc. Iden.</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="nrodocid_reg"  type="text" class="form-control form-control-sm"></td>
                         <td>Licencia</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="licencia_reg" type="text" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>Parent. Aseg.</td>
-                        <td><select class="form-control form-control-sm"></select></td>
+                        <td><select id="sp_Parentesco2" class="form-control form-control-sm"></select></td>
                         <td>Telef. Conductor</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="telefconductor_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Email</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="emailconductor_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Venci. Licencia</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="vencilicencia_reg" type="date" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>Comisaría</td>
-                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td colspan="3">
+                            <table>
+                                <tr>
+                                    <td><input id="idcomisaria_reg" type="text" style="display:none" class="form-control form-control-sm"></td>
+                                    <td><input id="descripcomisaria_reg" style="width:480px;margin-left:-10px" type="text" class="form-control form-control-sm"></td>
+                                    <td>
+                                        <a id="busqueda_avanzada_comi" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#listado_comisaria" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Busqueda Avanzada">
+                                            <i class="fas fa-th-list"></i>
+                                        </a>
+                                    </td>                        
+                                </tr>
+                            </table>
+                        </td>
                         <td></td>
                         <td></td>
                         <td>Categoría</td>
-                        <td><input type="text" class="form-control form-control-sm"></td>
+                        <td><input id="categoria_reg" type="text" class="form-control form-control-sm"></td>
                     </tr>
                     <tr>
                         <td>Deta. Siniestro</td>
-                        <td colspan="3"><input type="text" class="form-control form-control-sm"></td>
+                        <td colspan="3"><input id="detasiniestro_reg" type="text" class="form-control form-control-sm"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -343,16 +426,16 @@
                 <tbody>
                     <tr>
                         <td>Tarj. Propied.</td>
-                        <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                        <td colspan="3"><input id="vimgtarjetaprop" type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td style="text-align: left;padding-left: 1%;">Asig. Asesor</td>
-                        <td><select class="form-control form-control-sm"></select></td>
+                        <td><select id="sp_asesor" class="form-control form-control-sm"></select></td>
                     </tr>
                     <tr>
                         <td>Lic. Conducir</td>
-                        <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                        <td colspan="3"><input id="vimglicconducir" type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -361,8 +444,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>Lic. Conducir</td>
-                        <td colspan="3"><input type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
+                        <td>SOAT</td>
+                        <td colspan="3"><input id="vimgsoat" type="file" class="form-control-file form-control-sm" aria-describedby="fileHelp"></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -374,7 +457,7 @@
             </table>
 
             <div style="text-align: right">
-                <input type="button" value="Guardar" class="btn btn-primary">
+                <input id="btnGuardar" type="button" value="Guardar" class="btn btn-primary">
             </div>
 
 

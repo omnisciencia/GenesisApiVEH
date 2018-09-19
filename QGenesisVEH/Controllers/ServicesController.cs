@@ -481,9 +481,7 @@ namespace GenesisVehivular.Controllers
 
         public ActionResult exportReport()
         {
-
             ReportDocument rd = new ReportDocument();
-
             rd.Load(Path.Combine(Server.MapPath("~/Reporte"), "CrystalReport1.rpt"));
             rd.SetDatabaseLogon("sa", "$sqlserver123", "192.168.1.80", "DB_Genesis_Vehicular_5");
 
@@ -550,7 +548,62 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
+        public ActionResult Combo_TipoDeclarante()
+        {
+            General_BL bl = new General_BL();
+            List<TipoDeclaranteEntity> listado = bl.Combo_TipoDeclarante_BL();
+            return Json(listado);
+        }
+        public ActionResult Combo_Parentesco()
+        {
+            General_BL bl = new General_BL();
+            List<ParentescoEntity> listado = bl.Combo_Parentesco_BL();
+            return Json(listado);
+        }
 
+        public ActionResult AutcomUbigeo()
+        {
+            General_BL bl = new General_BL();
+            List<UbigeoEntity> listado = bl.AutcomUbigeo_BL();
+            return Json(listado);
+        }
+
+        public ActionResult RegistrarSiniestro(
+            string idpoliza,string smidciaseguros, string iestadosiniestro, string dFecNotificacion
+            , string idocurrencia, string idtiposiniestro, string idconsecuencia, string dFecOcurrencia
+            , string vlugarsiniestro, string vubicasiniestro, string iocupantes, string idtipodeclarante
+            , string vdenominacion, string vtelef_declarante, string iparentaseg_declarante, string vmaildeclarante
+            , string vconductor, string idtipodoc, string vnrodociden, string vlicencia
+            , string iparentaseg_conductor, string vtelef_conductor, string vemail_conductor, string dvencilicencia
+            , string idcomisaria, string vcategoria, string vdetasiniestro, string nidusuario
+            )
+        {   
+            General_BL bl = new General_BL();
+            List<RespuestaPost> listado = bl.RegistrarSiniestro_BL(
+                idpoliza, smidciaseguros, iestadosiniestro, dFecNotificacion
+                , idocurrencia, idtiposiniestro, idconsecuencia, dFecOcurrencia
+                , vlugarsiniestro, vubicasiniestro, iocupantes, idtipodeclarante
+                , vdenominacion, vtelef_declarante, iparentaseg_declarante, vmaildeclarante
+                , vconductor, idtipodoc, vnrodociden, vlicencia
+                , iparentaseg_conductor, vtelef_conductor, vemail_conductor, dvencilicencia
+                , idcomisaria, vcategoria, vdetasiniestro, nidusuario
+                );
+            return Json(listado);
+        }
+
+        public ActionResult Listar_Comisaria(string vdescripcion, string vdireccion, int NroDePagina, int RegPorPag)
+        {
+            General_BL bl = new General_BL();
+            List<ComisariaEntity> listado = bl.Listar_Comisaria_BL(vdescripcion,vdireccion, NroDePagina, RegPorPag);
+            return Json(listado);
+        }
+
+        public ActionResult Combo_Usuario(string idperfil)
+        {
+            General_BL bl = new General_BL();
+            List<ComboUsuario> listado = bl.ComboUsuario_BL(idperfil);
+            return Json(listado);
+        }
 
 
     }
