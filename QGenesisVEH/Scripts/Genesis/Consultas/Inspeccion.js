@@ -1,7 +1,13 @@
-﻿
+﻿var global_finfec;
+var global_finfec2;
 window.onload = function () {
+    var finfec ="";
+    global_finfec2 = "0";
+
     $("#fechaini").val(FechaActual())
     $("#fechafin").val(FechaActual())
+    $("#fechaini2").val(FechaActual())
+    $("#fechaini2").prop("max", FechaActual());
     ListarGrilla();
 
     $("#chk_fec_ini").click(function () {
@@ -16,6 +22,45 @@ window.onload = function () {
             $("#fechafin").prop("disabled", true);
         }
     });
+
+    $("#chk_sinfec_program").click(function () {
+        if (this.checked) {
+            
+            finfec = "sin programacion";
+            global_finfec = finfec;
+            //alert(global_finfec);
+
+        }
+        else {
+            
+            finfec = "con programacion";
+            global_finfec = finfec;
+            //alert(global_finfec);
+        }
+    });
+    $("#chk_inspec_vencida").click(function () {
+        if (this.checked) {
+            finfec = "vencida"
+            global_finfec = finfec;
+            $("#fechafin").prop("disabled", true);
+            $("#chk_fec_ini").prop("disabled", true);
+            $("#chk_sinfec_program").prop("disabled", true);
+            $("#fechaini2").removeClass("Ocultar");
+            $("#fechaini").addClass("Ocultar");
+            
+        }
+        else {
+            finfec = "con programacion";
+            global_finfec = finfec;
+            $("#fechafin").prop("disabled", false);
+            $("#chk_fec_ini").prop("disabled", false);
+            $("#chk_sinfec_program").prop("disabled", false);
+            $("#fechaini2").addClass("Ocultar");
+            $("#fechaini").removeClass("Ocultar");
+            
+        }
+    });
+
 }
 
 
@@ -39,12 +84,12 @@ function FechaActual() {
 //
 
 //Lista inspeccion
-function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, pagina, regporpag) {
+function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado, pagina, regporpag) {
 
     $.ajax({
         type: "POST",
-        url: "../Services/ListarInspeccion",
-        data: "{iidinspeccion:'" + iidinspeccion + "', idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "', NroDePagina:'" + pagina + "', RegPorPag:'" + regporpag + "'}",
+        url: "../Services/ListarInspeccion2",
+        data: "{iidinspeccion:'" + iidinspeccion + "', idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "', estado:'" + estado + "', NroDePagina:'" + pagina + "', RegPorPag:'" + regporpag + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: ListarGrillaInspeccion,
@@ -57,7 +102,7 @@ function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, no
     $.ajax({
         type: "POST",
         url: "../Services/ListarInspeccionExport",
-        data: "{iidinspeccion:'" + iidinspeccion + "', idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "'}",
+        data: "{iidinspeccion:'" + iidinspeccion + "', idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "', estado:'" + estado + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: ListarGrillaInspeccionExport,
@@ -66,6 +111,7 @@ function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, no
         },
         error: OnError
     });
+    //alert(estado);
 
 }
 
@@ -92,19 +138,19 @@ function ListarGrillaInspeccionExport(data) {
 
 function ListarGrillaInspeccion(data) {
     //alert(1);
-
+    
     var pagina = $("#Pagina").val();
     var select = $("#Pagina");
     var regporpag = "10";
     var TotalRegistros = "1";
     var i = 1;
 
-   /* select.empty();
+   select.empty();
 
-    if (data.length > 1) {
-        if (parseInt(data[1].TotalRegistros) > parseInt(regporpag)) {
+    if (data.length > 0) {
+        if (parseInt(data[0].TotalRegistros) > parseInt(regporpag)) {
 
-            for (i = 1; i <= Math.ceil(parseInt(data[1].TotalRegistros) / parseInt(regporpag)) ; i++) {
+            for (i = 1; i <= Math.ceil(parseInt(data[0].TotalRegistros) / parseInt(regporpag)) ; i++) {
                 select.append("<option value = " + i + ">" + i + "</option>");
             }
         }
@@ -115,19 +161,19 @@ function ListarGrillaInspeccion(data) {
     else {
         select.append("<option value = '1'> 1</option>");
     }
-    */
+    
 
-    select.empty();
-    //data[0].TotalRegistros
-    if (parseInt(TotalRegistros) > parseInt(regporpag)) {
+    //select.empty();
+    ////data[0].TotalRegistros
+    //if (parseInt(TotalRegistros) > parseInt(regporpag)) {
 
-        for (i = 1; i <= Math.ceil(parseInt(TotalRegistros) / parseInt(regporpag)) ; i++) {
-            select.append("<option value = " + i + ">" + i + "</option>");
-        }
-    }
-    else {
-        select.append("<option value = '1'> 1</option>");
-    }
+    //    for (i = 1; i <= Math.ceil(parseInt(TotalRegistros) / parseInt(regporpag)) ; i++) {
+    //        select.append("<option value = " + i + ">" + i + "</option>");
+    //    }
+    //}
+    //else {
+    //    select.append("<option value = '1'> 1</option>");
+    //}
 
 
     $("#Pagina").val(pagina);
@@ -236,10 +282,32 @@ function ListarGrilla() {
     var nombre = $("#contratante").val();
     var pagina = $("#Pagina").val();
     var regporpag = "10";
+    var vestado = "0";
+    if (global_finfec == "sin programacion") {
+        //alert(1);
+        vestado = "1";
+        
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    } else if (global_finfec == "con programacion") {
+        //alert(0);
+        vestado = "0";
+        
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    } else if (global_finfec == "vencida") {
+        //alert(0);
+        vestado = "2";
 
-    ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, pagina, regporpag);
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    } else {
+        vestado = global_finfec2;
+        
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    }
+
+    //ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, pagina, regporpag);
 
     $("#Pagina").val(pagina);
+    
 }
 
 $("#btnBuscar").click(function () {

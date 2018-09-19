@@ -478,7 +478,12 @@ namespace GenesisVehivular.Controllers
             List<Inspeccion> listado = bl.ListarInspeccion_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
             return Json(listado);
         }
-
+        public ActionResult ListarInspeccion2(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string estado, int NroDePagina, int RegPorPag)
+        {
+            General_BL bl = new General_BL();
+            List<Inspeccion> listado = bl.ListarInspeccion2_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado, NroDePagina, RegPorPag);
+            return Json(listado);
+        }
         public ActionResult exportReport()
         {
 
@@ -505,10 +510,10 @@ namespace GenesisVehivular.Controllers
             }
         }
 
-        public ActionResult ListarInspeccionExport(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre)
+        public ActionResult ListarInspeccionExport(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string estado)
         {
             General_BL bl = new General_BL();
-            List<ListarInspeccionExportEntity> listado = bl.ListarInspeccionExport_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre);
+            List<ListarInspeccionExportEntity> listado = bl.ListarInspeccionExport_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado);
             return Json(listado);
         }
 

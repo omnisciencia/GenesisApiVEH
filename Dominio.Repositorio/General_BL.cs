@@ -335,10 +335,14 @@ namespace Dominio.Repositorio
         {
             return dal.ListarInspeccion_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
         }
-
-        public List<ListarInspeccionExportEntity> ListarInspeccionExport_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre)
+        public List<Inspeccion> ListarInspeccion2_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre,string estado, int NroDePagina, int RegPorPag)
         {
-            return dal.ListarInspeccionExport_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre);
+            return dal.ListarInspeccion2_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado, NroDePagina, RegPorPag);
+        }
+
+        public List<ListarInspeccionExportEntity> ListarInspeccionExport_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string estado)
+        {
+            return dal.ListarInspeccionExport_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado);
         }
 
         //Cancelar Inspeccion

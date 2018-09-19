@@ -4,6 +4,7 @@ var idinspeccion_input;
 var global_smidpersona;
 var global_idpoliza;
 var global_idvehiculo;
+var global_fecProgramacion;
 
 function InicioPoliza() {
 
@@ -40,7 +41,6 @@ function InicioPoliza() {
         //alert(idinspeccion_input);
         var modo_input = sessionStorage.getItem("modo");
         var modo_estado = sessionStorage.getItem("estado");
-
         //alert(modo_input);
         if (modo_input == 'editar' && modo_estado == 'CONCLUIDO') {
             
@@ -113,7 +113,7 @@ function InicioPoliza() {
             $("#btnfoto").prop("disabled", true);
 
             $("#btguardar").addClass("Ocultar");
-            
+            $("#chk_fijar_fecha").prop("disabled", true);
            // $("#sp_FormaPago").prop("disabled", true);
         } else {
             $("#btvolver").addClass("Ocultar");
@@ -121,9 +121,26 @@ function InicioPoliza() {
 
         if (modo_input == 'ver') {
             $('#titulo').html('VER - Registro de Inspección');
+            $("#fecinspeccion_id").prop("disabled", true);
+            $("#hrinspeccion_id").prop("disabled", true);
+            $("#chk_fijar_fecha").prop("disabled", true);
         }
         else if (modo_input == 'editar') {
             $('#titulo').html('AGREGANDO - Registro de Inspección');
+            $("#fecinspeccion_id").prop("disabled", true);
+            $("#hrinspeccion_id").prop("disabled", true);
+            $("#chk_fijar_fecha").click(function () {
+                if (this.checked) {
+                    $("#fecinspeccion_id").prop("disabled", false);
+                    $("#hrinspeccion_id").prop("disabled", false);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+                }
+                else {
+                    $("#fecinspeccion_id").prop("disabled", true);
+                    $("#hrinspeccion_id").prop("disabled", true);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+                }
+            });
         }
 
         if (idinspeccion_input.length > 0) {
@@ -145,7 +162,22 @@ function InicioPoliza() {
 //function Link2() {
 //    window.location = "../inspeccion/registroinspeccion";
 //}
+function FechaActual() {
+    var f = new Date();
+    var dia = "" + (f.getDate()+1);
+    var mes = "" + (f.getMonth() + 1)
+    //var hora = f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds() + ".000";
 
+    if (parseInt(dia) < 10) {
+        dia = "0" + dia;
+    }
+    if (parseInt(mes) < 10) {
+        mes = "0" + mes;
+    }
+    var fecha = (f.getFullYear() + "-" + mes + "-" + dia);
+    //var fecha = (f.getFullYear() + "-" + mes + "-" + dia + ' ' + hora);
+    return fecha;
+}
 function AbrirConfirm() {
     //var modo_input = getParameterByName('modo');
     var modo_input = sessionStorage.getItem("modo");
@@ -741,8 +773,10 @@ function ListarDatosPoliza(data) {
         global_smidpersona = smidpersona;
         global_idpoliza = idpoliza;
         global_idvehiculo = idvehiculo;
+        global_fecProgramacion = fecinspeccion;
         
-       // alert(global_smidpersona);
+        //var fecActual = fechaActual();
+        alert(global_fecProgramacion);
         
         $("#idcontratante").val(smidpersona);
         $("#sp_TipoVehiculo").val(claseveh);

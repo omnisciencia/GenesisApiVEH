@@ -19,6 +19,8 @@
     Spinner_SeguroSOAT();
 
     $("#idsiniestro_reg").prop("disabled", true);
+    $("#sp_TipoUso").prop("disabled", true);
+    
 
     ListarGrillaVehiculos();
 
@@ -1230,7 +1232,7 @@ function RegistrarPoliza_onclick() {
         DetallesVehi += ']';
 
 
-        alert(DetallesVehi);
+        //alert(DetallesVehi);
 
 
         var modo_input = getParameterByName('modo');

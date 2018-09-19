@@ -130,6 +130,7 @@
     <Content Include="Img\icon-clock.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\180918_JARA.pubxml" />
     <None Include="Properties\PublishProfiles\20180905.pubxml" />
     <None Include="Properties\PublishProfiles\PB_240818.pubxml" />
     <None Include="Properties\PublishProfiles\PB_270818.pubxml" />
