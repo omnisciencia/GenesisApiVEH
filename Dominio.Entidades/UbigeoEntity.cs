@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entidades
 {
-    public class TipoSiniestroEntity
-    {
-        public string idTipoSiniestro { get; set; }
+    public class UbigeoEntity
+    {        
         public string vDescripcion { get; set; }
     }
 }

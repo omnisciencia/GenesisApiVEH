@@ -378,7 +378,53 @@ namespace Dominio.Repositorio
             return dal.Combo_TipoSiniestro_DAL();
         }
 
+        public List<TipoDeclaranteEntity> Combo_TipoDeclarante_BL()
+        {
+            return dal.Combo_TipoDeclarante_DAL();
+        }
 
+        public List<ParentescoEntity> Combo_Parentesco_BL()
+        {
+            return dal.Combo_Parentesco_DAL();
+        }
+
+        public List<UbigeoEntity> AutcomUbigeo_BL()
+        {
+            return dal.Autocom_Ubigeo_DAL();
+        }
+
+
+        public List<RespuestaPost> RegistrarSiniestro_BL(
+            string idpoliza,string smidciaseguros, string iestadosiniestro, string dFecNotificacion
+            , string idocurrencia, string idtiposiniestro, string idconsecuencia, string dFecOcurrencia
+            , string vlugarsiniestro, string vubicasiniestro, string iocupantes, string idtipodeclarante
+            , string vdenominacion, string vtelef_declarante, string iparentaseg_declarante, string vmaildeclarante
+            , string vconductor, string idtipodoc, string vnrodociden, string vlicencia
+            , string iparentaseg_conductor, string vtelef_conductor, string vemail_conductor, string dvencilicencia
+            , string idcomisaria, string vcategoria, string vdetasiniestro, string nidusuario
+           )
+        {
+            return dal.RegistrarSiniestro_DAL(
+                idpoliza, smidciaseguros, iestadosiniestro, dFecNotificacion
+                , idocurrencia, idtiposiniestro, idconsecuencia, dFecOcurrencia
+                , vlugarsiniestro, vubicasiniestro, iocupantes, idtipodeclarante
+                , vdenominacion, vtelef_declarante, iparentaseg_declarante, vmaildeclarante
+                , vconductor, idtipodoc, vnrodociden, vlicencia
+                , iparentaseg_conductor, vtelef_conductor, vemail_conductor, dvencilicencia
+                , idcomisaria, vcategoria, vdetasiniestro, nidusuario
+                );
+        }
+
+
+        public List<ComisariaEntity> Listar_Comisaria_BL(string vdescripcion, string vdireccion, int NroDePagina, int RegPorPag)
+        {
+            return dal.Listar_Comisaria_DAL(vdescripcion,vdireccion, NroDePagina, RegPorPag);
+        }
+
+        public List<ComboUsuario> ComboUsuario_BL(string idperfil)
+        {
+            return dal.Combo_Usuario_DAL(idperfil);
+        }
 
 
 

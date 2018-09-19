@@ -10,7 +10,8 @@ namespace Dominio.Entidades
     {        
         public string idpoliza { get; set; }
         public string iestadosiniestro { get; set; }
-        public string dFecNotificacion { get; set; }        
+        public string dFecNotificacion { get; set; }
+        public string idocurrencia { get; set; }
 
     }
 }

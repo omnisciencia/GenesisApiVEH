@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dominio.Entidades
 {
-    public class TipoSiniestroEntity
+    public class ComboUsuario
     {
-        public string idTipoSiniestro { get; set; }
-        public string vDescripcion { get; set; }
+        public string nidUsuario { get; set; }
+        public string nombresusu { get; set; }
     }
 }
