@@ -13,5 +13,10 @@ namespace QGenesisVEH.Controllers
         {
             return View();
         }
+
+        public ActionResult ListarSiniestro()
+        {
+            return View();
+        }
     }
 }

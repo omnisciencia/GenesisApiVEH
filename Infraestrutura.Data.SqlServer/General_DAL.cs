@@ -1653,6 +1653,7 @@ namespace Infraestrutura.Data.SqlServer
                 PolizaVehiculoEntity clase = new PolizaVehiculoEntity();
 
                 clase.idpoliza = dr["idpoliza"].ToString();
+                clase.idvehiculo = dr["idvehiculo"].ToString();
                 clase.persona = dr["Persona"].ToString();
                 clase.placa = dr["placa"].ToString();
                 clase.marca = dr["marca"].ToString();
@@ -1791,7 +1792,7 @@ namespace Infraestrutura.Data.SqlServer
 
 
         public List<RespuestaPost> RegistrarSiniestro_DAL(
-            string idpoliza, string smidciaseguros, string iestadosiniestro,string dFecNotificacion
+            string idpoliza, string idvehiculo, string smidciaseguros, string iestadosiniestro,string dFecNotificacion
             ,string idocurrencia, string idtiposiniestro, string idconsecuencia, string dFecOcurrencia
             , string vlugarsiniestro, string vubicasiniestro, string iocupantes, string idtipodeclarante
             ,string vdenominacion, string vtelef_declarante, string iparentaseg_declarante, string vmaildeclarante
@@ -1808,6 +1809,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
+            cmd.Parameters.AddWithValue("@idvehiculo", idvehiculo);
             cmd.Parameters.AddWithValue("@smidciaseguros", smidciaseguros);
             cmd.Parameters.AddWithValue("@iestadosiniestro", iestadosiniestro);            
             cmd.Parameters.AddWithValue("@dFecNotificacion", dFecNotificacion);
@@ -1906,6 +1908,131 @@ namespace Infraestrutura.Data.SqlServer
 
             return listado;
         }
+
+
+        public List<SiniestroEntity> ListarSiniestro_DAL(string idsiniestro, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
+        {
+            List<SiniestroEntity> listado = new List<SiniestroEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ListarSiniestro", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idsiniestro", idsiniestro);
+            cmd.Parameters.AddWithValue("@placa", placa);
+            cmd.Parameters.AddWithValue("@fechaini", fechaini);
+            cmd.Parameters.AddWithValue("@fechafin", fechafin);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+            cmd.Parameters.AddWithValue("@NroDePagina", NroDePagina);
+            cmd.Parameters.AddWithValue("@RegPorPag", RegPorPag);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                SiniestroEntity clase = new SiniestroEntity();
+                clase.idsiniestro = dr["idsiniestro"].ToString();
+                clase.dFecRegistro = dr["dFecRegistro"].ToString();
+                clase.Persona = dr["Persona"].ToString();
+                clase.vplaca = dr["vplaca"].ToString();
+                // clase.Marca = dr["Marca"].ToString();
+                
+                clase.Estado = dr["Estado"].ToString();
+                clase.TotalRegistros = dr["TotalRegistros"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+
+        public List<SiniestroEntity> ListarSiniestroExport_DAL(string idsiniestro, string placa, string fechaini, string fechafin, string nombre)
+        {
+            List<SiniestroEntity> listado = new List<SiniestroEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ListarSiniestro_Export", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idsiniestro", idsiniestro);
+            cmd.Parameters.AddWithValue("@placa", placa);
+            cmd.Parameters.AddWithValue("@fechaini", fechaini);
+            cmd.Parameters.AddWithValue("@fechafin", fechafin);
+            cmd.Parameters.AddWithValue("@nombre", nombre);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                SiniestroEntity clase = new SiniestroEntity();                
+                clase.idsiniestro = dr["idsiniestro"].ToString();
+                clase.dFecRegistro = dr["dFecRegistro"].ToString();
+                clase.Persona = dr["Persona"].ToString();
+                clase.vplaca = dr["vplaca"].ToString();
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+
+        public List<SiniestroEntity> SelectSiniestro_DAL(string idsiniestro)
+        {
+            List<SiniestroEntity> listado = new List<SiniestroEntity>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_SelectSiniestro", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@idsiniestro", idsiniestro);            
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                SiniestroEntity clase = new SiniestroEntity();
+                clase.idsiniestro = dr["idsiniestro"].ToString();
+                clase.idpoliza = dr["idpoliza"].ToString();
+                clase.dFecRegistro = dr["dFecRegistro"].ToString();
+                clase.idvehiculo = dr["idvehiculo"].ToString();
+                clase.vlugarsiniestro = dr["vlugarsiniestro"].ToString();
+                clase.vubicasiniestro= dr["vubicasiniestro"].ToString();
+                clase.iocupantes = dr["iocupantes"].ToString();
+                clase.vdenominacion = dr["vdenominacion"].ToString();
+                clase.vtelef_declarante = dr["vtelef_declarante"].ToString();
+                clase.vmaildeclarante = dr["vmaildeclarante"].ToString();
+                clase.vconductor = dr["vconductor"].ToString();
+                clase.vnrodociden = dr["vnrodociden"].ToString();
+                clase.vlicencia = dr["vlicencia"].ToString();
+                clase.vtelef_conductor = dr["vtelef_conductor"].ToString();
+                clase.vemail_conductor = dr["vemail_conductor"].ToString();
+                clase.vcategoria = dr["vcategoria"].ToString();
+                clase.vdetasiniestro = dr["vdetasiniestro"].ToString();
+
+                //clase.Persona = dr["Persona"].ToString();
+                //clase.vplaca = dr["vplaca"].ToString();
+                //clase.Estado = dr["Estado"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+        
 
     }
 }

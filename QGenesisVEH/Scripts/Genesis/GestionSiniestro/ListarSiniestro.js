@@ -1,0 +1,276 @@
+﻿window.onload = function () {
+
+    $("#fechaini").val(FechaActual());
+    $("#fechafin").val(FechaActual());
+    ListarGrilla();
+
+    $("#chk_fec_ini").click(function () {
+        if (this.checked) {
+
+            $("#fechaini").prop("disabled", false);
+            $("#fechafin").prop("disabled", false);
+            $("#fechaini").val("");
+            $("#fechafin").val("");
+
+        }
+        else {
+
+            $("#fechaini").prop("disabled", true);
+            $("#fechafin").prop("disabled", true);
+            $("#fechaini").val("");
+            $("#fechafin").val("");
+
+        }
+    });
+
+}
+
+function FechaActual() {
+    var f = new Date();
+    var dia = "" + f.getDate();
+    var mes = "" + (f.getMonth() + 1)
+
+    if (parseInt(dia) < 10) {
+        dia = "0" + dia;
+    }
+    if (parseInt(mes) < 10) {
+        mes = "0" + mes;
+    }
+    var fecha = (f.getFullYear() + "-" + mes + "-" + dia);
+    return fecha;
+}
+
+//Lista siniestro
+function Listarsiniestro(idsiniestro, placa, fechaini, fechafin, nombre, pagina, RegPorPag) {
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/Listarsiniestro",
+        data: "{idsiniestro:'" + idsiniestro + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "', NroDePagina:'" + pagina + "', RegPorPag:'" + RegPorPag + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ListarGrillasiniestro,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarsiniestroExport",
+        data: "{idsiniestro:'" + idsiniestro + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ListarGrillasiniestroExport,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+
+
+}
+
+function ListarGrillasiniestroExport(data) {
+
+    var tbody = $("#bodyExport");
+    tbody.empty();
+
+    for (i = 0; i < data.length; i++) {
+
+        tbody.append("<tr>" +
+            "<td>" + data[i].idsiniestro + "</td>" +
+            "<td>" + data[i].Persona + "</td>" +
+            "<td>" + data[i].vplaca + "</td>" +
+            "<td>" + data[i].dFecRegistro + "</td>" +
+            "<td>" + data[i].Estado + "</td>" +
+            "</tr>");
+    }
+}
+
+
+function ListarGrillasiniestro(data) {
+    var pagina = $("#Pagina").val();
+    var select = $("#Pagina");
+    var regporpag = "10";
+    var TotalRegistros = "1";
+    var i = 1;
+
+    select.empty();
+
+    //alert(data[0].TotalRegistros);
+
+    if (data.length > 0) {
+        if (parseInt(data[0].TotalRegistros) > parseInt(regporpag)) {
+
+            for (i = 1; i <= Math.ceil(parseInt(data[0].TotalRegistros) / parseInt(regporpag)) ; i++) {
+                select.append("<option value = " + i + ">" + i + "</option>");
+            }
+        }
+        else {
+            select.append("<option value = '1'> 1</option>");
+        }
+    }
+    else {
+        select.append("<option value = '1'> 1</option>");
+    }
+
+
+    $("#Pagina").val(pagina);
+
+
+    var tabla = $("#GridListar");
+    tabla.empty();
+    tabla.append("<thead class='bg-blues'>" +
+                "<tr>" +
+                "<td style='color:#fff;'>Nro. siniestro</td>" +
+                "<td>Contratante</td>" +
+                "<td>Placa</td>" +
+                //"<td>Marca</td>" +
+                "<td>Fecha de Registro</td>" +
+                "<td>Estado</td>" +
+                "<td></td>" +
+                "<td></td>" +
+                "</tr>" +
+                "</thead>");
+
+
+    if (data.length > 0) {
+        tabla.append("<tbody>")
+        for (i = 0; i < data.length; i++) {
+            tabla.append(
+                        "<tr>" +
+                        "<td>" + data[i].idsiniestro + "</td>" +
+                        "<td>" + data[i].Persona + "</td>" +
+                        "<td>" + data[i].vplaca + "</td>" +
+                        //"<td>" + data[i].Marca + "</td>" +
+                        "<td>" + data[i].dFecRegistro + "</td>" +
+                        "<td>" + data[i].Estado + "</td>" +
+                        "<td><input type=button onclick = Link('" + data[i].idsiniestro + "','ver') value=Ver style=width:70px class=btn_customer btn-secondary/></td>" +
+                        //"<td><input type=button onclick = Link('" + data[i].idsiniestro + "') value=Editar style=width:70px class=btn_customer btn-secondary/></td>" +
+                        "</tr>");
+        }
+        tabla.append("</tbody>")
+
+    }
+    else {
+        tabla.append("<tbody>")
+        tabla.append(
+                        "<center>" +
+                        "No hay registro(s) selecionado(s) por los criterios de busqueda" +
+                        "</center>");
+        tabla.append("</tbody>")
+    }
+
+}
+
+function Link(idsiniestro, modo) {
+     
+    //alert('Esta opción esta en construcción');
+    //window.location = "../siniestro/Registrosiniestro?idsiniestro=" + idsiniestro +"&modo="+modo;
+    
+    window.location = "../GestionSiniestro/RegistrarSiniestro";
+
+    sessionStorage.setItem("idsiniestro", idsiniestro);
+    sessionStorage.setItem("modo", modo);
+
+    
+    //$.redirect(surl,
+    //{
+    //    alarmhistoryid: alarmid, evento: even
+    //}, "post", "");
+}
+
+
+
+
+
+function ListarGrilla() {
+    //alert("prueba");
+
+    var idsiniestro = $("#idsiniestro").val();
+    var placa = $("#placa").val();
+    var fechaini = $("#fechaini").val();
+    var fechafin = $("#fechafin").val();
+    var nombre = $("#contratante").val();
+    var pagina = $("#Pagina").val();
+    var regporpag = "10";
+
+    Listarsiniestro(idsiniestro, placa, fechaini, fechafin, nombre, pagina, regporpag);
+
+}
+
+$("#btnBuscar").click(function () {
+
+    ListarGrilla();
+
+});
+
+$("#btnLimpiar").click(function () {
+
+    //$("#idinspeccion").val('');
+    $("#idsiniestro").val('');
+    $("#placa").val('');
+    $("#fechaini").val('');
+    $("#fechafin").val('');
+    $("#contratante").val('');
+
+});
+
+$("#btnNuevo").click(function () {
+    // window.location = "../siniestro/Registrosiniestro";
+    var idsiniestro = ''
+    var modo = 'agregar'
+    //window.location = "../siniestro/Registrosiniestro?idsiniestro=" + idsiniestro + "&modo=" + modo;
+    window.location = "../GestionSiniestro/RegistrarSiniestro";
+});
+
+
+$("select[name=Pagina]").change(function () {
+
+    ListarGrilla();
+
+});
+
+$("#Anterior").click(function () {
+    c = $("#Pagina").val();
+    c = parseInt(c) - 1;
+
+    if (c > 0) {
+        $("#Pagina").val(c);
+        ListarGrilla();
+    }
+
+});
+
+$("#Siguiente").click(function () {
+    c = $("#Pagina").val();
+    c = parseInt(c) + 1;
+
+    var a = $('#Pagina option').size();
+
+    if (c <= a) {
+        $("#Pagina").val(c);
+        ListarGrilla();
+    }
+
+});
+
+function exportarExcel() {
+    $('#table_export').table2excel({
+        exclude: ".noExl",
+        name: "Excel Document Name",
+        filename: "Listasiniestros",
+        fileext: ".xls",
+        exclude_img: true,
+        exclude_links: true,
+        exclude_inputs: true
+    });
+}
+
+//Error:
+function OnError(data) {
+    alert("Error 404...");
+}
+
