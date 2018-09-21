@@ -109,8 +109,13 @@ jQuery(document).ready(function() {
         var parent_fieldset = $(this).parents('fieldset');
         var next_step = true;
         // navigation steps / progress steps
+
+      
+
         var current_active_step = $(this).parents('.f1').find('.f1-step.active');
         var progress_line = $(this).parents('.f1').find('.f1-progress-line');
+
+
         next_step = true;
         // fields validation
         //parent_fieldset.find('input[type="text"], input[type="password"],input[type="email"], textarea').each(function () {
@@ -121,7 +126,59 @@ jQuery(document).ready(function() {
             //}
             //else {
             //    $(this).removeClass('input-error');
-            //}        
+        //}   
+
+        parent_fieldset.find('#fecinspeccion_id').each(function () {
+
+            if ($('#fecinspeccion_id').val() == "") {
+                if ($('#fecinspeccion_id').val() == "") $('#fecinspeccion_id').addClass('input-error');
+                next_step = false;
+            }
+            else {
+
+                $(this).removeClass('input-error');
+
+            }
+        });
+
+        parent_fieldset.find('#hrinspeccion_id').each(function () {
+
+            if ($('#hrinspeccion_id').val() == "") {
+                if ($('#hrinspeccion_id').val() == "") $('#hrinspeccion_id').addClass('input-error');
+                next_step = false;
+            }
+            else {
+
+                $(this).removeClass('input-error');
+
+            }
+        });
+
+        parent_fieldset.find('#inspector_id').each(function () {
+
+            if ($('#inspector_id').val() == "") {
+                if ($('#inspector_id').val() == "") $('#inspector_id').addClass('input-error');
+                next_step = false;
+            }
+            else {
+
+                $(this).removeClass('input-error');
+
+            }
+        });
+
+        parent_fieldset.find('#email_id').each(function () {
+
+            if ($('#email_id').val() == "") {
+                if ($('#email_id').val() == "") $('#email_id').addClass('input-error');
+                next_step = false;
+            }
+            else {
+
+                $(this).removeClass('input-error');
+
+            }
+        });
 
 
         parent_fieldset.find('#nropoliza_reg').each(function () {

@@ -14,6 +14,11 @@
     //AutocomUbigeo();
     $('#fecregistro_reg').val(FechaSistema());
 
+    var idsiniestro_input = sessionStorage.getItem("idsiniestro");
+    var modo_input = sessionStorage.getItem("modo");
+
+    SelectSiniestro(idsiniestro_input);
+
 }
 
 $(document).ready(function () {
@@ -49,15 +54,16 @@ $(document).ready(function () {
 
     });
 
-    $("#buscar_Id_poliza").click(function () {
+    $("#busqueda_avanzada").click(function () {
 
         var idpoliza = $('#poliza_reg').val();
         if (idpoliza.length > 0) {
             SelectPolizaVehiculo(idpoliza, '');
         }
         else {
-            alert('No se ha ingresado ningun nro poliza para la busqueda.');
-            $('#poliza_reg').focus();
+            //alert('No se ha ingresado ningun nro poliza para la busqueda.');
+            $('#listado_poliza').modal('show');
+            //$('#poliza_reg').focus();
         }
     });
 
@@ -71,7 +77,7 @@ $(document).ready(function () {
 
     $('#poliza_reg').keypress(function (e) {
         if (e.which == 13) {
-            document.getElementById('buscar_Id_poliza').click();
+            document.getElementById('busqueda_avanzada').click();
         }
     });
 
@@ -110,7 +116,8 @@ $(document).ready(function () {
 
     $("#btnGuardar").click(function () {
         
-        var idpoliza= $("#poliza_reg").val();
+        var idpoliza = $("#poliza_reg").val();
+        var idvehiculo = $("#idvehiculo_reg").val();        
         var dFecNotificacion= $("#fecnotificacion_reg").val();
         var idocurrencia = $("#sp_Ocurrencia").val();
         var idtiposiniestro = $("#sp_TipoSiniestro").val();
@@ -143,7 +150,7 @@ $(document).ready(function () {
          
 
         RegistrarSiniestro(
-            idpoliza, '1', '1', dFecNotificacion
+            idpoliza,idvehiculo, '1', '1', dFecNotificacion
             , idocurrencia, idtiposiniestro, idconsecuencia, dFecOcurrencia
             , vlugarsiniestro, vubicasiniestro, iocupantes, idtipodeclarante
             , vdenominacion, vtelef_declarante, iparentaseg_declarante, vmaildeclarante
@@ -156,8 +163,58 @@ $(document).ready(function () {
 });
 
 
+function SelectSiniestro(idsiniestro) {
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/SelectSiniestro",
+        data: "{idsiniestro:'" + idsiniestro + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: MostrarRegistroSiniestro,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+    });
+
+}
+
+function MostrarRegistroSiniestro(data) {
+
+    if (data != null) {
+
+        if (data.length > 0) {
+            $('#idsiniestro_reg').val(data[0].idsiniestro);
+            $('#poliza_reg').val(data[0].idpoliza);
+            $("#idvehiculo_reg").val(data[0].idvehiculo);
+
+            $("#lugarsiniestro_reg").val(data[0].vlugarsiniestro);
+            $("#ubicasiniestro_reg").val(data[0].vubicasiniestro);
+            $("#nro_ocupantes_reg").val(data[0].iocupantes);
+            $("#denominacion_reg").val(data[0].vdenominacion);
+            $("#telefdeclarante_reg").val(data[0].vtelef_declarante);
+            $("#maildeclarante_reg").val(data[0].vmaildeclarante);
+            $("#conductor_reg").val(data[0].vconductor);
+            $("#nrodocid_reg").val(data[0].vnrodociden);
+            $("#licencia_reg").val(data[0].vlicencia);
+            $("#telefconductor_reg").val(data[0].vtelef_conductor);
+            $("#emailconductor_reg").val(data[0].vemail_conductor);
+            $("#categoria_reg").val(data[0].vcategoria);
+            $("#detasiniestro_reg").val(data[0].vdetasiniestro);
+
+
+
+
+        }
+        
+    }
+}
+
+
+
 function RegistrarSiniestro
-    (idpoliza, smidciaseguros, iestadosiniestro, dFecNotificacion
+    (idpoliza,idvehiculo, smidciaseguros, iestadosiniestro, dFecNotificacion
     , idocurrencia, idtiposiniestro, idconsecuencia, dFecOcurrencia
     , vlugarsiniestro, vubicasiniestro, iocupantes, idtipodeclarante
     , vdenominacion, vtelef_declarante, iparentaseg_declarante, vmaildeclarante
@@ -169,7 +226,7 @@ function RegistrarSiniestro
     $.ajax({
         type: "POST",
         url: "../Services/RegistrarSiniestro",
-        data: "{idpoliza:'" + idpoliza + "', smidciaseguros:'" + smidciaseguros + "', iestadosiniestro:'" + iestadosiniestro + "', dFecNotificacion:'" + dFecNotificacion
+        data: "{idpoliza:'" + idpoliza + "',idvehiculo:'" + idvehiculo + "', smidciaseguros:'" + smidciaseguros + "', iestadosiniestro:'" + iestadosiniestro + "', dFecNotificacion:'" + dFecNotificacion
             + "', idocurrencia:'" + idocurrencia + "', idtiposiniestro:'" + idtiposiniestro + "', idconsecuencia:'" + idconsecuencia + "', dFecOcurrencia:'" + dFecOcurrencia
             + "', vlugarsiniestro:'" + vlugarsiniestro + "', vubicasiniestro:'" + vubicasiniestro + "', iocupantes:'" + iocupantes + "', idtipodeclarante:'" + idtipodeclarante 
             + "', vdenominacion:'" + vdenominacion + "', vtelef_declarante:'" + vtelef_declarante + "', iparentaseg_declarante:'" + iparentaseg_declarante + "', vmaildeclarante:'" + vmaildeclarante 
@@ -185,6 +242,7 @@ function RegistrarSiniestro
                 if (data.length >= 0) {
                     if (data[0].respuesta == 'true') {
                         alert('Se registro de forma exitosa.');
+                        Retornar();
                     }
                     else {
                         alert('Lo sentimos, ocurrio un error al intentar registrar la información, detalles: ' + data[0].respuesta);
@@ -222,6 +280,12 @@ function campos_bloqueados() {
     $("#kilometraje_reg").prop("disabled", true);
     
 }
+
+function Retornar() {
+    //window.location = "../Poliza/ListarPoliza?id=" + idinspeccion;
+    window.location = "../GestionSiniestro/ListarSiniestro";
+}
+
 
 
 function solonumeros(e) {
@@ -419,6 +483,7 @@ function VerPolizaVehiculo(data) {
         if (data.length == 1) {
 
             $('#idpoliza_reg').val(data[0].idpoliza);
+            $("#idvehiculo_reg").val(data[0].idvehiculo);
             $('#asegurado_reg').val(data[0].persona);
             $('#placa_reg').val(data[0].placa);
             $('#marca_reg').val(data[0].marca);
@@ -432,7 +497,8 @@ function VerPolizaVehiculo(data) {
         }
         else {
             if (data.length > 1) {
-                document.getElementById('busqueda_avanzada').click();
+                //document.getElementById('busqueda_avanzada').click();
+                $('#listado_poliza').modal('show');
                 $('#bus_poliza').val(idpoliza);
                 document.getElementById('buscar_poliza_listado').click();
             }

@@ -76,6 +76,12 @@ namespace Dominio.Repositorio
         }
 
         //Listar Sexo
+        public List<EstadoPoliza> ListarEstadoPoliza_BL()
+        {
+            return dal.ListarEstadoPoliza_DAL();
+        }
+
+        //Listar Sexo
         public List<SexoEntity> ListarSexo_BL()
         {
             return dal.ListarSexo_DAL();
@@ -280,6 +286,12 @@ namespace Dominio.Repositorio
             return dal.ListarSeguroSOAT_DAL();
         }
 
+        //Programar Inspeccion
+        public List<RespuestaPost> ProgramarInspeccion_BL(string fecInspeccion, string hrInspeccion, int iidinspeccion)
+        {
+            return dal.ProgramarInspeccion_DAL(fecInspeccion, hrInspeccion, iidinspeccion);
+        }
+
         //Registrar Inspeccion
         public List<RespuestaPost> RegistrarInspeccion_BL(int smidpersona, int idpoliza, int idvehiculo, int sminacionalidad,
             int smestadocivil, string dfechanac, string vemail, string vtelefono1, string vcelular, int btsexo, int smidtablaformapago,
@@ -295,7 +307,7 @@ namespace Dominio.Repositorio
             int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
             int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
             int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
+            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion, string fecInspeccion_f, string hrInspeccion_f, int dprograma)
 
         {
             return dal.RegistrarInspeccion_DAL(smidpersona, idpoliza, idvehiculo, sminacionalidad,
@@ -312,7 +324,7 @@ namespace Dominio.Repositorio
             smestadofarodireccion, smcantfarodireccion, smcantfaroneblinero, smestadofaroneblinero,
             smcantespejoexterno, smestadoespejoexterno, smestadospoiler, smcantspoiler, smtipoaros,
             smcantaros, smestadomascara, smpintura, smtipoparachoque, smcarroceria, smconsola,
-            smtablero, btequipomusicafijo, vinspector, smidcalificacion);
+            smtablero, btequipomusicafijo, vinspector, smidcalificacion, fecInspeccion_f, hrInspeccion_f, dprograma);
         }
 
         //Listado Imagenes Inpeccion
@@ -416,7 +428,7 @@ namespace Dominio.Repositorio
 
 
         public List<RespuestaPost> RegistrarSiniestro_BL(
-            string idpoliza,string smidciaseguros, string iestadosiniestro, string dFecNotificacion
+            string idpoliza, string idvehiculo, string smidciaseguros, string iestadosiniestro, string dFecNotificacion
             , string idocurrencia, string idtiposiniestro, string idconsecuencia, string dFecOcurrencia
             , string vlugarsiniestro, string vubicasiniestro, string iocupantes, string idtipodeclarante
             , string vdenominacion, string vtelef_declarante, string iparentaseg_declarante, string vmaildeclarante
@@ -426,7 +438,7 @@ namespace Dominio.Repositorio
            )
         {
             return dal.RegistrarSiniestro_DAL(
-                idpoliza, smidciaseguros, iestadosiniestro, dFecNotificacion
+                idpoliza,idvehiculo, smidciaseguros, iestadosiniestro, dFecNotificacion
                 , idocurrencia, idtiposiniestro, idconsecuencia, dFecOcurrencia
                 , vlugarsiniestro, vubicasiniestro, iocupantes, idtipodeclarante
                 , vdenominacion, vtelef_declarante, iparentaseg_declarante, vmaildeclarante
@@ -447,7 +459,20 @@ namespace Dominio.Repositorio
             return dal.Combo_Usuario_DAL(idperfil);
         }
 
+        public List<SiniestroEntity> ListarSiniestro_BL(string idsiniestro, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
+        {
+            return dal.ListarSiniestro_DAL(idsiniestro, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
+        }
 
+        public List<SiniestroEntity> ListarSiniestroExport_BL(string idsniestro, string placa, string fechaini, string fechafin, string nombre)
+        {
+            return dal.ListarSiniestroExport_DAL(idsniestro, placa, fechaini, fechafin, nombre);
+        }
+
+        public List<SiniestroEntity> SelectSiniestro_BL(string idsniestro)
+        {
+            return dal.SelectSiniestro_DAL(idsniestro);
+        }
 
     }
 }

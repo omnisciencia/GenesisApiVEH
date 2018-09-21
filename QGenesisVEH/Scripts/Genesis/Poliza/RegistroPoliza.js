@@ -20,6 +20,7 @@ window.onload = function () {
     InhabilitarCajas();
     Spinner_FormaPago();
     Spinner_SeguroSOAT();
+    Spinner_EstadoPoliza();
 
     $("#idsiniestro_reg").prop("disabled", true);
     $("#sp_TipoUso").prop("disabled", true);
@@ -1025,6 +1026,35 @@ function Spinner_Nacionalidad() {
 
 function llenarSpinner_Nacionalidad(data) {
     var selectAgregar = $("#sp_Nacionalidad");
+    selectAgregar.empty();
+
+    for (i = 0; i < data.length; i++) {
+        selectAgregar.append("<option value='" + data[i].smiddetalle + "'>" + data[i].vdescripcion + "</option>");
+    }
+
+}
+
+//Estado Poliza: 
+function Spinner_EstadoPoliza() {
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarEstadoPoliza",
+        data: "",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: llenarSpinner_estadoPoliza,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+
+function llenarSpinner_estadoPoliza(data) {
+    var selectAgregar = $("#sp_EPoliza");
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
