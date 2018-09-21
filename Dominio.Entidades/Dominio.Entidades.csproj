@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarVehiculo.cs" />
     <Compile Include="ClaseRodanteEntity.cs" />
     <Compile Include="ComboUsuario.cs" />
     <Compile Include="ComisariaEntity.cs" />

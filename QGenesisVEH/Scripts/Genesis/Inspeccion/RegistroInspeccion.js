@@ -776,7 +776,7 @@ function ListarDatosPoliza(data) {
         global_fecProgramacion = fecinspeccion;
         
         //var fecActual = fechaActual();
-        alert(global_fecProgramacion);
+        //alert(global_fecProgramacion);
         
         $("#idcontratante").val(smidpersona);
         $("#sp_TipoVehiculo").val(claseveh);

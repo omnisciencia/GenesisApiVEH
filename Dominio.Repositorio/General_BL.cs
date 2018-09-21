@@ -17,7 +17,28 @@ namespace Dominio.Repositorio
         //REGISTRO POLIZA *******************************************************************************************************************
         //***************************************************************************************************************************************
 
-
+        //Listar Tipo Vehiculo
+        public List<RespuestaPost> ActualizarPoliza_BL(string smestadocivil,
+            string vcelular, string vtelefono1,
+            string vemail, string smIdTipoVia,
+            string vnumero, string vnombrevia,
+            string vdepartamento,
+            string vprovincia, string vdistrito,
+            string idnrodocumento, string vreferencia)
+        {
+            return dal.ActualizarPoliza_DAL( smestadocivil,
+             vcelular,  vtelefono1,
+             vemail,  smIdTipoVia,
+             vnumero,  vnombrevia,
+             vdepartamento,
+             vprovincia,  vdistrito,
+             idnrodocumento,  vreferencia);
+        }
+        //actualizarVehiculo
+        public List<ActualizarVehiculo> Actualizarvehiculo_BL(string vplaca)
+        {
+            return dal.Actualizarvehiculo_DAL(vplaca);
+        }
         //Listar Tipo Vehiculo
         public List<TipoVehiculoEntity> ListarTipoVehiculo_BL()
         {
