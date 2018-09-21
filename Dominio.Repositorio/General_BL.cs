@@ -55,6 +55,12 @@ namespace Dominio.Repositorio
         }
 
         //Listar Sexo
+        public List<EstadoPoliza> ListarEstadoPoliza_BL()
+        {
+            return dal.ListarEstadoPoliza_DAL();
+        }
+
+        //Listar Sexo
         public List<SexoEntity> ListarSexo_BL()
         {
             return dal.ListarSexo_DAL();
@@ -259,6 +265,12 @@ namespace Dominio.Repositorio
             return dal.ListarSeguroSOAT_DAL();
         }
 
+        //Programar Inspeccion
+        public List<RespuestaPost> ProgramarInspeccion_BL(string fecInspeccion, string hrInspeccion, int iidinspeccion)
+        {
+            return dal.ProgramarInspeccion_DAL(fecInspeccion, hrInspeccion, iidinspeccion);
+        }
+
         //Registrar Inspeccion
         public List<RespuestaPost> RegistrarInspeccion_BL(int smidpersona, int idpoliza, int idvehiculo, int sminacionalidad,
             int smestadocivil, string dfechanac, string vemail, string vtelefono1, string vcelular, int btsexo, int smidtablaformapago,
@@ -274,7 +286,7 @@ namespace Dominio.Repositorio
             int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
             int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
             int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
+            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion, string fecInspeccion_f, string hrInspeccion_f, int dprograma)
 
         {
             return dal.RegistrarInspeccion_DAL(smidpersona, idpoliza, idvehiculo, sminacionalidad,
@@ -291,7 +303,7 @@ namespace Dominio.Repositorio
             smestadofarodireccion, smcantfarodireccion, smcantfaroneblinero, smestadofaroneblinero,
             smcantespejoexterno, smestadoespejoexterno, smestadospoiler, smcantspoiler, smtipoaros,
             smcantaros, smestadomascara, smpintura, smtipoparachoque, smcarroceria, smconsola,
-            smtablero, btequipomusicafijo, vinspector, smidcalificacion);
+            smtablero, btequipomusicafijo, vinspector, smidcalificacion, fecInspeccion_f, hrInspeccion_f, dprograma);
         }
 
         //Listado Imagenes Inpeccion

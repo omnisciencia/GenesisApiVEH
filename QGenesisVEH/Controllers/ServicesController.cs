@@ -69,6 +69,14 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
+        public ActionResult ListarEstadoPoliza()
+        {
+            General_BL bl = new General_BL();
+            List<EstadoPoliza> listado = bl.ListarEstadoPoliza_BL();
+            return Json(listado);
+        }
+
+
         public ActionResult ListarSexo()
         {
             General_BL bl = new General_BL();
@@ -129,6 +137,13 @@ namespace GenesisVehivular.Controllers
         {
             General_BL bl = new General_BL();
             List<FormaPagoEntity> listado = bl.ListarFormaPago_BL();
+            return Json(listado);
+        }
+
+        public ActionResult ProgramarInspeccion(string fecInspeccion, string hrInspeccion, int iidinspeccion)
+        {
+            General_BL bl = new General_BL();
+            List<RespuestaPost> listado = bl.ProgramarInspeccion_BL(fecInspeccion, hrInspeccion, iidinspeccion);
             return Json(listado);
         }
 
@@ -312,7 +327,7 @@ namespace GenesisVehivular.Controllers
             string smestadofarodireccion, string smcantfarodireccion, string smcantfaroneblinero, string smestadofaroneblinero,
             string smcantespejoexterno, string smestadoespejoexterno, string smestadospoiler, string smcantspoiler, string smtipoaros,
             string smcantaros, string smestadomascara, string smpintura, string smtipoparachoque, string smcarroceria, string smconsola,
-            string smtablero, string btequipomusicafijo, string vinspector, string smidcalificacion)
+            string smtablero, string btequipomusicafijo, string vinspector, string smidcalificacion, string fecInspeccion_f, string hrInspeccion_f, int dprograma)
         {
             General_BL bl = new General_BL();
             List<RespuestaPost> listado = bl.RegistrarInspeccion_BL(Convert.ToInt32(smidpersona), Convert.ToInt32(idpoliza), Convert.ToInt32(idvehiculo), Convert.ToInt32(sminacionalidad),
@@ -329,7 +344,7 @@ namespace GenesisVehivular.Controllers
             Convert.ToInt32(smestadofarodireccion), Convert.ToInt32(smcantfarodireccion), Convert.ToInt32(smcantfaroneblinero), Convert.ToInt32(smestadofaroneblinero),
             Convert.ToInt32(smcantespejoexterno), Convert.ToInt32(smestadoespejoexterno), Convert.ToInt32(smestadospoiler), Convert.ToInt32(smcantspoiler), Convert.ToInt32(smtipoaros),
             Convert.ToInt32(smcantaros), Convert.ToInt32(smestadomascara), Convert.ToInt32(smpintura), Convert.ToInt32(smtipoparachoque), Convert.ToInt32(smcarroceria), Convert.ToInt32(smconsola),
-            Convert.ToInt32(smtablero), Convert.ToInt32(btequipomusicafijo), vinspector, Convert.ToInt32(smidcalificacion));
+            Convert.ToInt32(smtablero), Convert.ToInt32(btequipomusicafijo), vinspector, Convert.ToInt32(smidcalificacion), fecInspeccion_f, hrInspeccion_f, dprograma);
             return Json(listado);
         }
 

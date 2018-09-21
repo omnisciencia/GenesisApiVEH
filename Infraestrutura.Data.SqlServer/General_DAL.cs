@@ -191,6 +191,34 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
+        //Listado Estado Poliza
+        public List<EstadoPoliza> ListarEstadoPoliza_DAL()
+        {
+            List<EstadoPoliza> listado = new List<EstadoPoliza>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ListarEstadoPoliza", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                EstadoPoliza clase = new EstadoPoliza();
+                clase.smiddetalle = int.Parse(dr["smiddetalle"].ToString());
+                clase.vdescripcion = dr["vdescripcion"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
         //Listado Sexo
         public List<SexoEntity> ListarSexo_DAL()
         {
@@ -1125,6 +1153,38 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
+        //Programar Inspeccion
+        public List<RespuestaPost> ProgramarInspeccion_DAL(string fecInspeccion, string hrInspeccion, int iidinspeccion)
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ProgramarInspeccion", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@fecInspeccion", fecInspeccion);
+            cmd.Parameters.AddWithValue("@hrInspeccion", hrInspeccion);
+            cmd.Parameters.AddWithValue("@iidinspeccion", iidinspeccion);            
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+
+                clase.respuesta = dr["respuesta"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
         //Registro de Inspeccion
         public List<RespuestaPost> RegistrarInspeccion_DAL(int smidpersona, int idpoliza, int idvehiculo, int sminacionalidad,
             int smestadocivil, string dfechanac, string vemail, string vtelefono1, string vcelular, int btsexo, int smidtablaformapago,
@@ -1140,7 +1200,7 @@ namespace Infraestrutura.Data.SqlServer
             int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
             int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
             int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
+            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion, string fecInspeccion_f, string hrInspeccion_f, int dprograma)
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
 
@@ -1220,6 +1280,9 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@btequipomusicafijo", btequipomusicafijo);
             cmd.Parameters.AddWithValue("@vinspector", vinspector);
             cmd.Parameters.AddWithValue("@smidcalificacion", smidcalificacion);
+            cmd.Parameters.AddWithValue("@fecInspeccion_f", fecInspeccion_f);
+            cmd.Parameters.AddWithValue("@hrInspeccion_f", hrInspeccion_f);
+            cmd.Parameters.AddWithValue("@dprograma", dprograma);
 
             cn.getcn.Open();
 
@@ -1561,7 +1624,6 @@ namespace Infraestrutura.Data.SqlServer
         //************************************
         //SINIESTROS*************************
         //***********************************
-
 
         //Listar VEHICULO SINIESTRO
         public List<ListarPolizaEntity> Listar_PolizaVehiculo_SIN_DAL(string idpoliza, string placa, string nombre, string estado, int NroDePagina, int RegPorPag)
