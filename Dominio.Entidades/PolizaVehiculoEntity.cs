@@ -10,8 +10,8 @@ namespace Dominio.Entidades
     {
         public string smidciaseguros { get; set; }
         public string idpoliza { get; set; }
-        public string persona { get; set; }
         public string idvehiculo { get; set; }
+        public string persona { get; set; }        
         public string idtipoveh { get; set; }
         public string idmarca { get; set; }
         public string idmodeloveh { get; set; }

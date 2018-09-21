@@ -375,7 +375,7 @@ function GuardarFoto() {
         $.ajax({
             type: "POST",
             url: "../Services/GuardarFotoInspeccion",
-            data: "{ iidinspeccion:'" + iidinspeccion + "', fecha:'" + fecha + "', descripcion:'" + descripcion + "'}",
+            data: "{iidinspeccion:'" + iidinspeccion + "', fecha:'" + fecha + "', descripcion:'" + descripcion + "'}",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: ResponseGuardarImgSucces,
@@ -385,12 +385,7 @@ function GuardarFoto() {
             error: OnError
 
         });
-        
-
-    }
-
-
-   
+    }   
 }
 
 
@@ -897,6 +892,9 @@ function ListarDatosPoliza(data) {
         global_idpoliza = idpoliza;
         global_idvehiculo = idvehiculo;
         global_fecProgramacion = fecinspeccion;
+        
+        //var fecActual = fechaActual();
+        
         
         $("#idcontratante").val(smidpersona);
         $("#sp_TipoVehiculo").val(claseveh);

@@ -9,7 +9,9 @@
 <link href="~/Content/Modulo/Consulta/Inspeccion.css" rel="stylesheet" />
 
 <div style="height:20px;"></div>
-
+<div>
+    <h3>REGISTRO DE SINIESTRO</h3>
+</div>
 <div class="contenedorRegistro">
 
     <ul class="nav nav-tabs" id="myTabGeneral" role="tablist">
@@ -205,14 +207,14 @@
                                     <td>
                                         <input id="poliza_reg" type="text" class="form-control form-control-sm" onkeypress="return solonumeros(event);">
                                     </td>
-                                    <td>
+                                    @*<td>
                                         <a id="buscar_Id_poliza" class="btn btn-sm btn-primary" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Buscar">
                                         <i class="fas fa-search" ></i>
                                         </a>
-                                    </td>
+                                    </td>*@
                                     <td>
-                                        <a id="busqueda_avanzada" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#listado_poliza" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Busqueda Avanzada">
-                                            <i class="fas fa-th-list"></i>
+                                        <a id="busqueda_avanzada" class="btn btn-sm btn-primary" style="color:#fff;font-size:0.7rem;margin-top:-0.3rem;" title="Buscar">
+                                            <i class="fas fa-search"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -374,7 +376,9 @@
                     </tr>
                     <tr>
                         <td>Placa</td>
-                        <td><input id="placa_reg" type="text" class="form-control form-control-sm"></td>
+                        <td>
+                        <input id="idvehiculo_reg" style="display:none" type="text" class="form-control form-control-sm">
+                        <input id="placa_reg" type="text" class="form-control form-control-sm"></td>
                         <td style="text-align: left;padding-left: 1.5%;">Marca</td>
                         <td><input id="marca_reg" type="text" class="form-control form-control-sm"></td>
                         <td>Modelo</td>

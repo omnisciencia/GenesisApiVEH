@@ -589,7 +589,7 @@ namespace GenesisVehivular.Controllers
         }
 
         public ActionResult RegistrarSiniestro(
-            string idpoliza,string smidciaseguros, string iestadosiniestro, string dFecNotificacion
+            string idpoliza, string idvehiculo, string smidciaseguros, string iestadosiniestro, string dFecNotificacion
             , string idocurrencia, string idtiposiniestro, string idconsecuencia, string dFecOcurrencia
             , string vlugarsiniestro, string vubicasiniestro, string iocupantes, string idtipodeclarante
             , string vdenominacion, string vtelef_declarante, string iparentaseg_declarante, string vmaildeclarante
@@ -600,7 +600,7 @@ namespace GenesisVehivular.Controllers
         {   
             General_BL bl = new General_BL();
             List<RespuestaPost> listado = bl.RegistrarSiniestro_BL(
-                idpoliza, smidciaseguros, iestadosiniestro, dFecNotificacion
+                idpoliza, idvehiculo, smidciaseguros, iestadosiniestro, dFecNotificacion
                 , idocurrencia, idtiposiniestro, idconsecuencia, dFecOcurrencia
                 , vlugarsiniestro, vubicasiniestro, iocupantes, idtipodeclarante
                 , vdenominacion, vtelef_declarante, iparentaseg_declarante, vmaildeclarante
@@ -625,6 +625,25 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
+        public ActionResult Listarsiniestro(string idsiniestro, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
+        {
+            General_BL bl = new General_BL();
+            List<SiniestroEntity> listado = bl.ListarSiniestro_BL(idsiniestro, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
+            return Json(listado);
+        }
+                
+        public ActionResult ListarSiniestroExport(string idsiniestro, string placa, string fechaini, string fechafin, string nombre)
+        {
+            General_BL bl = new General_BL();
+            List<SiniestroEntity> listado = bl.ListarSiniestroExport_BL(idsiniestro, placa, fechaini, fechafin, nombre);
+            return Json(listado);
+        }
+        public ActionResult SelectSiniestro(string idsiniestro)
+        {
+            General_BL bl = new General_BL();
+            List<SiniestroEntity> listado = bl.SelectSiniestro_BL(idsiniestro);
+            return Json(listado);
+        }
 
     }
 

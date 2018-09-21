@@ -136,6 +136,7 @@
     <None Include="Properties\PublishProfiles\PB_270818.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Genesis\Consultas\Inspeccion.js" />
+    <Content Include="Scripts\Genesis\GestionSiniestro\ListarSiniestro.js" />
     <Content Include="Scripts\Genesis\GestionSiniestro\RegistrarSiniestro.js" />
     <Content Include="Scripts\Genesis\Inspeccion\RegistroInspeccion.js" />
     <Content Include="Scripts\Genesis\Inspeccion\ReporteInspeccion.js" />
@@ -210,6 +211,7 @@
     <Content Include="Views\GestionSiniestro\RegistrarSiniestro.cshtml" />
     <Content Include="Views\Reporte.cshtml" />
     <Content Include="Views\prueba\Index.cshtml" />
+    <Content Include="Views\GestionSiniestro\ListarSiniestro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

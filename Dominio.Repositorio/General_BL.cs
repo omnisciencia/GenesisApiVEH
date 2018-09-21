@@ -407,7 +407,7 @@ namespace Dominio.Repositorio
 
 
         public List<RespuestaPost> RegistrarSiniestro_BL(
-            string idpoliza,string smidciaseguros, string iestadosiniestro, string dFecNotificacion
+            string idpoliza, string idvehiculo, string smidciaseguros, string iestadosiniestro, string dFecNotificacion
             , string idocurrencia, string idtiposiniestro, string idconsecuencia, string dFecOcurrencia
             , string vlugarsiniestro, string vubicasiniestro, string iocupantes, string idtipodeclarante
             , string vdenominacion, string vtelef_declarante, string iparentaseg_declarante, string vmaildeclarante
@@ -417,7 +417,7 @@ namespace Dominio.Repositorio
            )
         {
             return dal.RegistrarSiniestro_DAL(
-                idpoliza, smidciaseguros, iestadosiniestro, dFecNotificacion
+                idpoliza,idvehiculo, smidciaseguros, iestadosiniestro, dFecNotificacion
                 , idocurrencia, idtiposiniestro, idconsecuencia, dFecOcurrencia
                 , vlugarsiniestro, vubicasiniestro, iocupantes, idtipodeclarante
                 , vdenominacion, vtelef_declarante, iparentaseg_declarante, vmaildeclarante
@@ -438,7 +438,20 @@ namespace Dominio.Repositorio
             return dal.Combo_Usuario_DAL(idperfil);
         }
 
+        public List<SiniestroEntity> ListarSiniestro_BL(string idsiniestro, string placa, string fechaini, string fechafin, string nombre, int NroDePagina, int RegPorPag)
+        {
+            return dal.ListarSiniestro_DAL(idsiniestro, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
+        }
 
+        public List<SiniestroEntity> ListarSiniestroExport_BL(string idsniestro, string placa, string fechaini, string fechafin, string nombre)
+        {
+            return dal.ListarSiniestroExport_DAL(idsniestro, placa, fechaini, fechafin, nombre);
+        }
+
+        public List<SiniestroEntity> SelectSiniestro_BL(string idsniestro)
+        {
+            return dal.SelectSiniestro_DAL(idsniestro);
+        }
 
     }
 }
