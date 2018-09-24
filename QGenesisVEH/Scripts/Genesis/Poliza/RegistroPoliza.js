@@ -263,14 +263,14 @@ window.onload = function () {
     //idpoliza_input = getParameterByName('idpoliza');
     //modo_input = getParameterByName('modo');
 
-    var idpoliza_input = sessionStorage.getItem("idpoliza");
 
+    var idpoliza_input = sessionStorage.getItem("idpoliza");
     var modo_input = sessionStorage.getItem("modo");
+
     global_modo = modo_input;
 
-    sessionStorage.removeItem("idpoliza");
-
-    sessionStorage.removeItem("modo");
+    //sessionStorage.removeItem("idpoliza");
+    //sessionStorage.removeItem("modo");
     //alert(modo_input);
 
     if (modo_input == 'ver') {
@@ -316,41 +316,45 @@ window.onload = function () {
         $('#btnsave').addClass('Ocultar');
         $('#btnback').removeClass('Ocultar');
         
-    } else if (modo_input == 'editar') {
-        ListarPolizaVehiculo(idpoliza_input);
-        $('#btnVer').hide();
-        $('#titulo').html('ACTUALIZAR - REGISTRO DE POLIZA');
-        $('#nropoliza_reg').prop('disabled', true);
-        $('#sp_Plan').prop('disabled', true);
-        $('#vigenciaini_reg').prop('disabled', true);
-        $('#sp_FormaPago').prop('disabled', true);
-        $('#sp_Poliza').prop('disabled', true);
-        $('#sp_TipoDocumento').prop('disabled', true);
-        $('#nrodocumento_reg').prop('disabled', true);
-        $('#sp_Nacionalidad').prop('disabled', true);
-        $('#nombres_reg').prop('disabled', true);
-        $('#paterno_reg').prop('disabled', true);
-        $('#materno_reg').prop('disabled', true);
-        $('#fecnaci_reg').prop('disabled', true);
-        $('#sp_Sexo').prop('disabled', true);
-        $('#placa_reg').prop('disabled', true);
-        $('#sp_MarcaVehiculo').prop('disabled', true);
-        $('#sp_ModeloVehiculo').prop('disabled', true);
-        $('#sp_anioFabricacion').prop('disabled', true);
-        $('#sp_TipoVehiculo').prop('disabled', true);
+    } else
+    {
+        if (modo_input == 'editar') {
+            ListarPolizaVehiculo(idpoliza_input);
+            $('#btnVer').hide();
+            $('#titulo').html('ACTUALIZAR - REGISTRO DE POLIZA');
+            $('#nropoliza_reg').prop('disabled', true);
+            $('#sp_Plan').prop('disabled', true);
+            $('#vigenciaini_reg').prop('disabled', true);
+            $('#sp_FormaPago').prop('disabled', true);
+            $('#sp_Poliza').prop('disabled', true);
+            $('#sp_TipoDocumento').prop('disabled', true);
+            $('#nrodocumento_reg').prop('disabled', true);
+            $('#sp_Nacionalidad').prop('disabled', true);
+            $('#nombres_reg').prop('disabled', true);
+            $('#paterno_reg').prop('disabled', true);
+            $('#materno_reg').prop('disabled', true);
+            $('#fecnaci_reg').prop('disabled', true);
+            $('#sp_Sexo').prop('disabled', true);
+            $('#placa_reg').prop('disabled', true);
+            $('#sp_MarcaVehiculo').prop('disabled', true);
+            $('#sp_ModeloVehiculo').prop('disabled', true);
+            $('#sp_anioFabricacion').prop('disabled', true);
+            $('#sp_TipoVehiculo').prop('disabled', true);
 
-        $('#btnsave').addClass('Ocultar');
-        $('#btnupdate').removeClass('Ocultar');
-        $('#vehupdate').removeClass('Ocultar');
-        $('#btnback').removeClass('Ocultar'); 
-        $('#btnActualizarVeh').removeClass('Ocultar');
-        $('#btnAceptar').addClass('Ocultar');
-        
-        
-    }else {
-        $('#titulo').html('INGRESAR - REGISTRO DE POLIZA');
-        $('#vehupdate').addClass('Ocultar');
+            $('#btnsave').addClass('Ocultar');
+            $('#btnupdate').removeClass('Ocultar');
+            $('#vehupdate').removeClass('Ocultar');
+            $('#btnback').removeClass('Ocultar');
+            $('#btnActualizarVeh').removeClass('Ocultar');
+            $('#btnAceptar').addClass('Ocultar');
+        }
+        else {
+            $('#titulo').html('INGRESAR - REGISTRO DE POLIZA');
+            $('#vehupdate').addClass('Ocultar');
+        }
+
     }
+        
 
 
     if (idpoliza_input != null && idpoliza_input != '') {        

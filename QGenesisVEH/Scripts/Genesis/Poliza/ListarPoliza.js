@@ -219,9 +219,13 @@ $("#btnLimpiar").click(function () {
 
 $("#btnNuevo").click(function () {
     // window.location = "../Poliza/RegistroPoliza";
-    var idpoliza = ''
-    var modo = 'agregar'
-    window.location = "../Poliza/RegistroPoliza?idpoliza=" + idpoliza + "&modo=" + modo;
+    
+    sessionStorage.setItem("idpoliza", "");
+    sessionStorage.setItem("modo", "agregar");
+
+    window.location = "../Poliza/RegistroPoliza";//?idpoliza=" + idpoliza + "&modo=" + modo;
+
+    
 });
 
 
