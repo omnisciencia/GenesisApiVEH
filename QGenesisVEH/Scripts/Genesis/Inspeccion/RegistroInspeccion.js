@@ -131,16 +131,37 @@ function InicioPoliza() {
             $('#titulo').html('AGREGANDO - Registro de Inspección');
             $("#fecinspeccion_id").prop("disabled", true);
             $("#hrinspeccion_id").prop("disabled", true);
+
+
             $("#chk_fijar_fecha").click(function () {
                 if (this.checked) {
                     $("#fecinspeccion_id").prop("disabled", false);
                     $("#hrinspeccion_id").prop("disabled", false);
                     $("#fecinspeccion_id").prop("min", FechaActual());
+
+                    gb_dprograma = 1;
                 }
                 else {
                     $("#fecinspeccion_id").prop("disabled", true);
                     $("#hrinspeccion_id").prop("disabled", true);
                     $("#fecinspeccion_id").prop("min", FechaActual());
+
+                }
+            });
+
+            $("#chk_fijar_Reprog").click(function () {
+                if (this.checked) {
+                    $("#fecinspeccion_id").prop("disabled", false);
+                    $("#hrinspeccion_id").prop("disabled", false);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+
+                    gb_dprograma = 2;
+                }
+                else {
+                    $("#fecinspeccion_id").prop("disabled", true);
+                    $("#hrinspeccion_id").prop("disabled", true);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+
                 }
             });
         }
@@ -212,10 +233,21 @@ function AbrirConfirm() {
      
    
 }
+
 function AbrirConfirm2() {
+    (document.getElementById('btn_popconfirm1')).click();
+    setFechaHora();
+    //document.getElementById("sconforme_id").checked = true;
+}
+
+function AbrirConfirm1() {
+
+    (document.getElementById('cerrar_fec_inspeccion_mdl')).click();
     (document.getElementById('btn_popconfirm2')).click();
     document.getElementById("sconforme_id").checked = true;
 }
+
+
 function ocultar1() {
     $('#pruebas1').addClass('Ocultar');
     $('#pruebas2').removeClass('Ocultar');
@@ -765,6 +797,10 @@ function ListarDatosPoliza(data) {
             obsaccesorio = data[0].obsaccesorio;
             inspector = data[0].inspector;
             emision = data[0].emision;
+
+            //btaire = data[0].btaire;
+            
+
         //}
             
 
@@ -808,14 +844,15 @@ function ListarDatosPoliza(data) {
             $("#kilometrajeveh_id").val(ikilometraje);
         }
 
+      
         if (fecinspeccion == "0000-00-00") {
-            $("#fecinspeccion_id").val(fecrecordatorio);
-            $("#hrinspeccion_id").val(horrecordatorio);
+            
         }
         else {
             $("#fecinspeccion_id").val(fecinspeccion);
             $("#hrinspeccion_id").val(hrinspeccion);
         }
+        
         
 
         $("#dni_id").val(dni);
