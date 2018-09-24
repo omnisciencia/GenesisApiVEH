@@ -1,6 +1,7 @@
 ﻿var global_modo;
 var global_persona;
 var global_placa;
+var global_localplac;
 window.onload = function () {
     Spinner_TipoVehiculo();
     Spinner_TipoUso();
@@ -239,12 +240,22 @@ window.onload = function () {
                    "<td><input type=button onclick=EliminarFila('fil_" + nFilas + "') value=Eliminar style=width:70px class=btn_customer btn-secondary/></td>" +
                    "</tr>" +
                    "</thead>");
+
         }
         else {
             alert('Faltan ingresar Datos.');
         }
 
-       
+        document.getElementById('btnCancelar').click();
+        $('#placa_reg').val("");
+        $('#nroasientos_reg').val("");
+        $('#nromotor_reg').val("");
+        $('#vin_reg').val("");
+        $('#color_reg').val("");
+        $('#sumaasegurada_reg').val("");
+        $('#vctoSOAT_reg').val("");
+
+
     });
 
 
@@ -535,10 +546,31 @@ function validarCampo_Placa(data) {
     var plac = data[0].respuesta;
     if (plac = "esxiste") {
         alert("Placa Ingresada ya se encuentra Registrada");
-        $('#placa_reg').val(" ");
+        $('#placa_reg').val("");
         $('#placa_reg').focus();
     }
 }
+function ActualizarDatosVehiculo() {
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarDistrito",
+        data: "{inroasiento:'" + vdepartamento + "', vnromotor:'" + vprovincia
+            + "', vVin:'" + vprovincia + "', vcolor:'" + vprovincia 
+            + "', idcatriesgo:'" + vprovincia + "', venciminetoSoat:'" + vprovincia
+            + "', ciaSeguroSoat:'" + vprovincia + "', suma:'" + vprovincia
+            + "', placa:'" + vprovincia + "', idvehiculo:'" + vprovincia + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: llenarSpinner_Distrito,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+
 function ActualizarVehiculo(placa) {
     global_placa = placa;
     //alert(global_placa);
