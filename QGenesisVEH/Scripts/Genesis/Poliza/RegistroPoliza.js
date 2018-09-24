@@ -299,7 +299,8 @@ window.onload = function () {
         $('#sp_TipoVia').prop('disabled', true);
         $('#numeroubi_reg').prop('disabled', true);
         $('#direccion_reg').prop('disabled', true);
-        $('#referencia_reg').prop('disabled', true);
+        $('#referencia_reg').prop('disabled', true); 
+        $('#sp_EPoliza').prop('disabled', true);
         
         $('#btnsave').addClass('Ocultar');
         $('#btnback').removeClass('Ocultar');
@@ -321,6 +322,11 @@ window.onload = function () {
         $('#materno_reg').prop('disabled', true);
         $('#fecnaci_reg').prop('disabled', true);
         $('#sp_Sexo').prop('disabled', true);
+        $('#placa_reg').prop('disabled', true);
+        $('#sp_MarcaVehiculo').prop('disabled', true);
+        $('#sp_ModeloVehiculo').prop('disabled', true);
+        $('#sp_anioFabricacion').prop('disabled', true);
+        $('#sp_TipoVehiculo').prop('disabled', true);
 
         $('#btnsave').addClass('Ocultar');
         $('#btnupdate').removeClass('Ocultar');
@@ -509,6 +515,30 @@ function ListarGrillaPolizaVehiculo(data) {
     
 
 }
+function ValidarPlaca() {
+    var campoPlaca = $('#placa_reg').val();
+    $.ajax({
+        type: "POST",
+        url: "../Services/ActualizarVehiculo",
+        data: "{vplaca:'" + campoPlaca + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: validarCampo_Placa,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+}
+function validarCampo_Placa(data) {
+    var plac = data[0].respuesta;
+    if (plac = "esxiste") {
+        alert("Placa Ingresada ya se encuentra Registrada");
+        $('#placa_reg').val(" ");
+        $('#placa_reg').focus();
+    }
+}
 function ActualizarVehiculo(placa) {
     global_placa = placa;
     //alert(global_placa);
@@ -542,14 +572,15 @@ function llenarcampo_vehiculo(data) {
     $("#sp_catriesgo").val(data[0].idcatriesgo);
     $("#vctoSOAT_reg").val(data[0].vencimiento);//convertir
     $("#sp_seguroSoat").val(data[0].ciaSeguroSoat);
+    //alert(data[0].idmodelo);
 
     //var marca = $("#sp_MarcaVehiculo").val();
     //var model = $("#sp_ModeloVehiculo").val();
     
-    //var timer = setTimeout(function () {
-    //    Spinner_ModeloVehiculo(data[0].idmarca);
+    var timer = setTimeout(function () {
+        Spinner_ModeloVehiculo2(data[0].idmarca, data[0].idmodelo);
         
-    //}, 1000);
+    }, 1000);
 }
 
 function getParameterByName(name) {
@@ -896,6 +927,40 @@ function Spinner_ModeloVehiculo(id_marca, id_modelo) {
             if (data.length >= 0) {
                 var selectAgregar = $("#sp_ModeloVehiculo");
                 selectAgregar.empty();
+
+                for (i = 0; i < data.length; i++) {
+                    selectAgregar.append("<option value=" + data[i].idmodelo + ">" + data[i].vdescripcion + "</option>");
+                }
+
+
+                if (id_marca == 1) {
+                    selectAgregar.val(1);
+                } else {
+                    selectAgregar.val(id_modelo);
+                }
+            }
+        },
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+//Modelo Vehiculo:
+function Spinner_ModeloVehiculo2(id_marca, id_modelo) {
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarModeloVehiculo",
+        data: "{id_marca:'" + id_marca + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data.length >= 0) {
+                var selectAgregar = $("#sp_ModeloVehiculo");
+                //selectAgregar.empty();
 
                 for (i = 0; i < data.length; i++) {
                     selectAgregar.append("<option value=" + data[i].idmodelo + ">" + data[i].vdescripcion + "</option>");

@@ -66,6 +66,51 @@ namespace Infraestrutura.Data.SqlServer
 
             return listado;
         }
+        //ActualizarVehiculo2
+        public List<RespuestaPost> ActualizarVEH_DAL(string smestadocivil,
+            string vcelular, string vtelefono1,
+            string vemail, string smIdTipoVia,
+            string vnumero, string vnombrevia,
+            string vdepartamento,
+            string vprovincia, string vdistrito)
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ActualizarPoliza", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@smestadocivil", Convert.ToInt32(smestadocivil));
+            cmd.Parameters.AddWithValue("@vcelular", vcelular);
+            cmd.Parameters.AddWithValue("@vtelefono1", vtelefono1);
+            cmd.Parameters.AddWithValue("@vemail", vemail);
+            cmd.Parameters.AddWithValue("@vdepartamento", vdepartamento);
+            cmd.Parameters.AddWithValue("@vprovincia", vprovincia);
+            cmd.Parameters.AddWithValue("@vdistrito", vdistrito);
+            cmd.Parameters.AddWithValue("@smIdTipoVia", Convert.ToInt32(smIdTipoVia));
+            cmd.Parameters.AddWithValue("@vnumero", vnumero);
+            cmd.Parameters.AddWithValue("@vnombrevia", vnombrevia);
+            //cmd.Parameters.AddWithValue("@dni", idnrodocumento);
+            //cmd.Parameters.AddWithValue("@vreferencia", vreferencia);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+                clase.respuesta = dr["respuesta"].ToString();
+
+                listado.Add(clase);
+
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
         //Actualizarvehiculo
         public List<ActualizarVehiculo> Actualizarvehiculo_DAL(string vplaca)
         {
@@ -83,6 +128,7 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 ActualizarVehiculo clase = new ActualizarVehiculo();
+                //clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
                 clase.idtipoveh = int.Parse(dr["idtipoveh"].ToString());
                 clase.idmarca = int.Parse(dr["idmarca"].ToString());
                 clase.idmodelo = int.Parse(dr["idmodelo"].ToString());
@@ -96,6 +142,35 @@ namespace Infraestrutura.Data.SqlServer
                 clase.ciaSeguroSoat = int.Parse(dr["ciaSeguroSoat"].ToString());
                 clase.idcatriesgo = int.Parse(dr["idcatriesgo"].ToString());
                 clase.suma = dr["suma"].ToString();
+
+                listado.Add(clase);
+
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+        //ValidarPlaca
+        public List<RespuestaPost> ValidarPlaca_DAL(string vplaca)
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ValidarPlaca", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@placa", vplaca);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+                clase.respuesta= dr["respuesta"].ToString();
 
                 listado.Add(clase);
 
@@ -985,6 +1060,20 @@ namespace Infraestrutura.Data.SqlServer
                 clase.obsaccesorio = dr["obsaccesorio"].ToString();
                 clase.inspector = dr["inspector"].ToString();
                 clase.emision = dr["emision"].ToString();
+
+                //clase.btaire = int.Parse(dr["btaire"].ToString());
+                //clase.btalarma = int.Parse(dr["btalarma"].ToString());
+                //clase.btpestillos = int.Parse(dr["btpestillos"].ToString());
+                //clase.bttapizcuero = int.Parse(dr["bttapizcuero"].ToString());
+                //clase.btlunaselectricas = int.Parse(dr["btlunaselectricas"].ToString());
+                //clase.btseguroruedas = int.Parse(dr["btseguroruedas"].ToString());
+                //clase.btllantarep = int.Parse(dr["btllantarep"].ToString());
+
+                //clase.btequipomusicaorig = int.Parse(dr["btequipomusicaorig"].ToString());
+                //clase.btparlantesoriginal = int.Parse(dr["btparlantesoriginal"].ToString());
+                //clase.btaccesorios = int.Parse(dr["btaccesorios"].ToString());
+                //clase.smidtablatipodano = int.Parse(dr["smidtablatipodano"].ToString());               
+
 
                 listado.Add(clase);
             }

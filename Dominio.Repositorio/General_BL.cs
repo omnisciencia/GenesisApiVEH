@@ -39,6 +39,11 @@ namespace Dominio.Repositorio
         {
             return dal.Actualizarvehiculo_DAL(vplaca);
         }
+        //validarPlaca
+        public List<RespuestaPost> ValidarPlaca_BL(string vplaca)
+        {
+            return dal.ValidarPlaca_DAL(vplaca);
+        }
         //Listar Tipo Vehiculo
         public List<TipoVehiculoEntity> ListarTipoVehiculo_BL()
         {

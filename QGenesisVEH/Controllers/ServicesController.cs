@@ -50,6 +50,12 @@ namespace GenesisVehivular.Controllers
             List<ActualizarVehiculo> listado = bl.Actualizarvehiculo_BL(vplaca);
             return Json(listado);
         }
+        public ActionResult ValidarPlaca(string vplaca)
+        {
+            General_BL bl = new General_BL();
+            List<RespuestaPost> listado = bl.ValidarPlaca_BL(vplaca);
+            return Json(listado);
+        }
         public ActionResult ListarTipoVehiculo()
         {
             General_BL bl = new General_BL();
