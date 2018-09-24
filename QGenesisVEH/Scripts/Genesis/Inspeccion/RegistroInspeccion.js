@@ -126,11 +126,25 @@ function InicioPoliza() {
             $("#fecinspeccion_id").prop("disabled", true);
             $("#hrinspeccion_id").prop("disabled", true);
             $("#chk_fijar_fecha").prop("disabled", true);
+
+            $("#placaveh_id").prop("disabled", true);
+            $("#sp_MarcaVehiculo").prop("disabled", true);
+            $("#sp_ModeloVehiculo").prop("disabled", true);
+            $("#anioveh_id").prop("disabled", true);
+            $("#sp_TipoVehiculo").prop("disabled", true);
+
         }
         else if (modo_input == 'editar') {
             $('#titulo').html('AGREGANDO - Registro de Inspección');
             $("#fecinspeccion_id").prop("disabled", true);
             $("#hrinspeccion_id").prop("disabled", true);
+
+            $("#placaveh_id").prop("disabled", true);
+            $("#sp_MarcaVehiculo").prop("disabled", true);
+            $("#sp_ModeloVehiculo").prop("disabled", true);
+            $("#anioveh_id").prop("disabled", true);
+            $("#sp_TipoVehiculo").prop("disabled", true);
+
             $("#chk_fijar_fecha").click(function () {
                 if (this.checked) {
                     $("#fecinspeccion_id").prop("disabled", false);
