@@ -486,8 +486,6 @@ function ConstruirGrillaPolizaVeh(data) {
         tabla.append("<tbody>")
         for (i = 0; i < data.length; i++) {
 
-            
-
             var Selectfuncion = "SelectPoliza(" + data[i].idpoliza + "," + data[i].idvehiculo + ")";
 
             tabla.append(
@@ -495,8 +493,7 @@ function ConstruirGrillaPolizaVeh(data) {
                         "<td >" + data[i].idpoliza + "</td>" +
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
-                        "<td>" + data[i].Estado + "</td>" +
-                        
+                        "<td>" + data[i].Estado + "</td>" +                        
                         "</tr>");
         }
         tabla.append("</tbody>")

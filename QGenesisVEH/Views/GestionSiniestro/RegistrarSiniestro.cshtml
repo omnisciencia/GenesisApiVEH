@@ -297,47 +297,76 @@
                         <td></td>
                         <td></td>
                     </tr>
+                   <tr>
+                       <td colspan="12">
+                           <fieldset class="scheduler-border">
+                               <legend class="scheduler-border">Declarante</legend>
+                               <div class="control-group">                    
+                                   <table>
+                                       <tr>
+                                           <td>Tipo Declarante</td>
+                                           <td><select id="sp_TipoDeclarante" class="form-control form-control-sm"></select></td>
+                                           <td>Denominación</td>
+                                           <td colspan="3"><input id="denominacion_reg" type="text" class="form-control form-control-sm"></td>
+                                           <td>Telef.Declarante</td>
+                                           <td><input id="telefdeclarante_reg" type="text" class="form-control form-control-sm"></td>
+                                       </tr>
+                                       <tr>
+                                           <td>Parent. Aseg.</td>
+                                           <td><select id="sp_Parentesco1" class="form-control form-control-sm"></select></td>
+                                           <td>Mail Declarante</td>
+                                           <td colspan="2"><input id="maildeclarante_reg" type="text" class="form-control form-control-sm"></td>
+                                           <td></td>
+                                           <td></td>
+                                       </tr>
+                                   </table>
+                               </div>
+                           </fieldset>
+                           <table>
+                               
+                           </table>
+                       </td>
+                   </tr> 
+                    
                     <tr>
-                        <td>Tipo Declarante</td>
-                        <td><select id="sp_TipoDeclarante" class="form-control form-control-sm"></select></td>
-                        <td>Denominación</td>
-                        <td colspan="3"><input id="denominacion_reg" type="text" class="form-control form-control-sm"></td>
-                        <td>Telef.Declarante</td>
-                        <td><input id="telefdeclarante_reg" type="text" class="form-control form-control-sm"></td>
-                    </tr>
-                    <tr>
-                        <td>Parent. Aseg.</td>
-                        <td><select id="sp_Parentesco1" class="form-control form-control-sm"></select></td>
-                        <td>Mail Declarante</td>
-                        <td colspan="2"><input id="maildeclarante_reg" type="text" class="form-control form-control-sm"></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Conductor</td>
-                        <td><input id="conductor_reg"  type="text" class="form-control form-control-sm"></td>
-                        <td>Tipo Doc. Iden.</td>
-                        <td>
-                             <select class="form-control input-sm" id="sp_TipoDocumento" name="sp_TipoDocumento">
-                                        <option value="">Dni</option>
-                                    </select>
+                        <td colspan="12">
+                            <fieldset class="scheduler-border">
+                                <legend class="scheduler-border">Conductor</legend>
+                                <div class="control-group">
+                                    <table>
+                                        <tr>
+                                            <td>Tipo Doc. Iden.</td>
+                                            <td>
+                                                <select class="form-control input-sm" id="sp_TipoDocumento" name="sp_TipoDocumento">
+                                                    <option value="">Dni</option>
+                                                </select>
+
+                                            </td>                                            
+                                            <td>Nro Doc. Iden.</td>
+                                            <td><input id="nrodocid_reg" type="text" class="form-control form-control-sm"></td>
+                                            <td>Conductor</td>
+                                            <td><input id="conductor_reg" type="text" class="form-control form-control-sm"></td>                                            
+                                            <td>Licencia</td>
+                                            <td><input id="licencia_reg" type="text" class="form-control form-control-sm"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Parent. Aseg.</td>
+                                            <td><select id="sp_Parentesco2" class="form-control form-control-sm"></select></td>
+                                            <td>Telef. Conductor</td>
+                                            <td><input id="telefconductor_reg" type="text" class="form-control form-control-sm"></td>
+                                            <td>Email</td>
+                                            <td><input id="emailconductor_reg" type="text" class="form-control form-control-sm"></td>
+                                            <td>Venci. Licencia</td>
+                                            <td><input id="vencilicencia_reg" type="date" class="form-control form-control-sm"></td>
+                                        </tr>
+                                    </table>                                    
+                                </div>
+                            </fieldset>
 
                         </td>
-                        <td>Nro Doc. Iden.</td>
-                        <td><input id="nrodocid_reg"  type="text" class="form-control form-control-sm"></td>
-                        <td>Licencia</td>
-                        <td><input id="licencia_reg" type="text" class="form-control form-control-sm"></td>
                     </tr>
-                    <tr>
-                        <td>Parent. Aseg.</td>
-                        <td><select id="sp_Parentesco2" class="form-control form-control-sm"></select></td>
-                        <td>Telef. Conductor</td>
-                        <td><input id="telefconductor_reg" type="text" class="form-control form-control-sm"></td>
-                        <td>Email</td>
-                        <td><input id="emailconductor_reg" type="text" class="form-control form-control-sm"></td>
-                        <td>Venci. Licencia</td>
-                        <td><input id="vencilicencia_reg" type="date" class="form-control form-control-sm"></td>
-                    </tr>
+                   
+                    
                     <tr>
                         <td>Comisaría</td>
                         <td colspan="3">
