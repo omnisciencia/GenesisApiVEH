@@ -546,11 +546,16 @@ function ValidarPlaca() {
 }
 function validarCampo_Placa(data) {
     var plac = data[0].respuesta;
-    if (plac = "esxiste") {
+    var plk = $('#placa_reg').val();
+    if (plac == "existe" && plk.length > 0) {
         alert("Placa Ingresada ya se encuentra Registrada");
         $('#placa_reg').val("");
         $('#placa_reg').focus();
     }
+
+ 
+
+
 }
 
 function ActualizarVehiculo(placa) {
