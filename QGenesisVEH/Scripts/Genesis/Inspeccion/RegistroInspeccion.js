@@ -369,8 +369,10 @@ function GuardarFoto() {
         }
 
         //Variables Input:
-        var iidinspeccion = idinspeccion_input;
+        var iidinspeccion = sessionStorage.getItem("idinspeccion");
         var fecha = (f.getFullYear() + "-" + mes + "-" + dia + ' ' + hora);
+
+        
 
         $.ajax({
             type: "POST",
@@ -407,7 +409,7 @@ function ResponseGuardarImgSucces(data) {
         processData: false,
         success: function (d) {
             alert('La imagen fue guardada satisfactoriamente')
-            ListarImgInspeccion(idinspeccion_input);
+            ListarImgInspeccion(sessionStorage.getItem("idinspeccion"));
             (document.getElementById('btn_cancelargfoto')).click();
         },
         error: function () {
@@ -883,10 +885,25 @@ function ListarDatosPoliza(data) {
             obsaccesorio = data[0].obsaccesorio;
             inspector = data[0].inspector;
             emision = data[0].emision;
+
+            //btaire = data[0].btaire;
+            //btalarma = data[0].btalarma;
+            //btpestillos = data[0].btpestillos;
+            //bttapizcuero = data[0].bttapizcuero;
+            //btlunaselectricas = data[0].btlunaselectricas;
+            //btseguroruedas = data[0].btseguroruedas;
+            //btllantarep = data[0].btllantarep;
+
+            //btequipomusicaorig = data[0].btequipomusicaorig;
+            //btparlantesoriginal = data[0].btparlantesoriginal;
+            //btaccesorios = data[0].btaccesorios;
+            //smidtablatipodano = data[0].smidtablatipodano;
             
 
             
-        //}
+    //}
+
+            //$("#chk_aireacond_id").prop('checked', false);
             
         global_smidpersona = smidpersona;
         global_idpoliza = idpoliza;

@@ -986,6 +986,20 @@ namespace Infraestrutura.Data.SqlServer
                 clase.inspector = dr["inspector"].ToString();
                 clase.emision = dr["emision"].ToString();
 
+                //clase.btaire = int.Parse(dr["btaire"].ToString());
+                //clase.btalarma = int.Parse(dr["btalarma"].ToString());
+                //clase.btpestillos = int.Parse(dr["btpestillos"].ToString());
+                //clase.bttapizcuero = int.Parse(dr["bttapizcuero"].ToString());
+                //clase.btlunaselectricas = int.Parse(dr["btlunaselectricas"].ToString());
+                //clase.btseguroruedas = int.Parse(dr["btseguroruedas"].ToString());
+                //clase.btllantarep = int.Parse(dr["btllantarep"].ToString());
+
+                //clase.btequipomusicaorig = int.Parse(dr["btequipomusicaorig"].ToString());
+                //clase.btparlantesoriginal = int.Parse(dr["btparlantesoriginal"].ToString());
+                //clase.btaccesorios = int.Parse(dr["btaccesorios"].ToString());
+                //clase.smidtablatipodano = int.Parse(dr["smidtablatipodano"].ToString());               
+
+
                 listado.Add(clase);
             }
 

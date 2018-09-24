@@ -299,7 +299,8 @@ window.onload = function () {
         $('#sp_TipoVia').prop('disabled', true);
         $('#numeroubi_reg').prop('disabled', true);
         $('#direccion_reg').prop('disabled', true);
-        $('#referencia_reg').prop('disabled', true);
+        $('#referencia_reg').prop('disabled', true); 
+        $('#sp_EPoliza').prop('disabled', true);
         
         $('#btnsave').addClass('Ocultar');
         $('#btnback').removeClass('Ocultar');
