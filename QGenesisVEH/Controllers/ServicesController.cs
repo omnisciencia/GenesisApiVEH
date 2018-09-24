@@ -26,7 +26,25 @@ namespace GenesisVehivular.Controllers
         //REGISTRO POLIZA *******************************************************************************************************************
         //***************************************************************************************************************************************
 
-        public ActionResult ActualizarPoliza2(int inroasiento,
+        public ActionResult ActualizarPoliza(string smestadocivil,
+            string vcelular, string vtelefono1,
+            string vemail, string smIdTipoVia,
+            string vnumero, string vnombrevia,
+            string vdepartamento,
+            string vprovincia, string vdistrito,
+            string idnrodocumento, string vreferencia)
+        {
+            General_BL bl = new General_BL();
+            List<RespuestaPost> listado = bl.ActualizarPoliza_BL( smestadocivil,
+             vcelular,  vtelefono1,
+             vemail,  smIdTipoVia,
+             vnumero,  vnombrevia,
+             vdepartamento,
+             vprovincia,  vdistrito,
+             idnrodocumento,  vreferencia);
+            return Json(listado);
+        }
+        public ActionResult ActualizarDeatVehiculo(int inroasiento,
             string vnromotor, string vVin,
             string vcolor, int idcatriesgo,
             string venciminetoSoat, int ciaSeguroSoat,

@@ -1,7 +1,7 @@
 ﻿var global_modo;
 var global_persona;
 var global_placa;
-
+var global_idvehiculo;
 window.onload = function () {
     Spinner_TipoVehiculo();
     Spinner_TipoUso();
@@ -337,7 +337,8 @@ window.onload = function () {
             $('#sp_MarcaVehiculo').prop('disabled', true);
             $('#sp_ModeloVehiculo').prop('disabled', true);
             $('#sp_anioFabricacion').prop('disabled', true);
-            $('#sp_TipoVehiculo').prop('disabled', true);
+            $('#sp_TipoVehiculo').prop('disabled', true); 
+            $('#vin_reg').prop('disabled', true);
 
             $('#btnsave').addClass('Ocultar');
             $('#btnupdate').removeClass('Ocultar');
@@ -345,6 +346,7 @@ window.onload = function () {
             $('#btnback').removeClass('Ocultar');
             $('#btnActualizarVeh').removeClass('Ocultar');
             $('#btnAceptar').addClass('Ocultar');
+            
         }
         else {
             $('#titulo').html('INGRESAR - REGISTRO DE POLIZA');
@@ -546,17 +548,13 @@ function ValidarPlaca() {
 }
 function validarCampo_Placa(data) {
     var plac = data[0].respuesta;
-    var plk = $('#placa_reg').val();
-    if (plac == "existe" && plk.length > 0) {
+    if (plac == "existe") {
         alert("Placa Ingresada ya se encuentra Registrada");
         $('#placa_reg').val("");
         $('#placa_reg').focus();
     }
-
- 
-
-
 }
+
 
 function ActualizarVehiculo(placa) {
     global_placa = placa;
@@ -591,6 +589,7 @@ function llenarcampo_vehiculo(data) {
     $("#sp_catriesgo").val(data[0].idcatriesgo);
     $("#vctoSOAT_reg").val(data[0].vencimiento);//convertir
     $("#sp_seguroSoat").val(data[0].ciaSeguroSoat);
+    global_idvehiculo = data[0].idvehiculo;
     //alert(data[0].idmodelo);
 
     //var marca = $("#sp_MarcaVehiculo").val();
@@ -601,26 +600,31 @@ function llenarcampo_vehiculo(data) {
 
     }, 1000);
 }
+
 function ActualizarDatosVehiculo() {
     var nroasiento = $('#nroasientos_reg').val();
     var nromotor = $('#nromotor_reg').val();
     var nrovin = $('#vin_reg').val();
     var ncolor = $('#color_reg').val();
-    var riesgo = $('#sp_catriesgo').val();
-    var sumaseg = $('#sumaasegurada_reg').val();
-    var plac = $('#placa_reg').val();
+    var iriesgo = $('#sp_catriesgo').val();
+    var vencimientos_reg = $('#vctoSOAT_reg').val();
+    var seguros = $('#sp_seguroSoat').val();
+    var sumas_reg = $('#sumaasegurada_reg').val();
+
+    vencimientos = vencimientos_reg.toString();
+    var sumas = (parseFloat(sumas_reg).toFixed(2)).toString();
 
     $.ajax({
         type: "POST",
-        url: "../Services/ListarDistrito",
+        url: "../Services/ActualizarDeatVehiculo",
         data: "{inroasiento:'" + nroasiento + "', vnromotor:'" + nromotor
             + "', vVin:'" + nrovin + "', vcolor:'" + ncolor
-            + "', idcatriesgo:'" + riesgo + "', venciminetoSoat:'" + vprovincia
-            + "', ciaSeguroSoat:'" + vprovincia + "', suma:'" + sumaseg
-            + "', placa:'" + global_placa + "', idvehiculo:'" + vprovincia + "'}",
+            + "', idcatriesgo:'" + iriesgo + "', venciminetoSoat:'" + vencimientos
+            + "', ciaSeguroSoat:'" + seguros + "', suma:'" + sumas
+            + "', placa:'" + global_placa + "', idvehiculo:'" + global_idvehiculo + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
-        success: llenarSpinner_Distrito,
+        success: ActualizarDetaVehiculo,
         failure: function (response) {
             alert(response.d);
         },
@@ -628,6 +632,18 @@ function ActualizarDatosVehiculo() {
 
     });
 
+}
+function ActualizarDetaVehiculo(data) {
+
+    if (data[0].respuesta == "true") {
+        alert("Datos del Vehiculo se Actualizaron Sastifactoriamente");
+        document.getElementById('btnCancelar').click();
+        document.getElementById('btnupdate').click();
+        
+        location.reload();
+    } else {
+        alert("Se detectó un inconveniente al Actualizar");
+    }
 }
 
 function getParameterByName(name) {
@@ -1014,11 +1030,11 @@ function Spinner_ModeloVehiculo2(id_marca, id_modelo) {
                 }
 
 
-                if (id_marca == 1) {
-                    selectAgregar.val(1);
-                } else {
-                    selectAgregar.val(id_modelo);
-                }
+                //if (id_marca == 1) {
+                //    selectAgregar.val(1);
+                //} else {
+                //    selectAgregar.val(id_modelo);
+                //}
             }
         },
         failure: function (response) {
@@ -1991,8 +2007,8 @@ function ActualizarPoliza() {
 }
 function ActualizarPolizaSucces(data) {
     var respuesta = data[0].respuesta;
-    if (respuesta = "true") {
-        alert("Los datos se actualizaron Sastifactoriamente")
+    if (respuesta == "true") {
+        //alert("Los datos del Contratante actualizaron Sastifactoriamente")
         Link();
     } else {
         alert("Hubo un error al actualizar Datos")
