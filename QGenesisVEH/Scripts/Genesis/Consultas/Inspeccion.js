@@ -112,7 +112,7 @@ function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, no
         },
         error: OnError
     });
-    //alert(estado);
+    
 
 }
 
@@ -128,8 +128,8 @@ function ListarGrillaInspeccionExport(data) {
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
                         "<td>" + data[i].Emision + "</td>" +
-                        "<td>" + data[i].dtfec_hora_registro + "</td>" +
-                        //"<td>" + data[i].dfecha + "</td>" +
+                        //"<td>" + data[i].dtfec_hora_registro + "</td>" +
+                        "<td>" + data[i].dfecha + "</td>" +
                         "<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Modelo + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +
@@ -163,18 +163,6 @@ function ListarGrillaInspeccion(data) {
         select.append("<option value = '1'> 1</option>");
     }
     
-
-    //select.empty();
-    ////data[0].TotalRegistros
-    //if (parseInt(TotalRegistros) > parseInt(regporpag)) {
-
-    //    for (i = 1; i <= Math.ceil(parseInt(TotalRegistros) / parseInt(regporpag)) ; i++) {
-    //        select.append("<option value = " + i + ">" + i + "</option>");
-    //    }
-    //}
-    //else {
-    //    select.append("<option value = '1'> 1</option>");
-    //}
 
 
     $("#Pagina").val(pagina);
@@ -216,9 +204,9 @@ function ListarGrillaInspeccion(data) {
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
                         "<td>" + data[i].Emision + "</td>" +
-                        "<td>" + fecProgramacion + "</td>" +
+                        //"<td>" + fecProgramacion + "</td>" +
                         //"<td>" + data[i].dtfec_hora_registro + "</td>" +
-                        //"<td>" + data[i].dfecha + "</td>" +
+                        "<td>" + data[i].dfecha + "</td>" +
                         "<td>" + data[i].Marca + "</td>" +
                         "<td>" + data[i].Modelo + "</td>" +
                         "<td>" + data[i].Estado + "</td>" +                        
@@ -275,6 +263,8 @@ function Link(idinspeccion, modo,estado) {
 }
 function ListarGrilla() {
 
+    
+
     var iidinspeccion = $("#idinspeccion").val();
     var idpoliza = $("#idpoliza").val();
     var placa = $("#placa").val();
@@ -283,29 +273,34 @@ function ListarGrilla() {
     var nombre = $("#contratante").val();
     var pagina = $("#Pagina").val();
     var regporpag = "10";
-    var vestado = "0";
-    if (global_finfec == "sin programacion") {
-        //alert(1);
-        vestado = "1";
+    var vestado = '';
+    //if (global_finfec == "sin programacion") {
+    //    //alert(1);
+    //    vestado = "1";
         
-        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
-    } else if (global_finfec == "con programacion") {
-        //alert(0);
-        vestado = "0";
+    //    ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    //}
+    //else if (global_finfec == "con programacion") {
+    //    //alert(0);
+    //    vestado = "0";
         
-        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
-    } else if (global_finfec == "vencida") {
-        //alert(0);
-        vestado = "2";
+    //    ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    //}
+    //else if (global_finfec == "vencida") {
+    //    //alert(0);
+    //    vestado = "2";
 
-        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
-    } else {
-        vestado = global_finfec2;
+    //    ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    //}
+    //else {
+    //    vestado = global_finfec2;
         
-        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
-    }
+    //    ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    //}
 
     //ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, pagina, regporpag);
+
+    ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
 
     $("#Pagina").val(pagina);
     

@@ -67,28 +67,28 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
         //ActualizarVehiculo2
-        public List<RespuestaPost> ActualizarVEH_DAL(string smestadocivil,
-            string vcelular, string vtelefono1,
-            string vemail, string smIdTipoVia,
-            string vnumero, string vnombrevia,
-            string vdepartamento,
-            string vprovincia, string vdistrito)
+        public List<RespuestaPost> ActualizarVEH_DAL(int inroasiento,
+            string vnromotor, string vVin,
+            string vcolor, int idcatriesgo,
+            string venciminetoSoat, int ciaSeguroSoat,
+            string suma,
+            string placa, int idvehiculo)
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
 
-            SqlCommand cmd = new SqlCommand("SP_VEH_ActualizarPoliza", cn.getcn);
+            SqlCommand cmd = new SqlCommand("SP_VEH_ActualizarVehiculo2", cn.getcn);
             cmd.CommandType = CommandType.StoredProcedure;
 
-            cmd.Parameters.AddWithValue("@smestadocivil", Convert.ToInt32(smestadocivil));
-            cmd.Parameters.AddWithValue("@vcelular", vcelular);
-            cmd.Parameters.AddWithValue("@vtelefono1", vtelefono1);
-            cmd.Parameters.AddWithValue("@vemail", vemail);
-            cmd.Parameters.AddWithValue("@vdepartamento", vdepartamento);
-            cmd.Parameters.AddWithValue("@vprovincia", vprovincia);
-            cmd.Parameters.AddWithValue("@vdistrito", vdistrito);
-            cmd.Parameters.AddWithValue("@smIdTipoVia", Convert.ToInt32(smIdTipoVia));
-            cmd.Parameters.AddWithValue("@vnumero", vnumero);
-            cmd.Parameters.AddWithValue("@vnombrevia", vnombrevia);
+            cmd.Parameters.AddWithValue("@inroasiento", Convert.ToInt32(inroasiento));
+            cmd.Parameters.AddWithValue("@vnromotor", vnromotor);
+            cmd.Parameters.AddWithValue("@vVin", vVin);
+            cmd.Parameters.AddWithValue("@vcolor", vcolor);
+            cmd.Parameters.AddWithValue("@idcatriesgo", Convert.ToInt32(idcatriesgo));
+            cmd.Parameters.AddWithValue("@venciminetoSoat", venciminetoSoat);
+            cmd.Parameters.AddWithValue("@ciaSeguroSoat", Convert.ToInt32(ciaSeguroSoat));
+            cmd.Parameters.AddWithValue("@suma", suma);
+            cmd.Parameters.AddWithValue("@placa", placa);
+            cmd.Parameters.AddWithValue("@idvehiculo", Convert.ToInt32(idvehiculo));
             //cmd.Parameters.AddWithValue("@dni", idnrodocumento);
             //cmd.Parameters.AddWithValue("@vreferencia", vreferencia);
 
@@ -128,7 +128,7 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 ActualizarVehiculo clase = new ActualizarVehiculo();
-                //clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
+                clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
                 clase.idtipoveh = int.Parse(dr["idtipoveh"].ToString());
                 clase.idmarca = int.Parse(dr["idmarca"].ToString());
                 clase.idmodelo = int.Parse(dr["idmodelo"].ToString());
@@ -1061,18 +1061,18 @@ namespace Infraestrutura.Data.SqlServer
                 clase.inspector = dr["inspector"].ToString();
                 clase.emision = dr["emision"].ToString();
 
-                //clase.btaire = int.Parse(dr["btaire"].ToString());
-                //clase.btalarma = int.Parse(dr["btalarma"].ToString());
-                //clase.btpestillos = int.Parse(dr["btpestillos"].ToString());
-                //clase.bttapizcuero = int.Parse(dr["bttapizcuero"].ToString());
-                //clase.btlunaselectricas = int.Parse(dr["btlunaselectricas"].ToString());
-                //clase.btseguroruedas = int.Parse(dr["btseguroruedas"].ToString());
-                //clase.btllantarep = int.Parse(dr["btllantarep"].ToString());
+                clase.btaire = int.Parse(dr["btaire"].ToString());
+                clase.btalarma = int.Parse(dr["btalarma"].ToString());
+                clase.btpestillos = int.Parse(dr["btpestillos"].ToString());
+                clase.bttapizcuero = int.Parse(dr["bttapizcuero"].ToString());
+                clase.btlunaselectricas = int.Parse(dr["btlunaselectricas"].ToString());
+                clase.btseguroruedas = int.Parse(dr["btseguroruedas"].ToString());
+                clase.btllantarep = int.Parse(dr["btllantarep"].ToString());
 
-                //clase.btequipomusicaorig = int.Parse(dr["btequipomusicaorig"].ToString());
-                //clase.btparlantesoriginal = int.Parse(dr["btparlantesoriginal"].ToString());
-                //clase.btaccesorios = int.Parse(dr["btaccesorios"].ToString());
-                //clase.smidtablatipodano = int.Parse(dr["smidtablatipodano"].ToString());               
+                clase.btequipomusicaorig = int.Parse(dr["btequipomusicaorig"].ToString());
+                clase.btparlantesoriginal = int.Parse(dr["btparlantesoriginal"].ToString());
+                clase.btaccesorios = int.Parse(dr["btaccesorios"].ToString());
+                clase.smidtablatipodano = int.Parse(dr["smidtablatipodano"].ToString());
 
 
                 listado.Add(clase);

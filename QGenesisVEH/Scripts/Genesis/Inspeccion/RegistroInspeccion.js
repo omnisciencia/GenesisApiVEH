@@ -150,11 +150,30 @@ function InicioPoliza() {
                     $("#fecinspeccion_id").prop("disabled", false);
                     $("#hrinspeccion_id").prop("disabled", false);
                     $("#fecinspeccion_id").prop("min", FechaActual());
+
+                    gb_dprograma = 1;
                 }
                 else {
                     $("#fecinspeccion_id").prop("disabled", true);
                     $("#hrinspeccion_id").prop("disabled", true);
                     $("#fecinspeccion_id").prop("min", FechaActual());
+
+                }
+            });
+
+            $("#chk_fijar_Reprog").click(function () {
+                if (this.checked) {
+                    $("#fecinspeccion_id").prop("disabled", false);
+                    $("#hrinspeccion_id").prop("disabled", false);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+
+                    gb_dprograma = 2;
+                }
+                else {
+                    $("#fecinspeccion_id").prop("disabled", true);
+                    $("#hrinspeccion_id").prop("disabled", true);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+
                 }
             });
         }
@@ -178,6 +197,31 @@ function InicioPoliza() {
 //function Link2() {
 //    window.location = "../inspeccion/registroinspeccion";
 //}
+
+
+
+function setFechaHora() {
+    var f = new Date();
+    var dia = "" + f.getDate();
+    var mes = "" + (f.getMonth() + 1);
+    var hora = f.getHours() + ":" + f.getMinutes();
+
+    if (parseInt(dia) < 10) {
+        dia = "0" + dia;
+    }
+    if (parseInt(mes) < 10) {
+        mes = "0" + mes;
+    }
+
+    var fecha = (f.getFullYear() + "-" + mes + "-" + dia);
+
+    $('#fecInspeccion_f').val(fecha);
+    $('#hrInspeccion_f').val(hora);
+
+
+}
+
+
 function FechaActual() {
     var f = new Date();
     var dia = "" + (f.getDate()+1);
@@ -226,10 +270,21 @@ function AbrirConfirm() {
      
    
 }
+
 function AbrirConfirm2() {
+    (document.getElementById('btn_popconfirm1')).click();
+    setFechaHora();
+    //document.getElementById("sconforme_id").checked = true;
+}
+
+function AbrirConfirm1() {
+
+    (document.getElementById('cerrar_fec_inspeccion_mdl')).click();
     (document.getElementById('btn_popconfirm2')).click();
     document.getElementById("sconforme_id").checked = true;
 }
+
+
 function ocultar1() {
     $('#pruebas1').addClass('Ocultar');
     $('#pruebas2').removeClass('Ocultar');
@@ -779,7 +834,54 @@ function ListarDatosPoliza(data) {
             obsaccesorio = data[0].obsaccesorio;
             inspector = data[0].inspector;
             emision = data[0].emision;
-        //}
+
+            btaire = data[0].btaire;
+            btalarma = data[0].btalarma;
+            btpestillos = data[0].btpestillos;
+            bttapizcuero = data[0].bttapizcuero;
+            btlunaselectricas = data[0].btlunaselectricas;
+            btseguroruedas = data[0].btseguroruedas;
+            btllantarep = data[0].btllantarep;
+
+            btequipomusicaorig = data[0].btequipomusicaorig;
+            btparlantesoriginal = data[0].btparlantesoriginal;
+            btaccesorios = data[0].btaccesorios;
+            smidtablatipodano = data[0].smidtablatipodano;
+            
+
+    //}
+            if (btaire == 1) {
+                $("#chk_aireacond_id").prop('checked', true);
+            }
+            if (btalarma == 1) {
+                $("#chk_alarma_id").prop('checked', true);
+            }
+            if (btpestillos == 1) {
+                $("#chk_pestilloe_id").prop('checked', true);
+            }
+            if (bttapizcuero == 1) {
+                $("#chk_tapizc_id").prop('checked', true);
+            }
+            if (btlunaselectricas == 1) {
+                $("#chk_lunelectrica_id").prop('checked', true);
+            }
+            if (btseguroruedas == 1) {
+                $("#chk_segruedas_id").prop('checked', true);
+            }
+            if (btllantarep == 1) {
+                $("#chk_llantarep_id").prop('checked', true);
+            }
+
+            if (btequipomusicaorig == 1) {
+                $("#chk_radoriginal_id").prop('checked', true);
+            }
+            if (btparlantesoriginal == 1) {
+                $("#chk_parlanteo_id").prop('checked', true);
+            }
+            if (btaccesorios == 1) {
+                $("#chk_accesomusi_id").prop('checked', true);
+            }
+           
             
 
             if (estado == 'PENDIENTE') {
@@ -822,14 +924,15 @@ function ListarDatosPoliza(data) {
             $("#kilometrajeveh_id").val(ikilometraje);
         }
 
+      
         if (fecinspeccion == "0000-00-00") {
-            $("#fecinspeccion_id").val(fecrecordatorio);
-            $("#hrinspeccion_id").val(horrecordatorio);
+            
         }
         else {
             $("#fecinspeccion_id").val(fecinspeccion);
             $("#hrinspeccion_id").val(hrinspeccion);
         }
+        
         
 
         $("#dni_id").val(dni);
@@ -1445,8 +1548,6 @@ function RegistrarInspeccion_onclick2() {
 }
          
 function RegistrarInspeccion_onclick() {
-    
-    //alert('sdfsd');
 
     var smidpersona = global_smidpersona;
     var idpoliza = global_idpoliza;
@@ -1475,7 +1576,7 @@ function RegistrarInspeccion_onclick() {
     var vplaca = $("#placaveh_id").val();
     //var vnroserie = $("#nroserieveh_id").val();
 
-    if ($("#kilometrajeveh_id").val().trim.length == 0) {
+    if ($("#kilometrajeveh_id").val().length == 0) {
         $("#kilometrajeveh_id").val(0);
     }
 
@@ -1519,7 +1620,6 @@ function RegistrarInspeccion_onclick() {
     var vinspector = $("#inspector_id").val();
     var fecInspeccion_f = $("#fecInspeccion_f").val();
     var hrInspeccion_f = $("#hrInspeccion_f").val();
-    var gb_dprograma = 0;
 
 
     if (document.getElementById('chk_aireacond_id').checked) {
@@ -1939,6 +2039,50 @@ function verFoto(idimagen, descripcion) {
 
 }
 
+function GuardarDI() {
+    var fecinspeccion = $("#fecinspeccion_id").val();
+    var hrinspeccion = $("#hrinspeccion_id").val();
+    var iidinspeccion = sessionStorage.getItem("idinspeccion");
+
+    if (fecinspeccion.length < 1) {
+        alert('Ingrese una Fecha de Programación');
+    } else if (hrinspeccion.length < 1) {
+        alert('Ingrese una Hora de Programación');
+    } else {
+
+        $.ajax({
+            type: "POST",
+            url: "../Services/ProgramarInspeccion",
+            data: "{ fecInspeccion:'" + fecinspeccion + "', hrInspeccion:'" + hrinspeccion + "', iidinspeccion:'" + iidinspeccion + "'}",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: programarInspeccion,
+            failure: function (response) {
+                alert(response.d);
+            },
+            error: OnError
+
+        });
+    }
+}
+
+function programarInspeccion(data) {
+
+    for (i = 0; i < data.length; i++) {
+        respuesta = data[i].respuesta;
+    }
+
+    $("#estadoinspecc_id").val(respuesta);
+
+    $("#chkbox_Prog").addClass("Ocultar");
+    $("#chkbox_Reprog").removeClass("Ocultar");
+
+    $("#fecinspeccion_id").prop("disabled", true);
+    $("#hrinspeccion_id").prop("disabled", true);
+
+    alert('Se programó satisfactoriamente');
+
+}
 
 
 

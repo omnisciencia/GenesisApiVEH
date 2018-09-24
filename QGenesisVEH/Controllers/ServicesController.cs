@@ -44,6 +44,22 @@ namespace GenesisVehivular.Controllers
              idnrodocumento,  vreferencia);
             return Json(listado);
         }
+        public ActionResult ActualizarDeatVehiculo(int inroasiento,
+            string vnromotor, string vVin,
+            string vcolor, int idcatriesgo,
+            string venciminetoSoat, int ciaSeguroSoat,
+            string suma,
+            string placa, int idvehiculo)
+        {
+            General_BL bl = new General_BL();
+            List<RespuestaPost> listado = bl.ActualizarVEH_BL( inroasiento,
+             vnromotor,  vVin,
+             vcolor,  idcatriesgo,
+             venciminetoSoat,  ciaSeguroSoat,
+             suma,
+             placa, idvehiculo);
+            return Json(listado);
+        }
         public ActionResult ActualizarVehiculo(string vplaca)
         {
             General_BL bl = new General_BL();
