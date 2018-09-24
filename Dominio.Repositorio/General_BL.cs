@@ -393,9 +393,9 @@ namespace Dominio.Repositorio
             return dal.Listar_PolizaVehiculo_SIN_DAL(idpoliza, placa, nombre, estado, NroDePagina, RegPorPag);
         }
 
-        public List<PolizaVehiculoEntity> Select_PolizaVehiculo_BL(string idpoliza, string placa)
+        public List<PolizaVehiculoEntity> Select_PolizaVehiculo_BL(string idpoliza, string idvehiculo)
         {
-            return dal.Select_PolizaVehiculo_DAL(idpoliza, placa);
+            return dal.Select_PolizaVehiculo_DAL(idpoliza, idvehiculo);
         }
 
         public List<OcurrenciaEntity> Combo_Ocurrencia_BL()
