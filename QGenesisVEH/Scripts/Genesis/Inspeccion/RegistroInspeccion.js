@@ -120,6 +120,7 @@ function InicioPoliza() {
         }
         if (modo_input == 'editar' && modo_estado == 'CONCLUIDO') {
             
+           
             $("#sp_Nacionalidad").prop("disabled", true);
             $("#sp_EstadoCivil").prop("disabled", true);
             $("#fecnaci_id").prop("disabled", true);
@@ -190,7 +191,15 @@ function InicioPoliza() {
 
             $("#btguardar").addClass("Ocultar");
             $("#chk_fijar_fecha").prop("disabled", true);
-           // $("#sp_FormaPago").prop("disabled", true);
+            // $("#sp_FormaPago").prop("disabled", true);
+
+
+            $("#placaveh_id").prop("disabled", true);
+            $("#sp_MarcaVehiculo").prop("disabled", true);
+            $("#sp_ModeloVehiculo").prop("disabled", true);
+            $("#anioveh_id").prop("disabled", true);
+            $("#sp_TipoVehiculo").prop("disabled", true);
+
         }
         else {
             $("#btvolver").addClass("Ocultar");
@@ -203,11 +212,12 @@ function InicioPoliza() {
             $("#chk_fijar_fecha").prop("disabled", true);
         }
         else if (modo_input == 'editar') {
+          
             $('#titulo').html('AGREGANDO - Registro de Inspección');
             $("#fecinspeccion_id").prop("disabled", true);
             $("#hrinspeccion_id").prop("disabled", true);
-            
 
+           
             $("#chk_fijar_fecha").click(function () {
                 if (this.checked) {
                     $("#fecinspeccion_id").prop("disabled", false);
@@ -239,6 +249,13 @@ function InicioPoliza() {
                     
                 }
             });
+
+            $("#placaveh_id").prop("disabled", true);
+            $("#sp_MarcaVehiculo").prop("disabled", true);
+            $("#sp_ModeloVehiculo").prop("disabled", true);
+            $("#anioveh_id").prop("disabled", true);
+            $("#sp_TipoVehiculo").prop("disabled", true);
+            
         }
 
         if (idinspeccion_input.length > 0) {
@@ -1555,11 +1572,7 @@ function RegistrarInspeccion_onclick() {
     var vplaca = $("#placaveh_id").val();
     //var vnroserie = $("#nroserieveh_id").val();
 
-    if ($("#kilometrajeveh_id").val().trim.length == 0) {
-        $("#kilometrajeveh_id").val(0);
-    }
-
-    var ikilometraje = $("#kilometrajeveh_id").val();
+   
     
     var vVin = $("#vinveh_id").val();
 
@@ -1730,6 +1743,15 @@ function RegistrarInspeccion_onclick() {
                 + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}",
                 */
 
+    if ($("#kilometrajeveh_id").val().trim.length == 0) {
+        $("#kilometrajeveh_id").val(0);
+    }
+
+    var ikilometraje = $("#kilometrajeveh_id").val();
+
+    var fecInspeccion_f =''
+    var hrInspeccion_f=''
+    var dprograma = 0 
         
         $.ajax({
             type: "POST",
@@ -1762,7 +1784,8 @@ function RegistrarInspeccion_onclick() {
                 + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
                 + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
                 + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
-                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}",
+                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion
+                + "', fecInspeccion_f:'" + fecInspeccion_f + "', hrInspeccion_f:'" + hrInspeccion_f + "', dprograma:'" + dprograma + "'}",
             dataType: "json",            
             contentType: "application/json; charset=utf-8",
             success: ResponseCrearSucces,

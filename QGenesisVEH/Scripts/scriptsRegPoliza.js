@@ -169,6 +169,7 @@ jQuery(document).ready(function() {
 
         parent_fieldset.find('#email_id').each(function () {
 
+            
             if ($('#email_id').val() == "") {
                 if ($('#email_id').val() == "") $('#email_id').addClass('input-error');
                 next_step = false;
@@ -242,6 +243,10 @@ jQuery(document).ready(function() {
         }
         
 
+
+
+
+
         //});
         // fields validation
 
@@ -260,6 +265,12 @@ jQuery(document).ready(function() {
 
     });
     
+
+
+  
+
+
+
     // previous step
     $('.f1 .btn-previous').on('click', function() {
     	// navigation steps / progress steps

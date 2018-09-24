@@ -183,9 +183,6 @@ function Link(idsiniestro, modo) {
 }
 
 
-
-
-
 function ListarGrilla() {
     //alert("prueba");
 
