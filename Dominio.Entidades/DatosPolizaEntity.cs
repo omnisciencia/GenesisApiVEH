@@ -52,18 +52,18 @@ namespace Dominio.Entidades
         public string inspector { get; set; }
         public string emision { get; set; }
 
-        //public int btaire { get; set; }
-        //public int btalarma { get; set; }
-        //public int btpestillos { get; set; }
-        //public int bttapizcuero { get; set; }
-        //public int btlunaselectricas { get; set; }
-        //public int btseguroruedas { get; set; }
-        //public int btllantarep { get; set; }
+        public int btaire { get; set; }
+        public int btalarma { get; set; }
+        public int btpestillos { get; set; }
+        public int bttapizcuero { get; set; }
+        public int btlunaselectricas { get; set; }
+        public int btseguroruedas { get; set; }
+        public int btllantarep { get; set; }
 
-        //public int btequipomusicaorig { get; set; }
-        //public int btparlantesoriginal { get; set; }
-        //public int btaccesorios { get; set; }
-        //public int smidtablatipodano { get; set; }
+        public int btequipomusicaorig { get; set; }
+        public int btparlantesoriginal { get; set; }
+        public int btaccesorios { get; set; }
+        public int smidtablatipodano { get; set; }
 
 
     }

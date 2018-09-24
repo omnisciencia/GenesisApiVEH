@@ -835,10 +835,53 @@ function ListarDatosPoliza(data) {
             inspector = data[0].inspector;
             emision = data[0].emision;
 
-            //btaire = data[0].btaire;
+            btaire = data[0].btaire;
+            btalarma = data[0].btalarma;
+            btpestillos = data[0].btpestillos;
+            bttapizcuero = data[0].bttapizcuero;
+            btlunaselectricas = data[0].btlunaselectricas;
+            btseguroruedas = data[0].btseguroruedas;
+            btllantarep = data[0].btllantarep;
+
+            btequipomusicaorig = data[0].btequipomusicaorig;
+            btparlantesoriginal = data[0].btparlantesoriginal;
+            btaccesorios = data[0].btaccesorios;
+            smidtablatipodano = data[0].smidtablatipodano;
             
 
-        //}
+    //}
+            if (btaire == 1) {
+                $("#chk_aireacond_id").prop('checked', true);
+            }
+            if (btalarma == 1) {
+                $("#chk_alarma_id").prop('checked', true);
+            }
+            if (btpestillos == 1) {
+                $("#chk_pestilloe_id").prop('checked', true);
+            }
+            if (bttapizcuero == 1) {
+                $("#chk_tapizc_id").prop('checked', true);
+            }
+            if (btlunaselectricas == 1) {
+                $("#chk_lunelectrica_id").prop('checked', true);
+            }
+            if (btseguroruedas == 1) {
+                $("#chk_segruedas_id").prop('checked', true);
+            }
+            if (btllantarep == 1) {
+                $("#chk_llantarep_id").prop('checked', true);
+            }
+
+            if (btequipomusicaorig == 1) {
+                $("#chk_radoriginal_id").prop('checked', true);
+            }
+            if (btparlantesoriginal == 1) {
+                $("#chk_parlanteo_id").prop('checked', true);
+            }
+            if (btaccesorios == 1) {
+                $("#chk_accesomusi_id").prop('checked', true);
+            }
+           
             
 
             if (estado == 'PENDIENTE') {
