@@ -1589,6 +1589,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.Persona = dr["Persona"].ToString();
                 clase.vplaca = dr["placa"].ToString();
                 clase.Estado = dr["Estado"].ToString();
+                clase.idvehiculo = dr["idvehiculo"].ToString();
                 clase.TotalRegistros = dr["TotalRegistros"].ToString();
                 listado.Add(clase);
             }
@@ -1634,7 +1635,7 @@ namespace Infraestrutura.Data.SqlServer
         }
 
 
-        public List<PolizaVehiculoEntity> Select_PolizaVehiculo_DAL(string idpoliza, string placa)
+        public List<PolizaVehiculoEntity> Select_PolizaVehiculo_DAL(string idpoliza, string idvehiculo)
         {
             List<PolizaVehiculoEntity> listado = new List<PolizaVehiculoEntity>();
 
@@ -1642,7 +1643,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@idpoliza", idpoliza);
-            cmd.Parameters.AddWithValue("@placa", placa);
+            cmd.Parameters.AddWithValue("@idvehiculo", idvehiculo);
             cn.getcn.Open();
 
 
@@ -2003,7 +2004,22 @@ namespace Infraestrutura.Data.SqlServer
                 SiniestroEntity clase = new SiniestroEntity();
                 clase.idsiniestro = dr["idsiniestro"].ToString();
                 clase.idpoliza = dr["idpoliza"].ToString();
-                clase.dFecRegistro = dr["dFecRegistro"].ToString();
+                clase.dFecNotificacion = dr["dFecNotificacion"].ToString();
+                clase.dFecRegistro = dr["dFecRegistro"].ToString();                
+                clase.dUltmodificación = dr["dUltmodificación"].ToString();
+                clase.dFecOcurrencia = dr["dFecOcurrencia"].ToString();
+                clase.dvencilicencia = dr["dvencilicencia"].ToString();
+
+                clase.idocurrencia = dr["idocurrencia"].ToString();
+                clase.idtiposiniestro = dr["idtiposiniestro"].ToString();
+                clase.idconsecuencia = dr["idconsecuencia"].ToString();
+                clase.idtipodeclarante = dr["idtipodeclarante"].ToString();
+
+                clase.iparentaseg_conductor = dr["iparentaseg_conductor"].ToString();
+                clase.iparentaseg_declarante = dr["iparentaseg_declarante"].ToString();
+                clase.idtipodoc = dr["idtipodoc"].ToString();
+                clase.nidusuario = dr["nidusuario"].ToString();
+
                 clase.idvehiculo = dr["idvehiculo"].ToString();
                 clase.vlugarsiniestro = dr["vlugarsiniestro"].ToString();
                 clase.vubicasiniestro= dr["vubicasiniestro"].ToString();

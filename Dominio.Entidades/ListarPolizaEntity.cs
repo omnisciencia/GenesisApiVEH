@@ -9,6 +9,7 @@ namespace Dominio.Entidades
     public class ListarPolizaEntity
     {
         public string idpoliza { get; set; }
+        public string idvehiculo { get; set; }        
         public string Persona { get; set; }
         public string vplaca { get; set; }
         public string Marca { get; set; }

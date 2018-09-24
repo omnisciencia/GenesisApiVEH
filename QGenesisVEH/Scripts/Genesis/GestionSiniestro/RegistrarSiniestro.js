@@ -17,7 +17,11 @@
     var idsiniestro_input = sessionStorage.getItem("idsiniestro");
     var modo_input = sessionStorage.getItem("modo");
 
-    SelectSiniestro(idsiniestro_input);
+    if (modo_input == 'ver') {
+        Campos_bloqueados_Previo();
+         SelectSiniestro(idsiniestro_input);
+    }
+   
 
 }
 
@@ -188,6 +192,24 @@ function MostrarRegistroSiniestro(data) {
             $('#idsiniestro_reg').val(data[0].idsiniestro);
             $('#poliza_reg').val(data[0].idpoliza);
             $("#idvehiculo_reg").val(data[0].idvehiculo);
+            //subtraer cadena para fecha que aceptar el input tipo date
+            $("#fecregistro_reg").val(data[0].dFecRegistro.substr(0,10));
+            $("#fecnotificacion_reg").val(data[0].dFecNotificacion.substr(0, 10));
+            $("#fecultmodificacion_reg").val(data[0].dUltmodificación.substr(0, 10));
+            $("#fecocurrencia_reg").val(data[0].dFecOcurrencia.substr(0, 10));
+            $("#vencilicencia_reg").val(data[0].dvencilicencia.substr(0, 10));
+
+            $("#sp_Ocurrencia").val(data[0].idocurrencia);
+            $("#sp_TipoSiniestro").val(data[0].idtiposiniestro);
+            $("#sp_Consecuencia").val(data[0].idconsecuencia);
+            $("#sp_TipoDeclarante").val(data[0].idtipodeclarante);
+
+            $("#sp_Parentesco1").val(data[0].iparentaseg_conductor);
+            $("#sp_Parentesco2").val(data[0].iparentaseg_declarante);
+            $("#sp_TipoDocumento").val(data[0].idtipodoc);
+
+            $("#sp_asesor").val(data[0].nidusuario);
+            
 
             $("#lugarsiniestro_reg").val(data[0].vlugarsiniestro);
             $("#ubicasiniestro_reg").val(data[0].vubicasiniestro);
@@ -203,15 +225,13 @@ function MostrarRegistroSiniestro(data) {
             $("#categoria_reg").val(data[0].vcategoria);
             $("#detasiniestro_reg").val(data[0].vdetasiniestro);
 
-
+            SelectPolizaVehiculo(data[0].idpoliza, data[0].idvehiculo);
 
 
         }
         
     }
 }
-
-
 
 function RegistrarSiniestro
     (idpoliza,idvehiculo, smidciaseguros, iestadosiniestro, dFecNotificacion
@@ -279,6 +299,51 @@ function campos_bloqueados() {
     $("#gps_reg").prop("disabled", true);
     $("#kilometraje_reg").prop("disabled", true);
     
+}
+
+function Campos_bloqueados_Previo() {
+
+    $("#busqueda_avanzada_comi").hide();
+    $("#busqueda_avanzada").hide();
+    $("#btnGuardar").hide();
+
+    
+    $('#idsiniestro_reg').prop("disabled", true);
+    $('#poliza_reg').prop("disabled", true);
+    $("#idvehiculo_reg").prop("disabled", true);
+    //subtraer cadena para fecha que aceptar el input tipo date
+    $("#fecregistro_reg").prop("disabled", true);
+    $("#fecnotificacion_reg").prop("disabled", true);
+    $("#fecultmodificacion_reg").prop("disabled", true);
+    $("#fecocurrencia_reg").prop("disabled", true);
+    $("#vencilicencia_reg").prop("disabled", true);
+
+    $("#sp_Ocurrencia").prop("disabled", true);
+    $("#sp_TipoSiniestro").prop("disabled", true);
+    $("#sp_Consecuencia").prop("disabled", true);
+    $("#sp_TipoDeclarante").prop("disabled", true);
+
+    $("#sp_Parentesco1").prop("disabled", true);
+    $("#sp_Parentesco2").prop("disabled", true);
+    $("#sp_TipoDocumento").prop("disabled", true);
+
+    $("#sp_asesor").prop("disabled", true);
+
+  
+    
+    $("#categoria_reg").prop("disabled", true);
+    $("#lugarsiniestro_reg").prop("disabled", true);
+    $("#ubicasiniestro_reg").prop("disabled", true);
+    $("#nro_ocupantes_reg").prop("disabled", true);
+    $("#denominacion_reg").prop("disabled", true);
+    $("#telefdeclarante_reg").prop("disabled", true);
+    $("#maildeclarante_reg").prop("disabled", true);
+    $("#conductor_reg").prop("disabled", true);
+    $("#nrodocid_reg").prop("disabled", true);
+    $("#licencia_reg").prop("disabled", true);
+    $("#telefconductor_reg").prop("disabled", true);
+    $("#emailconductor_reg").prop("disabled", true);
+    $("#detasiniestro_reg").prop("disabled", true);
 }
 
 function Retornar() {
@@ -412,7 +477,7 @@ function ConstruirGrillaPolizaVeh(data) {
                 "<td style='color:#fff;'>Nro. Poliza</td>" +
                 "<td>Contratante</td>" +
                 "<td>Placa</td>" +                                
-                "<td>Estado</td>" +                
+                "<td>Estado</td>" +            
                 "</tr>" +
                 "</thead>");
 
@@ -421,16 +486,17 @@ function ConstruirGrillaPolizaVeh(data) {
         tabla.append("<tbody>")
         for (i = 0; i < data.length; i++) {
 
-            var splaca = data[i].vplaca;
+            
 
-            var Selectfuncion = "SelectPoliza(" + data[i].idpoliza + ",'" + splaca + "')";
+            var Selectfuncion = "SelectPoliza(" + data[i].idpoliza + "," + data[i].idvehiculo + ")";
 
             tabla.append(
                         "<tr style='cursor: pointer;' ondblclick="+ Selectfuncion +">" +
                         "<td >" + data[i].idpoliza + "</td>" +
                         "<td>" + data[i].Persona + "</td>" +
                         "<td>" + data[i].vplaca + "</td>" +
-                        "<td>" + data[i].Estado + "</td>" +                        
+                        "<td>" + data[i].Estado + "</td>" +
+                        
                         "</tr>");
         }
         tabla.append("</tbody>")
@@ -449,20 +515,20 @@ function ConstruirGrillaPolizaVeh(data) {
 
 }
 
-function SelectPoliza(idpoliza, placa) {
+function SelectPoliza(idpoliza, idvehiculo) {
     $('#poliza_reg').val(idpoliza);
     $('#listado_poliza').modal('hide');
-    SelectPolizaVehiculo(idpoliza, placa)
+    SelectPolizaVehiculo(idpoliza, idvehiculo)
     $('#fecnotificacion_reg').focus();
 }
 
 
-function SelectPolizaVehiculo(idpoliza, placa) {
+function SelectPolizaVehiculo(idpoliza, idvehiculo) {
 
     $.ajax({
         type: "POST",
         url: "../Services/Select_PolizaVehiculo",
-        data: "{idpoliza:'" + idpoliza + "', placa:'" + placa + "'}",
+        data: "{idpoliza:'" + idpoliza + "', idvehiculo:'" + idvehiculo + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: VerPolizaVehiculo,

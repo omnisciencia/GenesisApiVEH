@@ -220,10 +220,13 @@ $("#btnLimpiar").click(function () {
 
 $("#btnNuevo").click(function () {
     // window.location = "../siniestro/Registrosiniestro";
-    var idsiniestro = ''
-    var modo = 'agregar'
+
+    sessionStorage.setItem("idsiniestro", "");
+    sessionStorage.setItem("modo", "agregar");
+
     //window.location = "../siniestro/Registrosiniestro?idsiniestro=" + idsiniestro + "&modo=" + modo;
     window.location = "../GestionSiniestro/RegistrarSiniestro";
+
 });
 
 
