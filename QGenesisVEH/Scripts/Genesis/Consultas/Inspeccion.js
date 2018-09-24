@@ -29,13 +29,14 @@ window.onload = function () {
             finfec = "sin programacion";
             global_finfec = finfec;
             //alert(global_finfec);
-
+            $("#chk_inspec_vencida").prop("disabled", true);
         }
         else {
             
             finfec = "con programacion";
             global_finfec = finfec;
             //alert(global_finfec);
+            $("#chk_inspec_vencida").prop("disabled", false);
         }
     });
     $("#chk_inspec_vencida").click(function () {

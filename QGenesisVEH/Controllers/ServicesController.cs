@@ -571,10 +571,10 @@ namespace GenesisVehivular.Controllers
         }
 
 
-        public ActionResult Select_PolizaVehiculo(string idpoliza, string placa)
+        public ActionResult Select_PolizaVehiculo(string idpoliza, string idvehiculo)
         {
             General_BL bl = new General_BL();
-            List<PolizaVehiculoEntity> listado = bl.Select_PolizaVehiculo_BL(idpoliza, placa);
+            List<PolizaVehiculoEntity> listado = bl.Select_PolizaVehiculo_BL(idpoliza, idvehiculo);
             return Json(listado);
         }
 
