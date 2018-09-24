@@ -346,6 +346,7 @@ window.onload = function () {
             $('#btnback').removeClass('Ocultar');
             $('#btnActualizarVeh').removeClass('Ocultar');
             $('#btnAceptar').addClass('Ocultar');
+            
         }
         else {
             $('#titulo').html('INGRESAR - REGISTRO DE POLIZA');
@@ -547,32 +548,13 @@ function ValidarPlaca() {
 }
 function validarCampo_Placa(data) {
     var plac = data[0].respuesta;
-    if (plac = "esxiste") {
+    if (plac == "existe") {
         alert("Placa Ingresada ya se encuentra Registrada");
         $('#placa_reg').val("");
         $('#placa_reg').focus();
     }
 }
-function ActualizarDatosVehiculo() {
-    $.ajax({
-        type: "POST",
-        url: "../Services/ListarDistrito",
-        data: "{inroasiento:'" + vdepartamento + "', vnromotor:'" + vprovincia
-            + "', vVin:'" + vprovincia + "', vcolor:'" + vprovincia 
-            + "', idcatriesgo:'" + vprovincia + "', venciminetoSoat:'" + vprovincia
-            + "', ciaSeguroSoat:'" + vprovincia + "', suma:'" + vprovincia
-            + "', placa:'" + vprovincia + "', idvehiculo:'" + vprovincia + "'}",
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: llenarSpinner_Distrito,
-        failure: function (response) {
-            alert(response.d);
-        },
-        error: OnError
 
-    });
-
-}
 
 function ActualizarVehiculo(placa) {
     global_placa = placa;
@@ -617,6 +599,51 @@ function llenarcampo_vehiculo(data) {
         Spinner_ModeloVehiculo2(data[0].idmarca, data[0].idmodelo);
 
     }, 1000);
+}
+
+function ActualizarDatosVehiculo() {
+    var nroasiento = $('#nroasientos_reg').val();
+    var nromotor = $('#nromotor_reg').val();
+    var nrovin = $('#vin_reg').val();
+    var ncolor = $('#color_reg').val();
+    var iriesgo = $('#sp_catriesgo').val();
+    var vencimientos_reg = $('#vctoSOAT_reg').val();
+    var seguros = $('#sp_seguroSoat').val();
+    var sumas_reg = $('#sumaasegurada_reg').val();
+
+    vencimientos = vencimientos_reg.toString();
+    var sumas = (parseFloat(sumas_reg).toFixed(2)).toString();
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ActualizarDeatVehiculo",
+        data: "{inroasiento:'" + nroasiento + "', vnromotor:'" + nromotor
+            + "', vVin:'" + nrovin + "', vcolor:'" + ncolor
+            + "', idcatriesgo:'" + iriesgo + "', venciminetoSoat:'" + vencimientos
+            + "', ciaSeguroSoat:'" + seguros + "', suma:'" + sumas
+            + "', placa:'" + global_placa + "', idvehiculo:'" + global_idvehiculo + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ActualizarDetaVehiculo,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+function ActualizarDetaVehiculo(data) {
+
+    if (data[0].respuesta == "true") {
+        alert("Datos del Vehiculo se Actualizaron Sastifactoriamente");
+        document.getElementById('btnCancelar').click();
+        document.getElementById('btnupdate').click();
+        
+        location.reload();
+    } else {
+        alert("Se detectó un inconveniente al Actualizar");
+    }
 }
 
 function getParameterByName(name) {
@@ -1980,8 +2007,8 @@ function ActualizarPoliza() {
 }
 function ActualizarPolizaSucces(data) {
     var respuesta = data[0].respuesta;
-    if (respuesta = "true") {
-        alert("Los datos se actualizaron Sastifactoriamente")
+    if (respuesta == "true") {
+        //alert("Los datos del Contratante actualizaron Sastifactoriamente")
         Link();
     } else {
         alert("Hubo un error al actualizar Datos")
