@@ -76,7 +76,7 @@ namespace Infraestrutura.Data.SqlServer
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
 
-            SqlCommand cmd = new SqlCommand("SP_VEH_ActualizarPoliza2", cn.getcn);
+            SqlCommand cmd = new SqlCommand("SP_VEH_ActualizarVehiculo2", cn.getcn);
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.Parameters.AddWithValue("@inroasiento", Convert.ToInt32(inroasiento));
@@ -128,7 +128,7 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 ActualizarVehiculo clase = new ActualizarVehiculo();
-                //clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
+                clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
                 clase.idtipoveh = int.Parse(dr["idtipoveh"].ToString());
                 clase.idmarca = int.Parse(dr["idmarca"].ToString());
                 clase.idmodelo = int.Parse(dr["idmodelo"].ToString());

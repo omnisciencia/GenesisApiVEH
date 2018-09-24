@@ -8,7 +8,7 @@ namespace Dominio.Entidades
 {
     public class ActualizarVehiculo
     {
-        //public int idvehiculo { get; set; };
+        public int idvehiculo { get; set; }
         public int idtipoveh { get; set; }
         public int idmarca { get; set; }
         public int idmodelo { get; set; }

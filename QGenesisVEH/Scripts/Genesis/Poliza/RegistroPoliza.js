@@ -1,7 +1,7 @@
 ﻿var global_modo;
 var global_persona;
 var global_placa;
-var global_localplac;
+var global_idvehiculo;
 window.onload = function () {
     Spinner_TipoVehiculo();
     Spinner_TipoUso();
@@ -339,7 +339,8 @@ window.onload = function () {
             $('#sp_MarcaVehiculo').prop('disabled', true);
             $('#sp_ModeloVehiculo').prop('disabled', true);
             $('#sp_anioFabricacion').prop('disabled', true);
-            $('#sp_TipoVehiculo').prop('disabled', true);
+            $('#sp_TipoVehiculo').prop('disabled', true); 
+            $('#vin_reg').prop('disabled', true);
 
             $('#btnsave').addClass('Ocultar');
             $('#btnupdate').removeClass('Ocultar');
@@ -534,7 +535,7 @@ function ValidarPlaca() {
     var campoPlaca = $('#placa_reg').val();
     $.ajax({
         type: "POST",
-        url: "../Services/ActualizarVehiculo",
+        url: "../Services/ValidarPlaca",
         data: "{vplaca:'" + campoPlaca + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
@@ -548,31 +549,13 @@ function ValidarPlaca() {
 }
 function validarCampo_Placa(data) {
     var plac = data[0].respuesta;
-    if (plac = "esxiste") {
+    var plk = $('#placa_reg').val();
+    
+    if (plac == "existe" && plk.length > 0) {
         alert("Placa Ingresada ya se encuentra Registrada");
         $('#placa_reg').val("");
         $('#placa_reg').focus();
     }
-}
-function ActualizarDatosVehiculo() {
-    $.ajax({
-        type: "POST",
-        url: "../Services/ListarDistrito",
-        data: "{inroasiento:'" + vdepartamento + "', vnromotor:'" + vprovincia
-            + "', vVin:'" + vprovincia + "', vcolor:'" + vprovincia 
-            + "', idcatriesgo:'" + vprovincia + "', venciminetoSoat:'" + vprovincia
-            + "', ciaSeguroSoat:'" + vprovincia + "', suma:'" + vprovincia
-            + "', placa:'" + vprovincia + "', idvehiculo:'" + vprovincia + "'}",
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: llenarSpinner_Distrito,
-        failure: function (response) {
-            alert(response.d);
-        },
-        error: OnError
-
-    });
-
 }
 
 function ActualizarVehiculo(placa) {
@@ -608,6 +591,7 @@ function llenarcampo_vehiculo(data) {
     $("#sp_catriesgo").val(data[0].idcatriesgo);
     $("#vctoSOAT_reg").val(data[0].vencimiento);//convertir
     $("#sp_seguroSoat").val(data[0].ciaSeguroSoat);
+    global_idvehiculo = data[0].idvehiculo;
     //alert(data[0].idmodelo);
 
     //var marca = $("#sp_MarcaVehiculo").val();
@@ -617,6 +601,39 @@ function llenarcampo_vehiculo(data) {
         Spinner_ModeloVehiculo2(data[0].idmarca, data[0].idmodelo);
         
     }, 1000);
+}
+function ActualizarDatosVehiculo() {
+    var nroasiento = $('#nroasientos_reg').val();
+    var nromotor = $('#nromotor_reg').val();
+    var nrovin = $('#vin_reg').val();
+    var ncolor = $('#color_reg').val();
+    var riesgo = $('#sp_catriesgo').val();
+    var sumaseg = $('#sumaasegurada_reg').val();
+    var plac = $('#placa_reg').val();
+    var vencimientos = $("#vctoSOAT_reg").val();
+    var seguros = $("#sp_seguroSoat").val();
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ActualizarPoliza2",
+        data: "{inroasiento:'" + nroasiento + "', vnromotor:'" + nromotor
+            + "', vVin:'" + nrovin + "', vcolor:'" + ncolor
+            + "', idcatriesgo:'" + riesgo + "', venciminetoSoat:'" + vencimientos
+            + "', ciaSeguroSoat:'" + seguros + "', suma:'" + sumaseg
+            + "', placa:'" + plac + "', idvehiculo:'" + global_idvehiculo + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ActualizarRegVehiculo,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+function ActualizarRegVehiculo(data) {
+    alert(global_placa);
 }
 
 function getParameterByName(name) {
@@ -1003,11 +1020,11 @@ function Spinner_ModeloVehiculo2(id_marca, id_modelo) {
                 }
 
 
-                if (id_marca == 1) {
-                    selectAgregar.val(1);
-                } else {
-                    selectAgregar.val(id_modelo);
-                }
+                //if (id_marca == 1) {
+                //    selectAgregar.val(1);
+                //} else {
+                //    selectAgregar.val(id_modelo);
+                //}
             }
         },
         failure: function (response) {
