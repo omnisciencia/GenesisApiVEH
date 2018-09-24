@@ -1,4 +1,7 @@
-﻿window.onload = function () {
+﻿var global_modo;
+var global_persona;
+var global_placa;
+window.onload = function () {
     Spinner_TipoVehiculo();
     Spinner_TipoUso();
     Spinner_MarcaVehiculo();
@@ -17,6 +20,7 @@
     InhabilitarCajas();
     Spinner_FormaPago();
     Spinner_SeguroSOAT();
+    Spinner_EstadoPoliza();
 
     $("#idsiniestro_reg").prop("disabled", true);
     $("#sp_TipoUso").prop("disabled", true);
@@ -135,39 +139,38 @@
         }
     });
 
-
     function ListarGrillaVehiculos() {
      
         //$("#Pagina").val(pagina);
 
         var tabla = $("#GridListar");
-        tabla.empty();
-        tabla.append("<thead class='bg-blues'>" +
-                    "<tr>" +
-                    "<td style=display:none>idtipoveh</td>" +
-                    "<td style=display:none>idmarca</td>" +
-                    "<td style=display:none>idmodeloveh</td>" +
-                    "<td style=display:none>asientos</td>" +
-                    "<td style=display:none>motor</td>" +
-                    "<td style=display:none>vin</td>" +
-                    "<td style=display:none>suma</td>" +
-                    //"<td>Id</td>" +
-                    "<td>Placa</td>" +
-                    "<td>Clase</td>" +
-                    "<td>Marca</td>" +
-                    "<td>Modelo</td>" +
-                    "<td>Color</td>" +
-                    "<td>Año</td>" +                                  
-                    "<td>Asientos</td>" +
-                    "<td>Motor</td>" +
-                    "<td>Tipo Uso</td>" +
-                    "<td>VIN</td>" +
-                    "<td>Suma</td>" +
-                    "<td>Vcto SOAT</td>" +
-                    "<td>Seguro</td>" +
-                    "<td></td>" +
-                    "</tr>" +
-                    "</thead>");
+        //tabla.empty();
+        //tabla.append("<thead class='bg-blues' style=''>" +
+        //            "<tr>" +
+        //            "<td style=display:none>idtipoveh</td>" +
+        //            "<td style=display:none>idmarca</td>" +
+        //            "<td style=display:none>idmodeloveh</td>" +
+        //            "<td style=display:none>asientos</td>" +
+        //            "<td style=display:none>motor</td>" +
+        //            "<td style=display:none>vin</td>" +
+        //            "<td style=display:none>suma</td>" +
+        //            //"<td>Id</td>" +
+        //            "<td style=''>Placa</td>" +
+        //            "<td style=''>Clase</td>" +
+        //            "<td style=''>Marca</td>" +
+        //            "<td style=''>Modelo</td>" +
+        //            "<td style=''>Color</td>" +
+        //            "<td style=''>Año</td>" +
+        //            "<td style=''>Asientos</td>" +
+        //            "<td style=''>Motor</td>" +
+        //            "<td style=''>Tipo Uso</td>" +
+        //            "<td style=''>VIN</td>" +
+        //            "<td style=''>Suma</td>" +
+        //            "<td style=''>Vcto SOAT</td>" +
+        //            "<td style=''>Seguro</td>" +
+        //            "<td></td>" +
+        //            "</tr>" +
+        //            "</thead>");
 
 
     }
@@ -252,12 +255,12 @@
     var idpoliza_input = sessionStorage.getItem("idpoliza");
 
     var modo_input = sessionStorage.getItem("modo");
-
+    global_modo = modo_input;
 
     sessionStorage.removeItem("idpoliza");
 
     sessionStorage.removeItem("modo");
-
+    //alert(modo_input);
 
     if (modo_input == 'ver') {
         ListarPolizaVehiculo(idpoliza_input);
@@ -270,10 +273,66 @@
         //    }
         //});
         $('#btnVer').hide();
-        $('#titulo').html('VER - REGISTRO DE POLIZA');
-    }
-    else {
-        $('#titulo').html('AGREGANDO - REGISTRO DE POLIZA');
+        $('#titulo').html('DETALLE - REGISTRO DE POLIZA');
+
+        $('#nropoliza_reg').prop('disabled', true);
+        $('#vigenciaini_reg').prop('disabled', true);
+        $('#sp_Poliza').prop('disabled', true);
+        $('#sp_Plan').prop('disabled', true);
+        $('#sp_FormaPago').prop('disabled', true);
+        //------contratante-----------
+        $('#sp_TipoDocumento').prop('disabled', true);
+        $('#nrodocumento_reg').prop('disabled', true);
+        $('#sp_Nacionalidad').prop('disabled', true);
+        $('#nombres_reg').prop('disabled', true);
+        $('#paterno_reg').prop('disabled', true);
+        $('#materno_reg').prop('disabled', true);
+        $('#fecnaci_reg').prop('disabled', true);
+        $('#sp_Sexo').prop('disabled', true);
+        $('#sp_EstadoCivil').prop('disabled', true);
+        $('#telefono_reg').prop('disabled', true);
+        $('#celular_reg').prop('disabled', true);
+        $('#email_reg').prop('disabled', true);
+        $('#sp_Departamento').prop('disabled', true);
+        $('#sp_Provincia').prop('disabled', true);
+        $('#sp_Distrito').prop('disabled', true);
+        $('#sp_TipoVia').prop('disabled', true);
+        $('#numeroubi_reg').prop('disabled', true);
+        $('#direccion_reg').prop('disabled', true);
+        $('#referencia_reg').prop('disabled', true);
+        
+        $('#btnsave').addClass('Ocultar');
+        $('#btnback').removeClass('Ocultar');
+        
+    } else if (modo_input == 'editar') {
+        ListarPolizaVehiculo(idpoliza_input);
+        $('#btnVer').hide();
+        $('#titulo').html('ACTUALIZAR - REGISTRO DE POLIZA');
+        $('#nropoliza_reg').prop('disabled', true);
+        $('#sp_Plan').prop('disabled', true);
+        $('#vigenciaini_reg').prop('disabled', true);
+        $('#sp_FormaPago').prop('disabled', true);
+        $('#sp_Poliza').prop('disabled', true);
+        $('#sp_TipoDocumento').prop('disabled', true);
+        $('#nrodocumento_reg').prop('disabled', true);
+        $('#sp_Nacionalidad').prop('disabled', true);
+        $('#nombres_reg').prop('disabled', true);
+        $('#paterno_reg').prop('disabled', true);
+        $('#materno_reg').prop('disabled', true);
+        $('#fecnaci_reg').prop('disabled', true);
+        $('#sp_Sexo').prop('disabled', true);
+
+        $('#btnsave').addClass('Ocultar');
+        $('#btnupdate').removeClass('Ocultar');
+        $('#vehupdate').removeClass('Ocultar');
+        $('#btnback').removeClass('Ocultar'); 
+        $('#btnActualizarVeh').removeClass('Ocultar');
+        $('#btnAceptar').addClass('Ocultar');
+        
+        
+    }else {
+        $('#titulo').html('INGRESAR - REGISTRO DE POLIZA');
+        $('#vehupdate').addClass('Ocultar');
     }
 
 
@@ -281,7 +340,7 @@
         DatosPoliza(idpoliza_input);
     }
 
-
+   
 
 }
 
@@ -311,70 +370,186 @@ function ListarPolizaVehiculo(idpoliza) {
 
 function ListarGrillaPolizaVehiculo(data) {
     //SE LISTA SIN EL BOTON ELIMINAR, PUES ES SOLO CONSULTA
+    
+    //alert(global_modo);
+    if (global_modo == 'ver') {
+        var tabla = $("#GridListar");
+        tabla.empty();
+        tabla.append("<thead class='bg-blues'>" +
+                    "<tr>" +
+                    //"<td style=display:none>idtipoveh</td>" +
+                    //"<td style=display:none>idmarca</td>" +
+                    //"<td style=display:none>idmodeloveh</td>" +                    
+                    //"<td style=display:none>asientos</td>" +
+                    //"<td style=display:none>motor</td>" +                    
+                    //"<td style=display:none>vin</td>" +
+                    //"<td style=display:none>suma</td>" +
+                    //"<td style=display:none>Id</td>" +
+                    "<td>Placa</td>" +
+                    "<td>Clase</td>" +
+                    "<td>Marca</td>" +
+                    "<td>Modelo</td>" +
+                    "<td>Color</td>" +
+                    "<td>Año</td>" +
+                    "<td>Asientos</td>" +
+                    "<td>Motor</td>" +
+                    "<td>Tipo Uso</td>" +
+                    "<td>VIN</td>" +
+                    "<td>Suma</td>" +
+                    "<td>Vencimiento SOAT</td>" +
+                    "<td>Seguro SOAT</td>" +
+                    "</tr>" +
+                    "</thead>");
 
-    var tabla = $("#GridListar");
-    tabla.empty();
-    tabla.append("<thead class='bg-blues'>" +
-                "<tr>" +
-                //"<td style=display:none>idtipoveh</td>" +
-                //"<td style=display:none>idmarca</td>" +
-                //"<td style=display:none>idmodeloveh</td>" +                    
-                //"<td style=display:none>asientos</td>" +
-                //"<td style=display:none>motor</td>" +                    
-                //"<td style=display:none>vin</td>" +
-                //"<td style=display:none>suma</td>" +
-                //"<td style=display:none>Id</td>" +
-                "<td>Placa</td>" +
-                "<td>Clase</td>" +
-                "<td>Marca</td>" +
-                "<td>Modelo</td>" +
-                "<td>Color</td>" +
-                "<td>Año</td>" +
-                "<td>Asientos</td>" +
-                "<td>Motor</td>" +
-                "<td>Tipo Uso</td>" +
-                "<td>VIN</td>" +
-                "<td>Suma</td>" +
-                "<td>Vencimiento SOAT</td>" +
-                "<td>Seguro SOAT</td>" +
-                "</tr>" +
-                "</thead>");
 
 
+        if (data.length > 0) {
+            tabla.append("<tbody>")
+            for (i = 0; i < data.length; i++) {
+                tabla.append(
+                            "<tr>" +
+                            "<td>" + data[i].placa + "</td>" +
+                            "<td>" + data[i].clase + "</td>" +
+                            "<td>" + data[i].modelo + "</td>" +
+                            "<td>" + data[i].marca + "</td>" +
+                            "<td>" + data[i].color + "</td>" +
+                            "<td>" + data[i].aniofab + "</td>" +
+                            "<td>" + data[i].asientos + "</td>" +
+                            "<td>" + data[i].motor + "</td>" +
+                            "<td>" + data[i].tipouso + "</td>" +
+                            "<td>" + data[i].vin + "</td>" +
+                            "<td>" + data[i].desumaasegurada + "</td>" +
+                            "<td>" + data[i].vencimientoSoat + "</td>" +
+                            "<td>" + data[i].seguroSoat + "</td>" +
+                            "</tr>");
+            }
+            tabla.append("</tbody>")
 
-    if (data.length > 0) {
-        tabla.append("<tbody>")
-        for (i = 0; i < data.length; i++) {
-            tabla.append(
-                        "<tr>" +
-                        "<td>" + data[i].placa + "</td>" +
-                        "<td>" + data[i].clase + "</td>" +
-                        "<td>" + data[i].modelo + "</td>" +
-                        "<td>" + data[i].marca + "</td>" +
-                        "<td>" + data[i].color + "</td>" +
-                        "<td>" + data[i].aniofab + "</td>" +
-                        "<td>" + data[i].asientos + "</td>" +
-                        "<td>" + data[i].motor + "</td>" +
-                        "<td>" + data[i].tipouso + "</td>" +
-                        "<td>" + data[i].vin + "</td>" +
-                        "<td>" + data[i].desumaasegurada + "</td>" +
-                        "<td>" + data[i].vencimientoSoat + "</td>" +
-                        "<td>" + data[i].seguroSoat + "</td>" +
-                        "</tr>");
         }
-        tabla.append("</tbody>")
+        else {
+            tabla.append("<tbody>")
+            tabla.append(
+                            "<center>" +
+                            "No hay registro(s) selecionado(s) por los criterios de busqueda" +
+                            "</center>");
+            tabla.append("</tbody>")
+        }
+    } else if (global_modo == 'editar') {
+        
+        var tabla = $("#GridListar");
+        tabla.empty();
+        tabla.append("<thead class='bg-blues'>" +
+                    "<tr>" +
+                    //"<td style=display:none>idtipoveh</td>" +
+                    //"<td style=display:none>idmarca</td>" +
+                    //"<td style=display:none>idmodeloveh</td>" +                    
+                    //"<td style=display:none>asientos</td>" +
+                    //"<td style=display:none>motor</td>" +                    
+                    //"<td style=display:none>vin</td>" +
+                    //"<td style=display:none>suma</td>" +
+                    //"<td style=display:none>Id</td>" +
+                    "<td>Placa</td>" +
+                    "<td>Clase</td>" +
+                    "<td>Marca</td>" +
+                    "<td>Modelo</td>" +
+                    "<td>Color</td>" +
+                    "<td>Año</td>" +
+                    "<td>Asientos</td>" +
+                    "<td>Motor</td>" +
+                    "<td>Tipo Uso</td>" +
+                    "<td>VIN</td>" +
+                    "<td>Suma</td>" +
+                    "<td>Vencimiento SOAT</td>" +
+                    "<td>Seguro SOAT</td>" +
+                    "<td></td>" +
+                    "</tr>" +
+                    "</thead>");
+
+
+        //onclick=ActualizarVehiculo()
+        if (data.length > 0) {
+            
+            tabla.append("<tbody>")
+            for (i = 0; i < data.length; i++) {
+
+                fun_actualizar = 'ActualizarVehiculo("' + data[i].placa + '")'
+
+                tabla.append(
+                            "<tr >" +
+                            "<td>" + data[i].placa + "</td>" +
+                            "<td>" + data[i].clase + "</td>" +
+                            "<td>" + data[i].marca + "</td>" +
+                            "<td>" + data[i].modelo + "</td>" +
+                            "<td>" + data[i].color + "</td>" +
+                            "<td>" + data[i].aniofab + "</td>" +
+                            "<td>" + data[i].asientos + "</td>" +
+                            "<td>" + data[i].motor + "</td>" +
+                            "<td>" + data[i].tipouso + "</td>" +
+                            "<td>" + data[i].vin + "</td>" +
+                            "<td>" + data[i].desumaasegurada + "</td>" +
+                            "<td>" + data[i].vencimientoSoat + "</td>" +
+                            "<td>" + data[i].seguroSoat + "</td>" +
+                            "<td style='align-content:center'><input type=button data-toggle='modal' data-target='#ver_vehiculo' onclick='" + fun_actualizar + "' value=Actualizar style=width:80px class=btn_customer btn-secondary/></td>" +
+                            "</tr>");
+            }
+            tabla.append("</tbody>")
+            
+        }
+        else {
+            tabla.append("<tbody>")
+            tabla.append(
+                            "<center>" +
+                            "No hay registro(s) selecionado(s) por los criterios de busqueda" +
+                            "</center>");
+            tabla.append("</tbody>")
+        }
+        
 
     }
-    else {
-        tabla.append("<tbody>")
-        tabla.append(
-                        "<center>" +
-                        "No hay registro(s) selecionado(s) por los criterios de busqueda" +
-                        "</center>");
-        tabla.append("</tbody>")
-    }
+    
 
+}
+function ActualizarVehiculo(placa) {
+    global_placa = placa;
+    //alert(global_placa);
+    $.ajax({
+        type: "POST",
+        url: "../Services/ActualizarVehiculo",
+        data: "{vplaca:'" + global_placa + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: llenarcampo_vehiculo,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
 
+    });
+}
+function llenarcampo_vehiculo(data) {
+    
+    $("#sp_TipoVehiculo").val(data[0].idtipoveh);
+    $("#sp_MarcaVehiculo").val(data[0].idmarca);
+    $("#sp_ModeloVehiculo").val(data[0].idmodelo);
+    $("#placa_reg").val(data[0].vplaca);
+    $("#nroasientos_reg").val(data[0].inroasiento);
+    $("#sp_anioFabricacion").val(data[0].smianiofabricacion);
+    $("#nromotor_reg").val(data[0].vnromotor);
+    $("#sp_TipoUso").val(1);
+    $("#vin_reg").val(data[0].vVin);
+    $("#color_reg").val(data[0].vcolor);
+    $("#sumaasegurada_reg").val(data[0].suma);//convertir
+    $("#sp_catriesgo").val(data[0].idcatriesgo);
+    $("#vctoSOAT_reg").val(data[0].vencimiento);//convertir
+    $("#sp_seguroSoat").val(data[0].ciaSeguroSoat);
+
+    //var marca = $("#sp_MarcaVehiculo").val();
+    //var model = $("#sp_ModeloVehiculo").val();
+    
+    //var timer = setTimeout(function () {
+    //    Spinner_ModeloVehiculo(data[0].idmarca);
+        
+    //}, 1000);
 }
 
 function getParameterByName(name) {
@@ -563,14 +738,15 @@ function llenar_registro_poliza(data) {
             $("#sp_Distrito").val(data[0].Distrito);
         }, 1500);
     }
-
+    var personadni = data[0].nrodocumento;
     //---DATOS DE POLIZA
     $("#nropoliza_reg").val(data[0].idpoliza);
     $("#vigenciaini_reg").val(data[0].inivigencia);
     $("#vigenciafin_reg").val(data[0].finvigencia);
     $("#sp_Poliza").val(data[0].tippoliza);
     $("#sp_FormaPago").val(data[0].formapago);
-
+    global_persona = personadni;
+    
     if (data[0].planproducto == "PLATINUM") {
         $("#sp_Plan").val(1);
     }
@@ -850,6 +1026,35 @@ function Spinner_Nacionalidad() {
 
 function llenarSpinner_Nacionalidad(data) {
     var selectAgregar = $("#sp_Nacionalidad");
+    selectAgregar.empty();
+
+    for (i = 0; i < data.length; i++) {
+        selectAgregar.append("<option value='" + data[i].smiddetalle + "'>" + data[i].vdescripcion + "</option>");
+    }
+
+}
+
+//Estado Poliza: 
+function Spinner_EstadoPoliza() {
+
+    $.ajax({
+        type: "POST",
+        url: "../Services/ListarEstadoPoliza",
+        data: "",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: llenarSpinner_estadoPoliza,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+
+    });
+
+}
+
+function llenarSpinner_estadoPoliza(data) {
+    var selectAgregar = $("#sp_EPoliza");
     selectAgregar.empty();
 
     for (i = 0; i < data.length; i++) {
@@ -1631,7 +1836,54 @@ function validarCampoPoli() {
     }
 
 }
+function ListaPoli() {
+    Link();
+}
 
+//ActualizarPoliza
+function ActualizarPoliza() {
+    
+    var actestcivil = $("#sp_EstadoCivil").val();
+    var actcelular = $("#celular_reg").val();
+    var actelefono = $("#telefono_reg").val();
+    var actemail = $("#email_reg").val();
+    var actipovia = $("#sp_TipoVia").val();
+    var actvnumero = $("#numeroubi_reg").val();
+    var actnombrevia = $("#direccion_reg").val();
+    var actdepartamento = $("#sp_Departamento").val();
+    var actprovincia = $("#sp_Provincia").val();
+    var actdistrito = $("#sp_Distrito").val();
+    var actreferencia = $("#referencia_reg").val();
+    
+   
+    $.ajax({
+        type: "POST",
+        url: "../Services/ActualizarPoliza",
+        data:"{smestadocivil:'" + parseInt(actestcivil) + "',vcelular:'" + actcelular +
+        "', vtelefono1:'" + actelefono + "', vemail:'" + actemail +
+        "', smIdTipoVia:'" + parseInt(actipovia) + "', vnumero:'" + actvnumero +
+        "', vnombrevia:'" + actnombrevia + "', vdepartamento:'" + actdepartamento +
+        "', vprovincia:'" + actprovincia + "', vdistrito:'" + actdistrito +
+        "', idnrodocumento:'" + global_persona + "', vreferencia:'" + actreferencia + "'}",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        success: ActualizarPolizaSucces,
+        failure: function (response) {
+            alert(response.d);
+        },
+        error: OnError
+        
+    });
+}
+function ActualizarPolizaSucces(data) {
+    var respuesta = data[0].respuesta;
+    if (respuesta = "true") {
+        alert("Los datos se actualizaron Sastifactoriamente")
+        Link();
+    }else{
+        alert("Hubo un error al actualizar Datos")
+    }
+}
 
 //Error:
 function OnError(data) {

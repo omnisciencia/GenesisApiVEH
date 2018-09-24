@@ -20,7 +20,93 @@ namespace Infraestrutura.Data.SqlServer
         //***************************************************************************************************************************************
         //REGISTRO POLIZA *******************************************************************************************************************
         //***************************************************************************************************************************************
+        //Actualizar
+        public List<RespuestaPost> ActualizarPoliza_DAL(string smestadocivil,
+            string vcelular,string vtelefono1,
+            string vemail,string smIdTipoVia,
+            string vnumero, string vnombrevia,
+            string vdepartamento,
+            string vprovincia, string vdistrito,
+            string idnrodocumento, string vreferencia)
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
 
+            SqlCommand cmd = new SqlCommand("SP_VEH_ActualizarPoliza", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@smestadocivil", Convert.ToInt32(smestadocivil));
+            cmd.Parameters.AddWithValue("@vcelular", vcelular);
+            cmd.Parameters.AddWithValue("@vtelefono1", vtelefono1);
+            cmd.Parameters.AddWithValue("@vemail", vemail);
+            cmd.Parameters.AddWithValue("@vdepartamento", vdepartamento);
+            cmd.Parameters.AddWithValue("@vprovincia", vprovincia);
+            cmd.Parameters.AddWithValue("@vdistrito", vdistrito);
+            cmd.Parameters.AddWithValue("@smIdTipoVia", Convert.ToInt32(smIdTipoVia));
+            cmd.Parameters.AddWithValue("@vnumero", vnumero);
+            cmd.Parameters.AddWithValue("@vnombrevia", vnombrevia);
+            cmd.Parameters.AddWithValue("@dni", idnrodocumento);
+            cmd.Parameters.AddWithValue("@vreferencia", vreferencia);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+                clase.respuesta = dr["respuesta"].ToString();
+
+                listado.Add(clase);
+
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+        //Actualizarvehiculo
+        public List<ActualizarVehiculo> Actualizarvehiculo_DAL(string vplaca)
+        {
+            List<ActualizarVehiculo> listado = new List<ActualizarVehiculo>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ActualizarVehiculo", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@placa", vplaca);
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ActualizarVehiculo clase = new ActualizarVehiculo();
+                clase.idtipoveh = int.Parse(dr["idtipoveh"].ToString());
+                clase.idmarca = int.Parse(dr["idmarca"].ToString());
+                clase.idmodelo = int.Parse(dr["idmodelo"].ToString());
+                clase.vplaca = dr["vplaca"].ToString();
+                clase.inroasiento = int.Parse(dr["inroasiento"].ToString());
+                clase.smianiofabricacion = int.Parse(dr["smianiofabricacion"].ToString());
+                clase.vnromotor = dr["vnromotor"].ToString();
+                clase.vVin = dr["vVin"].ToString();
+                clase.vcolor = dr["vcolor"].ToString();
+                clase.vencimiento = dr["vencimiento"].ToString();
+                clase.ciaSeguroSoat = int.Parse(dr["ciaSeguroSoat"].ToString());
+                clase.idcatriesgo = int.Parse(dr["idcatriesgo"].ToString());
+                clase.suma = dr["suma"].ToString();
+
+                listado.Add(clase);
+
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
         //Listado Tipo Vehiculo
         public List<TipoVehiculoEntity> ListarTipoVehiculo_DAL()
         {
@@ -178,6 +264,34 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 NacionalidadEntity clase = new NacionalidadEntity();
+                clase.smiddetalle = int.Parse(dr["smiddetalle"].ToString());
+                clase.vdescripcion = dr["vdescripcion"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
+        //Listado Estado Poliza
+        public List<EstadoPoliza> ListarEstadoPoliza_DAL()
+        {
+            List<EstadoPoliza> listado = new List<EstadoPoliza>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ListarEstadoPoliza", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                EstadoPoliza clase = new EstadoPoliza();
                 clase.smiddetalle = int.Parse(dr["smiddetalle"].ToString());
                 clase.vdescripcion = dr["vdescripcion"].ToString();
 
@@ -1125,6 +1239,38 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
 
+        //Programar Inspeccion
+        public List<RespuestaPost> ProgramarInspeccion_DAL(string fecInspeccion, string hrInspeccion, int iidinspeccion)
+        {
+            List<RespuestaPost> listado = new List<RespuestaPost>();
+
+            SqlCommand cmd = new SqlCommand("SP_VEH_ProgramarInspeccion", cn.getcn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue("@fecInspeccion", fecInspeccion);
+            cmd.Parameters.AddWithValue("@hrInspeccion", hrInspeccion);
+            cmd.Parameters.AddWithValue("@iidinspeccion", iidinspeccion);            
+
+            cn.getcn.Open();
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                RespuestaPost clase = new RespuestaPost();
+
+                clase.respuesta = dr["respuesta"].ToString();
+
+                listado.Add(clase);
+            }
+
+            dr.Close();
+            cmd.Dispose();
+            cn.getcn.Close();
+
+            return listado;
+        }
+
         //Registro de Inspeccion
         public List<RespuestaPost> RegistrarInspeccion_DAL(int smidpersona, int idpoliza, int idvehiculo, int sminacionalidad,
             int smestadocivil, string dfechanac, string vemail, string vtelefono1, string vcelular, int btsexo, int smidtablaformapago,
@@ -1140,7 +1286,7 @@ namespace Infraestrutura.Data.SqlServer
             int smestadofarodireccion, int smcantfarodireccion, int smcantfaroneblinero, int smestadofaroneblinero,
             int smcantespejoexterno, int smestadoespejoexterno, int smestadospoiler, int smcantspoiler, int smtipoaros,
             int smcantaros, int smestadomascara, int smpintura, int smtipoparachoque, int smcarroceria, int smconsola,
-            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion)
+            int smtablero, int btequipomusicafijo, string vinspector, int smidcalificacion, string fecInspeccion_f, string hrInspeccion_f, int dprograma)
         {
             List<RespuestaPost> listado = new List<RespuestaPost>();
 
@@ -1220,6 +1366,9 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@btequipomusicafijo", btequipomusicafijo);
             cmd.Parameters.AddWithValue("@vinspector", vinspector);
             cmd.Parameters.AddWithValue("@smidcalificacion", smidcalificacion);
+            cmd.Parameters.AddWithValue("@fecInspeccion_f", fecInspeccion_f);
+            cmd.Parameters.AddWithValue("@hrInspeccion_f", hrInspeccion_f);
+            cmd.Parameters.AddWithValue("@dprograma", dprograma);
 
             cn.getcn.Open();
 
@@ -1561,7 +1710,6 @@ namespace Infraestrutura.Data.SqlServer
         //************************************
         //SINIESTROS*************************
         //***********************************
-
 
         //Listar VEHICULO SINIESTRO
         public List<ListarPolizaEntity> Listar_PolizaVehiculo_SIN_DAL(string idpoliza, string placa, string nombre, string estado, int NroDePagina, int RegPorPag)

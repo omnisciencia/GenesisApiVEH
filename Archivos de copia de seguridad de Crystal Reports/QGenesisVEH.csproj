@@ -130,6 +130,7 @@
     <Content Include="Img\icon-clock.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\180918_JARA.pubxml" />
     <None Include="Properties\PublishProfiles\20180905.pubxml" />
     <None Include="Properties\PublishProfiles\PB_240818.pubxml" />
     <None Include="Properties\PublishProfiles\PB_270818.pubxml" />
@@ -144,6 +145,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery.autocomplete.js" />
     <Content Include="Scripts\jquery.backstretch.min.js" />
     <Content Include="Scripts\jquery.redirect.js" />
     <Content Include="Scripts\jquery.table2excel.min.js" />
@@ -175,6 +177,7 @@
     <Compile Include="Controllers\GestionSiniestroController.cs" />
     <Compile Include="Controllers\InspeccionController.cs" />
     <Compile Include="Controllers\PolizaController.cs" />
+    <Compile Include="Controllers\pruebaController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\VehicularController.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,6 +188,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\CrystalReport2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -200,6 +209,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\GestionSiniestro\RegistrarSiniestro.cshtml" />
     <Content Include="Views\Reporte.cshtml" />
+    <Content Include="Views\prueba\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -227,6 +237,10 @@
     <EmbeddedResource Include="Reporte\CrystalReport1.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\CrystalReport2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport2.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -6,11 +6,12 @@ var global_idpoliza;
 var global_idvehiculo;
 var global_fecProgramacion;
 
+var gb_dprograma = 0;
+
 function InicioPoliza() {
 
     window.onload = function () {
 
-        
         Spinner_Nacionalidad();
         Spinner_EstadoCivil();
         Spinner_Sexo();
@@ -25,7 +26,8 @@ function InicioPoliza() {
         Spinner_ClaseRodante();
         Spinner_TipoDano();
         DeshabilitarCajas();
-        Spinner_EstadoInspeccion();
+        //setFechaHora();
+        //Spinner_EstadoInspeccion();
         
         $("select[name=sp_MarcaVehiculo]").change(function () {
             idmarca = $("#sp_MarcaVehiculo").val();
@@ -41,9 +43,82 @@ function InicioPoliza() {
         //alert(idinspeccion_input);
         var modo_input = sessionStorage.getItem("modo");
         var modo_estado = sessionStorage.getItem("estado");
-        //alert(modo_input);
+
+        if (modo_input == 'ver') {
+
+            $("#sp_Nacionalidad").prop("disabled", true);
+            $("#sp_EstadoCivil").prop("disabled", true);
+            $("#fecnaci_id").prop("disabled", true);
+            $("#email_id").prop("disabled", true);
+            $("#fono_id").prop("disabled", true);
+            $("#cel_id").prop("disabled", true);
+            $("#sp_Sexo").prop("disabled", true);
+
+            $("#sp_FormaPago").prop("disabled", true);
+            $("#fecinspeccion_id").prop("disabled", true);
+            $("#hrinspeccion_id").prop("disabled", true);
+            $("#fecrecordatorio_id").prop("disabled", true);
+            $("#hrecordatorio").prop("disabled", true);
+
+            $("#sp_TipoVehiculo").prop("disabled", true);
+            $("#sp_MarcaVehiculo").prop("disabled", true);
+            $("#sp_ModeloVehiculo").prop("disabled", true);
+            $("#anioveh_id").prop("disabled", true);
+            $("#colorveh_id").prop("disabled", true);
+            $("#sp_TipoTransmision").prop("disabled", true);
+            $("#sp_ClaseRodante").prop("disabled", true);
+            $("#sp_TipoCombustible").prop("disabled", true);
+            $("#puertasveh_id").prop("disabled", true);
+            $("#sp_TipoCarroceria").prop("disabled", true);
+            $("#motorveh_id").prop("disabled", true);
+            $("#placaveh_id").prop("disabled", true);
+            $("#kilometrajeveh_id").prop("disabled", true);
+            $("#vinveh_id").prop("disabled", true);
+
+            $("#chk_aireacond_id").prop("disabled", true);
+            $("#chk_lunelectrica_id").prop("disabled", true);
+            $("#chk_alarma_id").prop("disabled", true);
+            $("#chk_segruedas_id").prop("disabled", true);
+            $("#chk_pestilloe_id").prop("disabled", true);
+            $("#chk_llantarep_id").prop("disabled", true);
+            $("#chk_tapizc_id").prop("disabled", true);
+            $("#chk_radoriginal_id").prop("disabled", true);
+            $("#chk_parlanteo_id").prop("disabled", true);
+            $("#chk_accesomusi_id").prop("disabled", true);
+            $("#accobservaciones_id").prop("disabled", true);
+            $("#sp_TipoDano").prop("disabled", true);
+            $("#observaciones_id").prop("disabled", true);
+
+            $("#sp_farDelantero").prop("disabled", true);
+            $("#cant_FarDelantero").prop("disabled", true);
+            $("#sp_farPost").prop("disabled", true);
+            $("#cant_FarPost").prop("disabled", true);
+            $("#sp_farDirec").prop("disabled", true);
+            $("#cant_FarDirec").prop("disabled", true);
+            $("#sp_farNebli").prop("disabled", true);
+            $("#cant_FarNebli").prop("disabled", true);
+            $("#sp_EspExterno").prop("disabled", true);
+            $("#cant_EspExterno").prop("disabled", true);
+            $("#sp_Aros").prop("disabled", true);
+            $("#cant_Aros").prop("disabled", true);
+            $("#sp_Spoiler").prop("disabled", true);
+            $("#cant_Spoilers").prop("disabled", true);
+            $("#sp_Mascara").prop("disabled", true);
+            $("#sp_Parachoque").prop("disabled", true);
+            $("#sp_Consola").prop("disabled", true);
+            $("#sp_Tablero").prop("disabled", true);
+            $("#sp_Pintura").prop("disabled", true);
+            $("#sp_Carroceria").prop("disabled", true);
+            $("#sp_EquipoMusic").prop("disabled", true);
+            $("#inspector_id").prop("disabled", true);
+            $("#btnfoto").prop("disabled", true);
+            $("#btn_GuardarDI").addClass('Ocultar');            
+
+            $("#btguardar").addClass("Ocultar");
+            $("#chk_fijar_fecha").prop("disabled", true);
+            // $("#sp_FormaPago").prop("disabled", true);
+        }
         if (modo_input == 'editar' && modo_estado == 'CONCLUIDO') {
-            
             
             $("#sp_Nacionalidad").prop("disabled", true);
             $("#sp_EstadoCivil").prop("disabled", true);
@@ -111,11 +186,13 @@ function InicioPoliza() {
             $("#sp_EquipoMusic").prop("disabled", true);
             $("#inspector_id").prop("disabled", true);
             $("#btnfoto").prop("disabled", true);
+            $("#btn_GuardarDI").addClass('Ocultar');
 
             $("#btguardar").addClass("Ocultar");
             $("#chk_fijar_fecha").prop("disabled", true);
            // $("#sp_FormaPago").prop("disabled", true);
-        } else {
+        }
+        else {
             $("#btvolver").addClass("Ocultar");
         }
 
@@ -129,16 +206,37 @@ function InicioPoliza() {
             $('#titulo').html('AGREGANDO - Registro de Inspección');
             $("#fecinspeccion_id").prop("disabled", true);
             $("#hrinspeccion_id").prop("disabled", true);
+            
+
             $("#chk_fijar_fecha").click(function () {
                 if (this.checked) {
                     $("#fecinspeccion_id").prop("disabled", false);
                     $("#hrinspeccion_id").prop("disabled", false);
                     $("#fecinspeccion_id").prop("min", FechaActual());
+                    
+                    gb_dprograma = 1;
                 }
                 else {
                     $("#fecinspeccion_id").prop("disabled", true);
                     $("#hrinspeccion_id").prop("disabled", true);
                     $("#fecinspeccion_id").prop("min", FechaActual());
+                    
+                }
+            });
+
+            $("#chk_fijar_Reprog").click(function () {
+                if (this.checked) {
+                    $("#fecinspeccion_id").prop("disabled", false);
+                    $("#hrinspeccion_id").prop("disabled", false);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+                    
+                    gb_dprograma = 2;
+                }
+                else {
+                    $("#fecinspeccion_id").prop("disabled", true);
+                    $("#hrinspeccion_id").prop("disabled", true);
+                    $("#fecinspeccion_id").prop("min", FechaActual());
+                    
                 }
             });
         }
@@ -159,13 +257,35 @@ function InicioPoliza() {
     }
 
 }
-//function Link2() {
-//    window.location = "../inspeccion/registroinspeccion";
-//}
+
+
+function setFechaHora() {
+    var f = new Date();
+    var dia = "" + f.getDate();
+    var mes = "" + (f.getMonth() + 1);
+    var hora = f.getHours() + ":" + f.getMinutes();
+
+    if (parseInt(dia) < 10) {
+        dia = "0" + dia;
+    }
+    if (parseInt(mes) < 10) {
+        mes = "0" + mes;
+    }
+
+    var fecha = (f.getFullYear() + "-" + mes + "-" + dia);
+
+    $('#fecInspeccion_f').val(fecha);
+    $('#hrInspeccion_f').val(hora);
+
+
+
+}
+
+
 function FechaActual() {
     var f = new Date();
     var dia = "" + (f.getDate()+1);
-    var mes = "" + (f.getMonth() + 1)
+    var mes = "" + (f.getMonth() + 1);
     //var hora = f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds() + ".000";
 
     if (parseInt(dia) < 10) {
@@ -185,35 +305,35 @@ function AbrirConfirm() {
     
 
     if (modo_input == 'agregar' || modo_input == 'editar') {
-      
-        //var vinspector = $("#inspector_id").val();
-
-
-        //if (vinspector.length < 1) {
-
-        //    $("#inspector_id").addClass('input-error');
-        //} else {
-
-        //    (document.getElementById('btn_popconfirm')).click();
-            
-        //}
-
-        (document.getElementById('btn_popconfirm')).click();
-        document.getElementById("siconforme_id").checked = true;
         
+        if (archivo = $('#inspector_id').val().length > 1) {
+            (document.getElementById('btn_popconfirm')).click();
+            document.getElementById("siconforme_id").checked = true;
+        }  
         
     }  else {
-        //alert("nada");
         alert('No se puede guardar la informacion, porque está en modo VER - Registro de Inspección.');
         Link2();
     }
      
    
 }
+
+
+
 function AbrirConfirm2() {
+    (document.getElementById('btn_popconfirm1')).click();
+    setFechaHora();
+    //document.getElementById("sconforme_id").checked = true;
+}
+
+function AbrirConfirm1() {
+    
+    (document.getElementById('cerrar_fec_inspeccion_mdl')).click();
     (document.getElementById('btn_popconfirm2')).click();
     document.getElementById("sconforme_id").checked = true;
 }
+
 function ocultar1() {
     $('#pruebas1').addClass('Ocultar');
     $('#pruebas2').removeClass('Ocultar');
@@ -718,7 +838,7 @@ function DatosPoliza(idinspeccion) {
 function ListarDatosPoliza(data) {
 
     //alert(data[0].smidpersona);
-
+    
         //for (i = 0; i < data.length; i++) {            
             dni = data[0].dni;
             nombre = data[0].nombre;
@@ -763,6 +883,9 @@ function ListarDatosPoliza(data) {
             obsaccesorio = data[0].obsaccesorio;
             inspector = data[0].inspector;
             emision = data[0].emision;
+            
+
+            
         //}
             
         global_smidpersona = smidpersona;
@@ -771,12 +894,11 @@ function ListarDatosPoliza(data) {
         global_fecProgramacion = fecinspeccion;
         
         //var fecActual = fechaActual();
-        
+        //alert(global_fecProgramacion);
         
         $("#idcontratante").val(smidpersona);
         $("#sp_TipoVehiculo").val(claseveh);
         $("#sp_MarcaVehiculo").val(marcaveh);
-    // $("#sp_ModeloVehiculo").val(modeloveh);
 
         Spinner_ModeloVehiculo(marcaveh, modeloveh);
 
@@ -787,25 +909,23 @@ function ListarDatosPoliza(data) {
         $("#vinveh_id").val(vin);
         $("#puertasveh_id").val(puertas);
         $("#nroserieveh_id").val(nroserie);
-        $("#accobservaciones_id").val(observaciones);
-        $("#observaciones_id").val(obsaccesorio);
+        $("#accobservaciones_id").val(obsaccesorio);
+        $("#observaciones_id").val(observaciones);
         $("#inspector_id").val(inspector);
 
         if (ikilometraje != 0) {
-            //$("#nroserieveh_id").val(nroserie);
             $("#kilometrajeveh_id").val(ikilometraje);
         }
 
         if (fecinspeccion == "0000-00-00") {
-            $("#fecinspeccion_id").val(fecrecordatorio);
-            $("#hrinspeccion_id").val(horrecordatorio);
+            //$("#fecinspeccion_id").val(fecrecordatorio);
+            //$("#hrinspeccion_id").val(horrecordatorio);
         }
         else {
             $("#fecinspeccion_id").val(fecinspeccion);
             $("#hrinspeccion_id").val(hrinspeccion);
         }
         
-
         $("#dni_id").val(dni);
         $("#nombre_id").val(nombre);
         $("#sp_Nacionalidad").val(nacionalidad);
@@ -817,6 +937,7 @@ function ListarDatosPoliza(data) {
         $("#sp_EstadoCivil").val(ecivil);
         $("#tipocontra_id").val(tipocontratante);
         $("#tipodoc_id").val(tipodoc);
+            
 
         $("#nropoliza_id").val(nropoliza);
         $("#plan_id").val(planproducto);
@@ -828,9 +949,67 @@ function ListarDatosPoliza(data) {
         $("#hrecordatorio").val(horrecordatorio);
         
         $("#estadoinspecc_id").val(estado);
+
+        
+
+        if (estado == 'PENDIENTE') {
+
+            $("#chkbox_Prog").removeClass("Ocultar");
+            $("#chkbox_Reprog").addClass("Ocultar");
+            
+        } else {
+            $("#chkbox_Prog").addClass("Ocultar");
+            $("#chkbox_Reprog").removeClass("Ocultar");
+        }
+        
         
     
 
+
+}
+
+function GuardarDI() {
+    var fecinspeccion = $("#fecinspeccion_id").val();
+    var hrinspeccion = $("#hrinspeccion_id").val();
+    var iidinspeccion  = sessionStorage.getItem("idinspeccion");
+
+    if (fecinspeccion.length < 1) {
+        alert('Ingrese una Fecha de Programación');
+    } else if (hrinspeccion.length < 1) {
+        alert('Ingrese una Hora de Programación');
+    } else {
+
+        $.ajax({
+            type: "POST",
+            url: "../Services/ProgramarInspeccion",
+            data: "{ fecInspeccion:'" + fecinspeccion + "', hrInspeccion:'" + hrinspeccion + "', iidinspeccion:'" + iidinspeccion + "'}",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: programarInspeccion,
+            failure: function (response) {
+                alert(response.d);
+            },
+            error: OnError
+
+        });
+    }
+}
+
+function programarInspeccion(data) {
+
+    for (i = 0; i < data.length; i++) {
+        respuesta = data[i].respuesta;
+    }
+
+    $("#estadoinspecc_id").val(respuesta);
+
+    $("#chkbox_Prog").addClass("Ocultar");
+    $("#chkbox_Reprog").removeClass("Ocultar");
+
+    $("#fecinspeccion_id").prop("disabled", true);
+    $("#hrinspeccion_id").prop("disabled", true);
+
+    alert('Se programó satisfactoriamente');   
 
 }
 
@@ -1114,8 +1293,9 @@ function RegistrarInspeccion_onclick_() {
             + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
             + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
             + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
-            + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + 2 + "'}",
-
+            + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion
+            + "', fecInspeccion_f:'" + fecInspeccion_f + "', hrInspeccion_f:'" + hrInspeccion_f + "', dprograma:'" + gb_dprograma + "'}",
+     
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: ResponseCrearSucces,
@@ -1178,11 +1358,13 @@ function RegistrarInspeccion_onclick2() {
     var vplaca = $("#placaveh_id").val();
     //var vnroserie = $("#nroserieveh_id").val();
     
-    if ($("#kilometrajeveh_id").val().trim.length == 0) {
+    if ($("#kilometrajeveh_id").val().length == 0) {
         $("#kilometrajeveh_id").val(0);
     }
     
+    
     var ikilometraje = $("#kilometrajeveh_id").val();
+    
 
     var vVin = $("#vinveh_id").val();
 
@@ -1219,6 +1401,8 @@ function RegistrarInspeccion_onclick2() {
     var smtablero = $("#sp_Tablero").val();
     var btequipomusicafijo = $("#sp_EquipoMusic").val();
     var vinspector = $("#inspector_id").val();
+    var fecInspeccion_f = $("#fecInspeccion_f").val();
+    var hrInspeccion_f = $("#hrInspeccion_f").val();
 
     
 
@@ -1291,74 +1475,8 @@ function RegistrarInspeccion_onclick2() {
 
     if (calificacion == 0) {
         calificacion = 2;
-        //alert("Debe seleccionar un estado de conformidad"); smidpersona
 
     } else {
-
-        /*alert("{smidpersona:'" + smidpersona + "', idpoliza:'" + idpoliza + "', idvehiculo:'" + idvehiculo
-                + "', sminacionalidad:'" + sminacionalidad + "', smestadocivil:'" + smestadocivil + "', dfechanac:'" + dfechanac
-                + "', vemail:'" + vemail + "', vtelefono1:'" + vtelefono1
-                + "', vcelular:'" + vcelular + "', btsexo:'" + btsexo + "', smidtablaformapago:'" + smidtablaformapago
-                + "', smidtipovehiculo:'" + smidtipovehiculo + "', smidmarca:'" + smidmarca
-                + "', smidmodelo:'" + smidmodelo + "', smianiofabricacion:'" + smianiofabricacion
-                + "', vcolor:'" + vcolor + "', smidtipotransmision:'" + smidtipotransmision + "', smidclaserodante:'" + smidclaserodante
-                + "', smidtipocombustible:'" + smidtipocombustible + "', inroasiento:'" + inroasiento + "', smidcarroceria:'" + smidcarroceria
-                + "', vnromotor:'" + vnromotor + "', vplaca:'" + vplaca 
-                + "', ikilometraje:'" + ikilometraje + "', vVin:'" + vVin
-                + "', iidinspeccion:'" + iidinspeccion + "', fecInspeccion:'" + fecInspeccion
-                + "', hrInspeccion:'" + hrInspeccion + "', fecRecordatorio:'" + fecRecordatorio
-                + "', hrRecordatorio:'" + hrRecordatorio + "', smidtablaestadoinspeccion:'" + smidtablaestadoinspeccion
-                + "', btaire:'" + btaire + "', btalarma:'" + btalarma + "', btpestillos:'" + btpestillos
-                + "', bttapizcuero:'" + bttapizcuero + "', btlunaselectricas:'" + btlunaselectricas + "', btseguroruedas:'" + btseguroruedas
-                + "', btllantarep:'" + btllantarep + "', btequipomusicaorig:'" + btequipomusicaorig
-                + "', btparlantesoriginal:'" + btparlantesoriginal + "', btaccesorios:'" + btaccesorios
-                + "', vobservacionesaccesorios:'" + vobservacionesaccesorios + "', smidtablatipodano:'" + smidtablatipodano
-                + "', vobservaciones:'" + vobservaciones
-                + "', smidestadofarodelante:'" + smidestadofarodelante + "', smcantfarodelante:'" + smcantfarodelante
-                + "', smidestadofaropost:'" + smidestadofaropost + "', smcantfaropost:'" + smcantfaropost
-                + "', smestadofarodireccion:'" + smestadofarodireccion + "', smcantfarodireccion:'" + smcantfarodireccion
-                + "', smcantfaroneblinero:'" + smcantfaroneblinero + "', smestadofaroneblinero:'" + smestadofaroneblinero
-                + "', smcantespejoexterno:'" + smcantespejoexterno + "', smestadoespejoexterno:'" + smestadoespejoexterno
-                + "', smestadospoiler:'" + smestadospoiler + "', smcantspoiler:'" + smcantspoiler + "', smtipoaros:'" + smtipoaros
-                + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
-                + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
-                + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
-                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}");*/
-        //"', vnroserie:'" + vnroserie
-        /*$.ajax({
-            type: "POST",
-            url: "../Services/RegistrarInspeccion",
-            data: "{smidpersona:'" + smidpersona + "', idpoliza:'" + idpoliza + "', idvehiculo:'" +idvehiculo
-                + "', sminacionalidad:'" + sminacionalidad + "', smestadocivil:'" + smestadocivil + "', dfechanac:'" + dfechanac
-                + "', vemail:'" + vemail + "', vtelefono1:'" + vtelefono1
-                + "', vcelular:'" + vcelular + "', btsexo:'" + btsexo + "', smidtablaformapago:'" + smidtablaformapago
-                + "', smidtipovehiculo:'" + smidtipovehiculo + "', smidmarca:'" + smidmarca
-                + "', smidmodelo:'" + smidmodelo + "', smianiofabricacion:'" + smianiofabricacion
-                + "', vcolor:'" + vcolor + "', smidtipotransmision:'" + smidtipotransmision + "', smidclaserodante:'" + smidclaserodante
-                + "', smidtipocombustible:'" + smidtipocombustible + "', inroasiento:'" + inroasiento + "', smidcarroceria:'" + smidcarroceria
-                + "', vnromotor:'" + vnromotor + "', vplaca:'" + vplaca 
-                + "', ikilometraje:'" + ikilometraje + "', vVin:'" + vVin
-                + "', iidinspeccion:'" + iidinspeccion + "', fecInspeccion:'" + fecInspeccion
-                + "', hrInspeccion:'" + hrInspeccion + "', fecRecordatorio:'" + fecRecordatorio
-                + "', hrRecordatorio:'" + hrRecordatorio + "', smidtablaestadoinspeccion:'" + smidtablaestadoinspeccion
-                + "', btaire:'" + btaire + "', btalarma:'" + btalarma + "', btpestillos:'" + btpestillos
-                + "', bttapizcuero:'" + bttapizcuero + "', btlunaselectricas:'" + btlunaselectricas + "', btseguroruedas:'" + btseguroruedas
-                + "', btllantarep:'" + btllantarep + "', btequipomusicaorig:'" + btequipomusicaorig
-                + "', btparlantesoriginal:'" + btparlantesoriginal + "', btaccesorios:'" + btaccesorios
-                + "', vobservacionesaccesorios:'" + vobservacionesaccesorios + "', smidtablatipodano:'" + smidtablatipodano
-                + "', vobservaciones:'" + vobservaciones
-                + "', smidestadofarodelante:'" + smidestadofarodelante + "', smcantfarodelante:'" + smcantfarodelante
-                + "', smidestadofaropost:'" + smidestadofaropost + "', smcantfaropost:'" + smcantfaropost
-                + "', smestadofarodireccion:'" + smestadofarodireccion + "', smcantfarodireccion:'" + smcantfarodireccion
-                + "', smcantfaroneblinero:'" + smcantfaroneblinero + "', smestadofaroneblinero:'" + smestadofaroneblinero
-                + "', smcantespejoexterno:'" + smcantespejoexterno + "', smestadoespejoexterno:'" + smestadoespejoexterno
-                + "', smestadospoiler:'" + smestadospoiler + "', smcantspoiler:'" + smcantspoiler + "', smtipoaros:'" + smtipoaros
-                + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
-                + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
-                + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
-                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}",
-                */
-
 
         $.ajax({
             type: "POST",
@@ -1391,7 +1509,8 @@ function RegistrarInspeccion_onclick2() {
                 + "', smcantaros:'" + smcantaros + "', smestadomascara:'" + smestadomascara
                 + "', smpintura:'" + smpintura + "', smtipoparachoque:'" + smtipoparachoque
                 + "', smcarroceria:'" + smcarroceria + "', smconsola:'" + smconsola + "', smtablero:'" + smtablero
-                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion + "'}",
+                + "', btequipomusicafijo:'" + btequipomusicafijo + "', vinspector:'" + vinspector + "', smidcalificacion:'" + calificacion
+                + "', fecInspeccion_f:'" + fecInspeccion_f + "', hrInspeccion_f:'" + hrInspeccion_f + "', dprograma:'" + gb_dprograma + "'}",
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: ResponseCrearSucces2,
@@ -1439,7 +1558,6 @@ function RegistrarInspeccion_onclick() {
     if ($("#kilometrajeveh_id").val().trim.length == 0) {
         $("#kilometrajeveh_id").val(0);
     }
-
 
     var ikilometraje = $("#kilometrajeveh_id").val();
     
@@ -1547,10 +1665,6 @@ function RegistrarInspeccion_onclick() {
     if (document.getElementById('nconforme_id').checked) {
         calificacion = 2;
     }
-
-    
-
-   
 
         /*alert("{smidpersona:'" + smidpersona + "', idpoliza:'" + idpoliza + "', idvehiculo:'" + idvehiculo
                 + "', sminacionalidad:'" + sminacionalidad + "', smestadocivil:'" + smestadocivil + "', dfechanac:'" + dfechanac

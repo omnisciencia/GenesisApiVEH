@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActualizarVehiculo.cs" />
     <Compile Include="ClaseRodanteEntity.cs" />
     <Compile Include="ComboUsuario.cs" />
     <Compile Include="ComisariaEntity.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="DistritoEntity.cs" />
     <Compile Include="EstadoCivilEntity.cs" />
     <Compile Include="EstadoInspeccionEntity.cs" />
+    <Compile Include="EstadoPoliza.cs" />
     <Compile Include="FormaPagoEntity.cs" />
     <Compile Include="IdPolizaEntity.cs" />
     <Compile Include="ImagenInspeccionEntity.cs" />
