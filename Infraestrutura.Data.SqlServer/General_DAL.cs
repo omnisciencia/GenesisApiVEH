@@ -662,8 +662,8 @@ namespace Infraestrutura.Data.SqlServer
             int smidmarca,
             int smidtipodocumento,
             int formapago,
-            string vigenciaini_reg
-            
+            string vigenciaini_reg,
+            int tipodocumento
             //,string serie
             )
         {
@@ -719,6 +719,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
             cmd.Parameters.AddWithValue("@formapago", formapago);
             cmd.Parameters.AddWithValue("@dtiniciovigencia", vigenciaini_reg);
+            cmd.Parameters.AddWithValue("@tipodocumento", tipodocumento);
 
             //cmd.Parameters.AddWithValue("@serie", serie);
 
@@ -2291,7 +2292,9 @@ namespace Infraestrutura.Data.SqlServer
                 clase.vnrodociden = dr["vnrodociden"].ToString();
                 clase.vlicencia = dr["vlicencia"].ToString();
                 clase.vtelef_conductor = dr["vtelef_conductor"].ToString();
-                clase.vemail_conductor = dr["vemail_conductor"].ToString();
+                clase.vemail_conductor = dr["vemail_conductor"].ToString();                
+                clase.idcomisaria = dr["idcomisaria"].ToString();
+                clase.descomisaria = dr["descomisaria"].ToString();
                 clase.vcategoria = dr["vcategoria"].ToString();
                 clase.vdetasiniestro = dr["vdetasiniestro"].ToString();
 
