@@ -65,6 +65,29 @@ namespace Dominio.Entidades
         public int btaccesorios { get; set; }
         public int smidtablatipodano { get; set; }
 
+        public int smidestadofarodelante { get; set; }
+        public int smcantfarodelante { get; set; }
+        public int smestadofarodireccion { get; set; }
+        public int smcantfarodireccion { get; set; }
+        public int smestadoespejoexterno { get; set; }
+        public int smcantespejoexterno { get; set; }
+        public int smestadospoiler { get; set; }
+        public int smcantspoiler { get; set; }
+        public int smidestadofaropost { get; set; }
+        public int smcantfaropost { get; set; }
+        public int smestadofaroneblinero { get; set; }
+        public int smcantfaroneblinero { get; set; }
+        public int smtipoaros { get; set; }
+        public int smcantaros { get; set; }
+
+        public int smestadomascara { get; set; }
+        public int smtipoparachoque { get; set; }
+        public int smconsola { get; set; }
+        public int smtablero { get; set; }
+        public int smpintura { get; set; }
+        public int smcarroceria { get; set; }
+        public int btequipomuisca { get; set; }
+
 
     }
 }
