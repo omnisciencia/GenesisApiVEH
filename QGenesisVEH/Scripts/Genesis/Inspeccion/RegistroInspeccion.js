@@ -999,7 +999,7 @@ function ListarDatosPoliza(data) {
         $("#sp_TipoVehiculo").val(claseveh);
         $("#sp_MarcaVehiculo").val(marcaveh);
         $("#sp_ModeloVehiculo").val(modeloveh);
-        alert(claseveh);
+        
 
         Spinner_ModeloVehiculo(marcaveh, modeloveh);
 
