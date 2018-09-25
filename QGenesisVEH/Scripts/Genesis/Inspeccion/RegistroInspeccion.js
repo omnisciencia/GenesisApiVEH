@@ -17,7 +17,6 @@ function InicioPoliza() {
         Spinner_EstadoCivil();
         Spinner_Sexo();
         Spinner_FormaPago();
-        //Spinner_EstadoInspeccion();
         Spinner_TipoVehiculo();
         Spinner_MarcaVehiculo();
         Spinner_ModeloVehiculo(1);
@@ -35,15 +34,9 @@ function InicioPoliza() {
 
         });
 
-        //idinspeccion_input = getParameterByName('id');
-        //modo_input = getParameterByName('modo');
-        //modo_input2 = getParameterByName('modo2');
-
         var idinspeccion_input = sessionStorage.getItem("idinspeccion");
-        //alert(idinspeccion_input);
         var modo_input = sessionStorage.getItem("modo");
         var modo_estado = sessionStorage.getItem("estado");
-        //alert(modo_input);
         if (modo_input == 'editar' && modo_estado == 'CONCLUIDO') {
             
             
@@ -116,7 +109,6 @@ function InicioPoliza() {
 
             $("#btguardar").addClass("Ocultar");
             $("#chk_fijar_fecha").prop("disabled", true);
-           // $("#sp_FormaPago").prop("disabled", true);
         } else {
             $("#btvolver").addClass("Ocultar");
         }
@@ -194,11 +186,6 @@ function InicioPoliza() {
     }
 
 }
-//function Link2() {
-//    window.location = "../inspeccion/registroinspeccion";
-//}
-
-
 
 function setFechaHora() {
     var f = new Date();
@@ -226,7 +213,6 @@ function FechaActual() {
     var f = new Date();
     var dia = "" + (f.getDate()+1);
     var mes = "" + (f.getMonth() + 1)
-    //var hora = f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds() + ".000";
 
     if (parseInt(dia) < 10) {
         dia = "0" + dia;
@@ -235,35 +221,20 @@ function FechaActual() {
         mes = "0" + mes;
     }
     var fecha = (f.getFullYear() + "-" + mes + "-" + dia);
-    //var fecha = (f.getFullYear() + "-" + mes + "-" + dia + ' ' + hora);
     return fecha;
 }
 function AbrirConfirm() {
-    //var modo_input = getParameterByName('modo');
     var modo_input = sessionStorage.getItem("modo");
     var estado_input = sessionStorage.getItem("estado");
     
 
     if (modo_input == 'agregar' || modo_input == 'editar') {
-      
-        //var vinspector = $("#inspector_id").val();
-
-
-        //if (vinspector.length < 1) {
-
-        //    $("#inspector_id").addClass('input-error');
-        //} else {
-
-        //    (document.getElementById('btn_popconfirm')).click();
-            
-        //}
 
         (document.getElementById('btn_popconfirm')).click();
         document.getElementById("siconforme_id").checked = true;
         
         
     }  else {
-        //alert("nada");
         alert('No se puede guardar la informacion, porque está en modo VER - Registro de Inspección.');
         Link2();
     }
@@ -274,7 +245,7 @@ function AbrirConfirm() {
 function AbrirConfirm2() {
     (document.getElementById('btn_popconfirm1')).click();
     setFechaHora();
-    //document.getElementById("sconforme_id").checked = true;
+    gb_dprograma = 3;
 }
 
 function AbrirConfirm1() {
@@ -594,11 +565,6 @@ function Spinner_ModeloVehiculo(id_marca) {
                     selectAgregar.append("<option value=" + data[i].idmodelo + ">" + data[i].vdescripcion + "</option>");
                 }
 
-                //if (id_marca == 1) {
-                //    selectAgregar.val(1);
-                //} else {
-                //    selectAgregar.val(id_modelo);
-                //}
             }
         },
         failure: function (response) {
@@ -847,6 +813,51 @@ function ListarDatosPoliza(data) {
             btparlantesoriginal = data[0].btparlantesoriginal;
             btaccesorios = data[0].btaccesorios;
             smidtablatipodano = data[0].smidtablatipodano;
+
+            smidestadofarodelante = data[0].smidestadofarodelante;
+            smcantfarodelante = data[0].smcantfarodelante;
+            smestadofarodireccion = data[0].smestadofarodireccion;
+            smcantfarodireccion = data[0].smcantfarodireccion;
+            smestadoespejoexterno = data[0].smestadoespejoexterno;
+            smcantespejoexterno = data[0].smcantespejoexterno;
+            smestadospoiler = data[0].smestadospoiler;
+            smcantspoiler = data[0].smcantspoiler;
+            smidestadofaropost = data[0].smidestadofaropost;
+            smcantfaropost = data[0].smcantfaropost;
+            smestadofaroneblinero = data[0].smestadofaroneblinero;
+            smcantfaroneblinero = data[0].smcantfaroneblinero;
+            smtipoaros = data[0].smtipoaros;
+            smcantaros = data[0].smcantaros;
+            smestadomascara = data[0].smestadomascara;
+            smtipoparachoque = data[0].smtipoparachoque;
+            smconsola = data[0].smconsola;
+            smtablero = data[0].smtablero;
+            smpintura = data[0].smpintura;
+            smcarroceria = data[0].smcarroceria;
+            btequipomuisca = data[0].btequipomuisca;
+             
+            $('#sp_farDelantero').val(smidestadofarodelante);
+            $('#cant_FarDelantero').val(smcantfarodelante);
+            $('#sp_farDirec').val(smestadofarodireccion);
+            $('#cant_FarDirec').val(smcantfarodireccion);
+            $('#sp_EspExterno').val(smestadoespejoexterno);
+            $('#cant_EspExterno').val(smcantespejoexterno);
+            $('#sp_Spoiler').val(smestadospoiler);
+            $('#cant_Spoilers').val(smcantspoiler);
+            $('#sp_farPost').val(smidestadofaropost);
+            $('#cant_FarPost').val(smcantfaropost);
+            $('#sp_farNebli').val(smestadofaroneblinero);
+            $('#cant_FarNebli').val(smcantfaroneblinero);
+            $('#sp_Aros').val(smtipoaros);
+            $('#cant_Aros').val(smcantaros);
+
+            $('#sp_Mascara').val(smestadomascara);
+            $('#sp_Parachoque').val(smtipoparachoque);
+            $('#sp_Consola').val(smconsola);
+            $('#sp_Tablero').val(smtablero);
+            $('#sp_Pintura').val(smpintura);
+            $('#sp_Carroceria').val(smcarroceria);
+            $('#sp_EquipoMusic').val(btequipomuisca);
             
 
     //}
@@ -882,6 +893,8 @@ function ListarDatosPoliza(data) {
                 $("#chk_accesomusi_id").prop('checked', true);
             }
            
+            $('#sp_TipoDano').val(smidtablatipodano);
+            
             
 
             if (estado == 'PENDIENTE') {
