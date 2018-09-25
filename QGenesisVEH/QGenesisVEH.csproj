@@ -138,6 +138,7 @@
     <None Include="Properties\PublishProfiles\PB_19092018.pubxml" />
     <None Include="Properties\PublishProfiles\PB_201918.pubxml" />
     <None Include="Properties\PublishProfiles\PB_240818.pubxml" />
+    <None Include="Properties\PublishProfiles\PB_250918.pubxml" />
     <None Include="Properties\PublishProfiles\PB_270818.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Genesis\Consultas\Inspeccion.js" />

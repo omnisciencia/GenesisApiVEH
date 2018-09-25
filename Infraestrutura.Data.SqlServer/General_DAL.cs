@@ -662,8 +662,8 @@ namespace Infraestrutura.Data.SqlServer
             int smidmarca,
             int smidtipodocumento,
             int formapago,
-            string vigenciaini_reg
-            
+            string vigenciaini_reg,
+            int tipodocumento
             //,string serie
             )
         {
@@ -719,6 +719,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
             cmd.Parameters.AddWithValue("@formapago", formapago);
             cmd.Parameters.AddWithValue("@dtiniciovigencia", vigenciaini_reg);
+            cmd.Parameters.AddWithValue("@tipodocumento", tipodocumento);
 
             //cmd.Parameters.AddWithValue("@serie", serie);
 

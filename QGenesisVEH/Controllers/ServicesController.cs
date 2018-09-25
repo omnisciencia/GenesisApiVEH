@@ -217,7 +217,8 @@ namespace GenesisVehivular.Controllers
                 int smidmarca,
                 int smidtipodocumento,
                 int formapago,
-                string vigenciaini_reg
+                string vigenciaini_reg,
+                int tipodocumento
          
 
             //,string serie
@@ -253,7 +254,8 @@ namespace GenesisVehivular.Controllers
                smidmarca,
                smidtipodocumento,
                formapago,
-               vigenciaini_reg
+               vigenciaini_reg,
+               tipodocumento
                //,serie
                );
             return Json(listado);

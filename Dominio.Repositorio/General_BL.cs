@@ -182,7 +182,8 @@ namespace Dominio.Repositorio
                 int smidmarca,
                 int smidtipodocumento,
                 int formapago,
-                string vigenciaini_reg
+                string vigenciaini_reg,
+                int tipodocumento
             //,string serie
 
             )
@@ -212,7 +213,8 @@ namespace Dominio.Repositorio
                 smidmarca,
                 smidtipodocumento,
                 formapago,
-                vigenciaini_reg
+                vigenciaini_reg,
+                tipodocumento
                 //,serie
                 );
         }
