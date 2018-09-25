@@ -43,6 +43,7 @@ namespace Dominio.Entidades
         public string vemail_conductor { get; set; }
         public string dvencilicencia { get; set; }
         public string idcomisaria { get; set; }
+        public string descomisaria { get; set; }        
         public string vcategoria { get; set; }
         public string vdetasiniestro { get; set; }
         public string nidusuario { get; set; }

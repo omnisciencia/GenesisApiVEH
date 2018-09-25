@@ -2268,7 +2268,9 @@ namespace Infraestrutura.Data.SqlServer
                 clase.vnrodociden = dr["vnrodociden"].ToString();
                 clase.vlicencia = dr["vlicencia"].ToString();
                 clase.vtelef_conductor = dr["vtelef_conductor"].ToString();
-                clase.vemail_conductor = dr["vemail_conductor"].ToString();
+                clase.vemail_conductor = dr["vemail_conductor"].ToString();                
+                clase.idcomisaria = dr["idcomisaria"].ToString();
+                clase.descomisaria = dr["descomisaria"].ToString();
                 clase.vcategoria = dr["vcategoria"].ToString();
                 clase.vdetasiniestro = dr["vdetasiniestro"].ToString();
 
