@@ -236,36 +236,16 @@ function ListarGrillaInspeccion(data) {
 
 
 //Link con el metodo POST
-function Link(idinspeccion, modo,estado) {
-    //window.location = "../inspeccion/registroinspeccion?alarmid=" + alarmid;
-
-    //$.redirect(surl,
-    //{
-    //    alarmhistoryid: alarmid, evento: even
-    //}, "post", "");
-
-    //window.location = "../Inspeccion/RegistroInspeccion?id=" + idinspeccion + "&modo=" + modo;
-   
-    
+function Link(idinspeccion, modo, estado) {
 
     sessionStorage.setItem("idinspeccion", idinspeccion);
     sessionStorage.setItem("modo", modo);
     sessionStorage.setItem("estado", estado);
 
-    window.location = "../inspeccion/registroinspeccion";
-    /*
-    surl="../Inspeccion/RegistroInspeccion";
-
-    $.redirect(surl,
-    {
-        id: id, modo: modo
-    }, "post", "");
-
-    */
-   
-
-
+    window.location = "../inspeccion/registroinspeccion"; 
 }
+
+
 function ListarGrilla() {
 
     

@@ -1074,6 +1074,29 @@ namespace Infraestrutura.Data.SqlServer
                 clase.btaccesorios = int.Parse(dr["btaccesorios"].ToString());
                 clase.smidtablatipodano = int.Parse(dr["smidtablatipodano"].ToString());
 
+                clase.smidestadofarodelante = int.Parse(dr["smidestadofarodelante"].ToString());
+                clase.smcantfarodelante = int.Parse(dr["smcantfarodelante"].ToString());
+                clase.smestadofarodireccion = int.Parse(dr["smestadofarodireccion"].ToString());
+                clase.smcantfarodireccion = int.Parse(dr["smcantfarodireccion"].ToString());
+                clase.smestadoespejoexterno = int.Parse(dr["smestadoespejoexterno"].ToString());
+                clase.smcantespejoexterno = int.Parse(dr["smcantespejoexterno"].ToString());
+                clase.smestadospoiler = int.Parse(dr["smestadospoiler"].ToString());
+                clase.smcantspoiler = int.Parse(dr["smcantspoiler"].ToString());
+                clase.smidestadofaropost = int.Parse(dr["smidestadofaropost"].ToString());
+                clase.smcantfaropost = int.Parse(dr["smcantfaropost"].ToString());
+                clase.smestadofaroneblinero = int.Parse(dr["smestadofaroneblinero"].ToString());
+                clase.smcantfaroneblinero = int.Parse(dr["smcantfaroneblinero"].ToString());                
+                clase.smtipoaros = int.Parse(dr["smtipoaros"].ToString());
+                clase.smcantaros = int.Parse(dr["smcantaros"].ToString());
+
+                clase.smestadomascara = int.Parse(dr["smestadomascara"].ToString());
+                clase.smtipoparachoque = int.Parse(dr["smtipoparachoque"].ToString());
+                clase.smconsola = int.Parse(dr["smconsola"].ToString());
+                clase.smtablero = int.Parse(dr["smtablero"].ToString());
+                clase.smpintura = int.Parse(dr["smpintura"].ToString());
+                clase.smcarroceria = int.Parse(dr["smcarroceria"].ToString());
+                clase.btequipomuisca = int.Parse(dr["btequipomuisca"].ToString());
+
 
                 listado.Add(clase);
             }
