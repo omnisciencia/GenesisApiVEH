@@ -207,10 +207,7 @@ function MostrarRegistroSiniestro(data) {
             $("#sp_Parentesco1").val(data[0].iparentaseg_conductor);
             $("#sp_Parentesco2").val(data[0].iparentaseg_declarante);
             $("#sp_TipoDocumento").val(data[0].idtipodoc);
-
-            $("#sp_asesor").val(data[0].nidusuario);
-            
-
+            $("#sp_asesor").val(data[0].nidusuario);            
             $("#lugarsiniestro_reg").val(data[0].vlugarsiniestro);
             $("#ubicasiniestro_reg").val(data[0].vubicasiniestro);
             $("#nro_ocupantes_reg").val(data[0].iocupantes);
@@ -222,6 +219,8 @@ function MostrarRegistroSiniestro(data) {
             $("#licencia_reg").val(data[0].vlicencia);
             $("#telefconductor_reg").val(data[0].vtelef_conductor);
             $("#emailconductor_reg").val(data[0].vemail_conductor);
+            $("#idcomisaria_reg").val(data[0].idcomisaria);
+            $("#descripcomisaria_reg").val(data[0].descomisaria);
             $("#categoria_reg").val(data[0].vcategoria);
             $("#detasiniestro_reg").val(data[0].vdetasiniestro);
 
