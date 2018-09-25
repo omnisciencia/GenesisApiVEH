@@ -113,7 +113,7 @@ function InicioPoliza() {
             $("#btvolver").addClass("Ocultar");
         }
 
-        if (modo_input == 'ver') {
+        if (sessionStorage.getItem("modo") == 'ver') {
             $('#titulo').html('VER - Registro de Inspección');
             $("#fecinspeccion_id").prop("disabled", true);
             $("#hrinspeccion_id").prop("disabled", true);
@@ -124,6 +124,87 @@ function InicioPoliza() {
             $("#sp_ModeloVehiculo").prop("disabled", true);
             $("#anioveh_id").prop("disabled", true);
             $("#sp_TipoVehiculo").prop("disabled", true);
+
+
+
+
+
+            //////////////////////////////////////
+
+            $("#sp_Nacionalidad").prop("disabled", true);
+            $("#sp_EstadoCivil").prop("disabled", true);
+            $("#fecnaci_id").prop("disabled", true);
+            $("#email_id").prop("disabled", true);
+            $("#fono_id").prop("disabled", true);
+            $("#cel_id").prop("disabled", true);
+            $("#sp_Sexo").prop("disabled", true);
+
+            $("#sp_FormaPago").prop("disabled", true);
+            $("#fecinspeccion_id").prop("disabled", true);
+            $("#hrinspeccion_id").prop("disabled", true);
+            $("#fecrecordatorio_id").prop("disabled", true);
+            $("#hrecordatorio").prop("disabled", true);
+
+            $("#sp_TipoVehiculo").prop("disabled", true);
+            $("#sp_MarcaVehiculo").prop("disabled", true);
+            $("#sp_ModeloVehiculo").prop("disabled", true);
+            $("#anioveh_id").prop("disabled", true);
+            $("#colorveh_id").prop("disabled", true);
+            $("#sp_TipoTransmision").prop("disabled", true);
+            $("#sp_ClaseRodante").prop("disabled", true);
+            $("#sp_TipoCombustible").prop("disabled", true);
+            $("#puertasveh_id").prop("disabled", true);
+            $("#sp_TipoCarroceria").prop("disabled", true);
+            $("#motorveh_id").prop("disabled", true);
+            $("#placaveh_id").prop("disabled", true);
+            $("#kilometrajeveh_id").prop("disabled", true);
+            $("#vinveh_id").prop("disabled", true);
+
+            $("#chk_aireacond_id").prop("disabled", true);
+            $("#chk_lunelectrica_id").prop("disabled", true);
+            $("#chk_alarma_id").prop("disabled", true);
+            $("#chk_segruedas_id").prop("disabled", true);
+            $("#chk_pestilloe_id").prop("disabled", true);
+            $("#chk_llantarep_id").prop("disabled", true);
+            $("#chk_tapizc_id").prop("disabled", true);
+            $("#chk_radoriginal_id").prop("disabled", true);
+            $("#chk_parlanteo_id").prop("disabled", true);
+            $("#chk_accesomusi_id").prop("disabled", true);
+            $("#accobservaciones_id").prop("disabled", true);
+            $("#sp_TipoDano").prop("disabled", true);
+            $("#observaciones_id").prop("disabled", true);
+
+            $("#sp_farDelantero").prop("disabled", true);
+            $("#cant_FarDelantero").prop("disabled", true);
+            $("#sp_farPost").prop("disabled", true);
+            $("#cant_FarPost").prop("disabled", true);
+            $("#sp_farDirec").prop("disabled", true);
+            $("#cant_FarDirec").prop("disabled", true);
+            $("#sp_farNebli").prop("disabled", true);
+            $("#cant_FarNebli").prop("disabled", true);
+            $("#sp_EspExterno").prop("disabled", true);
+            $("#cant_EspExterno").prop("disabled", true);
+            $("#sp_Aros").prop("disabled", true);
+            $("#cant_Aros").prop("disabled", true);
+            $("#sp_Spoiler").prop("disabled", true);
+            $("#cant_Spoilers").prop("disabled", true);
+            $("#sp_Mascara").prop("disabled", true);
+            $("#sp_Parachoque").prop("disabled", true);
+            $("#sp_Consola").prop("disabled", true);
+            $("#sp_Tablero").prop("disabled", true);
+            $("#sp_Pintura").prop("disabled", true);
+            $("#sp_Carroceria").prop("disabled", true);
+            $("#sp_EquipoMusic").prop("disabled", true);
+            $("#inspector_id").prop("disabled", true);
+            $("#btnfoto").prop("disabled", true);
+
+            $("#btn_GuardarDI").prop("disabled", true);
+            $("#btn_GuardarDI").addClass("Ocultar");
+            
+            $("#chk_fijar_fecha").prop("disabled", true);
+            $("#chk_fijar_Reprog").prop("disabled", true)
+
+
 
         }
         else if (modo_input == 'editar') {
@@ -917,7 +998,8 @@ function ListarDatosPoliza(data) {
         $("#idcontratante").val(smidpersona);
         $("#sp_TipoVehiculo").val(claseveh);
         $("#sp_MarcaVehiculo").val(marcaveh);
-    // $("#sp_ModeloVehiculo").val(modeloveh);
+        $("#sp_ModeloVehiculo").val(modeloveh);
+        alert(claseveh);
 
         Spinner_ModeloVehiculo(marcaveh, modeloveh);
 
@@ -928,8 +1010,8 @@ function ListarDatosPoliza(data) {
         $("#vinveh_id").val(vin);
         $("#puertasveh_id").val(puertas);
         $("#nroserieveh_id").val(nroserie);
-        $("#accobservaciones_id").val(observaciones);
-        $("#observaciones_id").val(obsaccesorio);
+        $("#accobservaciones_id").val(obsaccesorio);
+        $("#observaciones_id").val(observaciones);
         $("#inspector_id").val(inspector);
 
         if (ikilometraje != 0) {

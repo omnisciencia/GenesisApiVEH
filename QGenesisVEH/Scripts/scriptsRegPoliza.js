@@ -128,73 +128,76 @@ jQuery(document).ready(function() {
             //    $(this).removeClass('input-error');
         //}   
 
-        parent_fieldset.find('#fecinspeccion_id').each(function () {
+        if (sessionStorage.getItem("modo") != 'ver') {
+            parent_fieldset.find('#fecinspeccion_id').each(function () {
 
-            if ($('#fecinspeccion_id').val() == "") {
-                if ($('#fecinspeccion_id').val() == "") $('#fecinspeccion_id').addClass('input-error');
-                next_step = false;
-            }
-            else {
+                if ($('#fecinspeccion_id').val() == "") {
+                    if ($('#fecinspeccion_id').val() == "") $('#fecinspeccion_id').addClass('input-error');
+                    next_step = false;
+                }
+                else {
 
-                $(this).removeClass('input-error');
+                    $(this).removeClass('input-error');
 
-            }
-        });
+                }
+            });
 
-        parent_fieldset.find('#hrinspeccion_id').each(function () {
+            parent_fieldset.find('#hrinspeccion_id').each(function () {
 
-            if ($('#hrinspeccion_id').val() == "") {
-                if ($('#hrinspeccion_id').val() == "") $('#hrinspeccion_id').addClass('input-error');
-                next_step = false;
-            }
-            else {
+                if ($('#hrinspeccion_id').val() == "") {
+                    if ($('#hrinspeccion_id').val() == "") $('#hrinspeccion_id').addClass('input-error');
+                    next_step = false;
+                }
+                else {
 
-                $(this).removeClass('input-error');
+                    $(this).removeClass('input-error');
 
-            }
-        });
+                }
+            });
 
-        parent_fieldset.find('#inspector_id').each(function () {
+            parent_fieldset.find('#inspector_id').each(function () {
 
-            if ($('#inspector_id').val() == "") {
-                if ($('#inspector_id').val() == "") $('#inspector_id').addClass('input-error');
-                next_step = false;
-            }
-            else {
+                if ($('#inspector_id').val() == "") {
+                    if ($('#inspector_id').val() == "") $('#inspector_id').addClass('input-error');
+                    next_step = false;
+                }
+                else {
 
-                $(this).removeClass('input-error');
+                    $(this).removeClass('input-error');
 
-            }
-        });
+                }
+            });
 
-        parent_fieldset.find('#email_id').each(function () {
-
-            
-            if ($('#email_id').val() == "") {
-                if ($('#email_id').val() == "") $('#email_id').addClass('input-error');
-                next_step = false;
-            }
-            else {
-
-                $(this).removeClass('input-error');
-
-            }
-        });
+            parent_fieldset.find('#email_id').each(function () {
 
 
-        parent_fieldset.find('#nropoliza_reg').each(function () {
+                if ($('#email_id').val() == "") {
+                    if ($('#email_id').val() == "") $('#email_id').addClass('input-error');
+                    next_step = false;
+                }
+                else {
 
-            if ($('#nropoliza_reg').val() == "" ) {
-                if ($('#nropoliza_reg').val() == "") $('#nropoliza_reg').addClass('input-error');
-                next_step = false;
-            }
-            else
-            {
+                    $(this).removeClass('input-error');
 
-                $(this).removeClass('input-error');
+                }
+            });
 
-            }
-        });
+            parent_fieldset.find('#nropoliza_reg').each(function () {
+
+                if ($('#nropoliza_reg').val() == "") {
+                    if ($('#nropoliza_reg').val() == "") $('#nropoliza_reg').addClass('input-error');
+                    next_step = false;
+                }
+                else {
+
+                    $(this).removeClass('input-error');
+
+                }
+            });
+        }
+
+
+        
 
         var tipodoc = $("#sp_TipoDocumento").val();
 
