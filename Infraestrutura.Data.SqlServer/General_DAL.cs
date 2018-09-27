@@ -637,6 +637,7 @@ namespace Infraestrutura.Data.SqlServer
         }
 
         //Registar Poliza
+        //Registar Poliza
         public List<RespuestaPost> RegistrarPoliza_DAL(string DetallesVehi,
             int smidtablatipopoliza,
             string idnrodocumento,
@@ -663,7 +664,7 @@ namespace Infraestrutura.Data.SqlServer
             int smidtipodocumento,
             int formapago,
             string vigenciaini_reg,
-            int tipodocumento
+            int smidtipopersona
             //,string serie
             )
         {
@@ -719,7 +720,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@smidtipodocumento", smidtipodocumento);
             cmd.Parameters.AddWithValue("@formapago", formapago);
             cmd.Parameters.AddWithValue("@dtiniciovigencia", vigenciaini_reg);
-            cmd.Parameters.AddWithValue("@tipodocumento", tipodocumento);
+            cmd.Parameters.AddWithValue("@smidtipopersona", smidtipopersona);
 
             //cmd.Parameters.AddWithValue("@serie", serie);
 
@@ -739,6 +740,7 @@ namespace Infraestrutura.Data.SqlServer
 
             return listado;
         }
+
 
         //validar persona
         public List<ValidarPersona> ValidarPersona_DAL(string idnrodocumento)
@@ -778,6 +780,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.Distrito = dr["Distrito"].ToString();
                 clase.smidtipodocumento = int.Parse(dr["smidtipodocumento"].ToString());
                 clase.vnomcontacto = dr["vnomcontacto"].ToString();
+                clase.tipopersona = int.Parse(dr["tipopersona"].ToString());
 
                 listado.Add(clase);
             }
@@ -1052,6 +1055,11 @@ namespace Infraestrutura.Data.SqlServer
                 //clase.nroserie = dr["nroserie"].ToString();
                 clase.ikilometraje = int.Parse(dr["ikilometraje"].ToString());
 
+                clase.iclaserodante = dr["iclaserodante"].ToString();
+                clase.smidtipotransmision = dr["smidtipotransmision"].ToString();
+                clase.smidtipocombustible = dr["smidtipocombustible"].ToString();
+                clase.smidcarroceria = dr["smidcarroceria"].ToString();
+
                 clase.fecrecordatorio = dr["fecrecordatorio"].ToString();
                 clase.horrecordatorio = dr["horrecordatorio"].ToString();
                 clase.fecinspeccion = dr["fecinspeccion"].ToString();
@@ -1127,6 +1135,7 @@ namespace Infraestrutura.Data.SqlServer
                 ReportePolizaEntity clase = new ReportePolizaEntity();
                 clase.smidpersona = int.Parse(dr["smidpersona"].ToString());
                 clase.idpoliza = int.Parse(dr["idpoliza"].ToString());
+                clase.tipocontratante = int.Parse(dr["tipocontratante"].ToString());
                 /*clase.idvehiculo = int.Parse(dr["idvehiculo"].ToString());
                 clase.claseveh = int.Parse(dr["smidpersona"].ToString());   
                 clase.marcaveh = int.Parse(dr["marcaveh"].ToString());
@@ -1611,7 +1620,7 @@ namespace Infraestrutura.Data.SqlServer
             return listado;
         }
         //Listado Datos Poliza2
-        public List<Inspeccion> ListarInspeccion2_DAL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string estado, int NroDePagina, int RegPorPag)
+        public List<Inspeccion> ListarInspeccion2_DAL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string idnrodocumento, string estado, int NroDePagina, int RegPorPag)
         {
             List<Inspeccion> listado = new List<Inspeccion>();
 
@@ -1624,6 +1633,7 @@ namespace Infraestrutura.Data.SqlServer
             cmd.Parameters.AddWithValue("@fechaini", fechaini);
             cmd.Parameters.AddWithValue("@fechafin", fechafin);
             cmd.Parameters.AddWithValue("@nombre", nombre);
+            cmd.Parameters.AddWithValue("@idnrodocumento", idnrodocumento);
             cmd.Parameters.AddWithValue("@estado", estado);
             cmd.Parameters.AddWithValue("@NroDePagina", NroDePagina);
             cmd.Parameters.AddWithValue("@RegPorPag", RegPorPag);
@@ -1656,6 +1666,7 @@ namespace Infraestrutura.Data.SqlServer
 
             return listado;
         }
+
         public List<ListarInspeccionExportEntity> ListarInspeccionExport_DAL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string estado)
         {
             List<ListarInspeccionExportEntity> listado = new List<ListarInspeccionExportEntity>();
@@ -1784,6 +1795,7 @@ namespace Infraestrutura.Data.SqlServer
             while (dr.Read())
             {
                 ReporteInspeccionEntity clase = new ReporteInspeccionEntity();
+                clase.iidinspeccion = dr["iidinspeccion"].ToString(); 
                 clase.nombre = dr["nombre"].ToString();
                 clase.nrodoc = dr["nrodoc"].ToString();
                 clase.celular = dr["celular"].ToString();
@@ -1795,7 +1807,7 @@ namespace Infraestrutura.Data.SqlServer
                 clase.marca = dr["marca"].ToString();
                 clase.modelo = dr["modelo"].ToString();
                 clase.color = dr["color"].ToString();
-                clase.nroserie = dr["nroserie"].ToString();
+                clase.nromotor = dr["nromotor"].ToString();
                 clase.nrovin = dr["nrovin"].ToString();
                 clase.kilometraje = int.Parse(dr["kilometraje"].ToString());
                 clase.estado = dr["estado"].ToString();

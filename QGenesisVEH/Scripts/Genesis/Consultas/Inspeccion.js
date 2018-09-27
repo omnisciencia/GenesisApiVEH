@@ -90,12 +90,12 @@ function FechaActual() {
 //
 
 //Lista inspeccion
-function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado, pagina, regporpag) {
+function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, idnrodocumento, estado, pagina, regporpag) {
 
     $.ajax({
         type: "POST",
         url: "../Services/ListarInspeccion2",
-        data: "{iidinspeccion:'" + iidinspeccion + "', idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "', estado:'" + estado + "', NroDePagina:'" + pagina + "', RegPorPag:'" + regporpag + "'}",
+        data: "{iidinspeccion:'" + iidinspeccion + "', idpoliza:'" + idpoliza + "', placa:'" + placa + "', fechaini:'" + fechaini + "', fechafin:'" + fechafin + "', nombre:'" + nombre + "', idnrodocumento:'" + idnrodocumento + "', estado:'" + estado + "', NroDePagina:'" + pagina + "', RegPorPag:'" + regporpag + "'}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: ListarGrillaInspeccion,
@@ -117,7 +117,7 @@ function ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, no
         },
         error: OnError
     });
-    
+
 
 }
 
@@ -248,55 +248,62 @@ function Link(idinspeccion, modo, estado) {
 
 function ListarGrilla() {
 
-    
-
     var iidinspeccion = $("#idinspeccion").val();
     var idpoliza = $("#idpoliza").val();
     var placa = $("#placa").val();
     var fechaini = $("#fechaini").val();
     var fechafin = $("#fechafin").val();
     var nombre = $("#contratante").val();
+
     var pagina = $("#Pagina").val();
     var regporpag = "10";
     var vestado = "";
-    var vestado2 = "";
+    var comboEstado_reg = $("#sp_EstadoInpecion").val();
+    //var comboEstado = comboEstado_reg.toString();
+
+    var doi = $("#doi").val();
     if (global_finfec == "sin programacion") {
         vestado = "4";
-        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, doi, vestado, pagina, regporpag);
     } else if (global_finfec == "con programacion") {
         vestado = "";
-        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
-    }else if (global_finfec == "vencida") {
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, doi, vestado, pagina, regporpag);
+    } else if (global_finfec == "vencida") {
         vestado = "";
         var fecha = new Date($('#fechafin').val());
         var dias = 9; // Número de días a agregar
         fecha.setDate(fecha.getDate() - dias);
-        var fecha2 =new Date(fecha);
+        var fecha2 = new Date(fecha);
         var dia = "" + (fecha2.getDate());
         var mes = "" + (fecha2.getMonth() + 1);
 
         if (parseInt(dia) < 10) {
             dia = "0" + dia;
-            
+
         }
         if (parseInt(mes) < 10) {
             mes = "0" + mes;
-            
+
         }
         var fecha3 = (fecha2.getFullYear() + "-" + mes + "-" + dia);
         $('#fechaini').val(fecha3)
 
         vestado = "1";
 
-        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, doi, vestado, pagina, regporpag);
         //ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado2, pagina, regporpag);
-        }
-    
+    }
 
-    ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, vestado, pagina, regporpag);
+    if (comboEstado_reg == "0") {
+        var todos = "";
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, doi, todos, pagina, regporpag);
+    } else {
+        ListarInspeccion(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, doi, comboEstado_reg, pagina, regporpag);
+    }
+
 
     $("#Pagina").val(pagina);
-    
+
 }
 
 $("#btnBuscar").click(function () {

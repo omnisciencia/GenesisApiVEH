@@ -137,6 +137,7 @@
     <None Include="Properties\PublishProfiles\2509181.pubxml" />
     <None Include="Properties\PublishProfiles\2509182.pubxml" />
     <None Include="Properties\PublishProfiles\250918_V3.pubxml" />
+    <None Include="Properties\PublishProfiles\2609181.pubxml" />
     <None Include="Properties\PublishProfiles\PB_19092018.pubxml" />
     <None Include="Properties\PublishProfiles\PB_201918.pubxml" />
     <None Include="Properties\PublishProfiles\PB_240818.pubxml" />

@@ -8,6 +8,8 @@ namespace Dominio.Entidades
 {
     public class ReporteInspeccionEntity
     {
+        
+        public string iidinspeccion { get; set; }
         public string nombre { get; set; }
         public string nrodoc { get; set; }
         public string celular { get; set; }
@@ -18,6 +20,7 @@ namespace Dominio.Entidades
         public string modelo { get; set; }
         public string color { get; set; }
         public string nroserie { get; set; }
+        public string nromotor { get; set; }
         public string nrovin { get; set; }
         public int kilometraje { get; set; }
         public string estado { get; set; }

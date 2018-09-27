@@ -49,5 +49,7 @@ namespace Dominio.Entidades
         public int tippoliza { get; set; }
         public string planproducto { get; set; }
         public int formapago { get; set; }
+        public int tipocontratante { get; set; }
+
     }
 }

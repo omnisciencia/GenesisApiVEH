@@ -157,36 +157,36 @@ namespace Dominio.Repositorio
 
         //Registar Poliza
         public List<RespuestaPost> RegistrarPoliza_BL(
-                string DetallesVehi,
-                int smidtablatipopoliza,
-                string idnrodocumento,
-                string vnombres,
-                string vcelular,
-                string vtelefono1,
-                string vemail,
-                string vreferencia,
-                string vnumero,
-                string vnombrevia,
-                int smIdTipoVia,
-                int smestadocivil,
-                string vdepartamento,
-                string vprovincia,
-                string vdistrito,
-                string dfechanac,
-                int btsexo,
-                string vapellidopat,
-                string vapellidomat,
-                int idpoliza,
-                string vnomcontacto,
-                int sminacionalidad,
-                int smidmarca,
-                int smidtipodocumento,
-                int formapago,
-                string vigenciaini_reg,
-                int tipodocumento
-            //,string serie
+                 string DetallesVehi,
+                 int smidtablatipopoliza,
+                 string idnrodocumento,
+                 string vnombres,
+                 string vcelular,
+                 string vtelefono1,
+                 string vemail,
+                 string vreferencia,
+                 string vnumero,
+                 string vnombrevia,
+                 int smIdTipoVia,
+                 int smestadocivil,
+                 string vdepartamento,
+                 string vprovincia,
+                 string vdistrito,
+                 string dfechanac,
+                 int btsexo,
+                 string vapellidopat,
+                 string vapellidomat,
+                 int idpoliza,
+                 string vnomcontacto,
+                 int sminacionalidad,
+                 int smidmarca,
+                 int smidtipodocumento,
+                 int formapago,
+                 string vigenciaini_reg,
+                 int smidtipopersona
+             //,string serie
 
-            )
+             )
         {
             return dal.RegistrarPoliza_DAL(DetallesVehi,
                 smidtablatipopoliza,
@@ -214,7 +214,7 @@ namespace Dominio.Repositorio
                 smidtipodocumento,
                 formapago,
                 vigenciaini_reg,
-                tipodocumento
+                smidtipopersona
                 //,serie
                 );
         }
@@ -390,10 +390,11 @@ namespace Dominio.Repositorio
         {
             return dal.ListarInspeccion_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
         }
-        public List<Inspeccion> ListarInspeccion2_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre,string estado, int NroDePagina, int RegPorPag)
+        public List<Inspeccion> ListarInspeccion2_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string idnrodocumento, string estado, int NroDePagina, int RegPorPag)
         {
-            return dal.ListarInspeccion2_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado, NroDePagina, RegPorPag);
+            return dal.ListarInspeccion2_DAL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, idnrodocumento, estado, NroDePagina, RegPorPag);
         }
+
 
         public List<ListarInspeccionExportEntity> ListarInspeccionExport_BL(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string estado)
         {

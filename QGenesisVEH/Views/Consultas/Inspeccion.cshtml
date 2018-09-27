@@ -25,7 +25,7 @@
                 </div>
                 <div class="col" style="text-align:left;">
                     <label class="col-form-label col-form-label-sm"><input type="checkbox" name="fec_ini" id="chk_fec_ini" checked>Fecha Inicial:</label>
-                    <input id="fechaini" type="date" class="form-control form-control-sm" >
+                    <input id="fechaini" type="date" class="form-control form-control-sm">
                     @*<input id="fechaini2" type="date" class="form-control form-control-sm Ocultar" >*@
                 </div>
                 <div class="col" style="text-align:left;">
@@ -35,11 +35,11 @@
                 <div class="col" style="text-align:left;">
                     <label class="col-form-label col-form-label-sm">Placa:</label>
                     <input id="placa" type="text" class="form-control form-control-sm">
-                </div>                
+                </div>
                 <div class="col-sm-1" style="margin-top:1.8rem;">
                     <input id="btnBuscar" type="button" value="Buscar" class="btn_customer btn-secondary" />
                 </div>
-                <div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">                    
+                <div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">
                     <input id="btnLimpiar" type="button" value="Limpiar" class="btn_customer btn-secondary" />
                 </div>
                 <div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">
@@ -49,18 +49,37 @@
                         <i class="fas fa-file-excel"></i>
                     </a>
                 </div>
-                @*<div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">                    
-                    <input id="btnNuevo" type="button" value="Nuevo" class="btn_customer btn-secondary" />
-                </div>*@
+                @*<div class="col-sm-1" style="margin-top:1.8rem;text-align:left;">
+                        <input id="btnNuevo" type="button" value="Nuevo" class="btn_customer btn-secondary" />
+                    </div>*@
 
             </div>
             @*class="col"*@
-            <div style="width:50%; overflow:hidden;">
-                <div  style="text-align:left; float:left">
-                    <input type="checkbox"  name="chk_sinfec_program" id="chk_sinfec_program"  ><label class="col-form-label col-form-label-sm ">&nbsp;&nbsp;Sin Fecha de Programación</label>
+
+            <div style="width:100%; overflow:hidden;">
+
+
+                <div style="text-align:left; float:left; margin-right:10px;">
+                    <label class="col-form-label col-form-label-sm">DOI:</label>
+                    <input id="doi" placeholder="" type="text" class="form-control form-control-sm">
                 </div>
-                <div  style="text-align:left; float:left; margin-left:15px">
-                    <input type="checkbox"  name="chk_inspec_vencida" id="chk_inspec_vencida"><label class="col-form-label col-form-label-sm">&nbsp;&nbsp;Inspecciones Vencidas</label>
+                <div style="text-align:left; float:left; margin-right:10px;">
+                    @*<input id="contratante" placeholder="ESTADO" type="text" class="form-control form-control-sm">*@
+                    <label class="col-form-label col-form-label-sm">Estado Inspección:</label>
+                    <select class="form-control input-sm" id="sp_EstadoInpecion" name="sp_EstadoInpecion">
+                        <option value="0">TODOS</option>
+                        <option value="1">PROGRAMADO</option>
+                        <option value="2">REPROGRAMADO</option>
+                        <option value="3">CONCLUIDO</option>
+                        <option value="4">PENDIENTE</option>
+                        <option value="5">CANCELADO</option>
+                    </select>
+                </div>
+                <div style="text-align:left; float:left; margin-top:20px">
+                    <input type="checkbox" name="chk_sinfec_program" id="chk_sinfec_program"><label class="col-form-label col-form-label-sm ">&nbsp;&nbsp;Sin Fecha de Programación</label>
+                </div>
+                <div style="text-align:left; float:left; margin-left:15px; margin-top:20px">
+                    <input type="checkbox" name="chk_inspec_vencida" id="chk_inspec_vencida"><label class="col-form-label col-form-label-sm">&nbsp;&nbsp;Inspecciones Vencidas</label>
                 </div>
             </div>
         </form>
@@ -140,5 +159,3 @@
 <script type="text/javascript" src="~/Scripts/Genesis/Consultas/Inspeccion.js"></script>
 <script type="text/javascript" src="~/Scripts/jquery.redirect.js"></script>
 <!--End Scripts-->
-
-

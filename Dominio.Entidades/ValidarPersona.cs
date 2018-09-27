@@ -29,6 +29,7 @@ namespace Dominio.Entidades
         public string Distrito { get; set; }
         public int smidtipodocumento { get; set; }
         public string vnomcontacto { get; set; }
+        public int tipopersona { get; set; }
 
     }
 }

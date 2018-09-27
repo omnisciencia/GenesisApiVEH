@@ -36,6 +36,7 @@ function ListarDatosReporteInspeccion(data) {
 
     for (i = 0; i < data.length; i++) {
 
+        iidinspeccion = data[0].iidinspeccion;
         nombre = data[0].nombre;
         nrodoc = data[0].nrodoc;
         celular = data[0].celular;
@@ -47,7 +48,7 @@ function ListarDatosReporteInspeccion(data) {
         marca = data[0].marca;
         modelo = data[0].modelo;
         color = data[0].color;
-        nroserie = data[0].nroserie;
+        nromotor = data[0].nromotor;
         nrovin = data[0].nrovin;
         kilometraje = data[0].kilometraje;
         estado = data[0].estado;
@@ -68,7 +69,7 @@ function ListarDatosReporteInspeccion(data) {
     cantidadmostrar = accesoriosAdi.length - 1;    
     cadenaAccesoriosAdicionados = accesoriosAdi.substring(0, cantidadmostrar);
 
-
+    document.getElementById('titulorep').innerHTML ='Reporte de inspección - ' + iidinspeccion;
     document.getElementById('nombre_id').innerHTML = nombre;
     document.getElementById('nrodoc_id').innerHTML = nrodoc;
     document.getElementById('celular_id').innerHTML = celular;
@@ -80,7 +81,7 @@ function ListarDatosReporteInspeccion(data) {
     document.getElementById('marca_id').innerHTML = MaysPrimera(marca.toLowerCase());
     document.getElementById('modelo_id').innerHTML = MaysPrimera(modelo.toLowerCase());
     document.getElementById('color_id').innerHTML = MaysPrimera(color.toLowerCase());
-    document.getElementById('nroserie_id').innerHTML = nroserie;
+    document.getElementById('nromotor_id').innerHTML = nromotor;
     document.getElementById('nrovin_id').innerHTML = nrovin;
     document.getElementById('kilometraje_id').innerHTML = kilometraje + " Km";
     document.getElementById('estado_id').innerHTML = estado;

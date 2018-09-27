@@ -40,6 +40,12 @@ namespace Dominio.Entidades
         public string puertas { get; set; }
         public string nroserie { get; set; }
         public int ikilometraje { get; set; }
+        public string iclaserodante { get; set; }
+
+        public string smidtipotransmision { get; set; }
+        public string smidtipocombustible { get; set; }
+        public string smidcarroceria { get; set; }
+
 
         public string fecrecordatorio { get; set; }
         public string horrecordatorio { get; set; }
@@ -88,6 +94,6 @@ namespace Dominio.Entidades
         public int smcarroceria { get; set; }
         public int btequipomuisca { get; set; }
 
-
+        
     }
 }

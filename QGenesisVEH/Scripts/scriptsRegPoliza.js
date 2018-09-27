@@ -129,6 +129,72 @@ jQuery(document).ready(function() {
         //}   
 
         if (sessionStorage.getItem("modo") != 'ver') {
+
+            parent_fieldset.find('#sp_TipoTransmision').each(function () {
+
+                if ($('#sp_TipoTransmision').val() == 0) {
+                    if ($('#sp_TipoTransmision').val() == 0) $('#sp_TipoTransmision').addClass('input-error');
+                    next_step = false;
+                }
+                else {
+
+                    $(this).removeClass('input-error');
+
+                }
+            });
+
+            parent_fieldset.find('#sp_ClaseRodante').each(function () {
+
+                if ($('#sp_ClaseRodante').val() == 0) {
+                    if ($('#sp_ClaseRodante').val() == 0) $('#sp_ClaseRodante').addClass('input-error');
+                    next_step = false;
+                }
+                else {
+
+                    $(this).removeClass('input-error');
+
+                }
+            });
+
+            parent_fieldset.find('#sp_TipoCombustible').each(function () {
+
+                if ($('#sp_TipoCombustible').val() == 0) {
+                    if ($('#sp_TipoCombustible').val() == 0) $('#sp_TipoCombustible').addClass('input-error');
+                    next_step = false;
+                }
+                else {
+
+                    $(this).removeClass('input-error');
+
+                }
+            });
+
+            parent_fieldset.find('#sp_TipoCarroceria').each(function () {
+
+                if ($('#sp_TipoCarroceria').val() == 0) {
+                    if ($('#sp_TipoCarroceria').val() == 0) $('#sp_TipoCarroceria').addClass('input-error');
+                    next_step = false;
+                }
+                else {
+
+                    $(this).removeClass('input-error');
+
+                }
+            });
+
+            parent_fieldset.find('#sp_TipoDano').each(function () {
+
+                if ($('#sp_TipoDano').val() == 0) {
+                    if ($('#sp_TipoDano').val() == 0) $('#sp_TipoDano').addClass('input-error');
+                    next_step = false;
+                }
+                else {
+
+                    $(this).removeClass('input-error');
+
+                }
+            });
+
             parent_fieldset.find('#fecinspeccion_id').each(function () {
 
                 if ($('#fecinspeccion_id').val() == "") {

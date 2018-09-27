@@ -12,31 +12,31 @@
             <div class="col-sm-12 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-3 form-box">
                 <form role="form" action="" method="post" class="f1">
                     <h3 id="titulo">Registro de Poliza</h3>
-                        <div class="f1-steps">
-                            <div class="f1-progress">
-                                <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
-                            </div>                          
-                            <div class="f1-step  active">
-                                <div class="f1-step-icon"><i class="fas fa-paste"></i></div>
-                                <p>Poliza</p>
-                            </div>                                                          
-                            <div class="f1-step">
-                                <div class="f1-step-icon"><i class="fas fa-user"></i></div>
-                                <p>Asegurado</p>
-                            </div>
-                            <div class="f1-step">
-                                <div class="f1-step-icon"><i class="fas fa-car"></i></div>
-                                <p>Vehículo</p>
-                            </div>
-                          
+                    <div class="f1-steps">
+                        <div class="f1-progress">
+                            <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
                         </div>
+                        <div class="f1-step  active">
+                            <div class="f1-step-icon"><i class="fas fa-paste"></i></div>
+                            <p>Poliza</p>
+                        </div>
+                        <div class="f1-step">
+                            <div class="f1-step-icon"><i class="fas fa-user"></i></div>
+                            <p>Asegurado</p>
+                        </div>
+                        <div class="f1-step">
+                            <div class="f1-step-icon"><i class="fas fa-car"></i></div>
+                            <p>Vehículo</p>
+                        </div>
+
+                    </div>
                     <fieldset>
                         <h4>Producto a Registrar:</h4>
                         <div class="row">
                             <div class="col-lg-4 col-md-4">
                                 <div class="form-group">
                                     <label>Nro. Poliza:</label>
-                                    <input type="text" class="form-control input-sm" id="nropoliza_reg" onkeypress="return justNumbers(event);" onKeyUp="this.value=this.value.toUpperCase();">
+                                    <input type="text" class="form-control input-sm" id="nropoliza_reg" onkeypress="return justNumbers(event);" onKeyUp="this.value=this.value.toUpperCase();" maxlength="10">
                                 </div>
                                 <div class="form-group">
                                     <label>Tipo de Movimiento:</label>
@@ -100,11 +100,11 @@
                                     </select>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-xs-12">
-                                
+
                                 <div class="form-group">
                                     <label id="t_tipodoc">Tipo de Documento</label>
                                     <select class="form-control input-sm" id="sp_TipoDocumento" name="sp_TipoDocumento">
@@ -116,9 +116,9 @@
                                     <input type="text" class="form-control input-sm" id="nombres_reg" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
                                 <!--<div class="form-group Ocultar" id="form_nomcontacto">
-                    <label>Nombre de Contacto</label>
-                    <input type="text" class="form-control input-sm" id="nomcontacto_reg" value=" ">
-                </div>-->
+                                    <label>Nombre de Contacto</label>
+                                    <input type="text" class="form-control input-sm" id="nomcontacto_reg" value=" ">
+                                </div>-->
                                 <div class="form-group">
                                     <label id="t_fecnacimineto">Fecha Nacimiento:</label>
 
@@ -152,20 +152,20 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-xs-12">
                                 <!--<div class="form-group Ocultar" id="form_rsocial">
-                    <label>Razón Social</label>
-                    <input type="text" class="form-control input-sm" id="rsocial_reg" value=" ">
-                </div>-->       
-                                <div class="form-group">
+                                    <label>Razón Social</label>
+                                    <input type="text" class="form-control input-sm" id="rsocial_reg" value=" ">
+                                </div>-->
+                                <div class="form-group" id="nacionalidad">
                                     <label id="t_nacionalidad">Nacionalidad:</label>
                                     <select class="form-control input-sm" id="sp_Nacionalidad" name="sp_Nacionalidad">
                                         <option value="">Peruana</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="materno">
                                     <label id="t_apematerno">Apellido Materno</label>
                                     <input type="text" class="form-control input-sm" id="materno_reg" onKeyUp="this.value=this.value.toUpperCase();">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" id="civil">
                                     <label id="t_estcivil">Estado Civil:</label>
                                     <select class="form-control input-sm" id="sp_EstadoCivil" name="sp_EstadoCivil">
                                         <option value="">Casado</option>
@@ -179,9 +179,9 @@
                             </div>
                         </div>
                         <!--<div class="form-group Ocultar" id="form_rsocial">
-            <label>Razón Social</label>
-            <input type="text" class="form-control input-sm" id="rsocial_reg" value=" ">
-        </div>-->
+                            <label>Razón Social</label>
+                            <input type="text" class="form-control input-sm" id="rsocial_reg" value=" ">
+                        </div>-->
 
                         <div class="row Ocultar" id="form_rsocial">
                             <div class="col-lg-12 col-md-12">
@@ -272,25 +272,25 @@
                         </div>
                     </fieldset>
                     <fieldset>
-                        
+
                         <div id="contenedor_errorMessage" class="alert alert-danger Ocultar" role="alert">
                             <span id="errorMessage">simple danger alert—check it out!</span>
                         </div>
-                        <div style="height: 5px;"></div>                        
-                        <div class="row" >                            
+                        <div style="height: 5px;"></div>
+                        <div class="row">
                             <div class="col-lg-6 col-md-6 col-xs-12">
                                 <h4>Información del Vehículo:</h4>
-                            </div>                            
-                            <div class="col-lg-6 col-md-6 col-xs-12" style="padding-left:40%" >
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-12" style="padding-left:40%">
                                 <div class="row">
                                     <div>
 
                                     </div>
                                     <div>
                                         <input type="button" value="Nuevo" class="btn_customer btn-secondary" data-toggle='modal' data-target='#ver_vehiculo' id="btnVer" />
-                                    </div>                                  
+                                    </div>
                                 </div>
-                            </div>                               
+                            </div>
                         </div>
                         <div style="height:10px;"></div>
                         <div style="width:90%;margin:auto;overflow:auto;">
@@ -373,7 +373,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Placa:</label>
-                                                    <input type="text" class="form-control input-sm" id="placa_reg" onblur="ValidarPlaca()" onKeyUp="    this.value = this.value.toUpperCase();">
+                                                    <input type="text" class="form-control input-sm" id="placa_reg" onblur="ValidarPlaca()" onKeyUp=" this.value=this.value.toUpperCase();">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Nro. Motor:</label>
@@ -401,9 +401,9 @@
                                                 </div>
 
                                                 @*<div class="form-group">
-                                                    <label>Nro. Serie:</label>
-                                                    <input type="text" class="form-control input-sm" id="nroserie_reg">
-                                                </div>*@
+                                                        <label>Nro. Serie:</label>
+                                                        <input type="text" class="form-control input-sm" id="nroserie_reg">
+                                                    </div>*@
 
                                                 <div class="form-group">
                                                     <label>Tipo Uso:</label>
@@ -476,23 +476,23 @@
                                                         <option value="1">ALTO</option>
                                                         <option value="2">MODERADO</option>
                                                         <option value="3">BAJO</option>
-                                                    </select>                                                    
+                                                    </select>
                                                 </div>
 
                                             </div>
                                         </div>
-                                        <div >
-                                            
+                                        <div>
+
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="button" id="btnAceptar" class="btn btn-primary" value="Agregar"/>
+                                        <input type="button" id="btnAceptar" class="btn btn-primary" value="Agregar" />
                                         <input type="button" id="btnActualizarVeh" class="btn btn-primary Ocultar" value="Actualizar" onclick="ActualizarDatosVehiculo()" />
-                                        <input type="button" id="btnCancelar" class="btn btn-secondary" value="Cerrar" data-dismiss="modal"/>
+                                        <input type="button" id="btnCancelar" class="btn btn-secondary" value="Cerrar" data-dismiss="modal" />
                                     </div>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                         <div style="height:30px;"></div>
 
                         <div class="f1-buttons">
@@ -504,9 +504,9 @@
 
                     </fieldset>
 
-                    
 
-                    
+
+
 
                 </form>
             </div>

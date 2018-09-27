@@ -193,36 +193,34 @@ namespace GenesisVehivular.Controllers
         }
 
         public ActionResult RegistrarPoliza(string DetallesVehi,
-                int smidtablatipopoliza,
-                string idnrodocumento,
-                string vnombres,
-                string vcelular,
-                string vtelefono1,
-                string vemail,
-                string vreferencia,
-                string vnumero,
-                string vnombrevia,
-                int smIdTipoVia,
-                int smestadocivil,
-                string vdepartamento,
-                string vprovincia,
-                string vdistrito,
-                string dfechanac,
-                int btsexo,
-                string vapellidopat,
-                string vapellidomat,
-                int idpoliza,
-                string vnomcontacto,
-                int sminacionalidad,
-                int smidmarca,
-                int smidtipodocumento,
-                int formapago,
-                string vigenciaini_reg,
-                int tipodocumento
-         
-
-            //,string serie
-            )
+               int smidtablatipopoliza,
+               string idnrodocumento,
+               string vnombres,
+               string vcelular,
+               string vtelefono1,
+               string vemail,
+               string vreferencia,
+               string vnumero,
+               string vnombrevia,
+               int smIdTipoVia,
+               int smestadocivil,
+               string vdepartamento,
+               string vprovincia,
+               string vdistrito,
+               string dfechanac,
+               int btsexo,
+               string vapellidopat,
+               string vapellidomat,
+               int idpoliza,
+               string vnomcontacto,
+               int sminacionalidad,
+               int smidmarca,
+               int smidtipodocumento,
+               int formapago,
+               string vigenciaini_reg,
+               int smidtipopersona
+           //,string serie
+           )
         {
 
             //string [] ArrayDetallesVehi = DetallesVehi;
@@ -255,7 +253,7 @@ namespace GenesisVehivular.Controllers
                smidtipodocumento,
                formapago,
                vigenciaini_reg,
-               tipodocumento
+               smidtipopersona
                //,serie
                );
             return Json(listado);
@@ -440,11 +438,11 @@ namespace GenesisVehivular.Controllers
             return Json(listado);
         }
 
-        public ActionResult EnviarCorreo(string asuntop, string nombre, string dni, string celular, string fecha, string hora, string placa,
-          string marca, string modelo, string color, string nroserie, string nrovin, string km, string estado, string accesorios,
+        public ActionResult EnviarCorreo(string iidinspeccion, string asuntop, string nombre, string dni, string celular, string fecha, string hora, string placa,
+          string marca, string modelo, string color, string nromotor, string nrovin, string km, string estado, string accesorios,
           string observaciones, string destinop)
         {
-            string stCuerpoHTML = "<!DOCTYPE HTML><html><head><title>Reporte Inspeccion</title><meta charset='utf-8'/><meta name='viewport' content='width = device-width, initial-scale = 1, user-scalable = no'/><link href='https://fonts.googleapis.com/css?family=Nunito+Sans' rel='stylesheet'>";
+            string stCuerpoHTML = "<!DOCTYPE HTML><html><head><title>Reporte Inspeccion - "+ iidinspeccion + " </title><meta charset='utf-8'/><meta name='viewport' content='width = device-width, initial-scale = 1, user-scalable = no'/><link href='https://fonts.googleapis.com/css?family=Nunito+Sans' rel='stylesheet'>";
             stCuerpoHTML += "</head><body style='font-family:'Nunito Sans', sans-serif;'><section style='width: 60%;margin:auto;text-align:center;'><div style ='margin-top: 1rem;margin-bottom: 1.5rem;width: 100%;text-align:center;border-bottom: 5px solid #4156CB;'><h1 style ='margin-bottom: 1.5rem; color: #4156CB;'> Reporte de Inspección</h1></div><div style ='text-align: left;border-bottom: 2px solid #B2B7C5;'><div style='display: -ms-flexbox;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;'><div style ='position: relative;width: 100%;min-height: 1px;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 50%;flex: 0 0 46%;max-width: 46%; margin-top: -1rem;'> ";
             stCuerpoHTML += "<h3 style='color: #4156CB;'>" + nombre + "</h3>";
             stCuerpoHTML += "<form><div><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>DNI:</label>";
@@ -475,8 +473,8 @@ namespace GenesisVehivular.Controllers
             stCuerpoHTML += "<span>" + modelo + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>COLOR:</label>";
             stCuerpoHTML += "<span>" + color + "</span>";
-            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>NÚMERO DE SERIE:</label>";
-            stCuerpoHTML += "<span>" + nroserie + "</span>";
+            stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>NÚMERO DE MOTOR:</label>";
+            stCuerpoHTML += "<span>" + nromotor + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>NÚMERO DE VIN:</label>";
             stCuerpoHTML += "<span>" + nrovin + "</span>";
             stCuerpoHTML += "</div></form><form><div style='text-align: left;'><label style='color: #4156CB;font-weight: bold;margin-right: 2px;'>KILOMETRAJE:</label>";
@@ -540,12 +538,13 @@ namespace GenesisVehivular.Controllers
             List<Inspeccion> listado = bl.ListarInspeccion_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, NroDePagina, RegPorPag);
             return Json(listado);
         }
-        public ActionResult ListarInspeccion2(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string estado, int NroDePagina, int RegPorPag)
+        public ActionResult ListarInspeccion2(string iidinspeccion, string idpoliza, string placa, string fechaini, string fechafin, string nombre, string idnrodocumento, string estado, int NroDePagina, int RegPorPag)
         {
             General_BL bl = new General_BL();
-            List<Inspeccion> listado = bl.ListarInspeccion2_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, estado, NroDePagina, RegPorPag);
+            List<Inspeccion> listado = bl.ListarInspeccion2_BL(iidinspeccion, idpoliza, placa, fechaini, fechafin, nombre, idnrodocumento, estado, NroDePagina, RegPorPag);
             return Json(listado);
         }
+
         public ActionResult exportReport()
         {
             ReportDocument rd = new ReportDocument();
